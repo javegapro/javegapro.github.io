@@ -21,8 +21,10 @@
             --overlay-opacity: 0.65; 
             --transition-speed: 0.5s;
             --danger-red: #ef4444;
+            --whatsapp-green: #25D366;
         }
 
+        /* --- ESCUDO DE SEGURIDAD (ANTI-DESCARGAS) --- */
         * { 
             box-sizing: border-box; margin: 0; padding: 0; 
             -webkit-user-drag: none; 
@@ -73,7 +75,7 @@
             transform: translateY(-3px); box-shadow: 0 10px 20px rgba(45, 212, 191, 0.15);
         }
 
-        /* --- GRILLA --- */
+        /* --- GRILLA CINEMATOGRÁFICA --- */
         .portfolio-grid {
             display: grid; grid-template-columns: 1fr; gap: 2vw; 
             padding: 0 2% 100px; width: 100%; max-width: 2500px; margin: 0 auto;
@@ -129,7 +131,7 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 25px rgba(45, 212, 191, 0.15);
             transform: translateY(-10px); z-index: 10;
         }
-        .media-item:hover .hc-img, .media-item:hover .yt-thumbnail, .media-item:hover .media-iframe { 
+        .media-item:not(.audio):hover .hc-img, .media-item:not(.audio):hover .yt-thumbnail, .media-item:not(.audio):hover .media-iframe { 
             filter: grayscale(0%) brightness(1.1); transform: scale(1.05); 
         }
 
@@ -143,72 +145,59 @@
         .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
         
         /* ====================================================
-           NUEVO DISEÑO DE AUDIO (NEÓN Y CENTRADO)
+           NUEVO DISEÑO DE AUDIO (NEÓN, VISUALIZADOR Y CENTRADO)
         ==================================================== */
         .media-item.audio {
-            border: none; /* Quitamos borde nativo para dejar ver la animación */
+            border: none;
             position: relative;
             display: flex; justify-content: center; align-items: center;
-            overflow: hidden;
-            cursor: default; /* El audio no tiene modal */
-            transform: none !important; /* Quitamos el salto del hover */
+            overflow: hidden; cursor: default;
+            transform: none !important; /* Estático, no salta al hover */
+            background-color: var(--dark-bg);
         }
         
-        /* Animación del borde giratorio */
+        /* Animación del anillo neón */
         @keyframes rotateGlow {
             0% { transform: translate(-50%, -50%) rotate(0deg); }
             100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        /* Capa de gradiente que gira */
         .audio-glow-ring {
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 200%; height: 200%;
-            background: conic-gradient(transparent, transparent, transparent, var(--electric-cyan));
-            animation: rotateGlow 4s linear infinite;
-            z-index: 1;
-            opacity: 0.5; /* Sutil por defecto */
-            transition: opacity 0.3s ease;
+            position: absolute; top: 50%; left: 50%; width: 200%; height: 200%;
+            background: conic-gradient(transparent, transparent, rgba(45, 212, 191, 0.2), var(--electric-cyan));
+            animation: rotateGlow 4s linear infinite; z-index: 1;
+            opacity: 0.6; transition: opacity 0.3s ease;
         }
-        .media-item.audio:hover .audio-glow-ring {
-            opacity: 1; /* Brilla más al poner el mouse */
-        }
+        .media-item.audio:hover .audio-glow-ring { opacity: 1; }
 
-        /* Capa interior que tapa el centro y deja solo el borde */
+        /* Capa interior que enmascara el centro */
         .audio-inner-card {
-            position: absolute;
-            inset: 2px; /* Grosor del borde de neón */
-            background-color: var(--card-bg);
-            border-radius: 14px; /* Un poco menos que el contenedor padre */
-            z-index: 2;
+            position: absolute; inset: 2px; /* Define el grosor del borde luminoso */
+            background-color: var(--card-bg); border-radius: 14px; z-index: 2;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; padding: 20px;
+            text-align: center; padding: 20px; overflow: hidden;
         }
 
         .audio-inner-card .media-texture { z-index: 3; }
 
-        .audio-text-content {
-            z-index: 4; margin-bottom: 25px;
+        /* Lienzo del visualizador de ondas */
+        .audio-visualizer {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 60%;
+            z-index: 4; opacity: 0.7; pointer-events: none;
         }
-        .audio-text-content h2 {
-            font-size: 2.2rem; text-transform: uppercase; margin-bottom: 5px; text-shadow: none;
-        }
-        .audio-text-content p {
-            color: var(--electric-cyan); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 3px; text-shadow: none;
-        }
+
+        .audio-text-content { z-index: 5; margin-bottom: 25px; }
+        .audio-text-content h2 { font-size: 2.2rem; text-transform: uppercase; margin-bottom: 5px; text-shadow: none;}
+        .audio-text-content p { color: var(--electric-cyan); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 3px; text-shadow: none;}
 
         .audio-player-container {
-            position: relative; z-index: 4; width: 75%; /* Centrado y más compacto */
+            position: relative; z-index: 6; width: 80%; max-width: 400px;
         }
-        .audio-player-container audio {
-            width: 100%; height: 50px; border-radius: 8px; outline: none;
-        }
+        .audio-player-container audio { width: 100%; height: 50px; border-radius: 8px; outline: none; }
 
-        /* Customización Webkit Audio */
-        audio::-webkit-media-controls-panel { background-color: rgba(15, 23, 42, 0.95); border: 1px solid rgba(45, 212, 191, 0.2); }
+        audio::-webkit-media-controls-panel { background-color: rgba(2, 6, 23, 0.85); border: 1px solid rgba(45, 212, 191, 0.3); }
         audio::-webkit-media-controls-play-button, audio::-webkit-media-controls-mute-button { filter: invert(1); cursor: pointer;}
-        audio::-webkit-media-controls-current-time-display, audio::-webkit-media-controls-time-remaining-display { color: var(--electric-cyan); font-family: 'Inter', sans-serif;}
+        audio::-webkit-media-controls-current-time-display, audio::-webkit-media-controls-time-remaining-display { color: var(--text-main); font-family: 'Inter', sans-serif;}
 
         /* --- MEDIA QUERIES --- */
         @media (min-width: 768px) {
@@ -225,19 +214,31 @@
             .media-overlay { padding: 80px 50px 50px; }
         }
 
-        /* --- CONTACTO Y BÓVEDA --- */
+        /* --- CONTACTO Y WHATSAPP --- */
         .contact-section {
             padding: 100px 5%; text-align: center; border-top: 1px solid rgba(45, 212, 191, 0.2);
             border-bottom: 1px solid rgba(45, 212, 191, 0.2); background: radial-gradient(circle at center, rgba(45, 212, 191, 0.05) 0%, var(--dark-bg) 100%);
         }
         .contact-section h2 { font-size: 3rem; margin-bottom: 15px; color: var(--text-main); text-transform: uppercase; font-family: 'Montserrat', sans-serif;}
         .contact-section p { color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.2rem;}
-        .contact-actions { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-bottom: 50px;}
-        .btn-primary, .btn-secondary { padding: 18px 50px; font-weight: 700; border-radius: 5px; transition: all 0.3s; font-family: 'Inter', sans-serif; font-size: 1.1rem; text-decoration: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border: none;}
+        .contact-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 50px;}
+        
+        .btn-primary, .btn-secondary, .btn-whatsapp { 
+            padding: 18px 40px; font-weight: 700; border-radius: 5px; transition: all 0.3s; 
+            font-family: 'Inter', sans-serif; font-size: 1rem; text-decoration: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border: none;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+        }
+        
         .btn-primary { background-color: var(--electric-cyan); color: var(--dark-bg); }
         .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(45, 212, 191, 0.3); }
+        
         .btn-secondary { background-color: transparent; color: var(--text-main); border: 2px solid var(--text-muted); }
         .btn-secondary:hover { border-color: var(--electric-cyan); color: var(--electric-cyan); }
+
+        /* Botón WhatsApp */
+        .btn-whatsapp { background-color: var(--whatsapp-green); color: var(--dark-bg); }
+        .btn-whatsapp:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3); background-color: #1EBE5A;}
+        
         .social-links { display: flex; justify-content: center; gap: 40px; padding-top: 30px; flex-wrap: wrap;}
         .social-links a { color: var(--text-muted); text-decoration: none; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s;}
         .social-links a:hover { color: var(--electric-cyan); }
@@ -249,7 +250,7 @@
         .vault-btn { background: transparent; color: var(--electric-cyan); border: 2px solid var(--electric-cyan); padding: 15px 40px; font-weight: 700; border-radius: 5px; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;}
         .vault-btn:hover { background: var(--electric-cyan); color: var(--dark-bg); }
 
-        /* --- MODALES --- */
+        /* --- MODALES GENERALES --- */
         .modal-fullscreen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(2,6,23,0.98); z-index: 1000; display: none; justify-content: center; align-items: center; padding: 2% 5%;
@@ -283,9 +284,7 @@
         .gallery-dots {
             position: absolute; bottom: 3%; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 1010;
         }
-        .gallery-dot {
-            width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: 0.3s;
-        }
+        .gallery-dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: 0.3s; }
         .gallery-dot.active { background: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan); }
 
         .form-modal-box {
@@ -387,7 +386,6 @@
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Motion Graphics</p><h2>9. Lyric Video</h2></div>
         </div>
-
 
         <div class="media-item fotografia" onclick="openGalleryModal('food')">
             <div class="media-texture"></div>
@@ -498,10 +496,10 @@
             <div class="media-overlay"><p>Landscape / Fine Art</p><h2>Naturaleza</h2></div>
         </div>
 
-
         <div class="media-item audio">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
+                <canvas class="audio-visualizer"></canvas>
                 <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Alone</h2>
@@ -516,6 +514,7 @@
         <div class="media-item audio">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
+                <canvas class="audio-visualizer"></canvas>
                 <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Trapped</h2>
@@ -530,6 +529,7 @@
         <div class="media-item audio">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
+                <canvas class="audio-visualizer"></canvas>
                 <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Rock Your Reel</h2>
@@ -544,6 +544,7 @@
         <div class="media-item audio">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
+                <canvas class="audio-visualizer"></canvas>
                 <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Rain</h2>
@@ -558,6 +559,7 @@
         <div class="media-item audio">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
+                <canvas class="audio-visualizer"></canvas>
                 <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Hades</h2>
@@ -572,6 +574,7 @@
         <div class="media-item audio">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
+                <canvas class="audio-visualizer"></canvas>
                 <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Sauvage</h2>
@@ -589,13 +592,13 @@
         <h2>Conectemos</h2>
         <p>¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Hablemos de innovación creativa.</p>
         <div class="contact-actions">
-            <a href="mailto:Alejandro.960822@gmail.com" class="btn-primary">Escríbame un correo</a>
-            <a href="ALEJANDRO_VEGA_HV_2026.pdf" target="_blank" class="btn-secondary">Descargar Hoja de Vida (PDF)</a>
+            <a href="https://wa.me/573001404327?text=Hola%20Alejandro,%20estoy%20viendo%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20escribirte." target="_blank" class="btn-whatsapp">Escríbeme por WhatsApp (Solo Mensajes)</a>
+            <a href="mailto:Alejandro.960822@gmail.com" class="btn-primary">Escríbeme un correo</a>
+            <a href="ALEJANDRO_VEGA_HV_2026.pdf" target="_blank" class="btn-secondary">Descargar CV (PDF)</a>
         </div>
         <div class="social-links">
             <a href="https://linkedin.com/in/javegapro" target="_blank">LinkedIn</a>
             <a href="https://www.youtube.com/@javegapro" target="_blank">Canal de YouTube</a>
-            <a href="https://instagram.com/javegapro" target="_blank">Instagram (Archivo Audiovisual)</a>
         </div>
     </section>
 
@@ -644,8 +647,10 @@
     </div>
 
     <script>
+        // --- 0. SEGURIDAD ANTI-DESCARGAS GLOBALES ---
         document.addEventListener('contextmenu', event => event.preventDefault());
 
+        // --- 1. DATOS GALERÍA ---
         const galleryData = {
             'food': ['https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png'],
             'sabrina': ['https://static.wixstatic.com/media/14f4fb_cfb665c8cecc4a3f915d59ecc7372cdf~mv2.png', 'https://static.wixstatic.com/media/14f4fb_ccfb094089134b27a65b8008ab140548~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_8cd04cc0174b4bc2b5fdd33f7c95bcee~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_74ff5ed1e6a641ec8530ebb424a29590~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_f2b9a122bb454eb18d439cf4aa55f621~mv2.jpg'],
@@ -658,6 +663,7 @@
             'producto': ['https://static.wixstatic.com/media/14f4fb_bde31a4c87be49a1882327dacb0882e0~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_09129e6b1cc648ed8f0dd806ea46ac95~mv2.jpg']
         };
 
+        // --- 2. LÓGICA DEL HOVER CAROUSEL (FOTOS) ---
         const hoverTimers = new Map();
         document.querySelectorAll('.media-item.fotografia').forEach(item => {
             const images = item.querySelectorAll('.hc-img');
@@ -678,6 +684,7 @@
             });
         });
 
+        // --- 3. LÓGICA DEL VISOR DE GALERÍA (LIGHTBOX) ---
         let currentCollection = [];
         let currentSlideIdx = 0;
         let galleryAutoPlayTimer;
@@ -686,6 +693,7 @@
         const galleryDots = document.getElementById('gallery-dots');
 
         function openGalleryModal(collectionId) {
+            pauseAllAudio(); // Pausa audios al abrir fotos
             currentCollection = galleryData[collectionId];
             currentSlideIdx = 0;
             galleryDots.innerHTML = '';
@@ -722,9 +730,11 @@
             setTimeout(() => { galleryImage.src = ""; }, 300);
         }
 
+        // --- 4. LÓGICA DE VIDEOS YOUTUBE (MOTOR V4.0 CONCURRENTE) ---
         document.addEventListener("DOMContentLoaded", function() {
             const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
             const iframes = document.querySelectorAll('.auto-observe-yt');
+
             function sendYTCommand(iframe, func) {
                 if (iframe && iframe.contentWindow && iframe.src) iframe.contentWindow.postMessage(JSON.stringify({event: 'command', func: func, args: []}), '*');
             }
@@ -738,6 +748,7 @@
                     const thumb = card.querySelector('.yt-thumbnail');
                     const rect = card.getBoundingClientRect();
                     const isFullyVisible = (rect.top >= -20) && (rect.bottom <= viewportHeight + 20);
+
                     if (isFullyVisible && playingCount < 2) {
                         playingCount++;
                         if (!iframe.src) {
@@ -768,11 +779,11 @@
             setTimeout(evaluateVideos, 500);
         });
 
+        // Modal de YouTube
         const ytModal = document.getElementById('youtube-modal');
         const ytIframe = document.getElementById('youtube-iframe');
         function openYoutubeModal(urlOrId) {
-            // Pausa cualquier audio sonando antes de abrir video
-            document.querySelectorAll('audio').forEach(audio => audio.pause());
+            pauseAllAudio(); // Pausa audios al abrir video
             ytModal.classList.add('active-modal');
             ytIframe.src = `https://www.youtube.com/embed/${urlOrId}?autoplay=1&rel=0`;
         }
@@ -781,6 +792,79 @@
             ytIframe.src = ""; 
         }
 
+        // --- 5. LÓGICA DEL VISUALIZADOR DE AUDIO FALSO (ANTIFALLOS CDN) ---
+        function pauseAllAudio(except = null) {
+            document.querySelectorAll('audio').forEach(audio => {
+                if (audio !== except) audio.pause();
+            });
+        }
+
+        document.querySelectorAll('.media-item.audio').forEach(item => {
+            const audio = item.querySelector('audio');
+            const canvas = item.querySelector('.audio-visualizer');
+            if(!audio || !canvas) return;
+            const ctx = canvas.getContext('2d');
+            let isPlaying = false;
+            let animationId;
+
+            // Ajustar canvas
+            const resizeCanvas = () => { canvas.width = item.offsetWidth; canvas.height = item.offsetHeight * 0.6; };
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const bars = 40;
+            
+            function drawVisualizer() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const barWidth = canvas.width / bars;
+                
+                const gradient = ctx.createLinearGradient(0, canvas.height, 0, 0);
+                gradient.addColorStop(0, 'rgba(45, 212, 191, 0.1)');
+                gradient.addColorStop(1, 'rgba(45, 212, 191, 0.7)');
+                ctx.fillStyle = gradient;
+
+                for (let i = 0; i < bars; i++) {
+                    const minHeight = 5;
+                    let height = minHeight;
+                    if (isPlaying) {
+                        // Simulación de ecualizador basado en una onda senoidal + ruido aleatorio
+                        const time = Date.now() / 200;
+                        const wave = Math.sin(time + i * 0.5) * 0.5 + 0.5;
+                        const noise = Math.random() * 0.5;
+                        height = minHeight + ((wave + noise) * (canvas.height - 20) * 0.7);
+                    }
+                    const x = i * barWidth;
+                    const y = canvas.height - height;
+                    ctx.fillRect(x, y, barWidth - 2, height);
+                }
+
+                if (isPlaying) {
+                    animationId = requestAnimationFrame(drawVisualizer);
+                } else {
+                    // Dibuja el estado de reposo
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    for (let i = 0; i < bars; i++) {
+                        ctx.fillRect(i * barWidth, canvas.height - 5, barWidth - 2, 5);
+                    }
+                }
+            }
+
+            audio.addEventListener('play', () => {
+                pauseAllAudio(audio); // Solo suena uno a la vez
+                isPlaying = true;
+                drawVisualizer();
+            });
+
+            audio.addEventListener('pause', () => {
+                isPlaying = false;
+                cancelAnimationFrame(animationId);
+                drawVisualizer();
+            });
+
+            drawVisualizer(); // Inicializar
+        });
+
+        // --- 6. FUNCIONES GENERALES (Filtros y Bóveda) ---
         function filterGallery(category) {
             const btns = document.querySelectorAll('.filter-btn');
             btns.forEach(btn => btn.classList.remove('active'));
@@ -791,7 +875,7 @@
                 else item.classList.contains(category) ? item.classList.remove('hide') : item.classList.add('hide');
             });
             window.dispatchEvent(new Event('scroll'));
-            document.querySelectorAll('audio').forEach(audio => audio.pause());
+            pauseAllAudio();
         }
 
         const vaultModal = document.getElementById('vault-modal');

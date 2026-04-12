@@ -24,7 +24,7 @@
             --whatsapp-green: #25D366;
         }
 
-        /* --- ESCUDO DE SEGURIDAD --- */
+        /* --- ESCUDO DE SEGURIDAD Y COMPATIBILIDAD --- */
         * { 
             box-sizing: border-box; margin: 0; padding: 0; 
             -webkit-user-drag: none; -moz-user-select: none;
@@ -35,41 +35,73 @@
         body {
             background-color: var(--dark-bg); color: var(--text-main);
             font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth;
+            opacity: 0; /* Oculta todo hasta que el splash termina */
+            transition: opacity 0.5s ease;
         }
+        body.loaded { opacity: 1; }
 
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
         /* ====================================================
-           SPLASH SCREEN (ANIMACIÓN DE ENTRADA INTELIGENTE)
+           13.0: SPLASH SCREEN GLITCH & FLOW (NUEVO)
         ==================================================== */
         #splash-screen {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background-color: var(--dark-bg); z-index: 10000;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
-        }
-        .splash-name {
-            font-size: 3rem; font-family: 'Montserrat', sans-serif; color: var(--text-main);
-            letter-spacing: 4px; opacity: 0; text-transform: uppercase; transform: translateY(20px);
-            animation: splashFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.2s; text-align: center;
-        }
-        .splash-title {
-            color: var(--electric-cyan); font-size: 1.2rem; letter-spacing: 3px; 
-            opacity: 0; font-weight: 600; text-transform: uppercase; margin-top: 10px;
-            animation: splashFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.5s; text-align: center;
-        }
-        .splash-explosion {
-            position: absolute; top: 50%; left: 50%; width: 5px; height: 5px;
-            background: var(--electric-cyan); border-radius: 50%; box-shadow: 0 0 50px 20px var(--electric-cyan);
-            transform: translate(-50%, -50%) scale(0); opacity: 0;
-            animation: cyanExplosion 1.2s cubic-bezier(0.8, 0, 0.2, 1) forwards 1.3s;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
         }
         
-        @keyframes splashFadeIn { to { opacity: 1; transform: translateY(0); } }
-        @keyframes cyanExplosion {
-            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-            50% { transform: translate(-50%, -50%) scale(100); opacity: 0.9; }
-            100% { transform: translate(-50%, -50%) scale(300); opacity: 0; }
+        /* Contenedor central para el nombre */
+        .splash-central-name-container {
+            position: absolute; text-align: center;
+            transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Animación de desplazamiento */
+        }
+
+        .splash-name {
+            font-size: 3.5rem; font-family: 'Montserrat', sans-serif; color: var(--text-main);
+            letter-spacing: 5px; opacity: 0; text-transform: uppercase;
+            transform: translateY(20px);
+            animation: splashGlitchFadeIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.2s;
+        }
+
+        /* Efecto de pulso cian detrás del nombre */
+        .splash-name-glow {
+            position: absolute; top: 50%; left: 50%; width: 110%; height: 110%;
+            background: radial-gradient(circle, rgba(45, 212, 191, 0.2) 0%, transparent 70%);
+            transform: translate(-50%, -50%) scale(0); opacity: 0;
+            animation: splashPulseGlow 1.5s ease-out forwards 0.5s; z-index: -1;
+        }
+
+        /* La onda tech horizontal */
+        .splash-tech-wave {
+            position: absolute; top: 50%; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--electric-cyan), transparent);
+            transform: translateY(-50%) scaleX(0); opacity: 0;
+            animation: splashTechWaveFlow 1s cubic-bezier(0.8, 0, 0.2, 1) forwards 1.2s;
+        }
+        
+        @keyframes splashGlitchFadeIn {
+            0% { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+            30% { opacity: 1; transform: translateY(0) scale(1.02); filter: blur(0); text-shadow: 2px 0 0 rgba(255,0,0,0.5), -2px 0 0 rgba(0,255,255,0.5); }
+            40% { transform: scale(1); text-shadow: none; }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes splashPulseGlow {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+        }
+        @keyframes splashTechWaveFlow {
+            0% { transform: translateY(-50%) scaleX(0); opacity: 1; }
+            100% { transform: translateY(-50%) scaleX(1.5); opacity: 0; }
+        }
+
+        /* Clase dinámica para mover el nombre al Header */
+        #splash-screen.moving-name .splash-central-name-container {
+            /* Estas coordenadas deben coincidir aproximadamente con la posición del H1 en el Header */
+            top: 100px; /* Posición del header padding */
+            transform: translateY(0) scale(0.8); /* Reducción ligera */
         }
 
         body.loaded #splash-screen { opacity: 0; visibility: hidden; pointer-events: none; }
@@ -83,13 +115,25 @@
         }
         .floating-contact:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.4); }
 
-        /* --- CABECERA --- */
-        header { padding: 100px 2% 40px; text-align: center; }
-        header h1 { font-size: 3rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px;}
-        header p { color: var(--electric-cyan); font-weight: 600; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 2px;}
+        /* --- CABECERA (Ajustado para recibir el nombre) --- */
+        header { padding: 100px 2% 40px; text-align: center; min-height: 200px; /* Espacio para el nombre */}
+        
+        /* El H1 real se oculta inicialmente y aparece con disolución */
+        header h1 { 
+            font-size: 3rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px;
+            opacity: 0; transition: opacity 0.5s ease 2.8s; /* Aparece después de que el splash termina */
+        }
+        body.loaded header h1 { opacity: 1; }
+
+        header p { 
+            color: var(--electric-cyan); font-weight: 600; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 2px;
+            opacity: 0; transition: opacity 0.5s ease 3s;
+        }
+        body.loaded header p { opacity: 1; }
 
         /* --- FILTROS --- */
-        .filter-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px 2%; margin-bottom: 60px; }
+        .filter-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px 2%; margin-bottom: 60px; opacity: 0; transition: opacity 0.5s ease 3.2s;}
+        body.loaded .filter-container { opacity: 1; }
         .filter-btn {
             background: transparent; border: 2px solid rgba(255,255,255,0.2); color: var(--text-main); 
             padding: 12px 30px; border-radius: 50px; cursor: pointer; font-family: 'Montserrat', sans-serif; 
@@ -103,6 +147,8 @@
         /* ====================================================
            MOTOR DE GRILLA (GRID Y MASONRY)
         ==================================================== */
+        #main-grid { opacity: 0; transition: opacity 0.5s ease 3.4s; }
+        body.loaded #main-grid { opacity: 1; }
         .portfolio-grid {
             display: grid; grid-template-columns: 1fr; gap: 2vw; 
             padding: 0 2% 100px; width: 100%; max-width: 2500px; margin: 0 auto; transition: all 0.5s ease;
@@ -217,12 +263,13 @@
         }
 
         /* ====================================================
-           NUEVA SECCIÓN: ECOSISTEMA CREATIVO (MARCAS)
+           NUEVA SECCIÓN: MARCAS PROPIAS (GLASS)
         ==================================================== */
         .ecosystem-section {
             padding: 80px 5%; text-align: center; border-top: 1px solid rgba(45, 212, 191, 0.2);
-            background-color: var(--card-bg);
+            background-color: var(--card-bg); opacity: 0; transition: opacity 0.5s ease 3.6s;
         }
+        body.loaded .ecosystem-section { opacity: 1; }
         .ecosystem-section h3 { font-size: 2rem; color: var(--text-main); margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;}
         .ecosystem-brands { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
         .brand-btn {
@@ -236,33 +283,45 @@
             border-color: var(--electric-cyan); transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(45, 212, 191, 0.2); color: var(--electric-cyan);
         }
-        /* Clases listas por si luego quiere inyectar una imagen real <img src="..."> en lugar de texto */
         .brand-logo-text { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 900; letter-spacing: 3px;}
-        .brand-logo-img { max-height: 40px; width: auto; } /* Use esta si pone una imagen */
 
-        /* --- MEDIA QUERIES --- */
-        @media (min-width: 768px) {
-            header h1 { font-size: 4rem; } .media-item h2 { font-size: 2.5rem; }
-            .portfolio-grid.masonry-mode { -webkit-column-count: 2; -moz-column-count: 2; column-count: 2; }
-            .splash-name { font-size: 4.5rem; }
+        /* ====================================================
+           13.0: NUEVA SECCIÓN: LOGOS DE EMPRESAS (NUEVO)
+        ==================================================== */
+        .clients-section {
+            padding: 60px 5% 80px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: var(--dark-bg); opacity: 0; transition: opacity 0.5s ease 3.8s;
         }
-        @media (min-width: 1024px) {
-            header { padding: 120px 2% 60px; }
-            header h1 { font-size: 5.5rem; letter-spacing: 5px; }
-            header p { font-size: 1.4rem; letter-spacing: 3px; }
-            .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 3vw; }
-            .portfolio-grid.masonry-mode { -webkit-column-count: 3; -moz-column-count: 3; column-count: 3; }
-            .media-item h2 { font-size: 3rem; }
-            .media-item p { font-size: 1.1rem; }
-            .media-overlay { padding: 80px 50px 50px; }
-            .splash-name { font-size: 6rem; }
+        body.loaded .clients-section { opacity: 1; }
+        .clients-section h3 { font-size: 1.5rem; color: var(--text-muted); margin-bottom: 50px; text-transform: uppercase; letter-spacing: 3px; font-weight: 600;}
+        
+        /* Grilla de logos optimizada */
+        .client-logos-grid {
+            display: flex; justify-content: center; align-items: center; 
+            flex-wrap: wrap; gap: 40px; max-width: 1400px; margin: 0 auto;
         }
+        
+        .client-logo-item {
+            display: flex; justify-content: center; align-items: center;
+            width: calc(33% - 40px); /* 3 logos por fila en móvil */
+            max-width: 180px; height: 80px; transition: all 0.3s ease;
+            filter: grayscale(100%) brightness(0.7); /* Estética minimal HV */
+        }
+        
+        .client-logo-item:hover {
+            filter: grayscale(0%) brightness(1.1); transform: scale(1.05);
+        }
+        
+        /* Imagen del logo */
+        .client-logo-img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        /* --- CONTACTO Y WHATSAPP --- */
+        /* --- CONTACTO Y WHATSAPP (Ajustado 13.0) --- */
         .contact-section {
             padding: 80px 5% 100px; text-align: center; border-top: 1px solid rgba(45, 212, 191, 0.2);
             border-bottom: 1px solid rgba(45, 212, 191, 0.2); background: radial-gradient(circle at center, rgba(45, 212, 191, 0.05) 0%, var(--dark-bg) 100%);
+            opacity: 0; transition: opacity 0.5s ease 4s;
         }
+        body.loaded .contact-section { opacity: 1; }
         .contact-section h2 { font-size: 3rem; margin-bottom: 15px; color: var(--text-main); text-transform: uppercase; font-family: 'Montserrat', sans-serif;}
         .contact-section p { color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.2rem;}
         .contact-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 50px;}
@@ -276,8 +335,16 @@
         .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(45, 212, 191, 0.3); }
         .btn-secondary { background-color: transparent; color: var(--text-main); border: 2px solid var(--text-muted); }
         .btn-secondary:hover { border-color: var(--electric-cyan); color: var(--electric-cyan); }
-        .btn-whatsapp { background-color: transparent; border: 2px solid var(--whatsapp-green); color: var(--text-main); }
-        .btn-whatsapp:hover { background-color: var(--whatsapp-green); color: var(--dark-bg); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.2); }
+
+        /* 13.0: WHATSAPP CON RELLENO SÓLIDO */
+        .btn-whatsapp { 
+            background-color: var(--whatsapp-green); color: var(--dark-bg); /* Relleno sólido verde */
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.1);
+        }
+        .btn-whatsapp:hover { 
+            background-color: #20b857; /* Un tono más oscuro en hover */
+            transform: translateY(-5px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3); 
+        }
         
         .social-links { display: flex; justify-content: center; gap: 40px; padding-top: 30px; flex-wrap: wrap;}
         .social-links a { color: var(--text-muted); text-decoration: none; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s;}
@@ -304,33 +371,28 @@
         }
         .close-btn:hover { background-color: var(--electric-cyan); color: var(--dark-bg); transform: translateY(-2px);}
 
-        /* LIGHTBOX FOTOS */
-        #gallery-modal { padding: 0; }
-        #gallery-modal .modal-content-wrapper { width: 100%; height: 100%; aspect-ratio: auto; }
-        #gallery-image { max-width: 90vw; max-height: 85vh; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.9); object-fit: contain; transition: opacity 0.3s ease; }
-        .gallery-nav {
-            position: absolute; top: 50%; transform: translateY(-50%); background: rgba(2,6,23,0.5); color: var(--electric-cyan);
-            border: 1px solid rgba(45, 212, 191, 0.3); border-radius: 50%; width: 60px; height: 60px; font-size: 2rem; cursor: pointer;
-            display: flex; justify-content: center; align-items: center; transition: all 0.3s; z-index: 1010; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+        /* --- MEDIA QUERIES --- */
+        @media (min-width: 768px) {
+            .portfolio-grid.masonry-mode { -webkit-column-count: 2; -moz-column-count: 2; column-count: 2; }
+            .splash-name { font-size: 4.5rem; }
+            .client-logo-item { width: calc(25% - 40px); /* 4 logos por fila en tablet */ }
         }
-        .gallery-nav:hover { background: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan); transform: translateY(-50%) scale(1.1);}
-        .gallery-prev { left: 3%; } .gallery-next { right: 3%; }
-        .gallery-dots { position: absolute; bottom: 3%; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 1010; }
-        .gallery-dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: 0.3s; }
-        .gallery-dot.active { background: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan); }
-
-        .form-modal-box { background-color: var(--card-bg); padding: 50px; border-radius: 16px; max-width: 600px; width: 100%; border: 1px solid rgba(45, 212, 191, 0.3); text-align: left; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.8); max-height: 90vh; overflow-y: auto; }
-        .form-modal-box label { display: block; margin-bottom: 10px; font-size: 1rem; color: var(--text-muted); font-weight: 600;}
-        .form-modal-box input { width: 100%; padding: 15px; margin-bottom: 25px; background-color: var(--dark-bg); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 1.1rem; }
-        .form-modal-box input:focus { outline: none; border-color: var(--electric-cyan); }
+        @media (min-width: 1024px) {
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 3vw; }
+            .portfolio-grid.masonry-mode { -webkit-column-count: 3; -moz-column-count: 3; column-count: 3; }
+            .splash-name { font-size: 6rem; }
+            .client-logo-item { width: calc(16.6% - 40px); /* 6 logos por fila en desktop */ }
+        }
     </style>
 </head>
 <body>
 
     <div id="splash-screen">
-        <div class="splash-explosion"></div>
-        <h1 class="splash-name">Alejandro Vega</h1>
-        <p class="splash-title">Creative Technologist</p>
+        <div class="splash-tech-wave"></div>
+        <div class="splash-central-name-container">
+            <div class="splash-name-glow"></div>
+            <h1 class="splash-name">Alejandro Vega</h1>
+        </div>
     </div>
 
     <a href="#contacto" class="floating-contact">✉️ CONECTEMOS</a>
@@ -679,11 +741,35 @@
         <h3>Ecosistema Creativo</h3>
         <div class="ecosystem-brands">
             <a href="https://automatas.co" target="_blank" class="brand-btn">
-                <span class="brand-logo-text automatas-logo">⚙️ AUTÓMATAS</span>
+                <span class="brand-logo-text">⚙️ AUTÓMATAS</span>
             </a>
             <a href="https://www.youtube.com/@javegapro" target="_blank" class="brand-btn">
-                <span class="brand-logo-text javega-logo">🎬 JAVEGA STUDIO</span>
+                <span class="brand-logo-text">🎬 JAVEGA STUDIO</span>
             </a>
+        </div>
+    </section>
+
+    <section class="clients-section">
+        <h3>Empresas y Aliados</h3>
+        <div class="client-logos-grid">
+            <div class="client-logo-item">
+                <img src="https://via.placeholder.com/200x80/020617/FFFFFF?text=LOGO+EMPRESA" alt="Empresa 1" class="client-logo-img">
+            </div>
+            <div class="client-logo-item">
+                <img src="https://via.placeholder.com/200x80/020617/FFFFFF?text=CLIENTE+2" alt="Empresa 2" class="client-logo-img">
+            </div>
+            <div class="client-logo-item">
+                <img src="https://via.placeholder.com/200x80/020617/FFFFFF?text=ALIADO+3" alt="Empresa 3" class="client-logo-img">
+            </div>
+            <div class="client-logo-item">
+                <img src="https://via.placeholder.com/200x80/020617/FFFFFF?text=BRAND+4" alt="Empresa 4" class="client-logo-img">
+            </div>
+            <div class="client-logo-item">
+                <img src="https://via.placeholder.com/200x80/020617/FFFFFF?text=EMPRESA+5" alt="Empresa 5" class="client-logo-img">
+            </div>
+            <div class="client-logo-item">
+                <img src="https://via.placeholder.com/200x80/020617/FFFFFF?text=CLIENTE+6" alt="Empresa 6" class="client-logo-img">
+            </div>
         </div>
     </section>
 
@@ -750,10 +836,29 @@
     </div>
 
     <script>
-        // 0. SPLASH SCREEN
+        // 0. SPLASH SCREEN (SECUENCIA ACTUALIZADA)
         window.addEventListener('load', () => {
-            setTimeout(() => { document.body.classList.add('loaded'); }, 2000);
+            const splash = document.getElementById('splash-screen');
+            
+            // FASE 1: Pulso Glitch (0.2s - 1.2s en CSS)
+            
+            // FASE 2: Onda Tech (1.2s - 2.2s en CSS)
+            
+            // FASE 3: Desplazamiento de Nombre (JavaScript)
+            setTimeout(() => {
+                splash.classList.add('moving-name');
+            }, 2300); // Comienza justo después de que la onda termina
+            
+            // FASE 4: Carga de Página
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+                // Liberar scroll
+                document.body.style.overflow = 'auto';
+            }, 3300); // 1s después de que el desplazamiento comienza
         });
+
+        // Bloquear scroll inicialmente
+        document.body.style.overflow = 'hidden';
 
         // 1. SEGURIDAD
         document.addEventListener('contextmenu', event => event.preventDefault());
@@ -840,7 +945,7 @@
             setTimeout(() => { galleryImage.src = ""; }, 300);
         }
 
-        // 5. VIDEOS YOUTUBE 
+        // 5. VIDEOS YOUTUBE (Ajustado delay por splash 13.0)
         document.addEventListener("DOMContentLoaded", function() {
             const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
             const iframes = document.querySelectorAll('.auto-observe-yt');
@@ -886,7 +991,9 @@
             window.addEventListener('scroll', () => {
                 if (!scrollTimeout) scrollTimeout = setTimeout(() => { evaluateVideos(); scrollTimeout = null; }, 150);
             }, { passive: true });
-            setTimeout(evaluateVideos, 2500); // Dar tiempo al splash screen
+            
+            // Retrasar la evaluación inicial hasta que el splash termina
+            setTimeout(evaluateVideos, 3500); 
         });
 
         const ytModal = document.getElementById('youtube-modal');
@@ -1067,7 +1174,34 @@
                     item.classList.contains(category) ? item.classList.remove('hide') : item.classList.add('hide');
                 }
             });
-            window.dispatchEvent(new Event('scroll'));
+            
+            // Re-evaluar videos visibles inmediatamente
+            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+            const activeCards = Array.from(document.querySelectorAll('.media-item.audiovisual:not(.hide)'));
+            activeCards.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+            let playingCount = 0;
+
+            function sendYTCommand(iframe, func) {
+                if (iframe && iframe.contentWindow && iframe.src) iframe.contentWindow.postMessage(JSON.stringify({event: 'command', func: func, args: []}), '*');
+            }
+
+            activeCards.forEach((card) => {
+                const iframe = card.querySelector('.auto-observe-yt');
+                if (!iframe) return;
+                const rect = card.getBoundingClientRect();
+                const isFullyVisible = (rect.top >= -20) && (rect.bottom <= viewportHeight + 20);
+                
+                if (isFullyVisible && playingCount < 2) {
+                    playingCount++;
+                    if (!iframe.src) {
+                        iframe.src = iframe.dataset.src;
+                    } else {
+                        sendYTCommand(iframe, 'playVideo');
+                    }
+                } else {
+                    if (iframe.src) sendYTCommand(iframe, 'pauseVideo');
+                }
+            });
             pauseAllAudio();
         }
 

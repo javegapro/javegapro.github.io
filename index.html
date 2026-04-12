@@ -27,30 +27,59 @@
         /* --- ESCUDO DE SEGURIDAD --- */
         * { 
             box-sizing: border-box; margin: 0; padding: 0; 
-            -webkit-user-drag: none; 
-            -webkit-touch-callout: none; 
-            user-select: none; 
+            -webkit-user-drag: none; -moz-user-select: none;
+            -webkit-touch-callout: none; user-select: none; 
         }
-        input { user-select: auto; -webkit-user-select: auto; }
+        input { user-select: auto; -webkit-user-select: auto; -moz-user-select: auto; }
 
         body {
-            background-color: var(--dark-bg);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+            background-color: var(--dark-bg); color: var(--text-main);
+            font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth;
         }
 
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
+        /* ====================================================
+           SPLASH SCREEN (ANIMACIÓN DE ENTRADA INTELIGENTE)
+        ==================================================== */
+        #splash-screen {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: var(--dark-bg); z-index: 10000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
+        }
+        .splash-name {
+            font-size: 3rem; font-family: 'Montserrat', sans-serif; color: var(--text-main);
+            letter-spacing: 4px; opacity: 0; text-transform: uppercase; transform: translateY(20px);
+            animation: splashFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.2s; text-align: center;
+        }
+        .splash-title {
+            color: var(--electric-cyan); font-size: 1.2rem; letter-spacing: 3px; 
+            opacity: 0; font-weight: 600; text-transform: uppercase; margin-top: 10px;
+            animation: splashFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.5s; text-align: center;
+        }
+        .splash-explosion {
+            position: absolute; top: 50%; left: 50%; width: 5px; height: 5px;
+            background: var(--electric-cyan); border-radius: 50%; box-shadow: 0 0 50px 20px var(--electric-cyan);
+            transform: translate(-50%, -50%) scale(0); opacity: 0;
+            animation: cyanExplosion 1.2s cubic-bezier(0.8, 0, 0.2, 1) forwards 1.3s;
+        }
+        
+        @keyframes splashFadeIn { to { opacity: 1; transform: translateY(0); } }
+        @keyframes cyanExplosion {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(100); opacity: 0.9; }
+            100% { transform: translate(-50%, -50%) scale(300); opacity: 0; }
+        }
+
+        body.loaded #splash-screen { opacity: 0; visibility: hidden; pointer-events: none; }
+
         /* --- BOTÓN FLOTANTE --- */
         .floating-contact {
-            position: fixed; bottom: 30px; right: 30px;
-            background-color: var(--electric-cyan); color: var(--dark-bg);
-            padding: 15px 25px; border-radius: 50px; font-weight: 700;
-            text-decoration: none; box-shadow: 0 10px 25px rgba(45, 212, 191, 0.3);
-            z-index: 900; transition: transform 0.3s ease; display: flex;
-            align-items: center; gap: 10px; font-size: 1rem;
+            position: fixed; bottom: 30px; right: 30px; background-color: var(--electric-cyan); color: var(--dark-bg);
+            padding: 15px 25px; border-radius: 50px; font-weight: 700; text-decoration: none; 
+            box-shadow: 0 10px 25px rgba(45, 212, 191, 0.3); z-index: 900; transition: transform 0.3s ease; 
+            display: flex; align-items: center; gap: 10px; font-size: 1rem;
         }
         .floating-contact:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.4); }
 
@@ -60,27 +89,25 @@
         header p { color: var(--electric-cyan); font-weight: 600; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 2px;}
 
         /* --- FILTROS --- */
-        .filter-container {
-            display: flex; justify-content: center; flex-wrap: wrap;
-            gap: 20px; padding: 20px 2%; margin-bottom: 60px;
-        }
+        .filter-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px 2%; margin-bottom: 60px; }
         .filter-btn {
-            background: transparent; border: 2px solid rgba(255,255,255,0.2); 
-            color: var(--text-main); padding: 12px 35px; border-radius: 50px; 
-            cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 700; 
-            font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;
+            background: transparent; border: 2px solid rgba(255,255,255,0.2); color: var(--text-main); 
+            padding: 12px 30px; border-radius: 50px; cursor: pointer; font-family: 'Montserrat', sans-serif; 
+            font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;
         }
         .filter-btn:hover, .filter-btn.active {
             background-color: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan);
             transform: translateY(-3px); box-shadow: 0 10px 20px rgba(45, 212, 191, 0.15);
         }
 
-        /* --- GRILLA --- */
+        /* ====================================================
+           MOTOR DE GRILLA (GRID Y MASONRY)
+        ==================================================== */
         .portfolio-grid {
             display: grid; grid-template-columns: 1fr; gap: 2vw; 
-            padding: 0 2% 100px; width: 100%; max-width: 2500px; margin: 0 auto;
+            padding: 0 2% 100px; width: 100%; max-width: 2500px; margin: 0 auto; transition: all 0.5s ease;
         }
-        .media-item.hide { display: none; }
+        .media-item.hide { display: none !important; }
         
         .media-item {
             position: relative; aspect-ratio: 16 / 9; border-radius: 16px; 
@@ -89,15 +116,22 @@
             background-color: var(--card-bg); transition: all var(--transition-speed) ease;
         }
         
+        .portfolio-grid.masonry-mode {
+            display: block; -webkit-column-count: 1; -moz-column-count: 1; column-count: 1;
+            -webkit-column-gap: 2vw; -moz-column-gap: 2vw; column-gap: 2vw;
+        }
+        .portfolio-grid.masonry-mode .media-item {
+            display: inline-block; width: 100%; margin-bottom: 2vw; aspect-ratio: auto; 
+            -webkit-column-break-inside: avoid; page-break-inside: avoid; break-inside: avoid;
+        }
+        .portfolio-grid.masonry-mode .yt-thumbnail, .portfolio-grid.masonry-mode .hc-img { position: relative; width: 100%; height: auto; }
+
         .media-texture {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://grainy-gradients.vercel.app/noise.svg'); 
-            opacity: 0.25; pointer-events: none; z-index: 4;
+            background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.25; pointer-events: none; z-index: 4;
         }
-
         .protect-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 6; pointer-events: none; }
         
-        /* HOVER CAROUSEL (FOTOS) */
         .hover-carousel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         .hc-img {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -107,7 +141,6 @@
         .hc-img.active { opacity: 1; z-index: 2; }
         .fix-models-portada { object-position: top center !important; }
 
-        /* IFRAMES YOUTUBE */
         .yt-thumbnail {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; z-index: 1; opacity: var(--overlay-opacity); filter: grayscale(50%) brightness(0.8); 
@@ -119,7 +152,6 @@
             opacity: 0; transition: opacity var(--transition-speed) ease, filter var(--transition-speed) ease, transform var(--transition-speed) ease;
         }
         
-        /* HOVER NORMAL (FOTOS Y VIDEOS) */
         .media-item:not(.audio):hover {
             border-color: rgba(45, 212, 191, 0.5); box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 25px rgba(45, 212, 191, 0.15);
             transform: translateY(-10px); z-index: 10;
@@ -138,98 +170,97 @@
         .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
         
         /* ====================================================
-           10.0: AUDIO NEÓN + CUSTOM PLAYER + CANVAS EQ
+           AUDIO (NEÓN + CANVAS)
         ==================================================== */
         .media-item.audio {
-            border: none; position: relative;
-            display: flex; justify-content: center; align-items: center;
-            overflow: hidden; cursor: default; transform: none !important; 
-            background-color: var(--dark-bg);
+            border: none; position: relative; display: flex; justify-content: center; align-items: center;
+            overflow: hidden; cursor: default; transform: none !important; background-color: var(--dark-bg);
         }
-        
-        @keyframes rotateGlow {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
+        @keyframes rotateGlow { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
         .audio-glow-ring {
             position: absolute; top: 50%; left: 50%; width: 200%; height: 200%;
             background: conic-gradient(transparent, transparent, rgba(45, 212, 191, 0.1), var(--electric-cyan));
             animation: rotateGlow 4s linear infinite; z-index: 1; opacity: 0.6; transition: opacity 0.3s ease;
         }
         .media-item.audio:hover .audio-glow-ring { opacity: 1; }
-
         .audio-inner-card {
-            position: absolute; inset: 2px; /* Grosor del borde neón */
-            background-color: var(--card-bg); border-radius: 14px; z-index: 2;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; padding: 20px; overflow: hidden;
+            position: absolute; inset: 2px; background-color: var(--card-bg); border-radius: 14px; z-index: 2;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; overflow: hidden;
         }
-
-        .audio-inner-card .media-texture { z-index: 3; opacity: 0.1; }
-
-        /* Lienzo del ecualizador interactivo */
-        .audio-visualizer {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
-            z-index: 4; pointer-events: none;
-        }
-
-        .audio-text-content { z-index: 5; margin-bottom: 30px; pointer-events: none; }
+        .audio-inner-card .media-texture { z-index: 3; opacity: 0.15; }
+        .audio-visualizer { position: absolute; bottom: 0; left: 0; width: 100%; height: 65%; z-index: 4; pointer-events: none; opacity: 0.85;}
+        
+        .audio-text-content { z-index: 5; margin-bottom: 40px; pointer-events: none; }
         .audio-text-content h2 { font-size: 2.5rem; text-transform: uppercase; margin-bottom: 5px; text-shadow: 0 5px 15px rgba(0,0,0,0.5);}
         .audio-text-content p { color: var(--electric-cyan); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 4px; text-shadow: 0 2px 5px rgba(0,0,0,0.5);}
 
-        /* REPRODUCTOR CUSTOM */
         .custom-player {
-            position: relative; z-index: 10;
-            display: flex; align-items: center; justify-content: space-between;
-            width: 85%; max-width: 450px; padding: 12px 25px; gap: 15px;
-            background: rgba(2, 6, 23, 0.6); backdrop-filter: blur(10px);
-            border: 1px solid var(--electric-cyan); border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px rgba(45, 212, 191, 0.1);
+            position: relative; z-index: 10; display: flex; align-items: center; justify-content: space-between;
+            width: 90%; max-width: 500px; padding: 15px 25px; gap: 15px;
+            background: rgba(2, 6, 23, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(45, 212, 191, 0.4); border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(45, 212, 191, 0.15); transition: border-color 0.3s ease;
         }
-        
+        .custom-player.playing { border-color: var(--electric-cyan); box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 25px rgba(45, 212, 191, 0.3); }
         .play-btn {
-            background: transparent; border: none; color: var(--text-main);
+            background: transparent; border: none; color: var(--text-main); font-family: 'Inter', sans-serif;
             font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
-            width: 35px; height: 35px; transition: transform 0.2s, text-shadow 0.2s;
+            width: 40px; height: 40px; transition: transform 0.2s, color 0.2s, text-shadow 0.2s;
         }
-        .play-btn:hover { transform: scale(1.1); text-shadow: 0 0 10px var(--electric-cyan); color: var(--electric-cyan);}
-        
-        .time-display {
-            font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--electric-cyan); min-width: 40px; text-align: center;
-        }
-
+        .play-btn:hover { transform: scale(1.1); color: var(--electric-cyan); text-shadow: 0 0 15px var(--electric-cyan);}
+        .time-display { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--electric-cyan); min-width: 45px; text-align: center;}
         .progress-wrapper {
-            flex-grow: 1; height: 6px; background-color: rgba(45, 212, 191, 0.2);
-            border-radius: 10px; cursor: pointer; position: relative; overflow: hidden;
+            flex-grow: 1; height: 8px; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; cursor: pointer; position: relative; overflow: hidden;
         }
         .progress-fill {
-            position: absolute; top: 0; left: 0; height: 100%; width: 0%;
-            background-color: var(--electric-cyan); border-radius: 10px;
-            box-shadow: 0 0 10px var(--electric-cyan); transition: width 0.1s linear; pointer-events: none;
+            position: absolute; top: 0; left: 0; height: 100%; width: 0%; background-color: var(--electric-cyan); border-radius: 10px; box-shadow: 0 0 15px var(--electric-cyan); pointer-events: none;
         }
 
-        /* Ocultar el audio nativo por completo */
-        .hidden-audio { display: none; }
+        /* ====================================================
+           NUEVA SECCIÓN: ECOSISTEMA CREATIVO (MARCAS)
+        ==================================================== */
+        .ecosystem-section {
+            padding: 80px 5%; text-align: center; border-top: 1px solid rgba(45, 212, 191, 0.2);
+            background-color: var(--card-bg);
+        }
+        .ecosystem-section h3 { font-size: 2rem; color: var(--text-main); margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;}
+        .ecosystem-brands { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .brand-btn {
+            display: flex; align-items: center; justify-content: center; gap: 15px;
+            padding: 20px 40px; border-radius: 12px;
+            background: rgba(2, 6, 23, 0.8); border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-main); text-decoration: none; font-weight: 700; font-size: 1.2rem;
+            transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 2px;
+        }
+        .brand-btn:hover {
+            border-color: var(--electric-cyan); transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(45, 212, 191, 0.2); color: var(--electric-cyan);
+        }
+        /* Clases listas por si luego quiere inyectar una imagen real <img src="..."> en lugar de texto */
+        .brand-logo-text { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 900; letter-spacing: 3px;}
+        .brand-logo-img { max-height: 40px; width: auto; } /* Use esta si pone una imagen */
 
         /* --- MEDIA QUERIES --- */
         @media (min-width: 768px) {
-            header h1 { font-size: 4rem; }
-            .media-item h2 { font-size: 2.5rem; }
+            header h1 { font-size: 4rem; } .media-item h2 { font-size: 2.5rem; }
+            .portfolio-grid.masonry-mode { -webkit-column-count: 2; -moz-column-count: 2; column-count: 2; }
+            .splash-name { font-size: 4.5rem; }
         }
         @media (min-width: 1024px) {
             header { padding: 120px 2% 60px; }
             header h1 { font-size: 5.5rem; letter-spacing: 5px; }
             header p { font-size: 1.4rem; letter-spacing: 3px; }
             .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 3vw; }
+            .portfolio-grid.masonry-mode { -webkit-column-count: 3; -moz-column-count: 3; column-count: 3; }
             .media-item h2 { font-size: 3rem; }
             .media-item p { font-size: 1.1rem; }
             .media-overlay { padding: 80px 50px 50px; }
+            .splash-name { font-size: 6rem; }
         }
 
-        /* --- CONTACTO Y WHATSAPP REDISEÑADO --- */
+        /* --- CONTACTO Y WHATSAPP --- */
         .contact-section {
-            padding: 100px 5%; text-align: center; border-top: 1px solid rgba(45, 212, 191, 0.2);
+            padding: 80px 5% 100px; text-align: center; border-top: 1px solid rgba(45, 212, 191, 0.2);
             border-bottom: 1px solid rgba(45, 212, 191, 0.2); background: radial-gradient(circle at center, rgba(45, 212, 191, 0.05) 0%, var(--dark-bg) 100%);
         }
         .contact-section h2 { font-size: 3rem; margin-bottom: 15px; color: var(--text-main); text-transform: uppercase; font-family: 'Montserrat', sans-serif;}
@@ -241,21 +272,12 @@
             font-family: 'Inter', sans-serif; font-size: 1rem; text-decoration: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border: none;
             display: flex; align-items: center; justify-content: center; gap: 10px;
         }
-        
         .btn-primary { background-color: var(--electric-cyan); color: var(--dark-bg); }
         .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(45, 212, 191, 0.3); }
-        
         .btn-secondary { background-color: transparent; color: var(--text-main); border: 2px solid var(--text-muted); }
         .btn-secondary:hover { border-color: var(--electric-cyan); color: var(--electric-cyan); }
-
-        /* Nuevo WhatsApp Button */
-        .btn-whatsapp { 
-            background-color: transparent; border: 2px solid var(--whatsapp-green); color: var(--text-main); 
-        }
-        .btn-whatsapp:hover { 
-            background-color: var(--whatsapp-green); color: var(--dark-bg); 
-            transform: translateY(-5px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.2); 
-        }
+        .btn-whatsapp { background-color: transparent; border: 2px solid var(--whatsapp-green); color: var(--text-main); }
+        .btn-whatsapp:hover { background-color: var(--whatsapp-green); color: var(--dark-bg); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.2); }
         
         .social-links { display: flex; justify-content: center; gap: 40px; padding-top: 30px; flex-wrap: wrap;}
         .social-links a { color: var(--text-muted); text-decoration: none; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s;}
@@ -268,11 +290,8 @@
         .vault-btn { background: transparent; color: var(--electric-cyan); border: 2px solid var(--electric-cyan); padding: 15px 40px; font-weight: 700; border-radius: 5px; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;}
         .vault-btn:hover { background: var(--electric-cyan); color: var(--dark-bg); }
 
-        /* --- MODALES GENERALES --- */
-        .modal-fullscreen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(2,6,23,0.98); z-index: 1000; display: none; justify-content: center; align-items: center; padding: 2% 5%;
-        }
+        /* --- MODALES --- */
+        .modal-fullscreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2,6,23,0.98); z-index: 1000; display: none; justify-content: center; align-items: center; padding: 2% 5%; }
         .active-modal { display: flex; }
         .modal-content-wrapper { max-width: 100%; max-height: 90vh; position: relative; width: 1600px; aspect-ratio: 16/9; display: flex; justify-content: center; align-items: center;}
         .modal-fullscreen iframe { width: 100%; height: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.9); display: none; border: none; background-color: black; }
@@ -285,37 +304,34 @@
         }
         .close-btn:hover { background-color: var(--electric-cyan); color: var(--dark-bg); transform: translateY(-2px);}
 
-        /* LIGHTBOX CAROUSEL */
+        /* LIGHTBOX FOTOS */
         #gallery-modal { padding: 0; }
         #gallery-modal .modal-content-wrapper { width: 100%; height: 100%; aspect-ratio: auto; }
-        #gallery-image {
-            max-width: 90vw; max-height: 85vh; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.9); 
-            object-fit: contain; transition: opacity 0.3s ease;
-        }
+        #gallery-image { max-width: 90vw; max-height: 85vh; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.9); object-fit: contain; transition: opacity 0.3s ease; }
         .gallery-nav {
             position: absolute; top: 50%; transform: translateY(-50%); background: rgba(2,6,23,0.5); color: var(--electric-cyan);
             border: 1px solid rgba(45, 212, 191, 0.3); border-radius: 50%; width: 60px; height: 60px; font-size: 2rem; cursor: pointer;
-            display: flex; justify-content: center; align-items: center; transition: all 0.3s; z-index: 1010; backdrop-filter: blur(5px);
+            display: flex; justify-content: center; align-items: center; transition: all 0.3s; z-index: 1010; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
         }
         .gallery-nav:hover { background: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan); transform: translateY(-50%) scale(1.1);}
         .gallery-prev { left: 3%; } .gallery-next { right: 3%; }
-        .gallery-dots {
-            position: absolute; bottom: 3%; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 1010;
-        }
+        .gallery-dots { position: absolute; bottom: 3%; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 1010; }
         .gallery-dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: 0.3s; }
         .gallery-dot.active { background: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan); }
 
-        .form-modal-box {
-            background-color: var(--card-bg); padding: 50px; border-radius: 16px; max-width: 600px; width: 100%;
-            border: 1px solid rgba(45, 212, 191, 0.3); text-align: left; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-            max-height: 90vh; overflow-y: auto;
-        }
+        .form-modal-box { background-color: var(--card-bg); padding: 50px; border-radius: 16px; max-width: 600px; width: 100%; border: 1px solid rgba(45, 212, 191, 0.3); text-align: left; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.8); max-height: 90vh; overflow-y: auto; }
         .form-modal-box label { display: block; margin-bottom: 10px; font-size: 1rem; color: var(--text-muted); font-weight: 600;}
         .form-modal-box input { width: 100%; padding: 15px; margin-bottom: 25px; background-color: var(--dark-bg); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 1.1rem; }
         .form-modal-box input:focus { outline: none; border-color: var(--electric-cyan); }
     </style>
 </head>
 <body>
+
+    <div id="splash-screen">
+        <div class="splash-explosion"></div>
+        <h1 class="splash-name">Alejandro Vega</h1>
+        <p class="splash-title">Creative Technologist</p>
+    </div>
 
     <a href="#contacto" class="floating-contact">✉️ CONECTEMOS</a>
 
@@ -327,11 +343,12 @@
     <div class="filter-container">
         <button class="filter-btn active" onclick="filterGallery('all')">Todo</button>
         <button class="filter-btn" onclick="filterGallery('audiovisual')">Audiovisual</button>
-        <button class="filter-btn" onclick="filterGallery('fotografia')">Fotografía & Diseño</button>
+        <button class="filter-btn" onclick="filterGallery('fotografia')">Fotografía</button>
+        <button class="filter-btn" onclick="filterGallery('diseno')">Diseño Web / Gráfico</button>
         <button class="filter-btn" onclick="filterGallery('audio')">Diseño Sonoro</button>
     </div>
 
-    <main class="portfolio-grid">
+    <main class="portfolio-grid" id="main-grid">
         
         <div class="media-item audiovisual" onclick="openYoutubeModal('0ivRf3-IvGs')">
             <div class="media-texture"></div>
@@ -514,25 +531,48 @@
             <div class="media-overlay"><p>Landscape / Fine Art</p><h2>Naturaleza</h2></div>
         </div>
 
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_ui')">
+            <div class="media-texture"></div>
+            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop" class="yt-thumbnail" style="object-fit: cover;" alt="Diseño 1">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Branding</p><h2>La Ruta del Sabor</h2></div>
+        </div>
+
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_ui')">
+            <div class="media-texture"></div>
+            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop" class="yt-thumbnail" style="object-fit: cover;" alt="Diseño 2">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>UI/UX Design</p><h2>JAVEGA Digital</h2></div>
+        </div>
+
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_ui')">
+            <div class="media-texture"></div>
+            <img src="https://images.unsplash.com/photo-1561089489-0268593ccf2c?q=80&w=800&auto=format&fit=crop" class="yt-thumbnail" style="object-fit: cover;" alt="Diseño 3">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Web Design</p><h2>Interfaz ESPY S.A.</h2></div>
+        </div>
+        
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_ui')">
+            <div class="media-texture"></div>
+            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop" class="yt-thumbnail" style="object-fit: cover;" alt="Diseño 4">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Social Media</p><h2>Campaña Instagram</h2></div>
+        </div>
 
         <div class="media-item audio">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
-                <div class="media-texture"></div>
                 <canvas class="audio-visualizer"></canvas>
-                
+                <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Alone</h2>
                     <p>Western / Guitarras / Soul</p>
                 </div>
-                
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_cec3885e857446d5bb03641eed32c0d8.mp3" preload="metadata"></audio>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_cec3885e857446d5bb03641eed32c0d8.mp3" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
                     <span class="time-display time-current">0:00</span>
-                    <div class="progress-wrapper">
-                        <div class="progress-fill"></div>
-                    </div>
+                    <div class="progress-wrapper"><div class="progress-fill"></div></div>
                     <span class="time-display time-total">0:00</span>
                 </div>
             </div>
@@ -541,21 +581,17 @@
         <div class="media-item audio">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
-                <div class="media-texture"></div>
                 <canvas class="audio-visualizer"></canvas>
-                
+                <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Trapped</h2>
                     <p>Cinematic / Percusión Agitada</p>
                 </div>
-                
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_4dd9a047e1694fd799a5de974a745fe1.mp3" preload="metadata"></audio>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_4dd9a047e1694fd799a5de974a745fe1.mp3" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
                     <span class="time-display time-current">0:00</span>
-                    <div class="progress-wrapper">
-                        <div class="progress-fill"></div>
-                    </div>
+                    <div class="progress-wrapper"><div class="progress-fill"></div></div>
                     <span class="time-display time-total">0:00</span>
                 </div>
             </div>
@@ -564,21 +600,17 @@
         <div class="media-item audio">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
-                <div class="media-texture"></div>
                 <canvas class="audio-visualizer"></canvas>
-                
+                <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Rock Your Reel</h2>
                     <p>Rock Puro / Energía</p>
                 </div>
-                
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_6a5c635e24cd44c59d95766e10c3ae17.mp3" preload="metadata"></audio>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_6a5c635e24cd44c59d95766e10c3ae17.mp3" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
                     <span class="time-display time-current">0:00</span>
-                    <div class="progress-wrapper">
-                        <div class="progress-fill"></div>
-                    </div>
+                    <div class="progress-wrapper"><div class="progress-fill"></div></div>
                     <span class="time-display time-total">0:00</span>
                 </div>
             </div>
@@ -587,21 +619,17 @@
         <div class="media-item audio">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
-                <div class="media-texture"></div>
                 <canvas class="audio-visualizer"></canvas>
-                
+                <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Rain</h2>
                     <p>Electrónica Inspiradora</p>
                 </div>
-                
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_f898bea04df24d778cc63caa54c0e8d9.mp3" preload="metadata"></audio>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_f898bea04df24d778cc63caa54c0e8d9.mp3" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
                     <span class="time-display time-current">0:00</span>
-                    <div class="progress-wrapper">
-                        <div class="progress-fill"></div>
-                    </div>
+                    <div class="progress-wrapper"><div class="progress-fill"></div></div>
                     <span class="time-display time-total">0:00</span>
                 </div>
             </div>
@@ -610,21 +638,17 @@
         <div class="media-item audio">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
-                <div class="media-texture"></div>
                 <canvas class="audio-visualizer"></canvas>
-                
+                <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Hades</h2>
                     <p>Hard Electronic / Ruda</p>
                 </div>
-                
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_c3a196ceaa134db4bf63c7c7ead10845.wav" preload="metadata"></audio>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_c3a196ceaa134db4bf63c7c7ead10845.wav" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
                     <span class="time-display time-current">0:00</span>
-                    <div class="progress-wrapper">
-                        <div class="progress-fill"></div>
-                    </div>
+                    <div class="progress-wrapper"><div class="progress-fill"></div></div>
                     <span class="time-display time-total">0:00</span>
                 </div>
             </div>
@@ -633,21 +657,17 @@
         <div class="media-item audio">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
-                <div class="media-texture"></div>
                 <canvas class="audio-visualizer"></canvas>
-                
+                <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Sauvage</h2>
                     <p>Árabe / Africano / HipHop</p>
                 </div>
-                
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_84e760602c584506aeb3a5d417a9dcf1.mp3" preload="metadata"></audio>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_84e760602c584506aeb3a5d417a9dcf1.mp3" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
                     <span class="time-display time-current">0:00</span>
-                    <div class="progress-wrapper">
-                        <div class="progress-fill"></div>
-                    </div>
+                    <div class="progress-wrapper"><div class="progress-fill"></div></div>
                     <span class="time-display time-total">0:00</span>
                 </div>
             </div>
@@ -655,13 +675,25 @@
 
     </main>
 
+    <section class="ecosystem-section">
+        <h3>Ecosistema Creativo</h3>
+        <div class="ecosystem-brands">
+            <a href="https://automatas.co" target="_blank" class="brand-btn">
+                <span class="brand-logo-text automatas-logo">⚙️ AUTÓMATAS</span>
+            </a>
+            <a href="https://www.youtube.com/@javegapro" target="_blank" class="brand-btn">
+                <span class="brand-logo-text javega-logo">🎬 JAVEGA STUDIO</span>
+            </a>
+        </div>
+    </section>
+
     <section class="contact-section" id="contacto">
         <h2>Conectemos</h2>
         <p>¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Hablemos de innovación creativa.</p>
         <div class="contact-actions">
             <a href="https://wa.me/573001404327?text=Hola%20Alejandro,%20estoy%20viendo%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20escribirte." target="_blank" class="btn-whatsapp">
                 <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                Escríbeme por WhatsApp (Solo Mensajes)
+                Escríbeme por WhatsApp
             </a>
             <a href="mailto:Alejandro.960822@gmail.com" class="btn-primary">Escríbeme un correo</a>
             <a href="ALEJANDRO_VEGA_HV_2026.pdf" target="_blank" class="btn-secondary">Descargar CV (PDF)</a>
@@ -718,10 +750,15 @@
     </div>
 
     <script>
-        // 0. SEGURIDAD
+        // 0. SPLASH SCREEN
+        window.addEventListener('load', () => {
+            setTimeout(() => { document.body.classList.add('loaded'); }, 2000);
+        });
+
+        // 1. SEGURIDAD
         document.addEventListener('contextmenu', event => event.preventDefault());
 
-        // 1. DATOS GALERÍA
+        // 2. DATOS GALERÍA FOTOGRÁFICA
         const galleryData = {
             'food': ['https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png'],
             'sabrina': ['https://static.wixstatic.com/media/14f4fb_cfb665c8cecc4a3f915d59ecc7372cdf~mv2.png', 'https://static.wixstatic.com/media/14f4fb_ccfb094089134b27a65b8008ab140548~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_8cd04cc0174b4bc2b5fdd33f7c95bcee~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_74ff5ed1e6a641ec8530ebb424a29590~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_f2b9a122bb454eb18d439cf4aa55f621~mv2.jpg'],
@@ -731,12 +768,13 @@
             'emergentes': ['https://static.wixstatic.com/media/14f4fb_e82cdeeb1f354ca38150280d46c711ec~mv2_d_6000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_ace77dbc01c8427cbdda217f9ab1fe14~mv2_d_6000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_6a425cecae704f25aca53f67560a9169~mv2_d_6000_4000_s_4_2.jpg'],
             'modelos': ['https://static.wixstatic.com/media/14f4fb_963a7a6446284302a798edcf8457cffd~mv2_d_3471_3471_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_62c1344e52a441daaa100e3400a6cc19~mv2_d_3176_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_88875e89e124451b8dfd1ec60f0e7e69~mv2_d_5491_3928_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_3e4d4dde8e184350aa6a5a52141ec414~mv2_d_4000_6000_s_4_2.png', 'https://static.wixstatic.com/media/14f4fb_28502a138679481f89b571e599cf0fc4~mv2.jpg'],
             'retratos': ['https://static.wixstatic.com/media/14f4fb_4f61d7e9e3cd4da6ad6e6f649d2d9d05~mv2_d_4000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_6fb679a244ef48de9ea749cbeb6e7824~mv2_d_4000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_d66070ef8db64e62a7b7abffa3099d80~mv2_d_4000_5547_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_5fb74448bec44efebd9d63489a942e4d~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a60c3996c5c443b6be56e08c91807dc9~mv2.png'],
-            'producto': ['https://static.wixstatic.com/media/14f4fb_bde31a4c87be49a1882327dacb0882e0~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_09129e6b1cc648ed8f0dd806ea46ac95~mv2.jpg']
+            'producto': ['https://static.wixstatic.com/media/14f4fb_bde31a4c87be49a1882327dacb0882e0~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_09129e6b1cc648ed8f0dd806ea46ac95~mv2.jpg'],
+            'diseno_ui': ['https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1200&auto=format&fit=crop']
         };
 
-        // 2. HOVER CAROUSEL (FOTOS)
+        // 3. HOVER CAROUSEL FOTOS
         const hoverTimers = new Map();
-        document.querySelectorAll('.media-item.fotografia').forEach(item => {
+        document.querySelectorAll('.media-item.fotografia, .media-item.diseno').forEach(item => {
             const images = item.querySelectorAll('.hc-img');
             if(images.length <= 1) return;
             item.addEventListener('mouseenter', () => {
@@ -755,7 +793,7 @@
             });
         });
 
-        // 3. LIGHTBOX FOTOS
+        // 4. LIGHTBOX FOTOS
         let currentCollection = [];
         let currentSlideIdx = 0;
         let galleryAutoPlayTimer;
@@ -765,7 +803,8 @@
 
         function openGalleryModal(collectionId) {
             pauseAllAudio(); 
-            currentCollection = galleryData[collectionId];
+            currentCollection = galleryData[collectionId] || [];
+            if(currentCollection.length === 0) return;
             currentSlideIdx = 0;
             galleryDots.innerHTML = '';
             currentCollection.forEach((_, i) => {
@@ -801,7 +840,7 @@
             setTimeout(() => { galleryImage.src = ""; }, 300);
         }
 
-        // 4. VIDEOS YOUTUBE 
+        // 5. VIDEOS YOUTUBE 
         document.addEventListener("DOMContentLoaded", function() {
             const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
             const iframes = document.querySelectorAll('.auto-observe-yt');
@@ -847,7 +886,7 @@
             window.addEventListener('scroll', () => {
                 if (!scrollTimeout) scrollTimeout = setTimeout(() => { evaluateVideos(); scrollTimeout = null; }, 150);
             }, { passive: true });
-            setTimeout(evaluateVideos, 500);
+            setTimeout(evaluateVideos, 2500); // Dar tiempo al splash screen
         });
 
         const ytModal = document.getElementById('youtube-modal');
@@ -863,25 +902,27 @@
         }
 
         // ====================================================
-        // 5. NUEVO REPRODUCTOR CUSTOM Y VISUALIZADOR CANVAS
+        // 6. MOTOR DE AUDIO Y WEB AUDIO API
         // ====================================================
-        
+        let audioCtx; 
+
         function pauseAllAudio(exceptAudio = null) {
             document.querySelectorAll('.hidden-audio').forEach(audio => {
                 if (audio !== exceptAudio) {
                     audio.pause();
-                    // Reset UI of paused audios
                     const parent = audio.closest('.media-item');
                     if(parent) {
                         const playBtn = parent.querySelector('.play-btn');
+                        const customPlayer = parent.querySelector('.custom-player');
                         if(playBtn) playBtn.innerHTML = '▶';
+                        if(customPlayer) customPlayer.classList.remove('playing');
                     }
                 }
             });
         }
 
         function formatTime(seconds) {
-            if (isNaN(seconds)) return "0:00";
+            if (isNaN(seconds) || seconds === Infinity) return "0:00";
             const m = Math.floor(seconds / 60);
             const s = Math.floor(seconds % 60);
             return `${m}:${s < 10 ? '0' : ''}${s}`;
@@ -890,6 +931,7 @@
         document.querySelectorAll('.media-item.audio').forEach(item => {
             const audio = item.querySelector('.hidden-audio');
             const playBtn = item.querySelector('.play-btn');
+            const customPlayer = item.querySelector('.custom-player');
             const timeCurrent = item.querySelector('.time-current');
             const timeTotal = item.querySelector('.time-total');
             const progressWrapper = item.querySelector('.progress-wrapper');
@@ -898,36 +940,57 @@
             const ctx = canvas.getContext('2d');
             
             let isPlaying = false;
-            let animationId;
+            let analyser, dataArray;
+            let isApiInitialized = false;
 
-            // Cargar duración
             audio.addEventListener('loadedmetadata', () => { timeTotal.textContent = formatTime(audio.duration); });
             if (audio.readyState >= 1) { timeTotal.textContent = formatTime(audio.duration); }
 
-            // Lógica Play/Pause
+            function initWebAudioAPI() {
+                if(isApiInitialized) return;
+                try {
+                    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    analyser = audioCtx.createAnalyser();
+                    analyser.fftSize = 128; 
+                    
+                    const source = audioCtx.createMediaElementSource(audio);
+                    source.connect(analyser);
+                    analyser.connect(audioCtx.destination);
+                    
+                    const bufferLength = analyser.frequencyBinCount;
+                    dataArray = new Uint8Array(bufferLength);
+                    isApiInitialized = true;
+                } catch(e) {
+                    console.warn("Audio Context API Error:", e);
+                }
+            }
+
             playBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 if (audio.paused) {
                     pauseAllAudio(audio);
+                    initWebAudioAPI();
+                    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+                    
                     audio.play();
                     playBtn.innerHTML = '❚❚';
+                    customPlayer.classList.add('playing');
                     isPlaying = true;
                     drawVisualizer();
                 } else {
                     audio.pause();
                     playBtn.innerHTML = '▶';
+                    customPlayer.classList.remove('playing');
                     isPlaying = false;
                 }
             });
 
-            // Actualizar barra de progreso
             audio.addEventListener('timeupdate', () => {
                 timeCurrent.textContent = formatTime(audio.currentTime);
                 const percent = (audio.currentTime / audio.duration) * 100;
                 progressFill.style.width = `${percent}%`;
             });
 
-            // Clic en la barra para adelantar
             progressWrapper.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const rect = progressWrapper.getBoundingClientRect();
@@ -935,73 +998,74 @@
                 audio.currentTime = percent * audio.duration;
             });
 
-            // Resetear al terminar
             audio.addEventListener('ended', () => {
                 playBtn.innerHTML = '▶';
+                customPlayer.classList.remove('playing');
                 isPlaying = false;
                 progressFill.style.width = '0%';
                 timeCurrent.textContent = "0:00";
             });
 
-            // --- Lógica del Canvas Visualizador ---
-            const resizeCanvas = () => { 
-                canvas.width = item.offsetWidth; 
-                canvas.height = item.offsetHeight; 
-            };
+            const resizeCanvas = () => { canvas.width = item.offsetWidth; canvas.height = item.offsetHeight; };
             resizeCanvas();
             window.addEventListener('resize', resizeCanvas);
 
-            const bars = 40; // Cantidad de barras
-
             function drawVisualizer() {
+                if (!isPlaying) return;
+                requestAnimationFrame(drawVisualizer);
+                
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                const barWidth = (canvas.width / bars) - 4; 
                 
-                for (let i = 0; i < bars; i++) {
-                    let height = 5; 
-                    if (isPlaying) {
-                        // Simulación matemática de espectro
-                        const time = Date.now() / 150;
-                        const wave = Math.sin(time + (i * 0.3)) * 0.5 + 0.5;
-                        const noise = Math.random() * 0.7;
-                        height = 5 + ((wave * 0.4 + noise * 0.6) * (canvas.height * 0.4));
+                if (isApiInitialized && analyser) {
+                    analyser.getByteFrequencyData(dataArray);
+                    const barWidth = (canvas.width / dataArray.length) * 1.5; 
+                    let x = 0;
+
+                    for (let i = 0; i < dataArray.length; i++) {
+                        const barHeight = (dataArray[i] / 255) * (canvas.height * 0.7); 
+                        
+                        const gradient = ctx.createLinearGradient(0, canvas.height, 0, canvas.height - barHeight);
+                        gradient.addColorStop(0, 'rgba(45, 212, 191, 0.1)');
+                        gradient.addColorStop(1, 'rgba(45, 212, 191, 0.8)');
+                        
+                        ctx.fillStyle = gradient;
+                        ctx.shadowColor = 'rgba(45, 212, 191, 0.5)';
+                        ctx.shadowBlur = 10;
+                        
+                        ctx.beginPath();
+                        ctx.roundRect(x, canvas.height - barHeight, barWidth, barHeight, [5, 5, 0, 0]);
+                        ctx.fill();
+
+                        x += barWidth + 2; 
                     }
-                    
-                    const x = i * (canvas.width / bars) + 2;
-                    const y = canvas.height - height; 
-                    
-                    // Gradiente de la barra
-                    const gradient = ctx.createLinearGradient(0, canvas.height, 0, canvas.height - height);
-                    gradient.addColorStop(0, 'rgba(45, 212, 191, 0.1)');
-                    gradient.addColorStop(1, 'rgba(45, 212, 191, 0.8)');
-                    
-                    ctx.fillStyle = gradient;
-                    ctx.shadowColor = 'rgba(45, 212, 191, 0.8)';
-                    ctx.shadowBlur = isPlaying ? 10 : 0;
-                    
-                    ctx.beginPath();
-                    ctx.roundRect(x, y, barWidth, height, [5, 5, 0, 0]);
-                    ctx.fill();
-                }
-                
-                if (isPlaying) {
-                    animationId = requestAnimationFrame(drawVisualizer);
-                } else {
-                    ctx.shadowBlur = 0;
                 }
             }
-            drawVisualizer(); // Dibujar estado inicial (reposo)
         });
 
-        // --- 6. FILTROS Y BÓVEDA ---
+        // ====================================================
+        // 7. FILTROS Y MASONRY (DISEÑO)
+        // ====================================================
         function filterGallery(category) {
             const btns = document.querySelectorAll('.filter-btn');
             btns.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
+            
+            const grid = document.getElementById('main-grid');
             const items = document.querySelectorAll('.media-item');
+            
+            // Lógica MASONRY para Diseño
+            if (category === 'diseno') {
+                grid.classList.add('masonry-mode');
+            } else {
+                grid.classList.remove('masonry-mode');
+            }
+
             items.forEach(item => {
-                if (category === 'all') item.classList.remove('hide');
-                else item.classList.contains(category) ? item.classList.remove('hide') : item.classList.add('hide');
+                if (category === 'all') {
+                    item.classList.remove('hide');
+                } else {
+                    item.classList.contains(category) ? item.classList.remove('hide') : item.classList.add('hide');
+                }
             });
             window.dispatchEvent(new Event('scroll'));
             pauseAllAudio();
@@ -1010,7 +1074,6 @@
         const vaultModal = document.getElementById('vault-modal');
         function openVaultModal() { vaultModal.classList.add('active-modal'); }
         function closeVaultModal() { vaultModal.classList.remove('active-modal'); }
-
         function sendVaultEmail(e) {
             e.preventDefault();
             const name = document.getElementById('req-name').value;

@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alejandro Vega | Portafolio Director Creativo</title>
+    
+    <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="preconnect" href="https://i.ytimg.com">
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
@@ -94,9 +98,9 @@
         .media-iframe {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 2; pointer-events: none; border: none;
-            background-color: var(--card-bg); /* Bloquea cualquier transparencia hacia atrás */
+            background-color: var(--card-bg);
             filter: grayscale(50%) brightness(0.6); 
-            opacity: 0; /* Arranca oculto hasta que cargue */
+            opacity: 0;
             transition: opacity var(--transition-speed) ease, filter var(--transition-speed) ease, transform var(--transition-speed) ease;
         }
         
@@ -370,28 +374,6 @@
                 <audio controls><source src="URL_AUDIO_2.mp3" type="audio/mpeg"></audio>
             </div>
         </div>
-        <div class="media-item audio">
-            <div class="media-texture"></div>
-            <img src="URL_COVER_AUDIO_3.jpg" alt="Diseño Sonoro" class="yt-thumbnail">
-            <div class="media-overlay" style="bottom: 80px;">
-                <p>Composición Original</p>
-                <h2>Track 03: GarageBand Mix</h2>
-            </div>
-            <div class="audio-player-container" onclick="event.stopPropagation()">
-                <audio controls><source src="URL_AUDIO_3.mp3" type="audio/mpeg"></audio>
-            </div>
-        </div>
-        <div class="media-item audio">
-            <div class="media-texture"></div>
-            <img src="URL_COVER_AUDIO_4.jpg" alt="Diseño Sonoro" class="yt-thumbnail">
-            <div class="media-overlay" style="bottom: 80px;">
-                <p>Composición Original</p>
-                <h2>Track 04: GarageBand Mix</h2>
-            </div>
-            <div class="audio-player-container" onclick="event.stopPropagation()">
-                <audio controls><source src="URL_AUDIO_4.mp3" type="audio/mpeg"></audio>
-            </div>
-        </div>
     </main>
 
     <section class="contact-section" id="contacto">
@@ -434,75 +416,89 @@
             <form id="vault-form" onsubmit="sendVaultEmail(event)">
                 <label for="req-name">Su Nombre Completo:</label>
                 <input type="text" id="req-name" placeholder="Ej. Juan Pérez" required>
-                
                 <label for="req-company">Empresa o Agencia:</label>
                 <input type="text" id="req-company" placeholder="Ej. Google / Leo Burnett" required>
-                
                 <label for="req-email">Su Correo Corporativo:</label>
                 <input type="email" id="req-email" placeholder="ejemplo@empresa.com" required>
-                
                 <div class="legal-warning">
                     <strong>ACLARACIÓN LEGAL:</strong> Al solicitar acceso, usted acepta expresamente que <u>NO PUEDE DESCARGAR, REPRODUCIR, COMPARTIR NI HACER USO</u> de ninguno de los trabajos contenidos en el Drive corporativo.
                 </div>
-                
                 <button type="submit" class="btn-primary" style="width: 100%;">Enviar Solicitud Legal</button>
             </form>
         </div>
     </div>
 
     <script>
-        // --- 1. GESTOR DE CONCURRENCIA EXACTO Y ELIMINACIÓN DE SUPERPOSICIÓN ---
+        // --- GESTOR GEOMÉTRICO DE CONCURRENCIA (MÁXIMO 2 VIDEOS EXACTOS) ---
         document.addEventListener("DOMContentLoaded", function() {
             const iframes = document.querySelectorAll('.auto-observe-yt');
-            let activeIframes = [];
-            const MAX_VIDEOS = 2; // Límite estricto pedido
+            let visibleIframes = []; // Lista de tarjetas que están en pantalla
+            const MAX_VIDEOS = 2; 
 
+            // Envía comandos a la API de YouTube
             function sendYTCommand(iframe, func) {
                 if (iframe && iframe.contentWindow && iframe.src) {
                     iframe.contentWindow.postMessage(JSON.stringify({event: 'command', func: func, args: []}), '*');
                 }
             }
 
+            // Escáner Geométrico: Decide cuáles 2 videos deben reproducirse
+            function updatePlayback() {
+                // Ordena los iframes visibles desde el que está más arriba en la pantalla hasta el más abajo
+                visibleIframes.sort((a, b) => {
+                    return a.getBoundingClientRect().top - b.getBoundingClientRect().top;
+                });
+
+                // Recorre los visibles: Los 2 primeros se reproducen, los demás se pausan
+                visibleIframes.forEach((iframe, index) => {
+                    if (index < MAX_VIDEOS) {
+                        if (!iframe.src) {
+                            // Si es la primera vez, le inyecta la URL (Lazy Load)
+                            iframe.src = iframe.dataset.src;
+                            iframe.onload = () => {
+                                iframe.style.opacity = "1"; // Aparece el video
+                                const thumbnail = iframe.previousElementSibling;
+                                if (thumbnail && thumbnail.classList.contains('yt-thumbnail')) {
+                                    thumbnail.style.opacity = "0"; // Se apaga la foto de fondo (Adiós superposición)
+                                }
+                            };
+                        } else {
+                            sendYTCommand(iframe, 'playVideo');
+                        }
+                    } else {
+                        // Si es el tercero, cuarto, etc., visible, lo pausa
+                        sendYTCommand(iframe, 'pauseVideo');
+                    }
+                });
+            }
+
             if ('IntersectionObserver' in window) {
                 const observer = new IntersectionObserver((entries) => {
+                    let layoutChanged = false;
+                    
                     entries.forEach(entry => {
                         const iframe = entry.target;
-                        const thumbnail = iframe.previousElementSibling; // La foto de fondo
-
+                        
                         if (entry.isIntersecting) {
-                            // 1. Inyectamos el reproductor (Autoplay=1 hará que empiece de inmediato)
-                            if (!iframe.src) {
-                                iframe.src = iframe.dataset.src;
-                                iframe.onload = () => {
-                                    iframe.style.opacity = "1"; // Mostramos el video
-                                    if (thumbnail && thumbnail.classList.contains('yt-thumbnail')) {
-                                        thumbnail.style.opacity = "0"; // Desaparecemos la foto para evitar superposición
-                                    }
-                                };
-                            } else {
-                                sendYTCommand(iframe, 'playVideo');
-                            }
-
-                            // 2. Control de Concurrencia (Netflix Style)
-                            if (!activeIframes.includes(iframe)) {
-                                activeIframes.push(iframe);
-                            }
-                            while (activeIframes.length > MAX_VIDEOS) {
-                                const oldest = activeIframes.shift();
-                                sendYTCommand(oldest, 'pauseVideo');
+                            if (!visibleIframes.includes(iframe)) {
+                                visibleIframes.push(iframe);
+                                layoutChanged = true;
                             }
                         } else {
-                            // Sale de pantalla: se pausa y se saca de la lista activa
-                            if (iframe.src) {
-                                sendYTCommand(iframe, 'pauseVideo');
-                            }
-                            const index = activeIframes.indexOf(iframe);
+                            const index = visibleIframes.indexOf(iframe);
                             if (index > -1) {
-                                activeIframes.splice(index, 1);
+                                visibleIframes.splice(index, 1);
+                                sendYTCommand(iframe, 'pauseVideo'); // Lo pausa inmediatamente al salir
+                                layoutChanged = true;
                             }
                         }
                     });
-                }, { threshold: 0.1 }); // El 0.1 hace que se active apenas el 10% asome en pantalla
+                    
+                    // Si entraron o salieron tarjetas, recalcula cuáles 2 deben reproducirse
+                    if (layoutChanged) {
+                        updatePlayback();
+                    }
+                }, { threshold: 0.4 }); // OPTIMIZACIÓN: Solo activa si el 40% de la tarjeta está visible
                 
                 iframes.forEach(iframe => observer.observe(iframe));
             } else {
@@ -510,7 +506,7 @@
             }
         });
 
-        // --- 2. Lógica de Filtros ---
+        // --- Lógica de Filtros ---
         function filterGallery(category) {
             const btns = document.querySelectorAll('.filter-btn');
             btns.forEach(btn => btn.classList.remove('active'));
@@ -523,9 +519,11 @@
                     else { item.classList.add('hide'); }
                 }
             });
+            // Al filtrar, forzamos un evento de scroll para que el observador de videos se recalcule
+            window.dispatchEvent(new Event('scroll'));
         }
 
-        // --- 3. Lógica de Visor Modal Principal ---
+        // --- Lógica de Visor Modal Principal ---
         const modal = document.getElementById('modal');
         const modalIframe = document.getElementById('modal-iframe');
         const modalImage = document.getElementById('modal-image');
@@ -550,7 +548,7 @@
             modalImage.src = "";
         }
 
-        // --- 4. Lógica de Bóveda Corporativa ---
+        // --- Lógica de Bóveda Corporativa ---
         const vaultModal = document.getElementById('vault-modal');
         function openVaultModal() { vaultModal.classList.add('active-modal'); }
         function closeVaultModal() { vaultModal.classList.remove('active-modal'); }

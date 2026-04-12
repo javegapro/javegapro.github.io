@@ -6,6 +6,7 @@
     <title>Alejandro Vega | Portafolio Director Creativo</title>
     
     <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="preconnect" href="https://static.wixstatic.com">
     <link rel="preconnect" href="https://i.ytimg.com">
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -45,7 +46,7 @@
         }
         .floating-contact:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.4); }
 
-        /* --- CABECERA GIGANTE --- */
+        /* --- CABECERA --- */
         header { padding: 100px 2% 40px; text-align: center; }
         header h1 { font-size: 3rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px;}
         header p { color: var(--electric-cyan); font-weight: 600; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 2px;}
@@ -86,7 +87,6 @@
             opacity: 0.25; pointer-events: none; z-index: 4;
         }
         
-        /* MINIATURA */
         .yt-thumbnail {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; z-index: 1;
@@ -94,7 +94,6 @@
             transition: opacity var(--transition-speed) ease, filter var(--transition-speed) ease, transform var(--transition-speed) ease;
         }
 
-        /* IFRAME YOUTUBE */
         .media-iframe {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 2; pointer-events: none; border: none;
@@ -104,7 +103,6 @@
             transition: opacity var(--transition-speed) ease, filter var(--transition-speed) ease, transform var(--transition-speed) ease;
         }
         
-        /* HOVER EFECTOS */
         .media-item:hover {
             border-color: rgba(45, 212, 191, 0.5);
             box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 25px rgba(45, 212, 191, 0.15);
@@ -123,13 +121,6 @@
 
         .media-item h2 { font-size: 2rem; text-transform: uppercase; margin-bottom: 8px; line-height: 1.1; text-shadow: 0 4px 10px rgba(0,0,0,0.8);}
         .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
-        
-        .audio-player-container {
-            position: absolute; bottom: 40px; left: 40px; right: 40px; z-index: 10;
-        }
-        .audio-player-container audio {
-            position: relative; z-index: 15; width: 100%; height: 50px; border-radius: 8px; outline: none;
-        }
 
         /* --- MEDIA QUERIES --- */
         @media (min-width: 768px) {
@@ -146,7 +137,7 @@
             .media-overlay { padding: 80px 50px 50px; }
         }
 
-        /* --- CONTACTO Y BÓVEDA --- */
+        /* --- SECCIONES DE CONTACTO Y BÓVEDA --- */
         .contact-section {
             padding: 100px 5%; text-align: center; border-top: 1px solid rgba(45, 212, 191, 0.2);
             border-bottom: 1px solid rgba(45, 212, 191, 0.2); background: radial-gradient(circle at center, rgba(45, 212, 191, 0.05) 0%, var(--dark-bg) 100%);
@@ -177,17 +168,11 @@
             background: rgba(2,6,23,0.98); z-index: 1000; display: none; justify-content: center; align-items: center; padding: 2% 5%;
         }
         .active-modal { display: flex; }
-        
         .modal-content-wrapper { max-width: 100%; max-height: 90vh; position: relative; width: 1600px; aspect-ratio: 16/9; }
-        
         .modal-fullscreen iframe, .modal-fullscreen img {
-            width: 100%; height: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.9); display: none; border: none; background-color: black;
+            width: 100%; height: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.9); display: none; border: none; background-color: black; object-fit: contain;
         }
-
-        .close-btn {
-            position: absolute; top: -50px; right: 0; color: var(--text-muted); cursor: pointer;
-            font-family: 'Montserrat', sans-serif; font-size: 1.5rem; z-index: 1001; transition: color 0.3s;
-        }
+        .close-btn { position: absolute; top: -50px; right: 0; color: var(--text-muted); cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 1.5rem; z-index: 1001; transition: color 0.3s;}
         .close-btn:hover { color: var(--electric-cyan); }
 
         .form-modal-box {
@@ -198,7 +183,6 @@
         .form-modal-box label { display: block; margin-bottom: 10px; font-size: 1rem; color: var(--text-muted); font-weight: 600;}
         .form-modal-box input { width: 100%; padding: 15px; margin-bottom: 25px; background-color: var(--dark-bg); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 1.1rem; }
         .form-modal-box input:focus { outline: none; border-color: var(--electric-cyan); }
-        .legal-warning { background-color: rgba(239, 68, 68, 0.08); border-left: 4px solid var(--danger-red); padding: 20px; margin-bottom: 30px; font-size: 0.9rem; color: #fca5a5; line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -215,18 +199,17 @@
         <button class="filter-btn" onclick="filterGallery('audiovisual')">Audiovisual</button>
         <button class="filter-btn" onclick="filterGallery('fotografia')">Fotografía</button>
         <button class="filter-btn" onclick="filterGallery('diseno')">Diseño</button>
-        <button class="filter-btn" onclick="filterGallery('audio')">Audio</button>
     </div>
 
     <main class="portfolio-grid">
         
         <div class="media-item audiovisual" onclick="openModal('youtube', '0ivRf3-IvGs')">
             <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/0ivRf3-IvGs/maxresdefault.jpg" class="yt-thumbnail" alt="Proyecto Clara">
+            <img src="https://img.youtube.com/vi/0ivRf3-IvGs/maxresdefault.jpg" class="yt-thumbnail" alt="Clara IA">
             <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/0ivRf3-IvGs?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=0ivRf3-IvGs" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="media-overlay">
-                <p>IA Generativa (Flow)</p>
-                <h2>Clara: Identidad ESPY</h2>
+                <p>AI Generative Strategy</p>
+                <h2>Proyecto Clara: ESPY S.A.</h2>
             </div>
         </div>
 
@@ -235,145 +218,83 @@
             <img src="https://img.youtube.com/vi/ntMooW2DwVw/maxresdefault.jpg" class="yt-thumbnail" alt="Showreel">
             <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/ntMooW2DwVw?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=ntMooW2DwVw" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="media-overlay">
-                <p>Dirección y Montaje</p>
-                <h2>Showreel 2026</h2>
+                <p>Creative Direction</p>
+                <h2>Showreel Audiovisual 2026</h2>
             </div>
         </div>
 
-        <div class="media-item audiovisual" onclick="openModal('youtube', 'CGccljx4QxQ')">
+        <div class="media-item fotografia" onclick="openModal('image', 'https://static.wixstatic.com/media/14f4fb_b9505e5b99434479a64c516219d4ba31~mv2_d_5357_3912_s_4_2.jpg')">
             <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/CGccljx4QxQ/maxresdefault.jpg" class="yt-thumbnail" alt="Lyric Video">
-            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/CGccljx4QxQ?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=CGccljx4QxQ" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            <img src="https://static.wixstatic.com/media/14f4fb_b9505e5b99434479a64c516219d4ba31~mv2_d_5357_3912_s_4_2.jpg" class="yt-thumbnail" alt="Kapo Retrato">
             <div class="media-overlay">
-                <p>100% Stock Footage & Tipografía</p>
-                <h2>Lyric Video Cero-Presupuesto</h2>
+                <p>Music Industry / Portrait</p>
+                <h2>Artistas: Kapo (Sony S-Log)</h2>
             </div>
         </div>
 
-        <div class="media-item audiovisual" onclick="openModal('youtube', 'kZLIan0Hr-E')">
+        <div class="media-item fotografia" onclick="openModal('image', 'https://static.wixstatic.com/media/14f4fb_cfb665c8cecc4a3f915d59ecc7372cdf~mv2.png')">
             <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/kZLIan0Hr-E/hqdefault.jpg" class="yt-thumbnail" alt="Kapo Color Test">
-            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/kZLIan0Hr-E?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=kZLIan0Hr-E" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            <img src="https://static.wixstatic.com/media/14f4fb_cfb665c8cecc4a3f915d59ecc7372cdf~mv2.png" class="yt-thumbnail" alt="Sabrina Actriz">
             <div class="media-overlay">
-                <p>Sony S-Log Color Grading</p>
-                <h2>Color Test: KAPO</h2>
+                <p>Editorial Photography</p>
+                <h2>Sabrina: Serie Retratos</h2>
             </div>
         </div>
 
-        <div class="media-item audiovisual" onclick="openModal('youtube', '3GLjAoBXZV8')">
+        <div class="media-item fotografia" onclick="openModal('image', 'https://static.wixstatic.com/media/14f4fb_3c6ea1e81a93400bb35024d9af900c58~mv2.jpg')">
             <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/3GLjAoBXZV8/maxresdefault.jpg" class="yt-thumbnail" alt="BTS">
-            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/3GLjAoBXZV8?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=3GLjAoBXZV8" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            <img src="https://static.wixstatic.com/media/14f4fb_3c6ea1e81a93400bb35024d9af900c58~mv2.jpg" class="yt-thumbnail" alt="Experimental">
             <div class="media-overlay">
-                <p>Producción & Postproducción</p>
-                <h2>BTS: Desnúdame</h2>
+                <p>Experimental / Abstract</p>
+                <h2>Exploración Visual & Luz</h2>
             </div>
         </div>
 
-        <div class="media-item audiovisual" onclick="openModal('youtube', 'NUm0rt_XRkQ')">
+        <div class="media-item fotografia" onclick="openModal('image', 'https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg')">
             <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/NUm0rt_XRkQ/maxresdefault.jpg" class="yt-thumbnail" alt="Vallecaucanos">
-            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/NUm0rt_XRkQ?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=NUm0rt_XRkQ" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            <img src="https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg" class="yt-thumbnail" alt="Pamplona de Cerdo">
             <div class="media-overlay">
-                <p>Event Coverage & PR</p>
-                <h2>Meet & Greet: Vallecaucanos</h2>
+                <p>Commercial Gastronomy</p>
+                <h2>Food Styling: Pamplona</h2>
             </div>
         </div>
 
-        <div class="media-item audiovisual" onclick="openModal('youtube', 'TLjHcX4UPHg')">
+        <div class="media-item fotografia" onclick="openModal('image', 'https://static.wixstatic.com/media/14f4fb_bde31a4c87be49a1882327dacb0882e0~mv2.jpg')">
             <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/TLjHcX4UPHg/maxresdefault.jpg" class="yt-thumbnail" alt="Unichef 1">
-            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/TLjHcX4UPHg?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=TLjHcX4UPHg" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            <img src="https://static.wixstatic.com/media/14f4fb_bde31a4c87be49a1882327dacb0882e0~mv2.jpg" class="yt-thumbnail" alt="Reloj">
             <div class="media-overlay">
-                <p>Formatos Digitales / E-Learning</p>
-                <h2>UniChef: Cheesecake</h2>
+                <p>Product Photography / B2B</p>
+                <h2>Precision: Watch Editorial</h2>
             </div>
         </div>
 
-        <div class="media-item audiovisual" onclick="openModal('youtube', 'SRH1ImvnXFI')">
+        <div class="media-item fotografia" onclick="openModal('image', 'https://static.wixstatic.com/media/14f4fb_f2a7ed1846ad41fa86dce3758b73a792~mv2.jpg')">
             <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/SRH1ImvnXFI/maxresdefault.jpg" class="yt-thumbnail" alt="Unichef 2">
-            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/SRH1ImvnXFI?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=SRH1ImvnXFI" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            <img src="https://static.wixstatic.com/media/14f4fb_f2a7ed1846ad41fa86dce3758b73a792~mv2.jpg" class="yt-thumbnail" alt="Naturaleza">
             <div class="media-overlay">
-                <p>Formatos Digitales / E-Learning</p>
-                <h2>UniChef: Pamplona Cerdo</h2>
+                <p>Landscape / Fine Art</p>
+                <h2>Naturaleza: Inmortal</h2>
             </div>
         </div>
 
-        <div class="media-item audiovisual" onclick="openModal('youtube', 'rtvkiEu0xyo')">
+        <div class="media-item fotografia" onclick="openModal('image', 'https://static.wixstatic.com/media/14f4fb_e82cdeeb1f354ca38150280d46c711ec~mv2_d_6000_4000_s_4_2.jpg')">
             <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/rtvkiEu0xyo/maxresdefault.jpg" class="yt-thumbnail" alt="Unichef 3">
-            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/rtvkiEu0xyo?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=rtvkiEu0xyo" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            <img src="https://static.wixstatic.com/media/14f4fb_e82cdeeb1f354ca38150280d46c711ec~mv2_d_6000_4000_s_4_2.jpg" class="yt-thumbnail" alt="Modelos">
             <div class="media-overlay">
-                <p>Formatos Digitales / E-Learning</p>
-                <h2>UniChef: Postre de Pan</h2>
+                <p>Fashion / New Faces</p>
+                <h2>Casting: Artistas Emergentes</h2>
             </div>
         </div>
 
-        <div class="media-item fotografia" onclick="openModal('image', 'URL_FOTO_RETRATO_ALTA.jpg')">
+        <div class="media-item fotografia" onclick="openModal('image', 'https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg')">
             <div class="media-texture"></div>
-            <img src="URL_FOTO_RETRATO_BAJA.jpg" alt="Fotografía Retrato" class="yt-thumbnail">
+            <img src="https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg" class="yt-thumbnail" alt="Postre de pan">
             <div class="media-overlay">
-                <p>Iluminación y Retrato</p>
-                <h2>Fotografía de Estudio</h2>
-            </div>
-        </div>
-        <div class="media-item fotografia" onclick="openModal('image', 'URL_FOTO_PRODUCTO_ALTA.jpg')">
-            <div class="media-texture"></div>
-            <img src="URL_FOTO_PRODUCTO_BAJA.jpg" alt="Fotografía Producto" class="yt-thumbnail">
-            <div class="media-overlay">
-                <p>Publicidad B2C</p>
-                <h2>Fotografía de Producto</h2>
+                <p>Food Design</p>
+                <h2>Dessert: Textura y Sabor</h2>
             </div>
         </div>
 
-        <div class="media-item diseno" onclick="openModal('image', 'URL_DISENO_DFERIA_ALTA.jpg')">
-            <div class="media-texture"></div>
-            <img src="URL_DISENO_DFERIA_BAJA.jpg" alt="Revista Dferia" class="yt-thumbnail">
-            <div class="media-overlay">
-                <p>Identidad Visual</p>
-                <h2>Branding: La Ruta del Sabor</h2>
-            </div>
-        </div>
-        <div class="media-item diseno" onclick="openModal('image', 'URL_DISENO_WEB_JAVEGA_ALTA.jpg')">
-            <div class="media-texture"></div>
-            <img src="URL_DISENO_WEB_JAVEGA_BAJA.jpg" alt="Diseño Web JAVEGA" class="yt-thumbnail">
-            <div class="media-overlay">
-                <p>Web Design / Portfolio</p>
-                <h2>Desarrollo UI: JAVEGA Digital</h2>
-            </div>
-        </div>
-        <div class="media-item diseno" onclick="openModal('image', 'URL_DISENO_ESPY_DESKTOP_ALTA.jpg')">
-            <div class="media-texture"></div>
-            <img src="URL_DISENO_ESPY_DESKTOP_BAJA.jpg" alt="Diseño Web ESPY Desktop" class="yt-thumbnail">
-            <div class="media-overlay">
-                <p>Supervisión UI (Solo Escritorio)</p>
-                <h2>Interfaz Web ESPY S.A.</h2>
-            </div>
-        </div>
-
-        <div class="media-item audio">
-            <div class="media-texture"></div>
-            <img src="URL_COVER_AUDIO_1.jpg" alt="Diseño Sonoro" class="yt-thumbnail">
-            <div class="media-overlay" style="bottom: 80px;">
-                <p>Composición Original</p>
-                <h2>Track 01: GarageBand Mix</h2>
-            </div>
-            <div class="audio-player-container" onclick="event.stopPropagation()">
-                <audio controls><source src="URL_AUDIO_1.mp3" type="audio/mpeg"></audio>
-            </div>
-        </div>
-        <div class="media-item audio">
-            <div class="media-texture"></div>
-            <img src="URL_COVER_AUDIO_2.jpg" alt="Diseño Sonoro" class="yt-thumbnail">
-            <div class="media-overlay" style="bottom: 80px;">
-                <p>Composición Original</p>
-                <h2>Track 02: GarageBand Mix</h2>
-            </div>
-            <div class="audio-player-container" onclick="event.stopPropagation()">
-                <audio controls><source src="URL_AUDIO_2.mp3" type="audio/mpeg"></audio>
-            </div>
-        </div>
     </main>
 
     <section class="contact-section" id="contacto">
@@ -386,7 +307,6 @@
         <div class="social-links">
             <a href="https://linkedin.com/in/javegapro" target="_blank">LinkedIn</a>
             <a href="https://www.youtube.com/@javegapro" target="_blank">Canal de YouTube</a>
-            <a href="https://instagram.com/javegapro" target="_blank">Instagram (Archivo Audiovisual)</a>
         </div>
     </section>
 
@@ -411,27 +331,23 @@
         <div class="form-modal-box">
             <span class="close-btn" style="top: 20px; right: 25px;" onclick="closeVaultModal()">[X]</span>
             <h3 style="color: var(--electric-cyan); margin-bottom: 5px; font-size: 1.8rem;">Solicitud de Acceso</h3>
-            <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 30px;">Por favor, ingrese sus datos corporativos. Al continuar, usted acepta los términos de confidencialidad.</p>
-            
+            <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 30px;">Por favor, ingrese sus datos corporativos. Al continuar, acepta los términos de confidencialidad.</p>
             <form id="vault-form" onsubmit="sendVaultEmail(event)">
                 <label for="req-name">Su Nombre Completo:</label>
                 <input type="text" id="req-name" placeholder="Ej. Juan Pérez" required>
                 <label for="req-company">Empresa o Agencia:</label>
-                <input type="text" id="req-company" placeholder="Ej. Google / Leo Burnett" required>
+                <input type="text" id="req-company" placeholder="Ej. Google / Eficacia" required>
                 <label for="req-email">Su Correo Corporativo:</label>
                 <input type="email" id="req-email" placeholder="ejemplo@empresa.com" required>
-                <div class="legal-warning">
-                    <strong>ACLARACIÓN LEGAL:</strong> Al solicitar acceso, usted acepta expresamente que <u>NO PUEDE DESCARGAR, REPRODUCIR, COMPARTIR NI HACER USO</u> de ninguno de los trabajos contenidos en el Drive corporativo.
-                </div>
                 <button type="submit" class="btn-primary" style="width: 100%;">Enviar Solicitud Legal</button>
             </form>
         </div>
     </div>
 
     <script>
-        // --- MOTOR DE ESTADOS: ESCÁNER Y BUFFER PRE-CARGA ---
         document.addEventListener("DOMContentLoaded", function() {
             const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+            const iframes = document.querySelectorAll('.auto-observe-yt');
 
             function sendYTCommand(iframe, func) {
                 if (iframe && iframe.contentWindow && iframe.src) {
@@ -440,149 +356,120 @@
             }
 
             function evaluateVideos() {
-                // Filtramos solo las tarjetas audiovisuales que NO estén ocultas por filtros
                 const activeCards = Array.from(document.querySelectorAll('.media-item.audiovisual:not(.hide)'));
-                
-                // Ordenamos las tarjetas de arriba hacia abajo
                 activeCards.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
 
                 let playingCount = 0;
-                let preloadedCount = 0;
+                let bufferedCount = 0;
 
                 activeCards.forEach((card) => {
                     const iframe = card.querySelector('.auto-observe-yt');
-                    if (!iframe) return;
-
+                    const thumb = card.querySelector('.yt-thumbnail');
                     const rect = card.getBoundingClientRect();
-                    // Tolerancia estricta: debe estar prácticamente al 100% en pantalla
-                    const isFullyVisible = (rect.top >= -50) && (rect.bottom <= viewportHeight + 50);
+                    
+                    // REGLA DEL 100%: Visibilidad estricta
+                    const isFullyVisible = (rect.top >= -20) && (rect.bottom <= viewportHeight + 20);
 
-                    // ZONA 1: ESTÁ 100% EN PANTALLA (Máximo 2)
+                    // ZONA 1: PLAY (Max 2)
                     if (isFullyVisible && playingCount < 2) {
                         playingCount++;
                         if (!iframe.src) {
                             iframe.src = iframe.dataset.src;
                             iframe.onload = () => {
                                 iframe.style.opacity = "1";
-                                const thumbnail = iframe.previousElementSibling;
-                                if (thumbnail && thumbnail.classList.contains('yt-thumbnail')) {
-                                    thumbnail.style.opacity = "0";
-                                }
-                                // Le damos un milisegundo para asegurar que la API lo recibe
-                                setTimeout(() => sendYTCommand(iframe, 'playVideo'), 150);
+                                if (thumb) thumb.style.opacity = "0";
+                                setTimeout(() => sendYTCommand(iframe, 'playVideo'), 200);
                             };
                         } else {
                             sendYTCommand(iframe, 'playVideo');
                         }
                     } 
-                    // ZONA 2: BUFFER (Las 2 siguientes que asoman o están debajo)
-                    else if (rect.top >= -50 && preloadedCount < 2) {
-                        preloadedCount++;
+                    // ZONA 2: BUFFER (Próximos 2)
+                    else if (rect.top >= -20 && bufferedCount < 2) {
+                        bufferedCount++;
                         if (!iframe.src) {
-                            // Se inyecta la URL para descargar, pero NO se envía el comando Play
-                            iframe.src = iframe.dataset.src;
+                            iframe.src = iframe.dataset.src; // Carga en segundo plano
                             iframe.onload = () => {
                                 iframe.style.opacity = "1";
-                                const thumbnail = iframe.previousElementSibling;
-                                if (thumbnail && thumbnail.classList.contains('yt-thumbnail')) {
-                                    thumbnail.style.opacity = "0";
-                                }
+                                if (thumb) thumb.style.opacity = "0";
+                                sendYTCommand(iframe, 'pauseVideo'); // Se queda listo pero pausado
                             };
                         } else {
-                            // Si ya tiene SRC, nos aseguramos de que esté pausada
                             sendYTCommand(iframe, 'pauseVideo');
                         }
-                    } 
-                    // ZONA 3: HIBERNACIÓN (Fuera de vista total)
+                    }
+                    // ZONA 3: HIBERNACIÓN
                     else {
-                        if (iframe.src) {
-                            sendYTCommand(iframe, 'pauseVideo');
-                        }
+                        if (iframe.src) sendYTCommand(iframe, 'pauseVideo');
                     }
                 });
             }
 
-            // Escuchar el Scroll general para recalcular
             let scrollTimeout;
             window.addEventListener('scroll', () => {
                 if (!scrollTimeout) {
                     scrollTimeout = setTimeout(() => {
                         evaluateVideos();
                         scrollTimeout = null;
-                    }, 100); // 100ms de debouncing para no saturar el navegador
+                    }, 150);
                 }
             }, { passive: true });
 
-            // Ejecución inicial al cargar
-            setTimeout(evaluateVideos, 300);
+            setTimeout(evaluateVideos, 500);
         });
 
-        // --- Lógica de Filtros ---
+        // Lógica de Filtros
         function filterGallery(category) {
             const btns = document.querySelectorAll('.filter-btn');
             btns.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
             const items = document.querySelectorAll('.media-item');
             items.forEach(item => {
-                if (category === 'all') { item.classList.remove('hide'); } 
-                else {
-                    if (item.classList.contains(category)) { item.classList.remove('hide'); } 
-                    else { item.classList.add('hide'); }
-                }
+                if (category === 'all') item.classList.remove('hide');
+                else item.classList.contains(category) ? item.classList.remove('hide') : item.classList.add('hide');
             });
-            // Forzar recálculo del buffer al filtrar
             window.dispatchEvent(new Event('scroll'));
         }
 
-        // --- Lógica de Visor Modal ---
+        // Modales
         const modal = document.getElementById('modal');
         const modalIframe = document.getElementById('modal-iframe');
         const modalImage = document.getElementById('modal-image');
 
-        function openModal(type, urlOrId) {
+        function openModal(type, url) {
             modal.classList.add('active-modal');
             if (type === 'youtube') {
                 modalImage.style.display = 'none';
                 modalIframe.style.display = 'block';
-                modalIframe.src = `https://www.youtube.com/embed/${urlOrId}?autoplay=1&rel=0`;
-            } else if (type === 'image') {
+                modalIframe.src = `https://www.youtube.com/embed/${url}?autoplay=1&rel=0`;
+            } else {
                 modalIframe.style.display = 'none';
-                modalIframe.src = ""; 
                 modalImage.style.display = 'block';
-                modalImage.src = urlOrId;
+                modalImage.src = url;
             }
         }
 
         function closeModal() {
             modal.classList.remove('active-modal');
-            modalIframe.src = ""; 
+            modalIframe.src = "";
             modalImage.src = "";
         }
 
-        // --- Lógica de Bóveda ---
         const vaultModal = document.getElementById('vault-modal');
         function openVaultModal() { vaultModal.classList.add('active-modal'); }
         function closeVaultModal() { vaultModal.classList.remove('active-modal'); }
 
         function sendVaultEmail(e) {
-            e.preventDefault(); 
+            e.preventDefault();
             const name = document.getElementById('req-name').value;
             const company = document.getElementById('req-company').value;
             const email = document.getElementById('req-email').value;
-
-            const subject = encodeURIComponent(`Solicitud Acceso Bóveda Corporativa - ${name} (${company})`);
-            const bodyText = `Hola Alejandro,\n\nSoy ${name}, en representación de la empresa/agencia ${company}, y solicito acceso a tu portafolio confidencial de Drive.\nMi correo de contacto corporativo es: ${email}\n\nCONFIRMACIÓN LEGAL:\nHe leído la aclaración en tu sitio web y acepto expresamente que NO PUEDO DESCARGAR, REPRODUCIR, COMPARTIR NI HACER USO de ninguno de los trabajos que se encuentran en dicho Drive.\n\nQuedo a la espera de la habilitación del acceso.\n\nSaludos cordiales.`;
-            const body = encodeURIComponent(bodyText);
-
-            window.location.href = `mailto:Alejandro.960822@gmail.com?subject=${subject}&body=${body}`;
-            
+            const body = encodeURIComponent(`Hola Alejandro,\n\nSoy ${name} de ${company}. Solicito acceso a la Bóveda de Drive.\nContacto: ${email}\n\nConfirmo que no haré uso comercial de los archivos.`);
+            window.location.href = `mailto:Alejandro.960822@gmail.com?subject=Acceso Bóveda&body=${body}`;
             closeVaultModal();
-            document.getElementById('vault-form').reset(); 
         }
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape") { closeModal(); closeVaultModal(); }
-        });
+        document.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModal(); closeVaultModal(); });
     </script>
 </body>
 </html>

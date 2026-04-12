@@ -62,15 +62,21 @@
             transform: translateY(-3px); box-shadow: 0 10px 20px rgba(45, 212, 191, 0.15);
         }
 
-        /* --- GRILLA CINEMATOGRÁFICA --- */
+        /* --- GRILLA CINEMATOGRÁFICA EDGE-TO-EDGE --- */
         .portfolio-grid {
-            display: grid; grid-template-columns: 1fr; gap: 2vw; 
-            padding: 0 2% 100px; width: 100%; max-width: 2500px; margin: 0 auto;
+            display: grid; 
+            grid-template-columns: 1fr; /* Móvil: 1 columna masiva */
+            gap: 2vw; /* Espaciado relativo a la pantalla */
+            padding: 0 2% 100px; /* Casi pegado a los bordes */
+            width: 100%;
+            max-width: 2500px; /* Permite que crezca muchísimo en monitores grandes */
+            margin: 0 auto;
         }
         .media-item.hide { display: none; }
-        
         .media-item {
-            position: relative; aspect-ratio: 16 / 9; border-radius: 16px; 
+            position: relative; 
+            aspect-ratio: 16 / 9; 
+            border-radius: 16px; /* Bordes más suaves para pantallas grandes */
             overflow: hidden; cursor: pointer; border: 1px solid rgba(45, 212, 191, 0.15);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 8px rgba(45, 212, 191, 0.05);
             background-color: var(--card-bg); transition: all var(--transition-speed) ease;
@@ -87,14 +93,28 @@
             opacity: var(--overlay-opacity); filter: grayscale(50%) brightness(0.8); 
             transition: all var(--transition-speed) ease;
         }
+
+        /* CLASE PARA EL IFRAME (Tapa la foto de fondo) */
+        .media-iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 2; pointer-events: none; border: none;
+            /* 100% opaco para tapar la foto de atrás, oscurecido con filtros */
+            filter: grayscale(50%) brightness(0.6); 
+            transition: all var(--transition-speed) ease;
+        }
         
+        /* EFECTO HOVER DRAMÁTICO CON GLOW SUTIL */
         .media-item:hover {
             border-color: rgba(45, 212, 191, 0.5);
             box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 25px rgba(45, 212, 191, 0.15);
-            transform: translateY(-10px); z-index: 10;
+            transform: translateY(-10px);
+            z-index: 10; /* Se pone por encima de las demás */
         }
         .media-item:hover .media-bg { 
             opacity: 1; filter: grayscale(0%) brightness(1.1); transform: scale(1.05); 
+        }
+        .media-item:hover .media-iframe {
+            filter: grayscale(0%) brightness(1.1); transform: scale(1.05);
         }
 
         .media-overlay {
@@ -102,7 +122,9 @@
             padding: 60px 40px 40px; background: linear-gradient(to top, rgba(2,6,23,0.98) 10%, transparent);
             z-index: 5; pointer-events: none; transition: padding 0.3s ease;
         }
-        .media-item:hover .media-overlay { padding-bottom: 50px; }
+        .media-item:hover .media-overlay {
+            padding-bottom: 50px; /* El texto sube ligeramente al hacer hover */
+        }
 
         .media-item h2 { font-size: 2rem; text-transform: uppercase; margin-bottom: 8px; line-height: 1.1; text-shadow: 0 4px 10px rgba(0,0,0,0.8);}
         .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
@@ -123,7 +145,11 @@
             header { padding: 120px 2% 60px; }
             header h1 { font-size: 5.5rem; letter-spacing: 5px; }
             header p { font-size: 1.4rem; letter-spacing: 3px; }
-            .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 3vw; }
+            
+            .portfolio-grid { 
+                grid-template-columns: repeat(2, 1fr); /* ESCRITORIO: Siempre 2 columnas masivas */
+                gap: 3vw; 
+            }
             .media-item h2 { font-size: 3rem; }
             .media-item p { font-size: 1.1rem; }
             .media-overlay { padding: 80px 50px 50px; }
@@ -206,7 +232,7 @@
         <div class="media-item audiovisual" onclick="openModal('youtube', '0ivRf3-IvGs')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/0ivRf3-IvGs/maxresdefault.jpg" class="media-bg" style="position: absolute; top: 0; left: 0; z-index: 1;" alt="Proyecto Clara">
-            <iframe class="media-bg auto-observe-yt" data-src="https://www.youtube.com/embed/0ivRf3-IvGs?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=0ivRf3-IvGs" frameborder="0" allow="autoplay; encrypted-media" style="position: absolute; top: 0; left: 0; z-index: 2; pointer-events: none;"></iframe>
+            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/0ivRf3-IvGs?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=0ivRf3-IvGs" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="media-overlay">
                 <p>IA Generativa (Flow)</p>
                 <h2>Clara: Identidad ESPY</h2>
@@ -216,7 +242,7 @@
         <div class="media-item audiovisual" onclick="openModal('youtube', 'ntMooW2DwVw')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/ntMooW2DwVw/maxresdefault.jpg" class="media-bg" style="position: absolute; top: 0; left: 0; z-index: 1;" alt="Showreel">
-            <iframe class="media-bg auto-observe-yt" data-src="https://www.youtube.com/embed/ntMooW2DwVw?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=ntMooW2DwVw" frameborder="0" allow="autoplay; encrypted-media" style="position: absolute; top: 0; left: 0; z-index: 2; pointer-events: none;"></iframe>
+            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/ntMooW2DwVw?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=ntMooW2DwVw" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="media-overlay">
                 <p>Dirección y Montaje</p>
                 <h2>Showreel 2026</h2>
@@ -226,7 +252,7 @@
         <div class="media-item audiovisual" onclick="openModal('youtube', 'CGccljx4QxQ')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/CGccljx4QxQ/maxresdefault.jpg" class="media-bg" style="position: absolute; top: 0; left: 0; z-index: 1;" alt="Lyric Video">
-            <iframe class="media-bg auto-observe-yt" data-src="https://www.youtube.com/embed/CGccljx4QxQ?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=CGccljx4QxQ" frameborder="0" allow="autoplay; encrypted-media" style="position: absolute; top: 0; left: 0; z-index: 2; pointer-events: none;"></iframe>
+            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/CGccljx4QxQ?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=CGccljx4QxQ" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="media-overlay">
                 <p>100% Stock Footage & Tipografía</p>
                 <h2>Lyric Video Cero-Presupuesto</h2>
@@ -236,7 +262,7 @@
         <div class="media-item audiovisual" onclick="openModal('youtube', 'kZLIan0Hr-E')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/kZLIan0Hr-E/hqdefault.jpg" class="media-bg" style="position: absolute; top: 0; left: 0; z-index: 1;" alt="Kapo Color Test">
-            <iframe class="media-bg auto-observe-yt" data-src="https://www.youtube.com/embed/kZLIan0Hr-E?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=kZLIan0Hr-E" frameborder="0" allow="autoplay; encrypted-media" style="position: absolute; top: 0; left: 0; z-index: 2; pointer-events: none;"></iframe>
+            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/kZLIan0Hr-E?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=kZLIan0Hr-E" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="media-overlay">
                 <p>Sony S-Log Color Grading</p>
                 <h2>Color Test: KAPO</h2>
@@ -246,7 +272,7 @@
         <div class="media-item audiovisual" onclick="openModal('youtube', '3GLjAoBXZV8')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/3GLjAoBXZV8/maxresdefault.jpg" class="media-bg" style="position: absolute; top: 0; left: 0; z-index: 1;" alt="BTS">
-            <iframe class="media-bg auto-observe-yt" data-src="https://www.youtube.com/embed/3GLjAoBXZV8?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=3GLjAoBXZV8" frameborder="0" allow="autoplay; encrypted-media" style="position: absolute; top: 0; left: 0; z-index: 2; pointer-events: none;"></iframe>
+            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/3GLjAoBXZV8?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=3GLjAoBXZV8" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="media-overlay">
                 <p>Producción & Postproducción</p>
                 <h2>BTS: Desnúdame</h2>
@@ -256,7 +282,7 @@
         <div class="media-item audiovisual" onclick="openModal('youtube', 'NUm0rt_XRkQ')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/NUm0rt_XRkQ/maxresdefault.jpg" class="media-bg" style="position: absolute; top: 0; left: 0; z-index: 1;" alt="Vallecaucanos">
-            <iframe class="media-bg auto-observe-yt" data-src="https://www.youtube.com/embed/NUm0rt_XRkQ?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=NUm0rt_XRkQ" frameborder="0" allow="autoplay; encrypted-media" style="position: absolute; top: 0; left: 0; z-index: 2; pointer-events: none;"></iframe>
+            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/NUm0rt_XRkQ?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=NUm0rt_XRkQ" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="media-overlay">
                 <p>Event Coverage & PR</p>
                 <h2>Meet & Greet: Vallecaucanos</h2>
@@ -266,7 +292,7 @@
         <div class="media-item audiovisual" onclick="openModal('youtube', 'TLjHcX4UPHg')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/TLjHcX4UPHg/maxresdefault.jpg" class="media-bg" style="position: absolute; top: 0; left: 0; z-index: 1;" alt="Unichef 1">
-            <iframe class="media-bg auto-observe-yt" data-src="https://www.youtube.com/embed/TLjHcX4UPHg?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=TLjHcX4UPHg" frameborder="0" allow="autoplay; encrypted-media" style="position: absolute; top: 0; left: 0; z-index: 2; pointer-events: none;"></iframe>
+            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/TLjHcX4UPHg?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=TLjHcX4UPHg" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="media-overlay">
                 <p>Formatos Digitales / E-Learning</p>
                 <h2>UniChef: Cheesecake</h2>
@@ -276,7 +302,7 @@
         <div class="media-item audiovisual" onclick="openModal('youtube', 'SRH1ImvnXFI')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/SRH1ImvnXFI/maxresdefault.jpg" class="media-bg" style="position: absolute; top: 0; left: 0; z-index: 1;" alt="Unichef 2">
-            <iframe class="media-bg auto-observe-yt" data-src="https://www.youtube.com/embed/SRH1ImvnXFI?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=SRH1ImvnXFI" frameborder="0" allow="autoplay; encrypted-media" style="position: absolute; top: 0; left: 0; z-index: 2; pointer-events: none;"></iframe>
+            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/SRH1ImvnXFI?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=SRH1ImvnXFI" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="media-overlay">
                 <p>Formatos Digitales / E-Learning</p>
                 <h2>UniChef: Pamplona Cerdo</h2>
@@ -286,7 +312,7 @@
         <div class="media-item audiovisual" onclick="openModal('youtube', 'rtvkiEu0xyo')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/rtvkiEu0xyo/maxresdefault.jpg" class="media-bg" style="position: absolute; top: 0; left: 0; z-index: 1;" alt="Unichef 3">
-            <iframe class="media-bg auto-observe-yt" data-src="https://www.youtube.com/embed/rtvkiEu0xyo?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=rtvkiEu0xyo" frameborder="0" allow="autoplay; encrypted-media" style="position: absolute; top: 0; left: 0; z-index: 2; pointer-events: none;"></iframe>
+            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/rtvkiEu0xyo?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=rtvkiEu0xyo" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="media-overlay">
                 <p>Formatos Digitales / E-Learning</p>
                 <h2>UniChef: Postre de Pan</h2>
@@ -460,7 +486,29 @@
     </div>
 
     <script>
-        // 1. TRUE LAZY LOAD (Optimización Extrema de Rendimiento)
+        // --- GESTOR DE CONCURRENCIA DE VIDEOS (MÁXIMO 2 SIMULTÁNEOS) ---
+        
+        // Cola global para mantener registro de qué videos LOADED están PLAYING
+        const activePlayingQueue = []; 
+        const MAX_SIMULTANEOUS_VIDEOS = 2; // Su límite estricto
+
+        // Función auxiliar para enviar comandos silenciosos a la API de YouTube
+        function sendYTCommand(iframe, func) {
+             if (iframe && iframe.contentWindow) {
+                 iframe.contentWindow.postMessage('{"event":"command","func":"' + func + '","args":""}', '*');
+             }
+        }
+
+        // Función para pausar el video más antiguo de la cola si superamos el límite
+        function enforceConcurrencyLimit() {
+            while (activePlayingQueue.length > MAX_SIMULTANEOUS_VIDEOS) {
+                // Sacamos el primero (el más viejo)
+                const iframeToStop = activePlayingQueue.shift();
+                sendYTCommand(iframeToStop, "pauseVideo");
+            }
+        }
+
+        // Configuración de IntersectionObserver Avanzada
         document.addEventListener("DOMContentLoaded", function() {
             const iframes = document.querySelectorAll('.auto-observe-yt');
             
@@ -470,29 +518,61 @@
                         const iframe = entry.target;
                         
                         if (entry.isIntersecting) {
-                            // Si el iframe aún no tiene SRC, se lo inyectamos (Lazy Load Real)
+                            // Bandera para el onload
+                            iframe.dataset.isVisible = "true"; 
+
+                            // Si el iframe aún no tiene SRC (Lazy Load Real)
                             if (!iframe.src) {
                                 iframe.src = iframe.dataset.src;
+                                iframe.onload = () => {
+                                    // Solo intentar reproducir si sigue visible después de cargar
+                                    if (iframe.dataset.isVisible === "true") {
+                                        // Solución Race Condition: timeout ligero para asegurar que la API de YT arrancó
+                                        setTimeout(() => {
+                                            if (iframe.dataset.isVisible === "true") {
+                                                // Añadir a la cola de 'intento de play'
+                                                sendYTCommand(iframe, "playVideo");
+                                                if (!activePlayingQueue.includes(iframe)) {
+                                                    activePlayingQueue.push(iframe);
+                                                }
+                                                enforceConcurrencyLimit();
+                                            }
+                                        }, 300); 
+                                    }
+                                };
+                            } else {
+                                // Si ya había cargado antes, directo al play silencioso
+                                sendYTCommand(iframe, "playVideo");
+                                if (!activePlayingQueue.includes(iframe)) {
+                                    activePlayingQueue.push(iframe);
+                                }
+                                enforceConcurrencyLimit();
                             }
-                            // Manda la orden de PLAY a YouTube
-                            iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
                         } else {
-                            // Cuando sale, manda la orden de PAUSE
+                            // --- EXITS SCREEN ---
+                            iframe.dataset.isVisible = "false"; 
+                            
+                            // Detenerlo inmediatamente
                             if (iframe.src) {
-                                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                                sendYTCommand(iframe, "pauseVideo");
+                            }
+                            // Sacarlo de la cola de reproducción activa si estaba ahí
+                            const index = activePlayingQueue.indexOf(iframe);
+                            if (index > -1) {
+                                 activePlayingQueue.splice(index, 1);
                             }
                         }
                     });
-                }, { threshold: 0.3 }); 
+                }, { threshold: 0.3 }); // Se activa cuando al menos el 30% está visible
                 
                 iframes.forEach(iframe => videoObserver.observe(iframe));
             } else {
-                // Fallback para navegadores antiguos: carga todos los iframes de golpe
+                // Fallback (navegadores antiguos): Cargar todos
                 iframes.forEach(iframe => iframe.src = iframe.dataset.src);
             }
         });
 
-        // 2. Lógica de Filtros
+        // --- Lógica de Filtros ---
         function filterGallery(category) {
             const btns = document.querySelectorAll('.filter-btn');
             btns.forEach(btn => btn.classList.remove('active'));
@@ -507,7 +587,7 @@
             });
         }
 
-        // 3. Lógica de Visor Modal Principal
+        // --- Lógica de Visor Modal (YouTube principal con sonido) ---
         const modal = document.getElementById('modal');
         const modalIframe = document.getElementById('modal-iframe');
         const modalImage = document.getElementById('modal-image');
@@ -517,6 +597,7 @@
             if (type === 'youtube') {
                 modalImage.style.display = 'none';
                 modalIframe.style.display = 'block';
+                // El autoplay=1 arranca el video seleccionado desde el segundo 0 con sonido
                 modalIframe.src = `https://www.youtube.com/embed/${urlOrId}?autoplay=1&rel=0`;
             } else if (type === 'image') {
                 modalIframe.style.display = 'none';
@@ -528,32 +609,38 @@
 
         function closeModal() {
             modal.classList.remove('active-modal');
-            modalIframe.src = ""; 
+            modalIframe.src = ""; // Cortar la reproducción inmediatamente
             modalImage.src = "";
         }
 
-        // 4. Lógica de Bóveda Optimizada (Sin alerts intrusivos)
+        // --- Lógica de Bóveda y Generación de Correo (Auditada y Funcional) ---
         const vaultModal = document.getElementById('vault-modal');
         function openVaultModal() { vaultModal.classList.add('active-modal'); }
         function closeVaultModal() { vaultModal.classList.remove('active-modal'); }
 
         function sendVaultEmail(e) {
-            e.preventDefault(); // Evita que la página se recargue al enviar el formulario
+            // e es el evento del formulario. PreventDefault evita que recargue la página.
+            if(e) e.preventDefault(); 
 
             const name = document.getElementById('req-name').value;
             const company = document.getElementById('req-company').value;
             const email = document.getElementById('req-email').value;
 
+            // Al usar 'required' en HTML5, ya no necesitamos validar manualmente aquí.
+
             const subject = encodeURIComponent(`Solicitud Acceso Bóveda Corporativa - ${name} (${company})`);
             const bodyText = `Hola Alejandro,\n\nSoy ${name}, en representación de la empresa/agencia ${company}, y solicito acceso a tu portafolio confidencial de Drive.\nMi correo de contacto corporativo es: ${email}\n\nCONFIRMACIÓN LEGAL:\nHe leído la aclaración en tu sitio web y acepto expresamente que NO PUEDO DESCARGAR, REPRODUCIR, COMPARTIR NI HACER USO de ninguno de los trabajos que se encuentran en dicho Drive.\n\nQuedo a la espera de la habilitación del acceso.\n\nSaludos cordiales.`;
             const body = encodeURIComponent(bodyText);
 
+            // Esto abre el cliente de correo predeterminado del reclutador (Outlook, Gmail app, etc.)
+            // Es el método más seguro sin backend.
             window.location.href = `mailto:Alejandro.960822@gmail.com?subject=${subject}&body=${body}`;
             
             closeVaultModal();
-            document.getElementById('vault-form').reset(); // Limpia el formulario limpiamente
+            document.getElementById('vault-form').reset(); // Limpia los campos limpiamente
         }
 
+        // Cierre con teclado (Esc)
         document.addEventListener('keydown', (e) => {
             if (e.key === "Escape") { closeModal(); closeVaultModal(); }
         });

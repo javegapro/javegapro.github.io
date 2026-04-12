@@ -86,7 +86,7 @@
             opacity: 0.25; pointer-events: none; z-index: 4;
         }
         
-        /* CSS DE LA MINIATURA (Fondo inicial) */
+        /* MINIATURA */
         .yt-thumbnail {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; z-index: 1;
@@ -94,7 +94,7 @@
             transition: opacity var(--transition-speed) ease, filter var(--transition-speed) ease, transform var(--transition-speed) ease;
         }
 
-        /* CSS DEL REPRODUCTOR (Fondo en video) */
+        /* IFRAME YOUTUBE */
         .media-iframe {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 2; pointer-events: none; border: none;
@@ -429,78 +429,101 @@
     </div>
 
     <script>
-        // --- GESTOR GEOMÉTRICO DE CONCURRENCIA (MÁXIMO 2 VIDEOS EXACTOS) ---
+        // --- MOTOR DE ESTADOS: ESCÁNER DE PÍXELES PARA 100% VISIBILIDAD ---
         document.addEventListener("DOMContentLoaded", function() {
             const iframes = document.querySelectorAll('.auto-observe-yt');
-            let visibleIframes = []; // Lista de tarjetas que están en pantalla
+            let currentlyPlaying = new Set();
             const MAX_VIDEOS = 2; 
 
-            // Envía comandos a la API de YouTube
+            // Comando silencioso a la API
             function sendYTCommand(iframe, func) {
                 if (iframe && iframe.contentWindow && iframe.src) {
                     iframe.contentWindow.postMessage(JSON.stringify({event: 'command', func: func, args: []}), '*');
                 }
             }
 
-            // Escáner Geométrico: Decide cuáles 2 videos deben reproducirse
-            function updatePlayback() {
-                // Ordena los iframes visibles desde el que está más arriba en la pantalla hasta el más abajo
-                visibleIframes.sort((a, b) => {
-                    return a.getBoundingClientRect().top - b.getBoundingClientRect().top;
+            // Escáner maestro
+            function evaluateVideos() {
+                let fullyVisibleIframes = [];
+                const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+                // 1. Filtrar SOLO los que están 100% adentro (con tolerancia mínima)
+                iframes.forEach(iframe => {
+                    // Calculamos basado en la tarjeta padre (media-item)
+                    const rect = iframe.parentElement.getBoundingClientRect();
+                    // Tolerancia de 50px por si las barras del navegador interfieren
+                    const isFullyVisible = (rect.top >= -50) && (rect.bottom <= viewportHeight + 50);
+                    
+                    if (isFullyVisible) {
+                        fullyVisibleIframes.push(iframe);
+                    }
                 });
 
-                // Recorre los visibles: Los 2 primeros se reproducen, los demás se pausan
-                visibleIframes.forEach((iframe, index) => {
-                    if (index < MAX_VIDEOS) {
-                        if (!iframe.src) {
-                            // Si es la primera vez, le inyecta la URL (Lazy Load)
-                            iframe.src = iframe.dataset.src;
-                            iframe.onload = () => {
-                                iframe.style.opacity = "1"; // Aparece el video
-                                const thumbnail = iframe.previousElementSibling;
-                                if (thumbnail && thumbnail.classList.contains('yt-thumbnail')) {
-                                    thumbnail.style.opacity = "0"; // Se apaga la foto de fondo (Adiós superposición)
-                                }
-                            };
-                        } else {
-                            sendYTCommand(iframe, 'playVideo');
-                        }
-                    } else {
-                        // Si es el tercero, cuarto, etc., visible, lo pausa
+                // 2. Ordenarlos estrictamente de arriba hacia abajo
+                fullyVisibleIframes.sort((a, b) => {
+                    return a.parentElement.getBoundingClientRect().top - b.parentElement.getBoundingClientRect().top;
+                });
+
+                // 3. Quedarnos matemáticamente con los 2 primeros
+                const newPlayingArray = fullyVisibleIframes.slice(0, MAX_VIDEOS);
+                const newPlaying = new Set(newPlayingArray);
+
+                // 4. PAUSAR todos los que estaban sonando pero ya no están en los "Top 2"
+                currentlyPlaying.forEach(iframe => {
+                    if (!newPlaying.has(iframe)) {
                         sendYTCommand(iframe, 'pauseVideo');
                     }
                 });
+
+                // 5. DAR PLAY solo a los "Top 2"
+                newPlaying.forEach(iframe => {
+                    if (!currentlyPlaying.has(iframe)) {
+                        if (!iframe.src) {
+                            // Si es la primera vez, le inyectamos el SRC
+                            iframe.src = iframe.dataset.src;
+                            iframe.onload = () => {
+                                iframe.style.opacity = "1";
+                                const thumbnail = iframe.previousElementSibling;
+                                if (thumbnail && thumbnail.classList.contains('yt-thumbnail')) {
+                                    thumbnail.style.opacity = "0"; // Apaga la foto
+                                }
+                            };
+                        } else {
+                            // Si ya tenía el SRC, simplemente le damos Play
+                            sendYTCommand(iframe, 'playVideo');
+                        }
+                    }
+                });
+
+                // 6. Actualizar el registro
+                currentlyPlaying = newPlaying;
             }
 
+            // A. Observer primario para detectar movimientos grandes
             if ('IntersectionObserver' in window) {
-                const observer = new IntersectionObserver((entries) => {
-                    let layoutChanged = false;
-                    
-                    entries.forEach(entry => {
-                        const iframe = entry.target;
-                        
-                        if (entry.isIntersecting) {
-                            if (!visibleIframes.includes(iframe)) {
-                                visibleIframes.push(iframe);
-                                layoutChanged = true;
-                            }
-                        } else {
-                            const index = visibleIframes.indexOf(iframe);
-                            if (index > -1) {
-                                visibleIframes.splice(index, 1);
-                                sendYTCommand(iframe, 'pauseVideo'); // Lo pausa inmediatamente al salir
-                                layoutChanged = true;
-                            }
-                        }
-                    });
-                    
-                    // Si entraron o salieron tarjetas, recalcula cuáles 2 deben reproducirse
-                    if (layoutChanged) {
-                        updatePlayback();
-                    }
-                }, { threshold: 0.4 }); // OPTIMIZACIÓN: Solo activa si el 40% de la tarjeta está visible
+                const observer = new IntersectionObserver(() => {
+                    evaluateVideos();
+                }, { 
+                    // Revisar constantemente desde el 0% al 100%
+                    threshold: [0, 0.1, 0.5, 0.9, 1.0] 
+                });
                 
-                iframes.forEach(iframe => observer.observe(iframe));
+                iframes.forEach(iframe => observer.observe(iframe.parentElement));
+                
+                // B. Vigilante secundario (Scroll Debounced) para precisión milimétrica al frenar
+                let scrollTimeout;
+                window.addEventListener('scroll', () => {
+                    if (!scrollTimeout) {
+                        scrollTimeout = setTimeout(() => {
+                            evaluateVideos();
+                            scrollTimeout = null;
+                        }, 100); 
+                    }
+                }, { passive: true });
+                
+                // Ejecución inicial por si arranca a la mitad de la página
+                setTimeout(evaluateVideos, 200);
+
             } else {
                 iframes.forEach(iframe => iframe.src = iframe.dataset.src);
             }
@@ -519,11 +542,11 @@
                     else { item.classList.add('hide'); }
                 }
             });
-            // Al filtrar, forzamos un evento de scroll para que el observador de videos se recalcule
+            // Forzar recálculo geométrico al filtrar
             window.dispatchEvent(new Event('scroll'));
         }
 
-        // --- Lógica de Visor Modal Principal ---
+        // --- Lógica de Visor Modal ---
         const modal = document.getElementById('modal');
         const modalIframe = document.getElementById('modal-iframe');
         const modalImage = document.getElementById('modal-image');
@@ -548,7 +571,7 @@
             modalImage.src = "";
         }
 
-        // --- Lógica de Bóveda Corporativa ---
+        // --- Lógica de Bóveda ---
         const vaultModal = document.getElementById('vault-modal');
         function openVaultModal() { vaultModal.classList.add('active-modal'); }
         function closeVaultModal() { vaultModal.classList.remove('active-modal'); }

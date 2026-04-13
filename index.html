@@ -33,15 +33,17 @@
             font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth;
         }
 
+        /* Bloquea scroll mientras carga la animación inicial */
         body.is-loading { overflow: hidden; height: 100vh; }
+
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
         /* ====================================================
-           1. SPLASH SCREEN (APERTURA LÁSER)
+           1. SPLASH SCREEN (Animación Extendida y Centrado Perfecto)
         ==================================================== */
         .splash-panel {
             position: fixed; left: 0; width: 100vw; height: 50vh; background-color: var(--dark-bg);
-            z-index: 9998; transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 9998; transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
         }
         .splash-panel.top { top: 0; transform-origin: top; border-bottom: 2px solid var(--electric-cyan); box-shadow: 0 5px 30px rgba(45,212,191,0.3);}
         .splash-panel.bottom { bottom: 0; transform-origin: bottom; border-top: 2px solid var(--electric-cyan); box-shadow: 0 -5px 30px rgba(45,212,191,0.3);}
@@ -52,7 +54,8 @@
             z-index: 9999; transform: translateY(-50%) scaleX(0); opacity: 1; transition: opacity 0.2s ease;
         }
 
-        body.is-loading .splash-laser { animation: laserShoot 0.4s cubic-bezier(0.8, 0, 0.2, 1) forwards 0.2s; }
+        /* El láser ahora espera 1.6s para disparar, dando tiempo al glitch */
+        body.is-loading .splash-laser { animation: laserShoot 0.4s cubic-bezier(0.8, 0, 0.2, 1) forwards 1.6s; }
         
         @keyframes laserShoot {
             0% { transform: translateY(-50%) scaleX(0); }
@@ -63,15 +66,15 @@
         body.is-loaded .splash-panel.bottom { transform: translateY(100%); }
         body.is-loaded .splash-laser { opacity: 0; }
 
-        .reveal-content { opacity: 0; transition: opacity 0.6s ease 0.2s; }
+        .reveal-content { opacity: 0; transition: opacity 0.8s ease 0.3s; }
         body.is-loaded .reveal-content { opacity: 1; }
 
-        /* --- CABECERA Y TÍTULO --- */
+        /* --- CABECERA Y EL ELEMENTO ÚNICO DEL TÍTULO --- */
         header { padding: 40px 5% 20px; text-align: center; position: relative; z-index: 10000; pointer-events: none;}
         
         #title-wrapper {
             display: inline-block; transform: translateY(0) scale(1);
-            transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
         }
         
         #main-title {
@@ -79,17 +82,22 @@
             color: var(--text-main); transition: text-shadow 0.3s;
         }
 
-        body.is-loading #title-wrapper { transform: translateY(calc(45vh - 50px)) scale(1.4); }
+        /* Centrado matemático estricto en Y considerando el header padding */
+        body.is-loading #title-wrapper { transform: translateY(calc(50vh - 80px)) scale(1.5); }
 
+        /* Animación Glitch más larga y entretenida (1.5s) */
         body.is-loading #main-title {
             color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4);
-            animation: textGlitch 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 0.2s;
+            animation: textGlitch 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 0.1s;
         }
 
         @keyframes textGlitch {
-            0% { text-shadow: 4px 0 0 var(--electric-cyan), -4px 0 0 #ff003c; opacity: 0;}
-            50% { text-shadow: -2px 0 0 var(--electric-cyan), 2px 0 0 #ff003c; opacity: 1;}
-            100% { color: var(--text-main); text-shadow: 0 0 20px rgba(45, 212, 191, 0.5); -webkit-text-stroke: 0;}
+            0% { text-shadow: 4px 0 0 var(--electric-cyan), -4px 0 0 var(--danger-red); opacity: 0; filter: blur(4px);}
+            20% { text-shadow: -3px 0 0 var(--electric-cyan), 3px 0 0 var(--danger-red); opacity: 1; filter: blur(0);}
+            40% { transform: translate(-2px, 2px); text-shadow: 4px 0 0 var(--danger-red), -4px 0 0 var(--electric-cyan);}
+            60% { transform: translate(2px, -2px); text-shadow: none; color: rgba(255,255,255,0.8); }
+            80% { transform: translate(0, 0); text-shadow: 3px 0 0 var(--electric-cyan); color: transparent; }
+            100% { color: var(--text-main); text-shadow: 0 0 20px rgba(45, 212, 191, 0.6); -webkit-text-stroke: 0;}
         }
 
         /* --- BOTÓN FLOTANTE --- */
@@ -185,7 +193,7 @@
         .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
         
         /* ====================================================
-           AUDIO (BORDE LUMINOSO Y ESPECTRO REAL)
+           AUDIO (WEB AUDIO API - SIN REPRODUCTOR GRIS)
         ==================================================== */
         .media-item.audio {
             border: none; position: relative; display: flex; justify-content: center; align-items: center;
@@ -205,6 +213,7 @@
         }
 
         .audio-inner-card .media-texture { z-index: 3; opacity: 0.15; }
+        
         .audio-visualizer { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; z-index: 4; pointer-events: none; opacity: 0.9;}
         
         .audio-text-content { z-index: 5; margin-bottom: 30px; pointer-events: none; transition: transform 0.3s;}
@@ -265,33 +274,25 @@
         .brand-btn:hover { border-color: var(--electric-cyan); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(45, 212, 191, 0.2); color: var(--electric-cyan); }
         .brand-logo-text { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 900; letter-spacing: 3px;}
         
-        /* Imagen del logo en Ecosistema (Teñida de blanco) */
+        /* LOGO AUTÓMATAS INTEGRADO */
         .brand-logo-img { height: 28px; width: auto; filter: brightness(0) invert(1); transition: all 0.3s ease; }
         .brand-btn:hover .brand-logo-img { filter: brightness(0) invert(1) drop-shadow(0 0 10px var(--electric-cyan)); }
 
         /* ====================================================
-           CLIENTES Y ALIADOS (CARRUSEL OSCURO, LOGOS BLANCOS)
+           CLIENTES Y ALIADOS (RUTAS EXACTAS CORREGIDAS)
         ==================================================== */
         .clients-section {
-            padding: 80px 5%; /* Padding restaurado al 5% */
-            text-align: center; background-color: var(--dark-bg); border-top: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden;
+            padding: 80px 5%; text-align: center; background-color: var(--dark-bg); border-top: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden;
         }
         .clients-section h3 { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 50px; text-transform: uppercase; letter-spacing: 4px; font-weight: 600;}
         
-        @keyframes pulseBorder {
-            0% { transform: scaleX(0); opacity: 0; }
-            50% { transform: scaleX(1); opacity: 1; }
-            100% { transform: scaleX(0); opacity: 0; }
-        }
+        @keyframes pulseBorder { 0% { transform: scaleX(0); opacity: 0; } 50% { transform: scaleX(1); opacity: 1; } 100% { transform: scaleX(0); opacity: 0; } }
 
         .marquee-container {
-            width: 100%; overflow: hidden; white-space: nowrap; position: relative; 
-            background-color: var(--dark-bg);
-            padding: 40px 0; 
+            width: 100%; overflow: hidden; white-space: nowrap; position: relative; background-color: var(--dark-bg); padding: 40px 0; 
             mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
         
-        /* Pulsos superior e inferior */
         .marquee-container::before, .marquee-container::after {
             content: ""; position: absolute; left: 0; width: 100%; height: 2px;
             background: linear-gradient(to right, transparent, var(--electric-cyan), transparent);
@@ -300,38 +301,29 @@
         .marquee-container::before { top: 0; transform-origin: left; }
         .marquee-container::after { bottom: 0; transform-origin: right; animation-delay: 2s; }
 
-        .marquee-track {
-            display: inline-flex; align-items: center; gap: 60px;
-            animation: scrollMarquee 25s linear infinite;
-        }
+        .marquee-track { display: inline-flex; align-items: center; gap: 60px; animation: scrollMarquee 25s linear infinite; }
         .marquee-track:hover { animation-play-state: paused; }
         
-        /* Logos teñidos de blanco puro */
         .client-logo {
-            height: 60px; width: auto; object-fit: contain;
-            transition: transform 0.3s ease, filter 0.3s ease;
+            height: 60px; width: auto; object-fit: contain; transition: transform 0.3s ease, filter 0.3s ease;
             filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255,255,255,0.1)); 
         }
         .client-logo:hover { transform: scale(1.1); filter: brightness(0) invert(1) drop-shadow(0 0 15px var(--electric-cyan)); }
 
-        .client-logo-unilever {
-            transform: scale(1.6); 
-            transform-origin: center center;
-            margin: 0 15px; 
-        }
+        .client-logo-unilever { transform: scale(1.6); transform-origin: center center; margin: 0 15px; }
         .client-logo-unilever:hover { transform: scale(1.7); } 
 
         @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 30px)); } }
 
-        /* --- CONTACTO Y WHATSAPP --- */
+        /* --- CONTACTO Y WHATSAPP SÓLIDO --- */
         .contact-section {
             padding: 80px 5% 100px; text-align: center; border-top: 1px solid rgba(45, 212, 191, 0.2); border-bottom: 1px solid rgba(45, 212, 191, 0.2); background: radial-gradient(circle at center, rgba(45, 212, 191, 0.05) 0%, var(--dark-bg) 100%);
         }
         
-        /* ESPACIADO ENTRE CARACTERES REINCORPORADO */
+        /* TRACKING RESTAURADO AL TÍTULO "CONECTEMOS" */
         .contact-section h2 { 
             font-size: 3rem; margin-bottom: 15px; color: var(--text-main); text-transform: uppercase; font-family: 'Montserrat', sans-serif;
-            letter-spacing: 12px; margin-right: -12px; /* Margen negativo compensa el espacio extra de la última letra para mantener el centro perfecto */
+            letter-spacing: 12px; margin-right: -12px; 
         }
         
         .contact-section p { color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.2rem;}
@@ -742,7 +734,7 @@
         <h3>Ecosistema Creativo</h3>
         <div class="ecosystem-brands">
             <a href="https://automatas.co" target="_blank" class="brand-btn">
-                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="brand-logo-img">
+                <img src="Logo_automatas.png" alt="Autómatas" class="brand-logo-img">
             </a>
             <a href="https://www.youtube.com/@javegapro" target="_blank" class="brand-btn">
                 <span class="brand-logo-text">🎬 JAVEGA STUDIO</span>
@@ -761,17 +753,14 @@
                 <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo">
                 <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo">
                 <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo">
-                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo">
-                
-                <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever">
+                <img src="Logo_automatas.png" alt="Autómatas" class="client-logo"> <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever">
                 <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo">
                 <img src="Logo%20derco.png" alt="Derco" class="client-logo">
                 <img src="Logo%20espy.png" alt="Espy" class="client-logo">
                 <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo">
                 <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo">
                 <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo">
-                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo">
-            </div>
+                <img src="Logo_automatas.png" alt="Autómatas" class="client-logo"> </div>
         </div>
     </section>
 
@@ -843,8 +832,8 @@
             setTimeout(() => {
                 document.body.classList.remove('is-loading');
                 document.body.classList.add('is-loaded');
-                document.body.style.overflow = 'auto'; 
-            }, 800); 
+                document.body.style.overflow = 'auto'; // Libera scroll
+            }, 2000); // 2 segundos totales de animación inicial
         });
 
         // 1. SEGURIDAD
@@ -932,7 +921,7 @@
             setTimeout(() => { galleryImage.src = ""; }, 300);
         }
 
-        // 5. VIDEOS YOUTUBE
+        // 5. VIDEOS YOUTUBE (Concurrencia Automática)
         document.addEventListener("DOMContentLoaded", function() {
             const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
             const iframes = document.querySelectorAll('.auto-observe-yt');
@@ -979,7 +968,8 @@
                 if (!scrollTimeout) scrollTimeout = setTimeout(() => { evaluateVideos(); scrollTimeout = null; }, 150);
             }, { passive: true });
             
-            setTimeout(evaluateVideos, 1000); 
+            // Retrasar hasta después de la animación de carga rápida
+            setTimeout(evaluateVideos, 2200); 
         });
 
         const ytModal = document.getElementById('youtube-modal');
@@ -995,7 +985,7 @@
         }
 
         // ====================================================
-        // 6. MOTOR DE AUDIO Y WEB AUDIO API
+        // 6. MOTOR DE AUDIO Y WEB AUDIO API (ESPECTRO REAL)
         // ====================================================
         let audioCtx; 
 

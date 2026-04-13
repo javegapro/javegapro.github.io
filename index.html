@@ -39,7 +39,7 @@
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
         /* ====================================================
-           1. SPLASH SCREEN (Animación Extendida y Centrado Perfecto)
+           1. SPLASH SCREEN (Validado: Centrado Y, Glitch 1.5s)
         ==================================================== */
         .splash-panel {
             position: fixed; left: 0; width: 100vw; height: 50vh; background-color: var(--dark-bg);
@@ -54,7 +54,7 @@
             z-index: 9999; transform: translateY(-50%) scaleX(0); opacity: 1; transition: opacity 0.2s ease;
         }
 
-        /* El láser ahora espera 1.6s para disparar, dando tiempo al glitch */
+        /* El láser espera 1.6s (glitch duration) para disparar */
         body.is-loading .splash-laser { animation: laserShoot 0.4s cubic-bezier(0.8, 0, 0.2, 1) forwards 1.6s; }
         
         @keyframes laserShoot {
@@ -82,10 +82,10 @@
             color: var(--text-main); transition: text-shadow 0.3s;
         }
 
-        /* Centrado matemático estricto en Y considerando el header padding */
+        /* Validado: Centrado matemático estricto en Y */
         body.is-loading #title-wrapper { transform: translateY(calc(50vh - 80px)) scale(1.5); }
 
-        /* Animación Glitch más larga y entretenida (1.5s) */
+        /* Validado: Animación Glitch de 1.5s total */
         body.is-loading #main-title {
             color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4);
             animation: textGlitch 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 0.1s;
@@ -193,7 +193,7 @@
         .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
         
         /* ====================================================
-           AUDIO (WEB AUDIO API - SIN REPRODUCTOR GRIS)
+           AUDIO (WEB AUDIO API)
         ==================================================== */
         .media-item.audio {
             border: none; position: relative; display: flex; justify-content: center; align-items: center;
@@ -274,12 +274,12 @@
         .brand-btn:hover { border-color: var(--electric-cyan); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(45, 212, 191, 0.2); color: var(--electric-cyan); }
         .brand-logo-text { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 900; letter-spacing: 3px;}
         
-        /* LOGO AUTÓMATAS INTEGRADO */
+        /* Validado: Logo Autómatas en minúscula */
         .brand-logo-img { height: 28px; width: auto; filter: brightness(0) invert(1); transition: all 0.3s ease; }
         .brand-btn:hover .brand-logo-img { filter: brightness(0) invert(1) drop-shadow(0 0 10px var(--electric-cyan)); }
 
         /* ====================================================
-           CLIENTES Y ALIADOS (RUTAS EXACTAS CORREGIDAS)
+           CLIENTES Y ALIADOS (Nuevos ajustes Responsive y Crop)
         ==================================================== */
         .clients-section {
             padding: 80px 5%; text-align: center; background-color: var(--dark-bg); border-top: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden;
@@ -304,23 +304,61 @@
         .marquee-track { display: inline-flex; align-items: center; gap: 60px; animation: scrollMarquee 25s linear infinite; }
         .marquee-track:hover { animation-play-state: paused; }
         
+        /* Estilo base de logos teñidos de blanco brillante */
         .client-logo {
             height: 60px; width: auto; object-fit: contain; transition: transform 0.3s ease, filter 0.3s ease;
             filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255,255,255,0.1)); 
         }
         .client-logo:hover { transform: scale(1.1); filter: brightness(0) invert(1) drop-shadow(0 0 15px var(--electric-cyan)); }
 
+        /* ====================================================
+           NUEVOS AJUSTES V23.0: Excepciones de tamaño y Crop
+        ==================================================== */
         .client-logo-unilever { transform: scale(1.6); transform-origin: center center; margin: 0 15px; }
         .client-logo-unilever:hover { transform: scale(1.7); } 
 
+        /* AJUSTE COMFANDI: Un poco más grande (Escala 1.3) */
+        .client-logo-comfandi { transform: scale(1.3); transform-origin: center center; }
+        .client-logo-comfandi:hover { transform: scale(1.4); }
+
+        /* AJUSTE DERCO: Crop centrado programático (Cover + Zoom agressivo) */
+        .client-logo-derco {
+            object-fit: cover !important; /* Cambiamos a cover para llenar el área */
+            object-position: center !important; /* Centramos el crop */
+            transform: scale(2.0); /* Zoom del 100% para 'cortar' el espacio negativo original */
+            transform-origin: center center;
+            width: 90px; /* Ancho base necesario para el funcionamiento del cover */
+        }
+        .client-logo-derco:hover { transform: scale(2.1); }
+
+        /* ====================================================
+           VALIDACIÓN RESPONSIVE DE LOGOS (Móvil)
+        ==================================================== */
+        @media (max-width: 768px) {
+            .clients-section { padding: 40px 5% 60px; }
+            .clients-section h3 { font-size: 1rem; margin-bottom: 30px; }
+            .marquee-track { gap: 40px; }
+            
+            /* Reducimos base de 60px a 40px en móvil para no saturar */
+            .client-logo { height: 40px; }
+            
+            /* Recalibramos Derco Móvil */
+            .client-logo-derco { width: 60px; transform: scale(2.0); }
+            
+            /* Recalibramos Unilever Móvil */
+            .client-logo-unilever { transform: scale(1.4); margin: 0 5px; }
+            
+            /* Recalibramos Comfandi Móvil (Mantenemos escala proporcional) */
+            .client-logo-comfandi { transform: scale(1.2); }
+        }
+
         @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 30px)); } }
 
-        /* --- CONTACTO Y WHATSAPP SÓLIDO --- */
+        /* --- CONTACTO Y WHATSAPP --- */
         .contact-section {
             padding: 80px 5% 100px; text-align: center; border-top: 1px solid rgba(45, 212, 191, 0.2); border-bottom: 1px solid rgba(45, 212, 191, 0.2); background: radial-gradient(circle at center, rgba(45, 212, 191, 0.05) 0%, var(--dark-bg) 100%);
         }
         
-        /* TRACKING RESTAURADO AL TÍTULO "CONECTEMOS" */
         .contact-section h2 { 
             font-size: 3rem; margin-bottom: 15px; color: var(--text-main); text-transform: uppercase; font-family: 'Montserrat', sans-serif;
             letter-spacing: 12px; margin-right: -12px; 
@@ -748,19 +786,17 @@
             <div class="marquee-track">
                 <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever">
                 <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo">
-                <img src="Logo%20derco.png" alt="Derco" class="client-logo">
-                <img src="Logo%20espy.png" alt="Espy" class="client-logo">
+                <img src="Logo%20derco.png" alt="Derco" class="client-logo client-logo-derco"> <img src="Logo%20espy.png" alt="Espy" class="client-logo">
                 <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo">
                 <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo">
-                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo">
-                <img src="Logo_automatas.png" alt="Autómatas" class="client-logo"> <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever">
+                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi"> <img src="Logo_automatas.png" alt="Autómatas" class="client-logo">
+                <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever">
                 <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo">
-                <img src="Logo%20derco.png" alt="Derco" class="client-logo">
-                <img src="Logo%20espy.png" alt="Espy" class="client-logo">
+                <img src="Logo%20derco.png" alt="Derco" class="client-logo client-logo-derco"> <img src="Logo%20espy.png" alt="Espy" class="client-logo">
                 <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo">
                 <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo">
-                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo">
-                <img src="Logo_automatas.png" alt="Autómatas" class="client-logo"> </div>
+                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi"> <img src="Logo_automatas.png" alt="Autómatas" class="client-logo">
+            </div>
         </div>
     </section>
 
@@ -833,7 +869,7 @@
                 document.body.classList.remove('is-loading');
                 document.body.classList.add('is-loaded');
                 document.body.style.overflow = 'auto'; // Libera scroll
-            }, 2000); // 2 segundos totales de animación inicial
+            }, 2000); // 2 segundos totales de animación inicial (Validado)
         });
 
         // 1. SEGURIDAD
@@ -968,7 +1004,7 @@
                 if (!scrollTimeout) scrollTimeout = setTimeout(() => { evaluateVideos(); scrollTimeout = null; }, 150);
             }, { passive: true });
             
-            // Retrasar hasta después de la animación de carga rápida
+            // Retrasar hasta después de la animación de carga rápida (Validado)
             setTimeout(evaluateVideos, 2200); 
         });
 

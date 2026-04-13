@@ -25,7 +25,6 @@
             --automatas-green: #7fff50; 
         }
 
-        /* --- COMPATIBILIDAD Y SEGURIDAD --- */
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-user-drag: none; -webkit-touch-callout: none; user-select: none; }
         input { user-select: auto; -webkit-user-select: auto; -moz-user-select: auto; }
 
@@ -38,7 +37,7 @@
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
         /* ====================================================
-           1. SPLASH SCREEN
+           1. SPLASH SCREEN (CRONÓMETRO EXACTO DE 3 SEGUNDOS)
         ==================================================== */
         .splash-panel {
             position: fixed; left: 0; width: 100vw; height: 50vh; background-color: var(--dark-bg);
@@ -53,7 +52,8 @@
             z-index: 9999; transform: translateY(-50%) scaleX(0); opacity: 1; transition: opacity 0.2s ease;
         }
 
-        body.is-loading .splash-laser { animation: laserShoot 0.4s cubic-bezier(0.8, 0, 0.2, 1) forwards 1.6s; }
+        /* El láser se dispara a los 2.6 segundos y dura 0.4s (Total: 3.0s) */
+        body.is-loading .splash-laser { animation: laserShoot 0.4s cubic-bezier(0.8, 0, 0.2, 1) forwards 2.6s; }
         
         @keyframes laserShoot {
             0% { transform: translateY(-50%) scaleX(0); }
@@ -82,17 +82,22 @@
 
         body.is-loading #title-wrapper { transform: translateY(calc(50vh - 80px)) scale(1.5); }
 
+        /* El glitch ahora dura 2.8s para entretener durante toda la espera */
         body.is-loading #main-title {
             color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4);
-            animation: textGlitch 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 0.1s;
+            animation: textGlitch 2.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 0.1s;
         }
 
         @keyframes textGlitch {
             0% { text-shadow: 4px 0 0 var(--electric-cyan), -4px 0 0 var(--danger-red); opacity: 0; filter: blur(4px);}
-            20% { text-shadow: -3px 0 0 var(--electric-cyan), 3px 0 0 var(--danger-red); opacity: 1; filter: blur(0);}
-            40% { transform: translate(-2px, 2px); text-shadow: 4px 0 0 var(--danger-red), -4px 0 0 var(--electric-cyan);}
+            10% { text-shadow: -3px 0 0 var(--electric-cyan), 3px 0 0 var(--danger-red); opacity: 1; filter: blur(0);}
+            20% { transform: translate(-2px, 2px); text-shadow: 4px 0 0 var(--danger-red), -4px 0 0 var(--electric-cyan);}
+            30% { transform: translate(2px, -2px); text-shadow: none; color: rgba(255,255,255,0.8); }
+            40% { transform: translate(0, 0); text-shadow: 3px 0 0 var(--electric-cyan); color: transparent; }
+            50% { transform: translate(-2px, 2px); text-shadow: 4px 0 0 var(--danger-red), -4px 0 0 var(--electric-cyan);}
             60% { transform: translate(2px, -2px); text-shadow: none; color: rgba(255,255,255,0.8); }
-            80% { transform: translate(0, 0); text-shadow: 3px 0 0 var(--electric-cyan); color: transparent; }
+            70% { transform: translate(0, 0); text-shadow: 3px 0 0 var(--electric-cyan); color: transparent; }
+            80% { transform: translate(-1px, 1px); text-shadow: 2px 0 0 var(--danger-red), -2px 0 0 var(--electric-cyan);}
             100% { color: var(--text-main); text-shadow: 0 0 20px rgba(45, 212, 191, 0.6); -webkit-text-stroke: 0;}
         }
 
@@ -209,7 +214,6 @@
         }
 
         .audio-inner-card .media-texture { z-index: 3; opacity: 0.15; }
-        
         .audio-visualizer { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; z-index: 4; pointer-events: none; opacity: 0.9;}
         
         .audio-text-content { z-index: 5; margin-bottom: 30px; pointer-events: none; transition: transform 0.3s;}
@@ -268,8 +272,8 @@
             font-weight: 700; font-size: 1.2rem; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 2px;
         }
         .brand-btn:hover { border-color: var(--electric-cyan); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(45, 212, 191, 0.2); color: var(--electric-cyan); }
-        .brand-logo-img { height: 40px; width: auto; transition: all 0.3s ease; }
-        .brand-btn:hover .brand-logo-img { transform: scale(1.05); filter: drop-shadow(0 0 15px var(--automatas-green)); }
+        .brand-logo-img.automatas-logo { height: 40px; width: auto; transition: all 0.3s ease; }
+        .brand-btn:hover .brand-logo-img.automatas-logo { transform: scale(1.05); filter: drop-shadow(0 0 15px var(--automatas-green)); }
 
         /* ====================================================
            CLIENTES Y ALIADOS
@@ -609,21 +613,21 @@
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_3')">
             <div class="media-texture"></div>
-            <img src="Diseño de portada para cancion Suave de Mauna (la misma del videolyric).png" class="yt-thumbnail" style="object-fit: cover;" alt="Portada Mauna">
+            <img src="portada_mauna.png" class="yt-thumbnail" style="object-fit: cover;" alt="Portada Mauna">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Portada Sencillo</p><h2>Mauna (Suave)</h2></div>
         </div>
         
         <div class="media-item diseno" onclick="openGalleryModal('diseno_4')">
             <div class="media-texture"></div>
-            <img src="Diseño personalizado para vinilo protector para Xbox con tematica de Gears of war.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="Vinilo Xbox">
+            <img src="vinilo_xbox.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="Vinilo Xbox">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Diseño de Vinilo</p><h2>Xbox: Gears of War</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_5')">
             <div class="media-texture"></div>
-            <img src="Full Imagen logo navideño.jpeg" class="yt-thumbnail" style="object-fit: cover;" alt="Logo Navideño">
+            <img src="logo_navideno.jpeg" class="yt-thumbnail" style="object-fit: cover;" alt="Logo Navideño">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Identidad Estacional</p><h2>Logo Navideño</h2></div>
         </div>
@@ -651,14 +655,14 @@
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_9')">
             <div class="media-texture"></div>
-            <img src="Logo y pieza del Formato La ruta del sabor para revista D'Feria.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="La Ruta del Sabor">
+            <img src="ruta_sabor.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="La Ruta del Sabor">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Diseño Editorial</p><h2>La Ruta del Sabor</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_10')">
             <div class="media-texture"></div>
-            <img src="Mosaico conmemorativo Promocioón 1973 Colegio parroquial.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="Mosaico Conmemorativo">
+            <img src="mosaico_colegio.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="Mosaico Conmemorativo">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Mosaico Digital</p><h2>Colegio Parroquial</h2></div>
         </div>
@@ -693,14 +697,14 @@
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_15')">
             <div class="media-texture"></div>
-            <img src="Pieza promocional para el programa Noches D'Feria.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="Noches D'Feria">
+            <img src="noches_feria.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="Noches D'Feria">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Diseño Promocional</p><h2>Noches D'Feria</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_16')">
             <div class="media-texture"></div>
-            <img src="Volante Vape Expo 2020 EJERCICIO DE DISEÑO Y MONTAJE FOTOGRAFIA PROPIA.png" class="yt-thumbnail" style="object-fit: cover;" alt="Vape Expo 2020">
+            <img src="volante_vape.png" class="yt-thumbnail" style="object-fit: cover;" alt="Vape Expo 2020">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Diseño de Volante</p><h2>Vape Expo 2020</h2></div>
         </div>
@@ -923,17 +927,18 @@
     </div>
 
     <script>
+        // V28.0 CARGA EXACTA A LOS 3 SEGUNDOS
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.body.classList.remove('is-loading');
                 document.body.classList.add('is-loaded');
                 document.body.style.overflow = 'auto'; 
-            }, 1600); 
+            }, 3000); 
         });
 
         document.addEventListener('contextmenu', event => event.preventDefault());
 
-        // DATOS DE GALERÍA (RUTAS LITERARIAS DIRECTAS)
+        // DATOS DE GALERÍA (RUTAS LITERARIAS ACTUALIZADAS PARA LOS 7 ARCHIVOS WEB SAFE)
         const galleryData = {
             'food': ['https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png'],
             'sabrina': ['https://static.wixstatic.com/media/14f4fb_cfb665c8cecc4a3f915d59ecc7372cdf~mv2.png', 'https://static.wixstatic.com/media/14f4fb_ccfb094089134b27a65b8008ab140548~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_8cd04cc0174b4bc2b5fdd33f7c95bcee~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_74ff5ed1e6a641ec8530ebb424a29590~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_f2b9a122bb454eb18d439cf4aa55f621~mv2.jpg'],
@@ -945,23 +950,23 @@
             'retratos': ['https://static.wixstatic.com/media/14f4fb_4f61d7e9e3cd4da6ad6e6f649d2d9d05~mv2_d_4000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_6fb679a244ef48de9ea749cbeb6e7824~mv2_d_4000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_d66070ef8db64e62a7b7abffa3099d80~mv2_d_4000_5547_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_5fb74448bec44efebd9d63489a942e4d~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a60c3996c5c443b6be56e08c91807dc9~mv2.png'],
             'producto': ['https://static.wixstatic.com/media/14f4fb_bde31a4c87be49a1882327dacb0882e0~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_09129e6b1cc648ed8f0dd806ea46ac95~mv2.jpg'],
             
-            // RUTAS LITERALES SIN CODIFICACIÓN URL (El navegador lo interpreta)
+            // RUTAS ACTUALIZADAS (LAS QUE DEBIÓ RENOMBRAR)
             'diseno_1': ['Banner web Jdmaray Cali SPA.jpg'],
             'diseno_2': ['Banner web para Homecare Ebenezer.jpg'],
-            'diseno_3': ['Diseño de portada para cancion Suave de Mauna (la misma del videolyric).png'],
-            'diseno_4': ['Diseño personalizado para vinilo protector para Xbox con tematica de Gears of war.jpg'],
-            'diseno_5': ['Full Imagen logo navideño.jpeg'],
+            'diseno_3': ['portada_mauna.png'], /* Actualizado */
+            'diseno_4': ['vinilo_xbox.jpg'], /* Actualizado */
+            'diseno_5': ['logo_navideno.jpeg'], /* Actualizado */
             'diseno_6': ['Ilustracion vectorial Koala con gafas y pipa.png'],
             'diseno_7': ['Logo Another Reality VR.png'],
             'diseno_8': ['Logo Sulmajafra venta de productos de belleza.jpg'],
-            'diseno_9': ["Logo y pieza del Formato La ruta del sabor para revista D'Feria.jpg"],
-            'diseno_10': ['Mosaico conmemorativo Promocioón 1973 Colegio parroquial.jpg'],
+            'diseno_9': ['ruta_sabor.jpg'], /* Actualizado */
+            'diseno_10': ['mosaico_colegio.jpg'], /* Actualizado */
             'diseno_11': ['Pieza Conversatorio Tuberculosis Hospital y Alcaldia de Yumbo.jpg'],
             'diseno_12': ['Pieza de servicio de Tonificacion corporal para Agua Marina esthetic center.jpg'],
             'diseno_13': ['Pieza invitacion de encuentro cultural para la alcaldia de Cali.jpg'],
             'diseno_14': ['Pieza promocional de capacitacion para programa de afiliados de Virtuosa venta de ropa para comunidades religiosas.jpg'],
-            'diseno_15': ["Pieza promocional para el programa Noches D'Feria.jpg"],
-            'diseno_16': ['Volante Vape Expo 2020 EJERCICIO DE DISEÑO Y MONTAJE FOTOGRAFIA PROPIA.png']
+            'diseno_15': ['noches_feria.jpg'], /* Actualizado */
+            'diseno_16': ['volante_vape.png'] /* Actualizado */
         };
 
         const hoverTimers = new Map();
@@ -1047,7 +1052,7 @@
             });
         });
 
-        // VIDEOS YOUTUBE 
+        // VIDEOS YOUTUBE (Actualizado a 3.5s para no chocar con el Splash)
         document.addEventListener("DOMContentLoaded", function() {
             const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
             const iframes = document.querySelectorAll('.auto-observe-yt');
@@ -1094,7 +1099,7 @@
                 if (!scrollTimeout) scrollTimeout = setTimeout(() => { evaluateVideos(); scrollTimeout = null; }, 150);
             }, { passive: true });
             
-            setTimeout(evaluateVideos, 2400); 
+            setTimeout(evaluateVideos, 3500); 
         });
 
         const ytModal = document.getElementById('youtube-modal');

@@ -66,7 +66,7 @@
         .reveal-content { opacity: 0; transition: opacity 0.6s ease 0.2s; }
         body.is-loaded .reveal-content { opacity: 1; }
 
-        /* --- CABECERA (MARGENES CORREGIDOS AL 5%) --- */
+        /* --- CABECERA Y TÍTULO --- */
         header { padding: 40px 5% 20px; text-align: center; position: relative; z-index: 10000; pointer-events: none;}
         
         #title-wrapper {
@@ -101,7 +101,7 @@
         }
         .floating-contact:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.4); }
 
-        /* --- SUBTÍTULO Y FILTROS (MARGENES CORREGIDOS AL 5%) --- */
+        /* --- SUBTÍTULO Y FILTROS --- */
         header p { color: var(--electric-cyan); font-weight: 600; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 2px;}
         .filter-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 10px 5% 50px; position: relative; z-index: 10;}
         .filter-btn {
@@ -115,7 +115,7 @@
         }
 
         /* ====================================================
-           MOTOR DE GRILLA (MARGENES CORREGIDOS AL 5%)
+           MOTOR DE GRILLA
         ==================================================== */
         .portfolio-grid {
             display: grid; grid-template-columns: 1fr; gap: 2vw; 
@@ -233,7 +233,7 @@
             position: absolute; top: 0; left: 0; height: 100%; width: 0%; background-color: var(--electric-cyan); border-radius: 10px; box-shadow: 0 0 10px var(--electric-cyan); pointer-events: none;
         }
 
-        /* --- MEDIA QUERIES GLOBALES --- */
+        /* --- MEDIA QUERIES --- */
         @media (min-width: 768px) {
             header h1 { font-size: 4rem; } .media-item h2 { font-size: 2.5rem; }
             .portfolio-grid.masonry-mode { -webkit-column-count: 2; -moz-column-count: 2; column-count: 2; }
@@ -265,15 +265,15 @@
         .brand-btn:hover { border-color: var(--electric-cyan); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(45, 212, 191, 0.2); color: var(--electric-cyan); }
         .brand-logo-text { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 900; letter-spacing: 3px;}
         
-        /* Nuevo: Estilo para la imagen del logo dentro del botón de Ecosistema */
+        /* Imagen del logo en Ecosistema (Teñida de blanco) */
         .brand-logo-img { height: 28px; width: auto; filter: brightness(0) invert(1); transition: all 0.3s ease; }
         .brand-btn:hover .brand-logo-img { filter: brightness(0) invert(1) drop-shadow(0 0 10px var(--electric-cyan)); }
 
         /* ====================================================
-           CLIENTES Y ALIADOS (LOGOS BLANCOS, FONDO OSCURO)
+           CLIENTES Y ALIADOS (CARRUSEL OSCURO, LOGOS BLANCOS)
         ==================================================== */
         .clients-section {
-            padding: 80px 5%; /* Estandarizado al 5% */
+            padding: 80px 5%; /* Padding restaurado al 5% */
             text-align: center; background-color: var(--dark-bg); border-top: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden;
         }
         .clients-section h3 { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 50px; text-transform: uppercase; letter-spacing: 4px; font-weight: 600;}
@@ -291,7 +291,7 @@
             mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
         
-        /* Pulsos superior e inferior de color cyan */
+        /* Pulsos superior e inferior */
         .marquee-container::before, .marquee-container::after {
             content: ""; position: absolute; left: 0; width: 100%; height: 2px;
             background: linear-gradient(to right, transparent, var(--electric-cyan), transparent);
@@ -306,7 +306,7 @@
         }
         .marquee-track:hover { animation-play-state: paused; }
         
-        /* Logos teñidos de blanco puro brillante */
+        /* Logos teñidos de blanco puro */
         .client-logo {
             height: 60px; width: auto; object-fit: contain;
             transition: transform 0.3s ease, filter 0.3s ease;
@@ -323,15 +323,15 @@
 
         @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 30px)); } }
 
-        /* --- CONTACTO Y WHATSAPP (MÁRGENES ESTANDARIZADOS Y TRACKING) --- */
+        /* --- CONTACTO Y WHATSAPP --- */
         .contact-section {
             padding: 80px 5% 100px; text-align: center; border-top: 1px solid rgba(45, 212, 191, 0.2); border-bottom: 1px solid rgba(45, 212, 191, 0.2); background: radial-gradient(circle at center, rgba(45, 212, 191, 0.05) 0%, var(--dark-bg) 100%);
         }
         
-        /* ESPACIADO ENTRE CARACTERES CORREGIDO */
+        /* ESPACIADO ENTRE CARACTERES REINCORPORADO */
         .contact-section h2 { 
             font-size: 3rem; margin-bottom: 15px; color: var(--text-main); text-transform: uppercase; font-family: 'Montserrat', sans-serif;
-            letter-spacing: 12px; margin-right: -12px; /* Compensación para centrado estricto */
+            letter-spacing: 12px; margin-right: -12px; /* Margen negativo compensa el espacio extra de la última letra para mantener el centro perfecto */
         }
         
         .contact-section p { color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.2rem;}
@@ -347,7 +347,6 @@
         .btn-secondary { background-color: transparent; color: var(--text-main); border: 2px solid var(--text-muted); }
         .btn-secondary:hover { border-color: var(--electric-cyan); color: var(--electric-cyan); }
         
-        /* WHATSAPP VERDE SÓLIDO */
         .btn-whatsapp { background-color: var(--whatsapp-green); color: var(--dark-bg); box-shadow: 0 4px 10px rgba(37, 211, 102, 0.15);}
         .btn-whatsapp:hover { background-color: #20b857; transform: translateY(-5px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4); }
         
@@ -743,7 +742,7 @@
         <h3>Ecosistema Creativo</h3>
         <div class="ecosystem-brands">
             <a href="https://automatas.co" target="_blank" class="brand-btn">
-                <img src="Logo_automatas.png" alt="Autómatas" class="brand-logo-img">
+                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="brand-logo-img">
             </a>
             <a href="https://www.youtube.com/@javegapro" target="_blank" class="brand-btn">
                 <span class="brand-logo-text">🎬 JAVEGA STUDIO</span>
@@ -756,21 +755,22 @@
         <div class="marquee-container">
             <div class="marquee-track">
                 <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever">
-                <img src="Logo%20Alqueria.png" alt="Alquería" class="client-logo">
-                <img src="Logo%20Derco.jpg" alt="Derco" class="client-logo">
+                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo">
+                <img src="Logo%20derco.png" alt="Derco" class="client-logo">
                 <img src="Logo%20espy.png" alt="Espy" class="client-logo">
                 <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo">
                 <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo">
                 <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo">
-                <img src="Logo_automatas.png" alt="Autómatas" class="client-logo">
+                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo">
+                
                 <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever">
-                <img src="Logo%20Alqueria.png" alt="Alquería" class="client-logo">
-                <img src="Logo%20Derco.jpg" alt="Derco" class="client-logo">
+                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo">
+                <img src="Logo%20derco.png" alt="Derco" class="client-logo">
                 <img src="Logo%20espy.png" alt="Espy" class="client-logo">
                 <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo">
                 <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo">
                 <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo">
-                <img src="Logo_automatas.png" alt="Autómatas" class="client-logo">
+                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo">
             </div>
         </div>
     </section>
@@ -843,7 +843,7 @@
             setTimeout(() => {
                 document.body.classList.remove('is-loading');
                 document.body.classList.add('is-loaded');
-                document.body.style.overflow = 'auto'; // Libera scroll
+                document.body.style.overflow = 'auto'; 
             }, 800); 
         });
 
@@ -995,7 +995,7 @@
         }
 
         // ====================================================
-        // 6. MOTOR DE AUDIO Y WEB AUDIO API (ESPECTRO REAL)
+        // 6. MOTOR DE AUDIO Y WEB AUDIO API
         // ====================================================
         let audioCtx; 
 

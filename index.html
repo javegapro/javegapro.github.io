@@ -22,6 +22,7 @@
             --transition-speed: 0.5s;
             --danger-red: #ef4444;
             --whatsapp-green: #25D366;
+            --automatas-green: #7fff50; /* Verde Corporativo Autómatas */
         }
 
         /* --- COMPATIBILIDAD Y SEGURIDAD --- */
@@ -33,17 +34,15 @@
             font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth;
         }
 
-        /* Bloquea scroll mientras carga la animación inicial */
         body.is-loading { overflow: hidden; height: 100vh; }
-
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
         /* ====================================================
-           1. SPLASH SCREEN (Validado: Centrado Y, Glitch 1.5s)
+           1. SPLASH SCREEN
         ==================================================== */
         .splash-panel {
             position: fixed; left: 0; width: 100vw; height: 50vh; background-color: var(--dark-bg);
-            z-index: 9998; transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 9998; transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
         }
         .splash-panel.top { top: 0; transform-origin: top; border-bottom: 2px solid var(--electric-cyan); box-shadow: 0 5px 30px rgba(45,212,191,0.3);}
         .splash-panel.bottom { bottom: 0; transform-origin: bottom; border-top: 2px solid var(--electric-cyan); box-shadow: 0 -5px 30px rgba(45,212,191,0.3);}
@@ -54,7 +53,6 @@
             z-index: 9999; transform: translateY(-50%) scaleX(0); opacity: 1; transition: opacity 0.2s ease;
         }
 
-        /* El láser espera 1.6s (glitch duration) para disparar */
         body.is-loading .splash-laser { animation: laserShoot 0.4s cubic-bezier(0.8, 0, 0.2, 1) forwards 1.6s; }
         
         @keyframes laserShoot {
@@ -69,7 +67,7 @@
         .reveal-content { opacity: 0; transition: opacity 0.8s ease 0.3s; }
         body.is-loaded .reveal-content { opacity: 1; }
 
-        /* --- CABECERA Y EL ELEMENTO ÚNICO DEL TÍTULO --- */
+        /* --- CABECERA Y EL ELEMENTO ÚNICO --- */
         header { padding: 40px 5% 20px; text-align: center; position: relative; z-index: 10000; pointer-events: none;}
         
         #title-wrapper {
@@ -82,10 +80,8 @@
             color: var(--text-main); transition: text-shadow 0.3s;
         }
 
-        /* Validado: Centrado matemático estricto en Y */
         body.is-loading #title-wrapper { transform: translateY(calc(50vh - 80px)) scale(1.5); }
 
-        /* Validado: Animación Glitch de 1.5s total */
         body.is-loading #main-title {
             color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4);
             animation: textGlitch 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 0.1s;
@@ -242,7 +238,7 @@
             position: absolute; top: 0; left: 0; height: 100%; width: 0%; background-color: var(--electric-cyan); border-radius: 10px; box-shadow: 0 0 10px var(--electric-cyan); pointer-events: none;
         }
 
-        /* --- MEDIA QUERIES --- */
+        /* --- MEDIA QUERIES GLOBALES --- */
         @media (min-width: 768px) {
             header h1 { font-size: 4rem; } .media-item h2 { font-size: 2.5rem; }
             .portfolio-grid.masonry-mode { -webkit-column-count: 2; -moz-column-count: 2; column-count: 2; }
@@ -259,7 +255,9 @@
             body.is-loading #title-wrapper { transform: translateY(calc(50vh - 80px)) scale(1.8); }
         }
 
-        /* --- ECOSISTEMA CREATIVO --- */
+        /* ====================================================
+           NUEVO 26.0: ECOSISTEMA CREATIVO (IDENTIDAD AUTÓMATAS)
+        ==================================================== */
         .ecosystem-section {
             padding: 80px 5%; text-align: center; border-top: 1px solid rgba(45, 212, 191, 0.2); background-color: var(--card-bg);
         }
@@ -272,14 +270,19 @@
             font-weight: 700; font-size: 1.2rem; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 2px;
         }
         .brand-btn:hover { border-color: var(--electric-cyan); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(45, 212, 191, 0.2); color: var(--electric-cyan); }
-        .brand-logo-text { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 900; letter-spacing: 3px;}
         
-        /* Validado: Logo Autómatas en minúscula */
-        .brand-logo-img { height: 28px; width: auto; filter: brightness(0) invert(1); transition: all 0.3s ease; }
-        .brand-btn:hover .brand-logo-img { filter: brightness(0) invert(1) drop-shadow(0 0 10px var(--electric-cyan)); }
+        /* Logo Autómatas: A color original y con hover verde neón */
+        .brand-logo-img.automatas-logo { 
+            height: 40px; width: auto; transition: all 0.3s ease; 
+            /* Sin filtro de inversión, se ve original */
+        }
+        .brand-btn:hover .brand-logo-img.automatas-logo { 
+            transform: scale(1.05); 
+            filter: drop-shadow(0 0 15px var(--automatas-green)); /* El tono #7fff50 solicitado */
+        }
 
         /* ====================================================
-           CLIENTES Y ALIADOS (Nuevos ajustes Responsive y Crop)
+           CLIENTES Y ALIADOS
         ==================================================== */
         .clients-section {
             padding: 80px 5%; text-align: center; background-color: var(--dark-bg); border-top: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden;
@@ -304,51 +307,24 @@
         .marquee-track { display: inline-flex; align-items: center; gap: 60px; animation: scrollMarquee 25s linear infinite; }
         .marquee-track:hover { animation-play-state: paused; }
         
-        /* Estilo base de logos teñidos de blanco brillante */
         .client-logo {
             height: 60px; width: auto; object-fit: contain; transition: transform 0.3s ease, filter 0.3s ease;
-            filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255,255,255,0.1)); 
+            filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255,255,255,0.1)); cursor: pointer; 
         }
         .client-logo:hover { transform: scale(1.1); filter: brightness(0) invert(1) drop-shadow(0 0 15px var(--electric-cyan)); }
 
-        /* ====================================================
-           NUEVOS AJUSTES V23.0: Excepciones de tamaño y Crop
-        ==================================================== */
         .client-logo-unilever { transform: scale(1.6); transform-origin: center center; margin: 0 15px; }
         .client-logo-unilever:hover { transform: scale(1.7); } 
 
-        /* AJUSTE COMFANDI: Un poco más grande (Escala 1.3) */
         .client-logo-comfandi { transform: scale(1.3); transform-origin: center center; }
         .client-logo-comfandi:hover { transform: scale(1.4); }
 
-        /* AJUSTE DERCO: Crop centrado programático (Cover + Zoom agressivo) */
-        .client-logo-derco {
-            object-fit: cover !important; /* Cambiamos a cover para llenar el área */
-            object-position: center !important; /* Centramos el crop */
-            transform: scale(2.0); /* Zoom del 100% para 'cortar' el espacio negativo original */
-            transform-origin: center center;
-            width: 90px; /* Ancho base necesario para el funcionamiento del cover */
-        }
-        .client-logo-derco:hover { transform: scale(2.1); }
-
-        /* ====================================================
-           VALIDACIÓN RESPONSIVE DE LOGOS (Móvil)
-        ==================================================== */
         @media (max-width: 768px) {
             .clients-section { padding: 40px 5% 60px; }
             .clients-section h3 { font-size: 1rem; margin-bottom: 30px; }
             .marquee-track { gap: 40px; }
-            
-            /* Reducimos base de 60px a 40px en móvil para no saturar */
             .client-logo { height: 40px; }
-            
-            /* Recalibramos Derco Móvil */
-            .client-logo-derco { width: 60px; transform: scale(2.0); }
-            
-            /* Recalibramos Unilever Móvil */
             .client-logo-unilever { transform: scale(1.4); margin: 0 5px; }
-            
-            /* Recalibramos Comfandi Móvil (Mantenemos escala proporcional) */
             .client-logo-comfandi { transform: scale(1.2); }
         }
 
@@ -416,6 +392,8 @@
         .form-modal-box label { display: block; margin-bottom: 10px; font-size: 1rem; color: var(--text-muted); font-weight: 600;}
         .form-modal-box input { width: 100%; padding: 15px; margin-bottom: 25px; background-color: var(--dark-bg); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 1.1rem; }
         .form-modal-box input:focus { outline: none; border-color: var(--electric-cyan); }
+        .legal-warning { margin-bottom: 25px; padding: 15px; background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--danger-red); font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+        .legal-warning strong { color: var(--danger-red); }
     </style>
 </head>
 <body class="is-loading">
@@ -624,32 +602,116 @@
             <div class="media-overlay"><p>Landscape / Fine Art</p><h2>Naturaleza</h2></div>
         </div>
 
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_ui')">
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_1')">
             <div class="media-texture"></div>
-            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop" class="yt-thumbnail" style="object-fit: cover;" alt="Diseño 1">
+            <img src="Banner%20web%20Jdmaray%20Cali%20SPA.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="Banner web Jdmaray Cali SPA">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Branding</p><h2>La Ruta del Sabor</h2></div>
+            <div class="media-overlay"><p>Banner Web</p><h2>Jdmaray Cali SPA</h2></div>
         </div>
 
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_ui')">
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_2')">
             <div class="media-texture"></div>
-            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop" class="yt-thumbnail" style="object-fit: cover;" alt="Diseño 2">
+            <img src="Banner%20web%20para%20Homecare%20Ebenezer.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="Banner Homecare Ebenezer">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>UI/UX Design</p><h2>JAVEGA Digital</h2></div>
+            <div class="media-overlay"><p>Banner Web</p><h2>Homecare Ebenezer</h2></div>
         </div>
 
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_ui')">
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_3')">
             <div class="media-texture"></div>
-            <img src="https://images.unsplash.com/photo-1561089489-0268593ccf2c?q=80&w=800&auto=format&fit=crop" class="yt-thumbnail" style="object-fit: cover;" alt="Diseño 3">
+            <img src="Dise%C3%B1o%20de%20portada%20para%20cancion%20Suave%20de%20Mauna%20(la%20misma%20del%20videolyric).png" class="yt-thumbnail" style="object-fit: cover;" alt="Portada Mauna">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Web Design</p><h2>Interfaz ESPY S.A.</h2></div>
+            <div class="media-overlay"><p>Portada Sencillo</p><h2>Mauna (Suave)</h2></div>
         </div>
         
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_ui')">
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_4')">
             <div class="media-texture"></div>
-            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop" class="yt-thumbnail" style="object-fit: cover;" alt="Diseño 4">
+            <img src="Dise%C3%B1o%20personalizado%20para%20vinilo%20protector%20para%20Xbox%20con%20tematica%20de%20Gears%20of%20war.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="Vinilo Xbox">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Social Media</p><h2>Campaña Instagram</h2></div>
+            <div class="media-overlay"><p>Diseño de Vinilo</p><h2>Xbox: Gears of War</h2></div>
+        </div>
+
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_5')">
+            <div class="media-texture"></div>
+            <img src="Full%20Imagen%20logo%20navide%C3%B1o.jpeg" class="yt-thumbnail" style="object-fit: cover;" alt="Logo Navideño">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Identidad Estacional</p><h2>Logo Navideño</h2></div>
+        </div>
+
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_6')">
+            <div class="media-texture"></div>
+            <img src="Ilustracion%20vectorial%20Koala%20con%20gafas%20y%20pipa.png" class="yt-thumbnail" style="object-fit: cover;" alt="Ilustración Koala">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Ilustración Vectorial</p><h2>Koala</h2></div>
+        </div>
+
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_7')">
+            <div class="media-texture"></div>
+            <img src="Logo%20Another%20Reality%20VR.png" class="yt-thumbnail" style="object-fit: cover;" alt="Another Reality VR">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Branding</p><h2>Another Reality VR</h2></div>
+        </div>
+
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_8')">
+            <div class="media-texture"></div>
+            <img src="Logo%20Sulmajafra%20venta%20de%20productos%20de%20belleza.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="Logo Sulmajafra">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Branding Corporativo</p><h2>Sulmajafra</h2></div>
+        </div>
+
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_9')">
+            <div class="media-texture"></div>
+            <img src="Logo%20y%20pieza%20del%20Formato%20La%20ruta%20del%20sabor%20para%20revista%20D'Feria.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="La Ruta del Sabor">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Diseño Editorial</p><h2>La Ruta del Sabor</h2></div>
+        </div>
+
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_10')">
+            <div class="media-texture"></div>
+            <img src="Mosaico%20conmemorativo%20Promocio%C3%B3n%201973%20Colegio%20parroquial.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="Mosaico Conmemorativo">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Mosaico Digital</p><h2>Colegio Parroquial</h2></div>
+        </div>
+
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_11')">
+            <div class="media-texture"></div>
+            <img src="Pieza%20Conversatorio%20Tuberculosis%20Hospital%20y%20Alcaldia%20de%20Yumbo.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="Alcaldía de Yumbo">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Social Media</p><h2>Alcaldía de Yumbo</h2></div>
+        </div>
+
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_12')">
+            <div class="media-texture"></div>
+            <img src="Pieza%20de%20servicio%20de%20Tonificacion%20corporal%20para%20Agua%20Marina%20esthetic%20center.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="Agua Marina Esthetic">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Social Media</p><h2>Agua Marina Esthetic</h2></div>
+        </div>
+
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_13')">
+            <div class="media-texture"></div>
+            <img src="Pieza%20invitacion%20de%20encuentro%20cultural%20para%20la%20alcaldia%20de%20Cali.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="Alcaldía de Cali">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Diseño Publicitario</p><h2>Alcaldía de Cali</h2></div>
+        </div>
+
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_14')">
+            <div class="media-texture"></div>
+            <img src="Pieza%20promocional%20de%20capacitacion%20para%20programa%20de%20afiliados%20de%20Virtuosa%20venta%20de%20ropa%20para%20comunidades%20religiosas.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="Virtuosa">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Diseño Promocional</p><h2>Virtuosa</h2></div>
+        </div>
+
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_15')">
+            <div class="media-texture"></div>
+            <img src="Pieza%20promocional%20para%20el%20programa%20Noches%20D'Feria.jpg" class="yt-thumbnail" style="object-fit: cover;" alt="Noches D'Feria">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Diseño Promocional</p><h2>Noches D'Feria</h2></div>
+        </div>
+
+        <div class="media-item diseno" onclick="openGalleryModal('diseno_16')">
+            <div class="media-texture"></div>
+            <img src="Volante%20Vape%20Expo%202020%20EJERCICIO%20DE%20DISE%C3%91O%20Y%20MONTAJE%20FOTOGRAFIA%20PROPIA.png" class="yt-thumbnail" style="object-fit: cover;" alt="Vape Expo 2020">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Diseño de Volante</p><h2>Vape Expo 2020</h2></div>
         </div>
 
         <div class="media-item audio">
@@ -772,10 +834,7 @@
         <h3>Ecosistema Creativo</h3>
         <div class="ecosystem-brands">
             <a href="https://automatas.co" target="_blank" class="brand-btn">
-                <img src="Logo_automatas.png" alt="Autómatas" class="brand-logo-img">
-            </a>
-            <a href="https://www.youtube.com/@javegapro" target="_blank" class="brand-btn">
-                <span class="brand-logo-text">🎬 JAVEGA STUDIO</span>
+                <img src="MARCA%20DE%20AGUA%20H%20COLOR.png" alt="Autómatas" class="brand-logo-img automatas-logo">
             </a>
         </div>
     </section>
@@ -784,18 +843,23 @@
         <h3>Empresas y Aliados</h3>
         <div class="marquee-container">
             <div class="marquee-track">
-                <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever">
-                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo">
-                <img src="Logo%20derco.png" alt="Derco" class="client-logo client-logo-derco"> <img src="Logo%20espy.png" alt="Espy" class="client-logo">
-                <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo">
-                <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo">
-                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi"> <img src="Logo_automatas.png" alt="Autómatas" class="client-logo">
-                <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever">
-                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo">
-                <img src="Logo%20derco.png" alt="Derco" class="client-logo client-logo-derco"> <img src="Logo%20espy.png" alt="Espy" class="client-logo">
-                <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo">
-                <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo">
-                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi"> <img src="Logo_automatas.png" alt="Autómatas" class="client-logo">
+                <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever" onclick="openVaultModal()">
+                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo" onclick="openVaultModal()">
+                <img src="Logo%20derco.png" alt="Derco" class="client-logo" onclick="openVaultModal()">
+                <img src="Logo%20espy.png" alt="Espy" class="client-logo" onclick="openVaultModal()">
+                <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo" onclick="openVaultModal()">
+                <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo" onclick="openVaultModal()">
+                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi" onclick="openVaultModal()">
+                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo" onclick="openVaultModal()">
+                
+                <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever" onclick="openVaultModal()">
+                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo" onclick="openVaultModal()">
+                <img src="Logo%20derco.png" alt="Derco" class="client-logo" onclick="openVaultModal()">
+                <img src="Logo%20espy.png" alt="Espy" class="client-logo" onclick="openVaultModal()">
+                <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo" onclick="openVaultModal()">
+                <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo" onclick="openVaultModal()">
+                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi" onclick="openVaultModal()">
+                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo" onclick="openVaultModal()">
             </div>
         </div>
     </section>
@@ -846,7 +910,7 @@
         <div class="form-modal-box">
             <span class="close-btn" style="position: absolute; top: 20px; right: 25px; background: transparent; border: none; color: var(--text-muted); box-shadow: none;" onclick="closeVaultModal()">[X]</span>
             <h3 style="color: var(--electric-cyan); margin-bottom: 5px; font-size: 1.8rem;">Solicitud de Acceso</h3>
-            <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 30px;">Por favor, ingrese sus datos corporativos. Al continuar, acepta los términos de confidencialidad.</p>
+            <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 30px;">Por favor, ingrese sus datos corporativos para validar su identidad.</p>
             <form id="vault-form" onsubmit="sendVaultEmail(event)">
                 <label for="req-name">Su Nombre Completo:</label>
                 <input type="text" id="req-name" placeholder="Ej. Juan Pérez" required>
@@ -854,42 +918,58 @@
                 <input type="text" id="req-company" placeholder="Ej. Google / Leo Burnett" required>
                 <label for="req-email">Su Correo Corporativo:</label>
                 <input type="email" id="req-email" placeholder="ejemplo@empresa.com" required>
+                
                 <div class="legal-warning">
-                    <strong>ACLARACIÓN LEGAL:</strong> Al solicitar acceso, acepta expresamente que <u>NO PUEDE DESCARGAR NI REPRODUCIR</u> los trabajos contenidos.
+                    <strong>ACUERDO DE CONFIDENCIALIDAD (NDA):</strong> Al solicitar acceso a esta bóveda, usted reconoce y acepta expresamente que el material contenido es de carácter estrictamente confidencial. Queda terminantemente prohibida su descarga, reproducción, distribución o uso para fines ajenos a la evaluación profesional de este portafolio.
                 </div>
-                <button type="submit" class="btn-primary" style="width: 100%;">Enviar Solicitud Legal</button>
+                
+                <button type="submit" class="btn-primary" style="width: 100%;">Enviar Solicitud y Aceptar Términos</button>
             </form>
         </div>
     </div>
 
     <script>
-        // 0. SPLASH SCREEN SEQUENCE
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.body.classList.remove('is-loading');
                 document.body.classList.add('is-loaded');
-                document.body.style.overflow = 'auto'; // Libera scroll
-            }, 2000); // 2 segundos totales de animación inicial (Validado)
+                document.body.style.overflow = 'auto'; 
+            }, 1600); 
         });
 
-        // 1. SEGURIDAD
         document.addEventListener('contextmenu', event => event.preventDefault());
 
-        // 2. DATOS GALERÍA FOTOGRÁFICA
+        // DATOS ACTUALIZADOS DE GALERÍA (Se añadieron los diseños a su propio modal array)
         const galleryData = {
             'food': ['https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png'],
             'sabrina': ['https://static.wixstatic.com/media/14f4fb_cfb665c8cecc4a3f915d59ecc7372cdf~mv2.png', 'https://static.wixstatic.com/media/14f4fb_ccfb094089134b27a65b8008ab140548~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_8cd04cc0174b4bc2b5fdd33f7c95bcee~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_74ff5ed1e6a641ec8530ebb424a29590~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_f2b9a122bb454eb18d439cf4aa55f621~mv2.jpg'],
-            'naturaleza': ['https://static.wixstatic.com/media/14f4fb_f2a7ed1846ad41fa86dce3758b73a792~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_5a786c1258bf4c26a079ad85b25813af~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_c50af1954a4340858f6b59d67f59b974~mv2.png', 'https://static.wixstatic.com/media/14f4fb_fc5461752fc54ada9334b00b39dc4282~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_e37aec4ed1a34979b3e3333817ce2adf~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_6ed08e70b70a40ca8ed663a1067d5485~mv2_d_6000_4000_s_4_2.jpg'],
+            'naturaleza': ['https://static.wixstatic.com/media/14f4fb_f2a7ed1846ad41fa86dce3758b73a792~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_5a786c1258bf4c26a079ad85b25813af~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_c50af1954a4340858f6b59d67f59b974~mv2.png', 'https://static.wixstatic.com/media/14f4fb_fc5461752fc54ada9334b00b39dc4282~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_e37aec4ed1a34979b3e3333817ceadf~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_6ed08e70b70a40ca8ed663a1067d5485~mv2_d_6000_4000_s_4_2.jpg'],
             'experimental': ['https://static.wixstatic.com/media/14f4fb_3c6ea1e81a93400bb35024d9af900c58~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_c7c328c79ef0435592619f0cc7ccbe8d~mv2_d_6000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_545f729dd5a845bcbdd114895dd988a4~mv2_d_6000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_6663382b6a134ee6ae6cf16348bf9375~mv2_d_6000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_5f6933f6ec6348999c18eb538412b6b8~mv2.jpg'],
             'kapo': ['https://static.wixstatic.com/media/14f4fb_b9505e5b99434479a64c516219d4ba31~mv2_d_5357_3912_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_df15ab106fbb4b519ddcc1f23d435086~mv2_d_4000_4144_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_c3a9c9a9eeea40e5a1b147b81234a83a~mv2_d_3662_4000_s_4_2.jpg'],
             'emergentes': ['https://static.wixstatic.com/media/14f4fb_e82cdeeb1f354ca38150280d46c711ec~mv2_d_6000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_ace77dbc01c8427cbdda217f9ab1fe14~mv2_d_6000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_6a425cecae704f25aca53f67560a9169~mv2_d_6000_4000_s_4_2.jpg'],
             'modelos': ['https://static.wixstatic.com/media/14f4fb_963a7a6446284302a798edcf8457cffd~mv2_d_3471_3471_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_62c1344e52a441daaa100e3400a6cc19~mv2_d_3176_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_88875e89e124451b8dfd1ec60f0e7e69~mv2_d_5491_3928_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_3e4d4dde8e184350aa6a5a52141ec414~mv2_d_4000_6000_s_4_2.png', 'https://static.wixstatic.com/media/14f4fb_28502a138679481f89b571e599cf0fc4~mv2.jpg'],
             'retratos': ['https://static.wixstatic.com/media/14f4fb_4f61d7e9e3cd4da6ad6e6f649d2d9d05~mv2_d_4000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_6fb679a244ef48de9ea749cbeb6e7824~mv2_d_4000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_d66070ef8db64e62a7b7abffa3099d80~mv2_d_4000_5547_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_5fb74448bec44efebd9d63489a942e4d~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a60c3996c5c443b6be56e08c91807dc9~mv2.png'],
             'producto': ['https://static.wixstatic.com/media/14f4fb_bde31a4c87be49a1882327dacb0882e0~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_09129e6b1cc648ed8f0dd806ea46ac95~mv2.jpg'],
-            'diseno_ui': ['https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop']
+            
+            // NUEVOS DISEÑOS ENLAZADOS
+            'diseno_1': ['Banner%20web%20Jdmaray%20Cali%20SPA.jpg'],
+            'diseno_2': ['Banner%20web%20para%20Homecare%20Ebenezer.jpg'],
+            'diseno_3': ["Dise%C3%B1o%20de%20portada%20para%20cancion%20Suave%20de%20Mauna%20(la%20misma%20del%20videolyric).png"],
+            'diseno_4': ['Dise%C3%B1o%20personalizado%20para%20vinilo%20protector%20para%20Xbox%20con%20tematica%20de%20Gears%20of%20war.jpg'],
+            'diseno_5': ['Full%20Imagen%20logo%20navide%C3%B1o.jpeg'],
+            'diseno_6': ['Ilustracion%20vectorial%20Koala%20con%20gafas%20y%20pipa.png'],
+            'diseno_7': ['Logo%20Another%20Reality%20VR.png'],
+            'diseno_8': ['Logo%20Sulmajafra%20venta%20de%20productos%20de%20belleza.jpg'],
+            'diseno_9': ["Logo%20y%20pieza%20del%20Formato%20La%20ruta%20del%20sabor%20para%20revista%20D'Feria.jpg"],
+            'diseno_10': ['Mosaico%20conmemorativo%20Promocio%C3%B3n%201973%20Colegio%20parroquial.jpg'],
+            'diseno_11': ['Pieza%20Conversatorio%20Tuberculosis%20Hospital%20y%20Alcaldia%20de%20Yumbo.jpg'],
+            'diseno_12': ['Pieza%20de%20servicio%20de%20Tonificacion%20corporal%20para%20Agua%20Marina%20esthetic%20center.jpg'],
+            'diseno_13': ['Pieza%20invitacion%20de%20encuentro%20cultural%20para%20la%20alcaldia%20de%20Cali.jpg'],
+            'diseno_14': ['Pieza%20promocional%20de%20capacitacion%20para%20programa%20de%20afiliados%20de%20Virtuosa%20venta%20de%20ropa%20para%20comunidades%20religiosas.jpg'],
+            'diseno_15': ["Pieza%20promocional%20para%20el%20programa%20Noches%20D'Feria.jpg"],
+            'diseno_16': ['Volante%20Vape%20Expo%202020%20EJERCICIO%20DE%20DISE%C3%91O%20Y%20MONTAJE%20FOTOGRAFIA%20PROPIA.png']
         };
 
-        // 3. HOVER CAROUSEL FOTOS
         const hoverTimers = new Map();
         document.querySelectorAll('.media-item.fotografia, .media-item.diseno').forEach(item => {
             const images = item.querySelectorAll('.hc-img');
@@ -910,7 +990,6 @@
             });
         });
 
-        // 4. LIGHTBOX FOTOS
         let currentCollection = [];
         let currentSlideIdx = 0;
         let galleryAutoPlayTimer;
@@ -956,6 +1035,32 @@
             clearInterval(galleryAutoPlayTimer);
             setTimeout(() => { galleryImage.src = ""; }, 300);
         }
+
+        // ====================================================
+        // MOTOR DE ALEATORIEDAD PARA DISEÑO WEB/GRÁFICO
+        // ====================================================
+        document.addEventListener("DOMContentLoaded", function() {
+            const grid = document.getElementById('main-grid');
+            // Extraer solo los elementos de diseño
+            const designItems = Array.from(grid.querySelectorAll('.media-item.diseno'));
+            // Encontrar el primer elemento de audio como ancla para no alterar la estructura
+            const firstAudio = grid.querySelector('.media-item.audio');
+
+            // Fisher-Yates Shuffle Algorithm (Aleatoriedad Matemática)
+            for (let i = designItems.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [designItems[i], designItems[j]] = [designItems[j], designItems[i]];
+            }
+
+            // Reinsertar en el DOM en su nueva posición aleatoria
+            designItems.forEach(item => {
+                if(firstAudio) {
+                    grid.insertBefore(item, firstAudio);
+                } else {
+                    grid.appendChild(item);
+                }
+            });
+        });
 
         // 5. VIDEOS YOUTUBE (Concurrencia Automática)
         document.addEventListener("DOMContentLoaded", function() {
@@ -1004,8 +1109,7 @@
                 if (!scrollTimeout) scrollTimeout = setTimeout(() => { evaluateVideos(); scrollTimeout = null; }, 150);
             }, { passive: true });
             
-            // Retrasar hasta después de la animación de carga rápida (Validado)
-            setTimeout(evaluateVideos, 2200); 
+            setTimeout(evaluateVideos, 2400); 
         });
 
         const ytModal = document.getElementById('youtube-modal');
@@ -1020,9 +1124,6 @@
             ytIframe.src = ""; 
         }
 
-        // ====================================================
-        // 6. MOTOR DE AUDIO Y WEB AUDIO API (ESPECTRO REAL)
-        // ====================================================
         let audioCtx; 
 
         function pauseAllAudio(exceptAudio = null) {
@@ -1161,7 +1262,6 @@
             }
         });
 
-        // 7. FILTROS Y MASONRY
         function filterGallery(category) {
             const btns = document.querySelectorAll('.filter-btn');
             btns.forEach(btn => btn.classList.remove('active'));
@@ -1190,13 +1290,19 @@
         const vaultModal = document.getElementById('vault-modal');
         function openVaultModal() { vaultModal.classList.add('active-modal'); }
         function closeVaultModal() { vaultModal.classList.remove('active-modal'); }
+        
         function sendVaultEmail(e) {
             e.preventDefault();
             const name = document.getElementById('req-name').value;
             const company = document.getElementById('req-company').value;
             const email = document.getElementById('req-email').value;
-            const body = encodeURIComponent(`Hola Alejandro,\n\nSoy ${name} de ${company}. Solicito acceso a la Bóveda de Drive.\nContacto: ${email}\n\nConfirmo que no haré uso comercial de los archivos.`);
-            window.location.href = `mailto:Alejandro.960822@gmail.com?subject=Acceso Bóveda&body=${body}`;
+            
+            const bodyText = `Estimado Alejandro,\n\nMi nombre es ${name}, representando a ${company}. Por medio de la presente, solicito formalmente acceso a su Bóveda Corporativa.\n\nDatos de contacto: ${email}\n\nAl enviar esta solicitud, declaro expresamente que he leído, comprendo y acepto el compromiso de confidencialidad (NDA), obligándome a no descargar, reproducir ni compartir el material protegido, utilizándolo exclusivamente para fines de evaluación profesional.\n\nAtentamente,\n${name}`;
+            
+            const body = encodeURIComponent(bodyText);
+            const subject = encodeURIComponent(`Acceso Bóveda Corporativa - ${company}`);
+            
+            window.location.href = `mailto:Alejandro.960822@gmail.com?subject=${subject}&body=${body}`;
             closeVaultModal();
         }
 

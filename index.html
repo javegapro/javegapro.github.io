@@ -37,7 +37,7 @@
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
         /* ====================================================
-           1. SPLASH SCREEN
+           1. SPLASH SCREEN (APERTURA LÁSER)
         ==================================================== */
         .splash-panel {
             position: fixed; left: 0; width: 100vw; height: 50vh; background-color: var(--dark-bg);
@@ -66,8 +66,8 @@
         .reveal-content { opacity: 0; transition: opacity 0.6s ease 0.2s; }
         body.is-loaded .reveal-content { opacity: 1; }
 
-        /* --- CABECERA Y EL ELEMENTO ÚNICO --- */
-        header { padding: 40px 2% 20px; text-align: center; position: relative; z-index: 10000; pointer-events: none;}
+        /* --- CABECERA (MARGENES CORREGIDOS AL 5%) --- */
+        header { padding: 40px 5% 20px; text-align: center; position: relative; z-index: 10000; pointer-events: none;}
         
         #title-wrapper {
             display: inline-block; transform: translateY(0) scale(1);
@@ -101,9 +101,9 @@
         }
         .floating-contact:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.4); }
 
-        /* --- SUBTÍTULO Y FILTROS --- */
+        /* --- SUBTÍTULO Y FILTROS (MARGENES CORREGIDOS AL 5%) --- */
         header p { color: var(--electric-cyan); font-weight: 600; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 2px;}
-        .filter-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 10px 2% 50px; position: relative; z-index: 10;}
+        .filter-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 10px 5% 50px; position: relative; z-index: 10;}
         .filter-btn {
             background: transparent; border: 2px solid rgba(255,255,255,0.2); color: var(--text-main); 
             padding: 12px 30px; border-radius: 50px; cursor: pointer; font-family: 'Montserrat', sans-serif; 
@@ -115,11 +115,11 @@
         }
 
         /* ====================================================
-           MOTOR DE GRILLA
+           MOTOR DE GRILLA (MARGENES CORREGIDOS AL 5%)
         ==================================================== */
         .portfolio-grid {
             display: grid; grid-template-columns: 1fr; gap: 2vw; 
-            padding: 0 2% 100px; width: 100%; max-width: 2500px; margin: 0 auto; transition: all 0.5s ease;
+            padding: 0 5% 100px; width: 100%; max-width: 2500px; margin: 0 auto; transition: all 0.5s ease;
             position: relative; z-index: 5;
         }
         .media-item.hide { display: none !important; }
@@ -185,7 +185,7 @@
         .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
         
         /* ====================================================
-           AUDIO
+           AUDIO (BORDE LUMINOSO Y ESPECTRO REAL)
         ==================================================== */
         .media-item.audio {
             border: none; position: relative; display: flex; justify-content: center; align-items: center;
@@ -205,7 +205,6 @@
         }
 
         .audio-inner-card .media-texture { z-index: 3; opacity: 0.15; }
-        
         .audio-visualizer { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; z-index: 4; pointer-events: none; opacity: 0.9;}
         
         .audio-text-content { z-index: 5; margin-bottom: 30px; pointer-events: none; transition: transform 0.3s;}
@@ -226,9 +225,7 @@
             width: 35px; height: 35px; transition: transform 0.2s, color 0.2s, text-shadow 0.2s;
         }
         .play-btn:hover { transform: scale(1.1); color: var(--electric-cyan); text-shadow: 0 0 15px var(--electric-cyan);}
-        
         .time-display { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--electric-cyan); min-width: 45px; text-align: center;}
-        
         .progress-wrapper {
             flex-grow: 1; height: 4px; background-color: rgba(255, 255, 255, 0.15); border-radius: 10px; cursor: pointer; position: relative; overflow: hidden;
         }
@@ -236,14 +233,14 @@
             position: absolute; top: 0; left: 0; height: 100%; width: 0%; background-color: var(--electric-cyan); border-radius: 10px; box-shadow: 0 0 10px var(--electric-cyan); pointer-events: none;
         }
 
-        /* --- MEDIA QUERIES --- */
+        /* --- MEDIA QUERIES GLOBALES --- */
         @media (min-width: 768px) {
             header h1 { font-size: 4rem; } .media-item h2 { font-size: 2.5rem; }
             .portfolio-grid.masonry-mode { -webkit-column-count: 2; -moz-column-count: 2; column-count: 2; }
             body.is-loading #title-wrapper { transform: translateY(calc(50vh - 60px)) scale(1.6); }
         }
         @media (min-width: 1024px) {
-            header { padding: 40px 2% 20px; }
+            header { padding: 40px 5% 20px; }
             header h1 { font-size: 5rem; letter-spacing: 5px; }
             header p { font-size: 1.4rem; letter-spacing: 3px; }
             .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 3vw; }
@@ -259,6 +256,7 @@
         }
         .ecosystem-section h3 { font-size: 2rem; color: var(--text-main); margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;}
         .ecosystem-brands { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        
         .brand-btn {
             display: flex; align-items: center; justify-content: center; gap: 15px; padding: 20px 40px; border-radius: 12px;
             background: rgba(2, 6, 23, 0.8); border: 1px solid rgba(255,255,255,0.1); color: var(--text-main); text-decoration: none; 
@@ -266,12 +264,17 @@
         }
         .brand-btn:hover { border-color: var(--electric-cyan); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(45, 212, 191, 0.2); color: var(--electric-cyan); }
         .brand-logo-text { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 900; letter-spacing: 3px;}
+        
+        /* Nuevo: Estilo para la imagen del logo dentro del botón de Ecosistema */
+        .brand-logo-img { height: 28px; width: auto; filter: brightness(0) invert(1); transition: all 0.3s ease; }
+        .brand-btn:hover .brand-logo-img { filter: brightness(0) invert(1) drop-shadow(0 0 10px var(--electric-cyan)); }
 
         /* ====================================================
            CLIENTES Y ALIADOS (LOGOS BLANCOS, FONDO OSCURO)
         ==================================================== */
         .clients-section {
-            padding: 60px 0 80px; text-align: center; background-color: var(--dark-bg); border-top: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden;
+            padding: 80px 5%; /* Estandarizado al 5% */
+            text-align: center; background-color: var(--dark-bg); border-top: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden;
         }
         .clients-section h3 { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 50px; text-transform: uppercase; letter-spacing: 4px; font-weight: 600;}
         
@@ -288,6 +291,7 @@
             mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
         
+        /* Pulsos superior e inferior de color cyan */
         .marquee-container::before, .marquee-container::after {
             content: ""; position: absolute; left: 0; width: 100%; height: 2px;
             background: linear-gradient(to right, transparent, var(--electric-cyan), transparent);
@@ -302,6 +306,7 @@
         }
         .marquee-track:hover { animation-play-state: paused; }
         
+        /* Logos teñidos de blanco puro brillante */
         .client-logo {
             height: 60px; width: auto; object-fit: contain;
             transition: transform 0.3s ease, filter 0.3s ease;
@@ -318,15 +323,15 @@
 
         @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 30px)); } }
 
-        /* --- CONTACTO Y WHATSAPP SÓLIDO VERDE --- */
+        /* --- CONTACTO Y WHATSAPP (MÁRGENES ESTANDARIZADOS Y TRACKING) --- */
         .contact-section {
             padding: 80px 5% 100px; text-align: center; border-top: 1px solid rgba(45, 212, 191, 0.2); border-bottom: 1px solid rgba(45, 212, 191, 0.2); background: radial-gradient(circle at center, rgba(45, 212, 191, 0.05) 0%, var(--dark-bg) 100%);
         }
         
-        /* AUMENTO DE ESPACIADO EN TÍTULO "CONECTEMOS" */
+        /* ESPACIADO ENTRE CARACTERES CORREGIDO */
         .contact-section h2 { 
             font-size: 3rem; margin-bottom: 15px; color: var(--text-main); text-transform: uppercase; font-family: 'Montserrat', sans-serif;
-            letter-spacing: 12px; margin-right: -12px; /* Compensación para centrado perfecto */
+            letter-spacing: 12px; margin-right: -12px; /* Compensación para centrado estricto */
         }
         
         .contact-section p { color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.2rem;}
@@ -342,6 +347,7 @@
         .btn-secondary { background-color: transparent; color: var(--text-main); border: 2px solid var(--text-muted); }
         .btn-secondary:hover { border-color: var(--electric-cyan); color: var(--electric-cyan); }
         
+        /* WHATSAPP VERDE SÓLIDO */
         .btn-whatsapp { background-color: var(--whatsapp-green); color: var(--dark-bg); box-shadow: 0 4px 10px rgba(37, 211, 102, 0.15);}
         .btn-whatsapp:hover { background-color: #20b857; transform: translateY(-5px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4); }
         
@@ -737,7 +743,7 @@
         <h3>Ecosistema Creativo</h3>
         <div class="ecosystem-brands">
             <a href="https://automatas.co" target="_blank" class="brand-btn">
-                <span class="brand-logo-text">⚙️ AUTÓMATAS</span>
+                <img src="Logo_automatas.png" alt="Autómatas" class="brand-logo-img">
             </a>
             <a href="https://www.youtube.com/@javegapro" target="_blank" class="brand-btn">
                 <span class="brand-logo-text">🎬 JAVEGA STUDIO</span>
@@ -756,7 +762,7 @@
                 <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo">
                 <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo">
                 <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo">
-                <img src="Logo%20automatas.png" alt="Autómatas" class="client-logo">
+                <img src="Logo_automatas.png" alt="Autómatas" class="client-logo">
                 <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever">
                 <img src="Logo%20Alqueria.png" alt="Alquería" class="client-logo">
                 <img src="Logo%20Derco.jpg" alt="Derco" class="client-logo">
@@ -764,7 +770,7 @@
                 <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo">
                 <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo">
                 <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo">
-                <img src="Logo%20automatas.png" alt="Autómatas" class="client-logo">
+                <img src="Logo_automatas.png" alt="Autómatas" class="client-logo">
             </div>
         </div>
     </section>
@@ -926,7 +932,7 @@
             setTimeout(() => { galleryImage.src = ""; }, 300);
         }
 
-        // 5. VIDEOS YOUTUBE (Concurrencia Automática)
+        // 5. VIDEOS YOUTUBE
         document.addEventListener("DOMContentLoaded", function() {
             const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
             const iframes = document.querySelectorAll('.auto-observe-yt');

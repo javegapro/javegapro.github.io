@@ -33,13 +33,11 @@
             font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth;
         }
 
-        /* Bloquea scroll mientras carga la animación inicial */
         body.is-loading { overflow: hidden; height: 100vh; }
-
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
         /* ====================================================
-           1. SPLASH SCREEN (APERTURA LÁSER Y DESPLAZAMIENTO ÚNICO)
+           1. SPLASH SCREEN
         ==================================================== */
         .splash-panel {
             position: fixed; left: 0; width: 100vw; height: 50vh; background-color: var(--dark-bg);
@@ -68,7 +66,7 @@
         .reveal-content { opacity: 0; transition: opacity 0.6s ease 0.2s; }
         body.is-loaded .reveal-content { opacity: 1; }
 
-        /* --- CABECERA Y EL ELEMENTO ÚNICO DEL TÍTULO --- */
+        /* --- CABECERA Y EL ELEMENTO ÚNICO --- */
         header { padding: 40px 2% 20px; text-align: center; position: relative; z-index: 10000; pointer-events: none;}
         
         #title-wrapper {
@@ -81,9 +79,7 @@
             color: var(--text-main); transition: text-shadow 0.3s;
         }
 
-        body.is-loading #title-wrapper {
-            transform: translateY(calc(45vh - 50px)) scale(1.4);
-        }
+        body.is-loading #title-wrapper { transform: translateY(calc(45vh - 50px)) scale(1.4); }
 
         body.is-loading #main-title {
             color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4);
@@ -119,7 +115,7 @@
         }
 
         /* ====================================================
-           MOTOR DE GRILLA Y TARJETAS
+           MOTOR DE GRILLA
         ==================================================== */
         .portfolio-grid {
             display: grid; grid-template-columns: 1fr; gap: 2vw; 
@@ -158,8 +154,6 @@
             transition: opacity 0.8s ease, filter var(--transition-speed) ease, transform var(--transition-speed) ease;
         }
         .hc-img.active { opacity: 1; z-index: 2; }
-        
-        /* FIX DE PORTADA PARA "MODELOS" */
         .fix-models-portada { object-position: top center !important; }
 
         .yt-thumbnail {
@@ -191,7 +185,7 @@
         .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
         
         /* ====================================================
-           AUDIO (BORDE LUMINOSO Y ESPECTRO REAL)
+           AUDIO (BORDE TRANSPARENTE + ESPECTRO REAL)
         ==================================================== */
         .media-item.audio {
             border: none; position: relative; display: flex; justify-content: center; align-items: center;
@@ -242,23 +236,6 @@
             position: absolute; top: 0; left: 0; height: 100%; width: 0%; background-color: var(--electric-cyan); border-radius: 10px; box-shadow: 0 0 10px var(--electric-cyan); pointer-events: none;
         }
 
-        /* --- MEDIA QUERIES --- */
-        @media (min-width: 768px) {
-            header h1 { font-size: 4rem; } .media-item h2 { font-size: 2.5rem; }
-            .portfolio-grid.masonry-mode { -webkit-column-count: 2; -moz-column-count: 2; column-count: 2; }
-            body.is-loading #title-wrapper { transform: translateY(calc(50vh - 60px)) scale(1.6); }
-        }
-        @media (min-width: 1024px) {
-            header { padding: 40px 2% 20px; }
-            header h1 { font-size: 5rem; letter-spacing: 5px; }
-            header p { font-size: 1.4rem; letter-spacing: 3px; }
-            .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 3vw; }
-            .portfolio-grid.masonry-mode { -webkit-column-count: 3; -moz-column-count: 3; column-count: 3; }
-            .media-item h2 { font-size: 3rem; } .media-item p { font-size: 1.1rem; }
-            .media-overlay { padding: 80px 50px 50px; }
-            body.is-loading #title-wrapper { transform: translateY(calc(50vh - 80px)) scale(1.8); }
-        }
-
         /* --- ECOSISTEMA CREATIVO --- */
         .ecosystem-section {
             padding: 80px 5%; text-align: center; border-top: 1px solid rgba(45, 212, 191, 0.2); background-color: var(--card-bg);
@@ -274,40 +251,50 @@
         .brand-logo-text { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 900; letter-spacing: 3px;}
 
         /* ====================================================
-           17.0: CARRUSEL INFINITO DE MARCAS CON BANDA BLANCA
+           NUEVO 18.0: CLIENTES Y ALIADOS (LOGOS BLANCOS, FONDO OSCURO)
         ==================================================== */
         .clients-section {
             padding: 60px 0 80px; text-align: center; background-color: var(--dark-bg); border-top: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden;
         }
-        /* Ajuste de color del h3 para que se lea sobre la banda blanca si decide moverlo dentro, o claro si está fuera */
-        .clients-section h3 { font-size: 1.2rem; color: var(--text-main); margin-bottom: 30px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700;}
+        .clients-section h3 { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 50px; text-transform: uppercase; letter-spacing: 4px; font-weight: 600;}
         
-        /* === BANDA BLANCA INTERNA === */
+        /* === CONTENEDOR DEL CARRUSEL (BANDA OSCURA + PULSO) === */
+        @keyframes pulseBorder {
+            0% { transform: scaleX(0); opacity: 0; }
+            50% { transform: scaleX(1); opacity: 1; }
+            100% { transform: scaleX(0); opacity: 0; }
+        }
+
         .marquee-container {
             width: 100%; overflow: hidden; white-space: nowrap; position: relative; 
-            background-color: #ffffff; /* BANDA BLANCA PURA */
-            padding: 30px 0; /* Espaciado superior e inferior dentro de la banda */
-            border-radius: 20px; /* Bordes redondeados */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Sombra para separarla del fondo oscuro */
-            /* Efecto difuminado en los extremos para que los logos no se corten de golpe */
-            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-            max-width: 95%; /* Para que no pegue exactamente a los bordes de la pantalla */
-            margin: 0 auto;
+            background-color: var(--dark-bg); /* FONDO OSCURO CONFIRMADO */
+            padding: 40px 0; /* Espaciado superior e inferior para que respiren */
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
         
+        /* PULSOS SUPERIOR E INFERIOR INTEGRADOS */
+        .marquee-container::before, .marquee-container::after {
+            content: ""; position: absolute; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(to right, transparent, var(--electric-cyan), transparent);
+            box-shadow: 0 0 15px var(--electric-cyan); animation: pulseBorder 4s infinite ease-in-out;
+        }
+        .marquee-container::before { top: 0; transform-origin: left; }
+        .marquee-container::after { bottom: 0; transform-origin: right; animation-delay: 2s; } /* Pulso desfasado */
+
         .marquee-track {
             display: inline-flex; align-items: center; gap: 60px;
             animation: scrollMarquee 25s linear infinite;
         }
         .marquee-track:hover { animation-play-state: paused; }
         
-        /* LOGOS A COLOR ORIGINALES */
+        /* === LOGOS EN BLANCO PURO (TINTE BLANCO) === */
         .client-logo {
             height: 60px; width: auto; object-fit: contain;
             transition: transform 0.3s ease, filter 0.3s ease;
-            filter: drop-shadow(0 0 5px rgba(0,0,0,0.1));
+            /* Tinte blanco puro */
+            filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255,255,255,0.1)); 
         }
-        .client-logo:hover { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.3)); }
+        .client-logo:hover { transform: scale(1.1); filter: brightness(0) invert(1) drop-shadow(0 0 15px var(--electric-cyan)); }
 
         /* === AJUSTE ESPECÍFICO UNILEVER === */
         .client-logo-unilever {
@@ -315,7 +302,7 @@
             transform-origin: center center;
             margin: 0 15px; /* Espaciado extra para compensar el escalado */
         }
-        .client-logo-unilever:hover { transform: scale(1.7); } 
+        .client-logo-unilever:hover { transform: scale(1.7); } /* Ajuste de hover */
 
         @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 30px)); } }
 
@@ -374,7 +361,7 @@
         .gallery-dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: 0.3s; }
         .gallery-dot.active { background: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan); }
 
-        .form-modal-box { background-color: var(--card-bg); padding: 50px; border-radius: 16px; max-width: 600px; width: 100%; border: 1px solid rgba(45, 212, 191, 0.3); text-align: left; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.8); max-height: 90vh; overflow-y: auto; }
+        .form-modal-box { background-color: var(--card-bg); padding: 50px; border-radius: 166px; max-width: 600px; width: 100%; border: 1px solid rgba(45, 212, 191, 0.3); text-align: left; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.8); max-height: 90vh; overflow-y: auto; }
         .form-modal-box label { display: block; margin-bottom: 10px; font-size: 1rem; color: var(--text-muted); font-weight: 600;}
         .form-modal-box input { width: 100%; padding: 15px; margin-bottom: 25px; background-color: var(--dark-bg); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 1.1rem; }
         .form-modal-box input:focus { outline: none; border-color: var(--electric-cyan); }

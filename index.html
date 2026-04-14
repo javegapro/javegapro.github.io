@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title data-i18n="head_title">Alejandro Vega | Director Creativo & Creative Technologist</title>
     <meta name="description" content="Portafolio oficial de Alejandro Vega. Especialista en Inteligencia Artificial, Dirección Creativa, Producción Audiovisual, Fotografía y Diseño Sonoro.">
     <meta name="keywords" content="Alejandro Vega, Creative Technologist, Director Creativo, Producción Audiovisual, Diseño Sonoro, Fotografía, IA, Autómatas, Yumbo, Cali, Colombia">
@@ -55,28 +56,49 @@
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
         /* ====================================================
-           1. SPLASH SCREEN
+           1. SPLASH SCREEN (ACELERACIÓN 60FPS GPU)
         ==================================================== */
-        .splash-panel { position: fixed; left: 0; width: 100vw; height: 50vh; background-color: var(--dark-bg); z-index: 9998; transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1); }
+        .splash-panel { 
+            position: fixed; left: 0; width: 100vw; height: 50vh; background-color: var(--dark-bg); 
+            z-index: 9998; transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            will-change: transform; /* ACELERACIÓN GPU */
+        }
         .splash-panel.top { top: 0; transform-origin: top; border-bottom: 2px solid var(--electric-cyan); box-shadow: 0 5px 30px rgba(45,212,191,0.3);}
         .splash-panel.bottom { bottom: 0; transform-origin: bottom; border-top: 2px solid var(--electric-cyan); box-shadow: 0 -5px 30px rgba(45,212,191,0.3);}
 
-        .splash-laser { position: fixed; top: 50%; left: 0; width: 100vw; height: 4px; background: #fff; box-shadow: 0 0 20px 8px var(--electric-cyan); z-index: 9999; transform: translateY(-50%) scaleX(0); opacity: 1; transition: opacity 0.2s ease; }
+        .splash-laser { 
+            position: fixed; top: 50%; left: 0; width: 100vw; height: 4px; background: #fff; box-shadow: 0 0 20px 8px var(--electric-cyan); 
+            z-index: 9999; transform: translate3d(0, -50%, 0) scaleX(0); opacity: 1; transition: opacity 0.2s ease; 
+            will-change: transform, opacity; /* ACELERACIÓN GPU */
+        }
         body.is-loading .splash-laser { animation: laserShoot 0.3s cubic-bezier(0.8, 0, 0.2, 1) forwards 1.2s; }
-        @keyframes laserShoot { 0% { transform: translateY(-50%) scaleX(0); } 100% { transform: translateY(-50%) scaleX(1); } }
+        @keyframes laserShoot { 0% { transform: translate3d(0, -50%, 0) scaleX(0); } 100% { transform: translate3d(0, -50%, 0) scaleX(1); } }
 
-        body.is-loaded .splash-panel.top { transform: translateY(-100%); }
-        body.is-loaded .splash-panel.bottom { transform: translateY(100%); }
+        body.is-loaded .splash-panel.top { transform: translate3d(0, -100%, 0); }
+        body.is-loaded .splash-panel.bottom { transform: translate3d(0, 100%, 0); }
         body.is-loaded .splash-laser { opacity: 0; }
 
-        .reveal-content { opacity: 0; transition: opacity 0.6s ease 0.1s; }
+        .reveal-content { opacity: 0; transition: opacity 0.6s ease 0.1s; will-change: opacity; }
         body.is-loaded .reveal-content { opacity: 1; }
 
+        /* --- CABECERA Y ESCUDO OSCURO --- */
         header { padding: 40px 5% 20px; text-align: center; position: relative; z-index: 10000; pointer-events: none;}
-        #title-wrapper { display: inline-block; transform: translateY(0) scale(1); transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1); }
-        #main-title { font-size: 3rem; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 5px; color: var(--text-main); transition: text-shadow 0.3s; }
+        
+        #title-wrapper { 
+            display: inline-block; transform: translate3d(0, 0, 0) scale(1); 
+            transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1); 
+            will-change: transform, background, box-shadow; /* ACELERACIÓN GPU */
+            border-radius: 10px;
+        }
+        
+        /* ESCUDO: Fondo oscuro detrás del texto mientras carga para contrastar con el láser */
+        body.is-loading #title-wrapper { 
+            transform: translate3d(0, calc(50vh - 80px), 0) scale(1.5); 
+            background: rgba(2, 6, 23, 0.9);
+            box-shadow: 0 0 40px 40px rgba(2, 6, 23, 0.9);
+        }
 
-        body.is-loading #title-wrapper { transform: translateY(calc(50vh - 80px)) scale(1.5); }
+        #main-title { font-size: 3rem; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 5px; color: var(--text-main); transition: text-shadow 0.3s; will-change: text-shadow, color; }
         body.is-loading #main-title { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); animation: textGlitch 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 0.1s; }
 
         @keyframes textGlitch {
@@ -91,12 +113,19 @@
         /* ====================================================
            UI AVANZADA: BOTONES FLOTANTES
         ==================================================== */
+        
+        /* V35.0: Botón Bóveda Header idéntico a los de Filtros */
         .header-vault-btn {
-            position: fixed; top: 20px; right: 25px; background: rgba(2, 6, 23, 0.85); border: 1px solid var(--electric-cyan); color: var(--electric-cyan);
-            padding: 10px 20px; border-radius: 8px; font-weight: 700; font-family: 'Inter', sans-serif; font-size: 0.9rem; cursor: pointer;
-            z-index: 9900; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 4px 15px rgba(0,0,0,0.5); text-transform: uppercase; letter-spacing: 1px;
+            position: fixed; top: 20px; right: 25px; 
+            background: transparent; border: 2px solid rgba(255,255,255,0.2); color: var(--text-main);
+            padding: 10px 25px; border-radius: 50px; cursor: pointer; font-family: 'Montserrat', sans-serif; 
+            font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; 
+            transition: all 0.3s ease; z-index: 9900; backdrop-filter: blur(5px);
         }
-        .header-vault-btn:hover { background: var(--electric-cyan); color: var(--dark-bg); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(45, 212, 191, 0.4); }
+        .header-vault-btn:hover { 
+            background-color: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan);
+            transform: translateY(-3px); box-shadow: 0 10px 20px rgba(45, 212, 191, 0.15); 
+        }
 
         .lang-toggle {
             position: fixed; bottom: 30px; left: 30px; background: rgba(2, 6, 23, 0.85); border: 1px solid rgba(255,255,255,0.2);
@@ -111,7 +140,7 @@
             position: fixed; bottom: 30px; right: 30px; border-radius: 50px; padding: 12px 25px;
             background: var(--electric-cyan); color: var(--dark-bg); display: flex; align-items: center; justify-content: center; gap: 10px;
             box-shadow: 0 0 20px rgba(45, 212, 191, 0.4); transition: all 0.3s ease; z-index: 900; text-decoration: none; pointer-events: auto;
-            animation: pulseGlow 2s infinite ease-in-out;
+            animation: pulseGlow 2s infinite ease-in-out; will-change: transform, box-shadow;
         }
         @keyframes pulseGlow { 0% { box-shadow: 0 0 15px rgba(45, 212, 191, 0.4); } 50% { box-shadow: 0 0 30px rgba(45, 212, 191, 0.8); } 100% { box-shadow: 0 0 15px rgba(45, 212, 191, 0.4); } }
         .floating-connect:hover { transform: translateY(-5px); background: #20b8a5; }
@@ -186,15 +215,16 @@
         @media (min-width: 768px) {
             header h1 { font-size: 4rem; } .media-item h2 { font-size: 2.5rem; }
             .portfolio-grid.masonry-mode { -webkit-column-count: 2; column-count: 2; }
-            body.is-loading #title-wrapper { transform: translateY(calc(50vh - 60px)) scale(1.6); }
+            body.is-loading #title-wrapper { transform: translate3d(0, calc(50vh - 60px), 0) scale(1.6); }
         }
         @media (min-width: 1024px) {
             header { padding: 40px 5% 20px; } header h1 { font-size: 5rem; letter-spacing: 5px; }
+            header p { font-size: 1.4rem; letter-spacing: 3px; }
             .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 3vw; }
             .portfolio-grid.masonry-mode { -webkit-column-count: 3; column-count: 3; }
             .media-item h2 { font-size: 3rem; } .media-item p { font-size: 1.1rem; }
             .media-overlay { padding: 80px 50px 50px; }
-            body.is-loading #title-wrapper { transform: translateY(calc(50vh - 80px)) scale(1.8); }
+            body.is-loading #title-wrapper { transform: translate3d(0, calc(50vh - 80px), 0) scale(1.8); }
         }
 
         /* --- ECOSISTEMA CREATIVO --- */
@@ -216,7 +246,7 @@
         .marquee-container::before, .marquee-container::after { content: ""; position: absolute; left: 0; width: 100%; height: 2px; background: linear-gradient(to right, transparent, var(--electric-cyan), transparent); box-shadow: 0 0 15px var(--electric-cyan); animation: pulseBorder 4s infinite ease-in-out; }
         .marquee-container::before { top: 0; transform-origin: left; }
         .marquee-container::after { bottom: 0; transform-origin: right; animation-delay: 2s; }
-        .marquee-track { display: inline-flex; align-items: center; gap: 60px; animation: scrollMarquee 25s linear infinite; }
+        .marquee-track { display: inline-flex; align-items: center; gap: 60px; animation: scrollMarquee 25s linear infinite; will-change: transform; }
         .marquee-track:hover { animation-play-state: paused; }
         .client-logo { height: 60px; width: auto; object-fit: contain; transition: transform 0.3s ease, filter 0.3s ease; filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255,255,255,0.1)); cursor: pointer; }
         .client-logo:hover { transform: scale(1.1); filter: brightness(0) invert(1) drop-shadow(0 0 15px var(--electric-cyan)); }
@@ -224,6 +254,7 @@
         .client-logo-unilever:hover { transform: scale(1.7); } 
         .client-logo-comfandi { transform: scale(1.3); transform-origin: center center; }
         .client-logo-comfandi:hover { transform: scale(1.4); }
+        @keyframes scrollMarquee { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(calc(-50% - 30px), 0, 0); } }
 
         @media (max-width: 768px) {
             .clients-section { padding: 40px 5% 60px; }
@@ -236,9 +267,8 @@
             .floating-connect { bottom: 20px; right: 20px; padding: 10px 20px;}
             .back-to-top { bottom: 85px; right: 25px; width: 40px; height: 40px; }
             .vault-container { padding: 40px 20px; }
-            .header-vault-btn { top: 15px; right: 15px; font-size: 0.8rem; padding: 8px 12px; }
+            .header-vault-btn { top: 15px; right: 15px; font-size: 0.75rem; padding: 8px 15px; }
         }
-        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 30px)); } }
 
         /* --- CONTACTO --- */
         .contact-section { padding: 80px 5% 100px; text-align: center; border-top: 1px solid rgba(45, 212, 191, 0.2); border-bottom: 1px solid rgba(45, 212, 191, 0.2); background: radial-gradient(circle at center, rgba(45, 212, 191, 0.05) 0%, var(--dark-bg) 100%); }
@@ -291,6 +321,11 @@
         .legal-warning { margin-bottom: 15px; padding: 15px; background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--danger-red); font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
         .legal-warning strong { color: var(--danger-red); }
         .error-message { color: var(--danger-red); font-size: 0.9rem; margin-bottom: 15px; display: none; font-weight: 600; padding: 10px; background: rgba(239, 68, 68, 0.1); border-radius: 6px;}
+
+        /* V35.0: MINI LOGOS EN EL MODAL DE LA BÓVEDA */
+        .modal-req-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; line-height: 1.5; }
+        .modal-logos-mini { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; justify-content: center; }
+        .modal-logos-mini img { height: 25px; width: auto; object-fit: contain; filter: brightness(0) invert(1) opacity(0.7); }
     </style>
 </head>
 <body class="is-loading">
@@ -377,7 +412,7 @@
             <img src="https://img.youtube.com/vi/TLjHcX4UPHg/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Unichef 1">
             <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/TLjHcX4UPHg?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=TLjHcX4UPHg" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2>UniChef: Cheesecake</h2></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2 data-i18n="vid_tit_chef1">UniChef: Cheesecake</h2></div>
         </div>
 
         <div class="media-item audiovisual" onclick="openYoutubeModal('SRH1ImvnXFI')">
@@ -385,7 +420,7 @@
             <img src="https://img.youtube.com/vi/SRH1ImvnXFI/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Unichef 2">
             <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/SRH1ImvnXFI?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=SRH1ImvnXFI" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2>UniChef: Pamplona</h2></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2 data-i18n="vid_tit_chef2">UniChef: Pamplona</h2></div>
         </div>
 
         <div class="media-item audiovisual" onclick="openYoutubeModal('rtvkiEu0xyo')">
@@ -393,7 +428,7 @@
             <img src="https://img.youtube.com/vi/rtvkiEu0xyo/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Unichef 3">
             <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/rtvkiEu0xyo?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=rtvkiEu0xyo" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2>UniChef: Postre</h2></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2 data-i18n="vid_tit_chef3">UniChef: Postre</h2></div>
         </div>
 
         <div class="media-item audiovisual" onclick="openYoutubeModal('CGccljx4QxQ')">
@@ -412,7 +447,7 @@
                 <img src="https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png" class="hc-img" loading="lazy" alt="Food 3">
             </div>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_artdir">Dirección de Arte Comercial</p><h2>Food Styling</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_artdir">Dirección de Arte Comercial</p><h2 data-i18n="tit_food">Food Styling</h2></div>
         </div>
 
         <div class="media-item fotografia" onclick="openGalleryModal('modelos')">
@@ -559,7 +594,7 @@
             <div class="media-texture"></div>
             <img src="Logo Another Reality VR.png" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Another Reality VR">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Branding</p><h2>Another Reality VR</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_corp">Branding Corporativo</p><h2>Another Reality VR</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_8')">
@@ -573,7 +608,7 @@
             <div class="media-texture"></div>
             <img src="ruta_sabor.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="La Ruta del Sabor">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_edit">Diseño Editorial</p><h2>La Ruta del Sabor</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_edit">Diseño Editorial</p><h2 data-i18n="tit_ruta">La Ruta del Sabor</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_10')">
@@ -615,14 +650,14 @@
             <div class="media-texture"></div>
             <img src="noches_feria.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Noches D'Feria">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_promo">Diseño Promocional</p><h2>Noches D'Feria</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_promo">Diseño Promocional</p><h2 data-i18n="tit_noches">Noches D'Feria</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_16')">
             <div class="media-texture"></div>
             <img src="volante_vape.png" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Vape Expo 2020">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_flyer">Diseño de Volante</p><h2>Vape Expo 2020</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_flyer">Diseño de Volante</p><h2 data-i18n="tit_vape">Vape Expo 2020</h2></div>
         </div>
 
         <div class="media-item audio">
@@ -821,7 +856,17 @@
         <div class="form-modal-box">
             <span class="close-btn" style="position: absolute; top: 20px; right: 25px; background: transparent; border: none; color: var(--text-muted); box-shadow: none;" onclick="closeVaultModal()">[X]</span>
             <h3 style="color: var(--electric-cyan); margin-bottom: 5px; font-size: 1.8rem;" data-i18n="modal_req_title">Solicitud de Acceso</h3>
-            <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 30px;" data-i18n="modal_req_desc">Por favor, ingrese sus datos corporativos para validar su identidad.</p>
+            
+            <p class="modal-req-desc" data-i18n="modal_req_desc">Está a punto de solicitar acceso a la Bóveda de trabajos protegidos por NDA. Estos son algunos de los clientes bajo esta cláusula:</p>
+            <div class="modal-logos-mini">
+                <img src="Logo Unilever.png" alt="Unilever" class="fallback-img">
+                <img src="Logo_Alqueria.png" alt="Alquería" class="fallback-img">
+                <img src="Logo derco.png" alt="Derco" class="fallback-img">
+                <img src="Logo espy.png" alt="Espy" class="fallback-img">
+                <img src="Logo fanalca.png" alt="Fanalca" class="fallback-img">
+                <img src="Logo eficacia.png" alt="Eficacia" class="fallback-img">
+                <img src="Logo comfandi.png" alt="Comfandi" class="fallback-img">
+            </div>
             
             <div id="vault-error" class="error-message"></div>
 
@@ -870,9 +915,10 @@
                 vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO",
                 vid_cat_evento: "Cobertura de Evento", vid_tit_evento: "Vallecaucanos",
                 vid_cat_chef: "Programa Gastronómico Online",
+                vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Postre",
                 vid_cat_lyric: "Tipografía & Motion Graphics", vid_tit_lyric: "Video Lyrical",
                 cat_post: "Postproducción", vid_tit_mauna: "Mauna (Detrás de Cámaras)",
-                cat_artdir: "Dirección de Arte Comercial", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", 
+                cat_artdir: "Dirección de Arte Comercial", tit_food: "Food Styling", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", 
                 cat_product: "Fotografía Comercial B2C", title_product: "Fotografía de Producto", 
                 cat_lighting: "Iluminación & Técnica", title_portraits: "Retratos de Estudio",
                 cat_editorial: "Fotografía Editorial", tit_sabrina: "Actriz: Sabrina",
@@ -883,9 +929,9 @@
                 cat_banner: "Banner Web", cat_cover: "Diseño de Portada Musical", mauna_title: "Portada de la canción Suave del artista Mauna",
                 cat_vinyl: "Diseño de Vinilo", cat_id: "Identidad Estacional", tit_navidad: "Logo Navideño",
                 cat_vector: "Ilustración Vectorial", tit_koala: "Koala",
-                cat_corp: "Branding Corporativo", cat_edit: "Diseño Editorial", cat_mosaic: "Mosaico Digital", tit_school: "Colegio Parroquial",
+                cat_corp: "Branding Corporativo", cat_edit: "Diseño Editorial", tit_ruta: "La Ruta del Sabor", cat_mosaic: "Mosaico Digital", tit_school: "Colegio Parroquial",
                 tit_yumbo: "Alcaldía de Yumbo", cat_ad: "Diseño Publicitario", tit_cali: "Alcaldía de Cali",
-                cat_promo: "Diseño Promocional", cat_flyer: "Diseño de Volante",
+                cat_promo: "Diseño Promocional", tit_noches: "Noches D'Feria", cat_flyer: "Diseño de Volante", tit_vape: "Vape Expo 2020",
                 aud_alone: "Acústico / Soul Cinematográfico", aud_trapped: "Tensión / Percusión de Acción",
                 aud_rock: "Rock Alternativo / Alta Energía", aud_rain: "Ambient / Synthwave Inspirador",
                 aud_hades: "Darkwave / Synth Industrial", aud_sauvage: "Beat Global / Fusión Urbana",
@@ -894,7 +940,7 @@
                 btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", btn_cv: "Descargar CV (PDF)", link_yt: "Canal de YouTube",
                 vault_title: "Corporate Vault", vault_desc: "Mis diseños de E-learning e infografías para <strong>Unilever, Alquería y Derco</strong> están sujetos a NDA. Si usted es un reclutador autorizado, solicite la llave de acceso.",
                 vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]",
-                modal_req_title: "Solicitud de Acceso", modal_req_desc: "Por favor, ingrese sus datos corporativos para validar su identidad.",
+                modal_req_title: "Solicitud de Acceso", modal_req_desc: "Está a punto de solicitar acceso a la Bóveda de trabajos protegidos por NDA. Estos son algunos de los clientes bajo esta cláusula:",
                 label_name: "Su Nombre Completo:", label_company: "Empresa o Agencia:", label_email: "Su Correo Corporativo:",
                 nda_title: "ACUERDO DE CONFIDENCIALIDAD (NDA):", nda_text: "Al solicitar acceso a esta bóveda, usted reconoce y acepta expresamente que el material contenido es de carácter estrictamente confidencial. Queda terminantemente prohibida su descarga, reproducción, distribución o uso para fines ajenos a la evaluación profesional de este portafolio.",
                 btn_submit: "Enviar Solicitud y Aceptar Términos", btn_connect: "CONECTEMOS"
@@ -908,9 +954,10 @@
                 vid_cat_kapo: "Color Grading", vid_tit_kapo: "Color Test: KAPO",
                 vid_cat_evento: "Event Coverage", vid_tit_evento: "Vallecaucanos",
                 vid_cat_chef: "Online Culinary Show",
+                vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Dessert",
                 vid_cat_lyric: "Typography & Motion Graphics", vid_tit_lyric: "Lyric Video",
                 cat_post: "Post-production", vid_tit_mauna: "Mauna (Behind The Scenes)",
-                cat_artdir: "Commercial Art Direction", cat_fashion: "Fashion Book & Beauty", tit_fashion: "Model Book", 
+                cat_artdir: "Commercial Art Direction", tit_food: "Food Styling", cat_fashion: "Fashion Book & Beauty", tit_fashion: "Model Book", 
                 cat_product: "B2C Commercial Photography", title_product: "Product Photography", 
                 cat_lighting: "Lighting & Technique", title_portraits: "Studio Portraits",
                 cat_editorial: "Editorial Photography", tit_sabrina: "Actress: Sabrina",
@@ -921,9 +968,9 @@
                 cat_banner: "Web Banner", cat_cover: "Music Cover Design", mauna_title: "Cover for the song 'Suave' by artist Mauna",
                 cat_vinyl: "Vinyl Wrap Design", cat_id: "Seasonal Identity", tit_navidad: "Christmas Logo",
                 cat_vector: "Vector Illustration", tit_koala: "Koala",
-                cat_corp: "Corporate Branding", cat_edit: "Editorial Design", cat_mosaic: "Digital Mosaic", tit_school: "Parochial School",
+                cat_corp: "Corporate Branding", cat_edit: "Editorial Design", tit_ruta: "The Flavor Route", cat_mosaic: "Digital Mosaic", tit_school: "Parochial School",
                 tit_yumbo: "Yumbo Mayor's Office", cat_ad: "Advertising Design", tit_cali: "Cali Mayor's Office",
-                cat_promo: "Promotional Design", cat_flyer: "Flyer Design",
+                cat_promo: "Promotional Design", tit_noches: "Noches D'Feria", cat_flyer: "Flyer Design", tit_vape: "Vape Expo 2020",
                 aud_alone: "Acoustic / Cinematic Soul", aud_trapped: "Tension / Action Percussion",
                 aud_rock: "Alternative Rock / High Energy", aud_rain: "Ambient / Uplifting Synthwave",
                 aud_hades: "Darkwave / Industrial Synth", aud_sauvage: "Global Beat / Urban Fusion",
@@ -932,7 +979,7 @@
                 btn_wa: "Text me on WhatsApp", btn_mail: "Send me an email", btn_cv: "Download Resume (PDF)", link_yt: "YouTube Channel",
                 vault_title: "Corporate Vault", vault_desc: "My E-learning and infographic designs for <strong>Unilever, Alquería, and Derco</strong> are subject to NDA. If you are an authorized recruiter, please request the access key.",
                 vault_btn: "Request Secure Access", btn_close: "CLOSE [X]",
-                modal_req_title: "Access Request", modal_req_desc: "Please enter your corporate details to validate your identity.",
+                modal_req_title: "Access Request", modal_req_desc: "You are about to request access to the NDA Protected Vault. These are some of the clients under this clause:",
                 label_name: "Your Full Name:", label_company: "Company or Agency:", label_email: "Your Corporate Email:",
                 nda_title: "NON-DISCLOSURE AGREEMENT (NDA):", nda_text: "By requesting access to this vault, you expressly acknowledge and agree that the material contained herein is strictly confidential. Its download, reproduction, distribution, or use for purposes other than the professional evaluation of this portfolio is strictly prohibited.",
                 btn_submit: "Submit Request & Accept Terms", btn_connect: "LET'S CONNECT"
@@ -957,7 +1004,7 @@
             applyTranslations(currentLang);
         }
 
-        // CARGA FLASH Y APERTURA A LOS 1.5S EXACTOS
+        // CARGA FLASH DE 1.5 SEGUNDOS
         document.addEventListener('DOMContentLoaded', () => {
             applyTranslations(currentLang); 
             setTimeout(() => {
@@ -967,13 +1014,12 @@
             }, 1500); 
         });
 
+        // BOTÓN VOLVER ARRIBA
         window.addEventListener('scroll', () => {
             const btn = document.getElementById('backToTopBtn');
             if (window.scrollY > 500) { btn.classList.add('visible'); } 
             else { btn.classList.remove('visible'); }
         });
-
-        document.addEventListener('contextmenu', event => event.preventDefault());
 
         const galleryData = {
             'food': ['https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png'],
@@ -986,7 +1032,7 @@
             'retratos': ['https://static.wixstatic.com/media/14f4fb_4f61d7e9e3cd4da6ad6e6f649d2d9d05~mv2_d_4000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_6fb679a244ef48de9ea749cbeb6e7824~mv2_d_4000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_d66070ef8db64e62a7b7abffa3099d80~mv2_d_4000_5547_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_5fb74448bec44efebd9d63489a942e4d~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a60c3996c5c443b6be56e08c91807dc9~mv2.png'],
             'producto': ['https://static.wixstatic.com/media/14f4fb_bde31a4c87be49a1882327dacb0882e0~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_09129e6b1cc648ed8f0dd806ea46ac95~mv2.jpg'],
             
-            // RUTAS WEB SAFE CONFIRMADAS
+            // RUTAS WEB SAFE 
             'diseno_1': ['Banner web Jdmaray Cali SPA.jpg'],
             'diseno_2': ['Banner web para Homecare Ebenezer.jpg'],
             'diseno_3': ['portada_mauna.png'], 
@@ -1088,7 +1134,7 @@
             });
         });
 
-        // VIDEOS YOUTUBE (Ejecuta perezosamente al bajar)
+        // VIDEOS YOUTUBE
         document.addEventListener("DOMContentLoaded", function() {
             const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
             const iframes = document.querySelectorAll('.auto-observe-yt');

@@ -3,30 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Alejandro Vega | Creative Technologist & Director Creativo</title>
-    <meta name="description" content="Portafolio oficial de Alejandro Vega. Especialista en Inteligencia Artificial, Dirección Creativa, Producción Audiovisual, Fotografía y Diseño Sonoro.">
-    <meta name="keywords" content="Alejandro Vega, Creative Technologist, Director Creativo, Producción Audiovisual, Diseño Sonoro, Fotografía, IA, Autómatas, Yumbo, Cali, Colombia">
-    <meta name="author" content="Alejandro Vega">
-    
-    <meta property="og:title" content="Alejandro Vega | Portafolio 360°">
-    <meta property="og:description" content="Innovación audiovisual, tecnológica y sonora. Explora mis proyectos y conectemos.">
-    <meta property="og:type" content="profile">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Alejandro Vega",
-      "jobTitle": "Creative Technologist & Director Creativo",
-      "url": "https://alevega.com", 
-      "sameAs": [
-        "https://linkedin.com/in/javegapro",
-        "https://www.youtube.com/@javegapro",
-        "https://instagram.com/javegapro"
-      ]
-    }
-    </script>
+    <title data-i18n="head_title">Alejandro Vega | Director Creativo & Creative Technologist</title>
+    <meta name="description" content="Portafolio oficial de Alejandro Vega.">
     
     <link rel="preconnect" href="https://www.youtube.com">
     <link rel="preconnect" href="https://static.wixstatic.com">
@@ -41,40 +19,27 @@
             --card-bg: #0f172a;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --overlay-opacity: 0.65; 
-            --transition-speed: 0.5s;
             --danger-red: #ef4444;
             --whatsapp-green: #25D366;
             --automatas-green: #7fff50; 
+            --transition-speed: 0.5s;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-user-drag: none; -webkit-touch-callout: none; user-select: none; }
         input { user-select: auto; -webkit-user-select: auto; -moz-user-select: auto; }
 
-        body {
-            background-color: var(--dark-bg); color: var(--text-main);
-            font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth;
-        }
-
+        body { background-color: var(--dark-bg); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
         body.is-loading { overflow: hidden; height: 100vh; }
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
         /* ====================================================
-           1. SPLASH SCREEN
+           1. SPLASH SCREEN (CARGA FLASH 1.5s)
         ==================================================== */
-        .splash-panel {
-            position: fixed; left: 0; width: 100vw; height: 50vh; background-color: var(--dark-bg);
-            z-index: 9998; transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-        }
+        .splash-panel { position: fixed; left: 0; width: 100vw; height: 50vh; background-color: var(--dark-bg); z-index: 9998; transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1); }
         .splash-panel.top { top: 0; transform-origin: top; border-bottom: 2px solid var(--electric-cyan); box-shadow: 0 5px 30px rgba(45,212,191,0.3);}
         .splash-panel.bottom { bottom: 0; transform-origin: bottom; border-top: 2px solid var(--electric-cyan); box-shadow: 0 -5px 30px rgba(45,212,191,0.3);}
 
-        .splash-laser {
-            position: fixed; top: 50%; left: 0; width: 100vw; height: 4px;
-            background: #fff; box-shadow: 0 0 20px 8px var(--electric-cyan);
-            z-index: 9999; transform: translateY(-50%) scaleX(0); opacity: 1; transition: opacity 0.2s ease;
-        }
-
+        .splash-laser { position: fixed; top: 50%; left: 0; width: 100vw; height: 4px; background: #fff; box-shadow: 0 0 20px 8px var(--electric-cyan); z-index: 9999; transform: translateY(-50%) scaleX(0); opacity: 1; transition: opacity 0.2s ease; }
         body.is-loading .splash-laser { animation: laserShoot 0.3s cubic-bezier(0.8, 0, 0.2, 1) forwards 1.2s; }
         @keyframes laserShoot { 0% { transform: translateY(-50%) scaleX(0); } 100% { transform: translateY(-50%) scaleX(1); } }
 
@@ -103,10 +68,18 @@
         }
 
         /* ====================================================
-           UI AVANZADA: BOTONES FLOTANTES E IDIOMA
+           UI AVANZADA: BOTONES FLOTANTES
         ==================================================== */
         
-        /* 1. Selector de Idiomas (Banderas) */
+        /* Botón Fijo Bóveda Top Right */
+        .header-vault-btn {
+            position: fixed; top: 20px; right: 25px; background: rgba(2, 6, 23, 0.85); border: 1px solid var(--electric-cyan); color: var(--electric-cyan);
+            padding: 10px 20px; border-radius: 8px; font-weight: 700; font-family: 'Inter', sans-serif; font-size: 0.9rem; cursor: pointer;
+            z-index: 9900; transition: all 0.3s ease; backdrop-filter: blur(5px); box-shadow: 0 4px 15px rgba(0,0,0,0.5); text-transform: uppercase; letter-spacing: 1px;
+        }
+        .header-vault-btn:hover { background: var(--electric-cyan); color: var(--dark-bg); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(45, 212, 191, 0.4); }
+
+        /* Selector de Idiomas */
         .lang-toggle {
             position: fixed; bottom: 30px; left: 30px; background: rgba(2, 6, 23, 0.85); border: 1px solid rgba(255,255,255,0.2);
             padding: 8px 12px; border-radius: 30px; cursor: pointer; z-index: 900; display: flex; gap: 8px; align-items: center;
@@ -116,60 +89,43 @@
         .lang-option { opacity: 0.4; font-size: 1.2rem; transition: 0.3s; filter: grayscale(100%); }
         .lang-option.active { opacity: 1; filter: grayscale(0%); transform: scale(1.1); }
 
-        /* 2. Botón Innovador "Conectemos" */
+        /* Botón CÁPSULA Conectemos (Solución a Círculo Cian) */
         .floating-connect {
-            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 30px;
-            background: var(--electric-cyan); color: var(--dark-bg); display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 20px rgba(45, 212, 191, 0.4); transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            z-index: 900; overflow: hidden; white-space: nowrap; text-decoration: none; pointer-events: auto;
+            position: fixed; bottom: 30px; right: 30px; border-radius: 50px; padding: 12px 25px;
+            background: var(--electric-cyan); color: var(--dark-bg); display: flex; align-items: center; justify-content: center; gap: 10px;
+            box-shadow: 0 0 20px rgba(45, 212, 191, 0.4); transition: all 0.3s ease; z-index: 900; text-decoration: none; pointer-events: auto;
+            animation: pulseGlow 2s infinite ease-in-out;
         }
-        .floating-connect:hover { width: 210px; background: #20b8a5; box-shadow: 0 0 30px rgba(45, 212, 191, 0.6);}
-        .floating-connect .icon { font-size: 1.5rem; flex-shrink: 0; line-height: 0; }
-        .floating-connect .text { opacity: 0; margin-left: 12px; font-weight: 900; text-transform: uppercase; font-family: 'Montserrat', sans-serif; transition: opacity 0.3s; letter-spacing: 1px;}
-        .floating-connect:hover .text { opacity: 1; }
+        @keyframes pulseGlow { 0% { box-shadow: 0 0 15px rgba(45, 212, 191, 0.4); } 50% { box-shadow: 0 0 30px rgba(45, 212, 191, 0.8); } 100% { box-shadow: 0 0 15px rgba(45, 212, 191, 0.4); } }
+        .floating-connect:hover { transform: translateY(-5px); background: #20b8a5; }
+        .floating-connect .icon { font-size: 1.5rem; line-height: 0; }
+        .floating-connect .text { font-weight: 900; text-transform: uppercase; font-family: 'Montserrat', sans-serif; letter-spacing: 1px;}
 
-        /* 3. Botón Flotante Volver Arriba */
+        /* Botón Volver Arriba TECH SVG */
         .back-to-top {
-            position: fixed; bottom: 105px; right: 37px; width: 45px; height: 45px; border-radius: 50%;
-            background: rgba(2, 6, 23, 0.8); border: 1px solid var(--electric-cyan); color: var(--electric-cyan);
-            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-            opacity: 0; pointer-events: none; transition: 0.3s; z-index: 899; cursor: pointer; backdrop-filter: blur(5px);
+            position: fixed; bottom: 100px; right: 40px; width: 45px; height: 45px; border-radius: 8px;
+            background: rgba(2, 6, 23, 0.9); border: 1px solid var(--electric-cyan); color: var(--electric-cyan);
+            display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s; z-index: 899; cursor: pointer; backdrop-filter: blur(5px);
         }
+        .back-to-top svg { width: 24px; height: 24px; fill: none; stroke: var(--electric-cyan); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: all 0.3s; }
         .back-to-top.visible { opacity: 1; pointer-events: auto; }
-        .back-to-top:hover { background: var(--electric-cyan); color: var(--dark-bg); transform: translateY(-3px); }
+        .back-to-top:hover { background: var(--electric-cyan); box-shadow: 0 0 15px var(--electric-cyan); }
+        .back-to-top:hover svg { stroke: var(--dark-bg); transform: translateY(-3px); }
 
         /* --- SUBTÍTULO Y FILTROS --- */
         header p { color: var(--electric-cyan); font-weight: 600; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 2px;}
         .filter-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 10px 5% 50px; position: relative; z-index: 10;}
-        .filter-btn {
-            background: transparent; border: 2px solid rgba(255,255,255,0.2); color: var(--text-main); 
-            padding: 12px 30px; border-radius: 50px; cursor: pointer; font-family: 'Montserrat', sans-serif; 
-            font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;
-        }
-        .filter-btn:hover, .filter-btn.active {
-            background-color: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan);
-            transform: translateY(-3px); box-shadow: 0 10px 20px rgba(45, 212, 191, 0.15);
-        }
+        .filter-btn { background: transparent; border: 2px solid rgba(255,255,255,0.2); color: var(--text-main); padding: 12px 30px; border-radius: 50px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; }
+        .filter-btn:hover, .filter-btn.active { background-color: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(45, 212, 191, 0.15); }
 
         /* ====================================================
            MOTOR DE GRILLA
         ==================================================== */
-        .portfolio-grid {
-            display: grid; grid-template-columns: 1fr; gap: 2vw; 
-            padding: 0 5% 100px; width: 100%; max-width: 2500px; margin: 0 auto; transition: all 0.5s ease;
-            position: relative; z-index: 5;
-        }
+        .portfolio-grid { display: grid; grid-template-columns: 1fr; gap: 2vw; padding: 0 5% 100px; width: 100%; max-width: 2500px; margin: 0 auto; transition: all 0.5s ease; position: relative; z-index: 5; }
         .media-item.hide { display: none !important; }
-        
-        .media-item {
-            position: relative; aspect-ratio: 16 / 9; border-radius: 16px; 
-            overflow: hidden; cursor: pointer; border: 1px solid rgba(45, 212, 191, 0.15);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 8px rgba(45, 212, 191, 0.05);
-            background-color: var(--card-bg); transition: all var(--transition-speed) ease;
-        }
-        
-        .portfolio-grid.masonry-mode { display: block; -webkit-column-count: 1; -moz-column-count: 1; column-count: 1; -webkit-column-gap: 2vw; -moz-column-gap: 2vw; column-gap: 2vw; }
-        .portfolio-grid.masonry-mode .media-item { display: inline-block; width: 100%; margin-bottom: 2vw; aspect-ratio: auto; -webkit-column-break-inside: avoid; page-break-inside: avoid; break-inside: avoid; }
+        .media-item { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; cursor: pointer; border: 1px solid rgba(45, 212, 191, 0.15); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 8px rgba(45, 212, 191, 0.05); background-color: var(--card-bg); transition: all var(--transition-speed) ease; }
+        .portfolio-grid.masonry-mode { display: block; -webkit-column-count: 1; column-count: 1; column-gap: 2vw; }
+        .portfolio-grid.masonry-mode .media-item { display: inline-block; width: 100%; margin-bottom: 2vw; aspect-ratio: auto; break-inside: avoid; }
         .portfolio-grid.masonry-mode .yt-thumbnail, .portfolio-grid.masonry-mode .hc-img { position: relative; width: 100%; height: auto; }
 
         .media-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.25; pointer-events: none; z-index: 4; }
@@ -192,7 +148,7 @@
         .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
         
         /* ====================================================
-           AUDIO
+           AUDIO (WEB AUDIO API)
         ==================================================== */
         .media-item.audio { border: none; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; cursor: default; transform: none !important; background-color: var(--dark-bg); }
         @keyframes rotateGlow { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
@@ -214,15 +170,13 @@
         /* --- MEDIA QUERIES GLOBALES --- */
         @media (min-width: 768px) {
             header h1 { font-size: 4rem; } .media-item h2 { font-size: 2.5rem; }
-            .portfolio-grid.masonry-mode { -webkit-column-count: 2; -moz-column-count: 2; column-count: 2; }
+            .portfolio-grid.masonry-mode { -webkit-column-count: 2; column-count: 2; }
             body.is-loading #title-wrapper { transform: translateY(calc(50vh - 60px)) scale(1.6); }
         }
         @media (min-width: 1024px) {
-            header { padding: 40px 5% 20px; }
-            header h1 { font-size: 5rem; letter-spacing: 5px; }
-            header p { font-size: 1.4rem; letter-spacing: 3px; }
+            header { padding: 40px 5% 20px; } header h1 { font-size: 5rem; letter-spacing: 5px; }
             .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 3vw; }
-            .portfolio-grid.masonry-mode { -webkit-column-count: 3; -moz-column-count: 3; column-count: 3; }
+            .portfolio-grid.masonry-mode { -webkit-column-count: 3; column-count: 3; }
             .media-item h2 { font-size: 3rem; } .media-item p { font-size: 1.1rem; }
             .media-overlay { padding: 80px 50px 50px; }
             body.is-loading #title-wrapper { transform: translateY(calc(50vh - 80px)) scale(1.8); }
@@ -255,19 +209,6 @@
         .client-logo-unilever:hover { transform: scale(1.7); } 
         .client-logo-comfandi { transform: scale(1.3); transform-origin: center center; }
         .client-logo-comfandi:hover { transform: scale(1.4); }
-
-        @media (max-width: 768px) {
-            .clients-section { padding: 40px 5% 60px; }
-            .clients-section h3 { font-size: 1rem; margin-bottom: 30px; }
-            .marquee-track { gap: 40px; }
-            .client-logo { height: 40px; }
-            .client-logo-unilever { transform: scale(1.4); margin: 0 5px; }
-            .client-logo-comfandi { transform: scale(1.2); }
-            /* Reposicionamos los botones flotantes en móvil para no estorbar */
-            .lang-toggle { bottom: 20px; left: 20px; padding: 6px 10px;}
-            .floating-connect { bottom: 20px; right: 20px; width: 50px; height: 50px;}
-            .back-to-top { bottom: 85px; right: 25px; width: 40px; height: 40px; }
-        }
         @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 30px)); } }
 
         /* --- CONTACTO --- */
@@ -286,13 +227,23 @@
         .social-links a { color: var(--text-muted); text-decoration: none; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s;}
         .social-links a:hover { color: var(--electric-cyan); }
 
-        /* BÓVEDA CORPORATIVA */
-        .vault-section { background-color: var(--card-bg); padding: 100px 5% 150px; text-align: center; }
-        .vault-container { max-width: 700px; margin: 0 auto; }
-        .vault-container h3 { font-size: 2.2rem; margin-bottom: 20px; color: var(--text-main); }
-        .vault-container p { color: var(--text-muted); margin-bottom: 35px; font-size: 1.1rem; }
-        .vault-btn { background: transparent; color: var(--electric-cyan); border: 2px solid var(--electric-cyan); padding: 15px 40px; font-weight: 700; border-radius: 5px; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;}
-        .vault-btn:hover { background: var(--electric-cyan); color: var(--dark-bg); }
+        /* REDISEÑO BÓVEDA CORPORATIVA (MÁS LLAMATIVA) */
+        .vault-section { 
+            background: linear-gradient(180deg, var(--card-bg) 0%, #060e22 100%); 
+            padding: 120px 5% 150px; text-align: center; position: relative; border-top: 1px solid rgba(45, 212, 191, 0.1);
+        }
+        .vault-container { 
+            max-width: 800px; margin: 0 auto; position: relative; z-index: 2; padding: 60px 40px;
+            border: 1px solid rgba(45, 212, 191, 0.3); border-radius: 20px;
+            background: rgba(2, 6, 23, 0.6); box-shadow: 0 0 50px rgba(45, 212, 191, 0.05) inset, 0 20px 50px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+        }
+        .vault-icon-glow { font-size: 4rem; margin-bottom: 20px; display: inline-block; filter: drop-shadow(0 0 15px var(--electric-cyan)); animation: float 3s ease-in-out infinite;}
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        .vault-container h3 { font-size: 2.5rem; margin-bottom: 20px; color: var(--electric-cyan); letter-spacing: 2px;}
+        .vault-container p { color: var(--text-main); margin-bottom: 40px; font-size: 1.15rem; line-height: 1.6;}
+        .vault-btn { background: var(--electric-cyan); color: var(--dark-bg); border: none; padding: 18px 50px; font-weight: 900; border-radius: 50px; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px rgba(45, 212, 191, 0.3);}
+        .vault-btn:hover { background: #20b8a5; transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.5); }
 
         /* --- MODALES --- */
         .modal-fullscreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2,6,23,0.98); z-index: 10000; display: none; justify-content: center; align-items: center; padding: 2% 5%; }
@@ -319,9 +270,25 @@
         .legal-warning { margin-bottom: 15px; padding: 15px; background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--danger-red); font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
         .legal-warning strong { color: var(--danger-red); }
         .error-message { color: var(--danger-red); font-size: 0.9rem; margin-bottom: 15px; display: none; font-weight: 600; padding: 10px; background: rgba(239, 68, 68, 0.1); border-radius: 6px;}
+
+        /* RESPONSIVE MÓVIL */
+        @media (max-width: 768px) {
+            .clients-section { padding: 40px 5% 60px; }
+            .marquee-track { gap: 40px; }
+            .client-logo { height: 40px; }
+            .client-logo-unilever { transform: scale(1.4); margin: 0 5px; }
+            .client-logo-comfandi { transform: scale(1.2); }
+            .lang-toggle { bottom: 20px; left: 20px; padding: 6px 10px;}
+            .floating-connect { bottom: 20px; right: 20px; padding: 10px 20px;}
+            .back-to-top { bottom: 85px; right: 25px; width: 40px; height: 40px; }
+            .vault-container { padding: 40px 20px; }
+            .header-vault-btn { top: 15px; right: 15px; font-size: 0.8rem; padding: 8px 12px; }
+        }
     </style>
 </head>
 <body class="is-loading">
+
+    <button class="header-vault-btn" onclick="openVaultModal()" data-i18n="btn_vault_header">🔒 Acceso Bóveda</button>
 
     <div class="lang-toggle" onclick="toggleLanguage()">
         <span id="lang-es" class="lang-option active">🇪🇸</span>
@@ -333,7 +300,9 @@
         <span class="text" data-i18n="btn_connect">CONECTEMOS</span>
     </a>
 
-    <div class="back-to-top" id="backToTopBtn" onclick="window.scrollTo(0,0)">↑</div>
+    <div class="back-to-top" id="backToTopBtn" onclick="window.scrollTo(0,0)">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </div>
 
     <div class="splash-panel top"></div>
     <div class="splash-panel bottom"></div>
@@ -361,7 +330,7 @@
             <img src="https://img.youtube.com/vi/0ivRf3-IvGs/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Clara">
             <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/0ivRf3-IvGs?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=0ivRf3-IvGs" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>AI Generative Strategy</p><h2>1. Proyecto Clara</h2></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_clara">Estrategia Generativa IA</p><h2 data-i18n="vid_tit_clara">Proyecto Clara</h2></div>
         </div>
 
         <div class="media-item audiovisual" onclick="openYoutubeModal('ntMooW2DwVw')">
@@ -369,7 +338,7 @@
             <img src="https://img.youtube.com/vi/ntMooW2DwVw/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Showreel">
             <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/ntMooW2DwVw?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=ntMooW2DwVw" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Creative Direction</p><h2>2. Showreel 2026</h2></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_showreel">Dirección Creativa</p><h2 data-i18n="vid_tit_showreel">Showreel 2026</h2></div>
         </div>
 
         <div class="media-item audiovisual" onclick="openYoutubeModal('kZLIan0Hr-E')">
@@ -377,7 +346,7 @@
             <img src="https://img.youtube.com/vi/kZLIan0Hr-E/hqdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Kapo Test">
             <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/kZLIan0Hr-E?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=kZLIan0Hr-E" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Color Grading</p><h2>3. Color Test: KAPO</h2></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_kapo">Etalonaje</p><h2 data-i18n="vid_tit_kapo">Prueba de Color: KAPO</h2></div>
         </div>
 
         <div class="media-item audiovisual" onclick="openYoutubeModal('NUm0rt_XRkQ')">
@@ -385,7 +354,7 @@
             <img src="https://img.youtube.com/vi/NUm0rt_XRkQ/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Vallecaucanos">
             <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/NUm0rt_XRkQ?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=NUm0rt_XRkQ" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Event Coverage</p><h2>4. Vallecaucanos</h2></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_evento">Cobertura de Evento</p><h2 data-i18n="vid_tit_evento">Vallecaucanos</h2></div>
         </div>
 
         <div class="media-item audiovisual" onclick="openYoutubeModal('3GLjAoBXZV8')">
@@ -393,7 +362,7 @@
             <img src="https://img.youtube.com/vi/3GLjAoBXZV8/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="BTS">
             <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/3GLjAoBXZV8?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=3GLjAoBXZV8" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_post">Postproducción</p><h2>5. Mauna (BTS)</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_post">Postproducción</p><h2 data-i18n="vid_tit_mauna">Mauna (Detrás de Cámaras)</h2></div>
         </div>
 
         <div class="media-item audiovisual" onclick="openYoutubeModal('TLjHcX4UPHg')">
@@ -401,7 +370,7 @@
             <img src="https://img.youtube.com/vi/TLjHcX4UPHg/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Unichef 1">
             <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/TLjHcX4UPHg?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=TLjHcX4UPHg" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>E-Learning</p><h2>6. UniChef: Cheesecake</h2></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2>UniChef: Cheesecake</h2></div>
         </div>
 
         <div class="media-item audiovisual" onclick="openYoutubeModal('SRH1ImvnXFI')">
@@ -409,7 +378,7 @@
             <img src="https://img.youtube.com/vi/SRH1ImvnXFI/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Unichef 2">
             <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/SRH1ImvnXFI?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=SRH1ImvnXFI" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>E-Learning</p><h2>7. UniChef: Pamplona</h2></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2>UniChef: Pamplona</h2></div>
         </div>
 
         <div class="media-item audiovisual" onclick="openYoutubeModal('rtvkiEu0xyo')">
@@ -417,7 +386,7 @@
             <img src="https://img.youtube.com/vi/rtvkiEu0xyo/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Unichef 3">
             <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/rtvkiEu0xyo?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=rtvkiEu0xyo" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>E-Learning</p><h2>8. UniChef: Postre</h2></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2>UniChef: Postre</h2></div>
         </div>
 
         <div class="media-item audiovisual" onclick="openYoutubeModal('CGccljx4QxQ')">
@@ -425,7 +394,7 @@
             <img src="https://img.youtube.com/vi/CGccljx4QxQ/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Lyric">
             <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/CGccljx4QxQ?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=CGccljx4QxQ" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Typography & Motion Graphics</p><h2>9. Lyric Video</h2></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_lyric">Tipografía & Motion Graphics</p><h2 data-i18n="vid_tit_lyric">Video Lyrical</h2></div>
         </div>
 
         <div class="media-item fotografia" onclick="openGalleryModal('food')">
@@ -436,7 +405,7 @@
                 <img src="https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png" class="hc-img" loading="lazy" alt="Food 3">
             </div>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_artdir">Commercial Art Direction</p><h2>Food Styling</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_artdir">Dirección de Arte Comercial</p><h2>Food Styling</h2></div>
         </div>
 
         <div class="media-item fotografia" onclick="openGalleryModal('modelos')">
@@ -449,7 +418,7 @@
                 <img src="https://static.wixstatic.com/media/14f4fb_28502a138679481f89b571e599cf0fc4~mv2.jpg" class="hc-img" loading="lazy" alt="Modelos 5">
             </div>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_fashion">Fashion Book & Beauty</p><h2>Book Modelos</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_fashion">Fashion Book & Belleza</p><h2 data-i18n="tit_fashion">Book Modelos</h2></div>
         </div>
 
         <div class="media-item fotografia" onclick="openGalleryModal('producto')">
@@ -459,7 +428,7 @@
                 <img src="https://static.wixstatic.com/media/14f4fb_09129e6b1cc648ed8f0dd806ea46ac95~mv2.jpg" class="hc-img" loading="lazy" alt="Producto 2">
             </div>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_product">B2C Commercial Product</p><h2 data-i18n="title_product">Fotografía de Producto</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_product">Fotografía Comercial B2C</p><h2 data-i18n="title_product">Fotografía de Producto</h2></div>
         </div>
 
         <div class="media-item fotografia" onclick="openGalleryModal('retratos')">
@@ -485,7 +454,7 @@
                 <img src="https://static.wixstatic.com/media/14f4fb_f2b9a122bb454eb18d439cf4aa55f621~mv2.jpg" class="hc-img" loading="lazy" alt="Sabrina 5">
             </div>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Editorial Photography</p><h2>Actriz: Sabrina</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_editorial">Fotografía Editorial</p><h2 data-i18n="tit_sabrina">Actriz: Sabrina</h2></div>
         </div>
 
         <div class="media-item fotografia" onclick="openGalleryModal('kapo')">
@@ -496,7 +465,7 @@
                 <img src="https://static.wixstatic.com/media/14f4fb_c3a9c9a9eeea40e5a1b147b81234a83a~mv2_d_3662_4000_s_4_2.jpg" class="hc-img" loading="lazy" alt="Kapo 3">
             </div>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_music">Industria Musical</p><h2>KAPO (Prensa)</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_press">Retrato Promocional (Prensa)</p><h2 data-i18n="tit_kapo">Artista: KAPO</h2></div>
         </div>
 
         <div class="media-item fotografia" onclick="openGalleryModal('emergentes')">
@@ -507,7 +476,7 @@
                 <img src="https://static.wixstatic.com/media/14f4fb_6a425cecae704f25aca53f67560a9169~mv2_d_6000_4000_s_4_2.jpg" class="hc-img" loading="lazy" alt="Emergentes 3">
             </div>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Casting Visual</p><h2 data-i18n="title_emerging">Artistas Emergentes</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_casting">Casting Visual</p><h2 data-i18n="title_emerging">Artistas Emergentes</h2></div>
         </div>
 
         <div class="media-item fotografia" onclick="openGalleryModal('experimental')">
@@ -520,7 +489,7 @@
                 <img src="https://static.wixstatic.com/media/14f4fb_5f6933f6ec6348999c18eb538412b6b8~mv2.jpg" class="hc-img" loading="lazy" alt="Experimental 5">
             </div>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_exp">Exploración de Luz</p><h2>Experimental</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_exp">Exploración de Luz</p><h2 data-i18n="tit_exp">Experimental</h2></div>
         </div>
 
         <div class="media-item fotografia" onclick="openGalleryModal('naturaleza')">
@@ -534,119 +503,119 @@
                 <img src="https://static.wixstatic.com/media/14f4fb_6ed08e70b70a40ca8ed663a1067d5485~mv2_d_6000_4000_s_4_2.jpg" class="hc-img" loading="lazy" alt="Naturaleza 6">
             </div>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Landscape / Fine Art</p><h2 data-i18n="title_nature">Naturaleza</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_land">Paisaje y Bellas Artes</p><h2 data-i18n="title_nature">Naturaleza</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_1')">
             <div class="media-texture"></div>
-            <img src="Banner web Jdmaray Cali SPA.jpg" class="yt-thumbnail" loading="lazy" style="object-fit: cover;" alt="Banner web Jdmaray Cali SPA">
+            <img src="Banner web Jdmaray Cali SPA.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Banner web Jdmaray Cali SPA">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Banner Web</p><h2>Jdmaray Cali SPA</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_banner">Banner Web</p><h2>Jdmaray Cali SPA</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_2')">
             <div class="media-texture"></div>
-            <img src="Banner web para Homecare Ebenezer.jpg" class="yt-thumbnail" loading="lazy" style="object-fit: cover;" alt="Banner Homecare Ebenezer">
+            <img src="Banner web para Homecare Ebenezer.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Banner Homecare Ebenezer">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Banner Web</p><h2>Homecare Ebenezer</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_banner">Banner Web</p><h2>Homecare Ebenezer</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_3')">
             <div class="media-texture"></div>
-            <img src="portada_mauna.png" class="yt-thumbnail" loading="lazy" style="object-fit: cover;" alt="Portada Mauna">
+            <img src="portada_mauna.png" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Portada Mauna">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Portada Sencillo</p><h2>Mauna (Suave)</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_cover">Diseño de Portada Musical</p><h2 data-i18n="mauna_title">Portada de la canción Suave del artista Mauna</h2></div>
         </div>
         
         <div class="media-item diseno" onclick="openGalleryModal('diseno_4')">
             <div class="media-texture"></div>
-            <img src="vinilo_xbox.jpg" class="yt-thumbnail" loading="lazy" style="object-fit: cover;" alt="Vinilo Xbox">
+            <img src="vinilo_xbox.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Vinilo Xbox">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Diseño de Vinilo</p><h2>Xbox: Gears of War</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_vinyl">Diseño de Vinilo</p><h2>Xbox: Gears of War</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_5')">
             <div class="media-texture"></div>
-            <img src="logo_navideno.jpeg" class="yt-thumbnail" loading="lazy" style="object-fit: cover;" alt="Logo Navideño">
+            <img src="logo_navideno.jpeg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Logo Navideño">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Identidad Estacional</p><h2>Logo Navideño</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_id">Identidad Estacional</p><h2 data-i18n="tit_navidad">Logo Navideño</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_6')">
             <div class="media-texture"></div>
-            <img src="Ilustracion vectorial Koala con gafas y pipa.png" class="yt-thumbnail" loading="lazy" style="object-fit: cover;" alt="Ilustración Koala">
+            <img src="Ilustracion vectorial Koala con gafas y pipa.png" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Ilustración Koala">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Ilustración Vectorial</p><h2>Koala</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_vector">Ilustración Vectorial</p><h2 data-i18n="tit_koala">Koala</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_7')">
             <div class="media-texture"></div>
-            <img src="Logo Another Reality VR.png" class="yt-thumbnail" loading="lazy" style="object-fit: cover;" alt="Another Reality VR">
+            <img src="Logo Another Reality VR.png" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Another Reality VR">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Branding</p><h2>Another Reality VR</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_8')">
             <div class="media-texture"></div>
-            <img src="Logo Sulmajafra venta de productos de belleza.jpg" class="yt-thumbnail" loading="lazy" style="object-fit: cover;" alt="Logo Sulmajafra">
+            <img src="Logo Sulmajafra venta de productos de belleza.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Logo Sulmajafra">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Branding Corporativo</p><h2>Sulmajafra</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_corp">Branding Corporativo</p><h2>Sulmajafra</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_9')">
             <div class="media-texture"></div>
-            <img src="ruta_sabor.jpg" class="yt-thumbnail" loading="lazy" style="object-fit: cover;" alt="La Ruta del Sabor">
+            <img src="ruta_sabor.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="La Ruta del Sabor">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Diseño Editorial</p><h2>La Ruta del Sabor</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_edit">Diseño Editorial</p><h2>La Ruta del Sabor</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_10')">
             <div class="media-texture"></div>
-            <img src="mosaico_colegio.jpg" class="yt-thumbnail" loading="lazy" style="object-fit: cover;" alt="Mosaico Conmemorativo">
+            <img src="mosaico_colegio.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Mosaico Conmemorativo">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Mosaico Digital</p><h2>Colegio Parroquial</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_mosaic">Mosaico Digital</p><h2 data-i18n="tit_school">Colegio Parroquial</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_11')">
             <div class="media-texture"></div>
-            <img src="Pieza Conversatorio Tuberculosis Hospital y Alcaldia de Yumbo.jpg" class="yt-thumbnail" loading="lazy" style="object-fit: cover;" alt="Alcaldía de Yumbo">
+            <img src="Pieza Conversatorio Tuberculosis Hospital y Alcaldia de Yumbo.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Alcaldía de Yumbo">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Social Media</p><h2>Alcaldía de Yumbo</h2></div>
+            <div class="media-overlay"><p>Social Media</p><h2 data-i18n="tit_yumbo">Alcaldía de Yumbo</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_12')">
             <div class="media-texture"></div>
-            <img src="Pieza de servicio de Tonificacion corporal para Agua Marina esthetic center.jpg" class="yt-thumbnail" loading="lazy" style="object-fit: cover;" alt="Agua Marina Esthetic">
+            <img src="Pieza de servicio de Tonificacion corporal para Agua Marina esthetic center.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Agua Marina Esthetic">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Social Media</p><h2>Agua Marina Esthetic</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_13')">
             <div class="media-texture"></div>
-            <img src="Pieza invitacion de encuentro cultural para la alcaldia de Cali.jpg" class="yt-thumbnail" loading="lazy" style="object-fit: cover;" alt="Alcaldía de Cali">
+            <img src="Pieza invitacion de encuentro cultural para la alcaldia de Cali.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Alcaldía de Cali">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Diseño Publicitario</p><h2>Alcaldía de Cali</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_ad">Diseño Publicitario</p><h2 data-i18n="tit_cali">Alcaldía de Cali</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_14')">
             <div class="media-texture"></div>
-            <img src="Pieza promocional de capacitacion para programa de afiliados de Virtuosa venta de ropa para comunidades religiosas.jpg" class="yt-thumbnail" loading="lazy" style="object-fit: cover;" alt="Virtuosa">
+            <img src="Pieza promocional de capacitacion para programa de afiliados de Virtuosa venta de ropa para comunidades religiosas.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Virtuosa">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Diseño Promocional</p><h2>Virtuosa</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_promo">Diseño Promocional</p><h2>Virtuosa</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_15')">
             <div class="media-texture"></div>
-            <img src="noches_feria.jpg" class="yt-thumbnail" loading="lazy" style="object-fit: cover;" alt="Noches D'Feria">
+            <img src="noches_feria.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Noches D'Feria">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Diseño Promocional</p><h2>Noches D'Feria</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_promo">Diseño Promocional</p><h2>Noches D'Feria</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_16')">
             <div class="media-texture"></div>
-            <img src="volante_vape.png" class="yt-thumbnail" loading="lazy" style="object-fit: cover;" alt="Vape Expo 2020">
+            <img src="volante_vape.png" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Vape Expo 2020">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Diseño de Volante</p><h2>Vape Expo 2020</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_flyer">Diseño de Volante</p><h2>Vape Expo 2020</h2></div>
         </div>
 
         <div class="media-item audio">
@@ -656,7 +625,7 @@
                 <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Alone</h2>
-                    <p>Acoustic / Cinematic Soul</p>
+                    <p data-i18n="aud_alone">Acústico / Soul Cinematográfico</p>
                 </div>
                 <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_cec3885e857446d5bb03641eed32c0d8.mp3" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
@@ -675,7 +644,7 @@
                 <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Trapped</h2>
-                    <p>Tension / Action Percussion</p>
+                    <p data-i18n="aud_trapped">Tensión / Percusión de Acción</p>
                 </div>
                 <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_4dd9a047e1694fd799a5de974a745fe1.mp3" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
@@ -694,7 +663,7 @@
                 <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Rock Your Reel</h2>
-                    <p>Alternative Rock / High Energy</p>
+                    <p data-i18n="aud_rock">Rock Alternativo / Alta Energía</p>
                 </div>
                 <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_6a5c635e24cd44c59d95766e10c3ae17.mp3" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
@@ -713,7 +682,7 @@
                 <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Rain</h2>
-                    <p>Ambient / Uplifting Synthwave</p>
+                    <p data-i18n="aud_rain">Ambient / Synthwave Inspirador</p>
                 </div>
                 <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_f898bea04df24d778cc63caa54c0e8d9.mp3" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
@@ -732,7 +701,7 @@
                 <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Hades</h2>
-                    <p>Darkwave / Industrial Synth</p>
+                    <p data-i18n="aud_hades">Darkwave / Synth Industrial</p>
                 </div>
                 <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_c3a196ceaa134db4bf63c7c7ead10845.wav" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
@@ -751,7 +720,7 @@
                 <div class="media-texture"></div>
                 <div class="audio-text-content">
                     <h2>Sauvage</h2>
-                    <p>Global Beat / Urban Fusion</p>
+                    <p data-i18n="aud_sauvage">Beat Global / Fusión Urbana</p>
                 </div>
                 <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_84e760602c584506aeb3a5d417a9dcf1.mp3" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
@@ -769,7 +738,7 @@
         <h3 data-i18n="ecosystem_title">Ecosistema Creativo</h3>
         <div class="ecosystem-brands">
             <a href="https://automatas.co" target="_blank" class="brand-btn-clean">
-                <img src="MARCA DE AGUA H COLOR.png" alt="Autómatas" class="brand-logo-img automatas-logo">
+                <img src="MARCA DE AGUA H COLOR.png" alt="Autómatas" class="brand-logo-img automatas-logo fallback-img">
             </a>
         </div>
     </section>
@@ -778,23 +747,23 @@
         <h3 data-i18n="clients_title">Empresas y Aliados</h3>
         <div class="marquee-container">
             <div class="marquee-track">
-                <img src="Logo Unilever.png" alt="Unilever" class="client-logo client-logo-unilever" onclick="openVaultModal()">
-                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo" onclick="openVaultModal()">
-                <img src="Logo derco.png" alt="Derco" class="client-logo" onclick="openVaultModal()">
-                <img src="Logo espy.png" alt="Espy" class="client-logo" onclick="openVaultModal()">
-                <img src="Logo fanalca.png" alt="Fanalca" class="client-logo" onclick="openVaultModal()">
-                <img src="Logo eficacia.png" alt="Eficacia" class="client-logo" onclick="openVaultModal()">
-                <img src="Logo comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi" onclick="openVaultModal()">
-                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo" onclick="openVaultModal()">
+                <img src="Logo Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img" onclick="openVaultModal()">
+                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img" onclick="openVaultModal()">
+                <img src="Logo derco.png" alt="Derco" class="client-logo fallback-img" onclick="openVaultModal()">
+                <img src="Logo espy.png" alt="Espy" class="client-logo fallback-img" onclick="openVaultModal()">
+                <img src="Logo fanalca.png" alt="Fanalca" class="client-logo fallback-img" onclick="openVaultModal()">
+                <img src="Logo eficacia.png" alt="Eficacia" class="client-logo fallback-img" onclick="openVaultModal()">
+                <img src="Logo comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img" onclick="openVaultModal()">
+                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img" onclick="openVaultModal()">
                 
-                <img src="Logo Unilever.png" alt="Unilever" class="client-logo client-logo-unilever" onclick="openVaultModal()">
-                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo" onclick="openVaultModal()">
-                <img src="Logo derco.png" alt="Derco" class="client-logo" onclick="openVaultModal()">
-                <img src="Logo espy.png" alt="Espy" class="client-logo" onclick="openVaultModal()">
-                <img src="Logo fanalca.png" alt="Fanalca" class="client-logo" onclick="openVaultModal()">
-                <img src="Logo eficacia.png" alt="Eficacia" class="client-logo" onclick="openVaultModal()">
-                <img src="Logo comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi" onclick="openVaultModal()">
-                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo" onclick="openVaultModal()">
+                <img src="Logo Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img" onclick="openVaultModal()">
+                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img" onclick="openVaultModal()">
+                <img src="Logo derco.png" alt="Derco" class="client-logo fallback-img" onclick="openVaultModal()">
+                <img src="Logo espy.png" alt="Espy" class="client-logo fallback-img" onclick="openVaultModal()">
+                <img src="Logo fanalca.png" alt="Fanalca" class="client-logo fallback-img" onclick="openVaultModal()">
+                <img src="Logo eficacia.png" alt="Eficacia" class="client-logo fallback-img" onclick="openVaultModal()">
+                <img src="Logo comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img" onclick="openVaultModal()">
+                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img" onclick="openVaultModal()">
             </div>
         </div>
     </section>
@@ -819,7 +788,7 @@
 
     <section class="vault-section reveal-content">
         <div class="vault-container">
-            <div style="font-size: 3.5rem; margin-bottom: 15px;">🔒</div>
+            <div class="vault-icon-glow">🔒</div>
             <h3 data-i18n="vault_title">Corporate Vault</h3>
             <p data-i18n="vault_desc">Mis diseños de E-learning e infografías para <strong>Unilever, Alquería y Derco</strong> están sujetos a NDA. Si usted es un reclutador autorizado, solicite la llave de acceso.</p>
             <button class="vault-btn" onclick="openVaultModal()" data-i18n="vault_btn">Solicitar Acceso Seguro</button>
@@ -868,16 +837,64 @@
 
     <script>
         // ==========================================
-        // MOTOR DE IDIOMAS (i18n)
+        // SCRIPT DE FALLBACK PARA IMÁGENES (ANTI-ERRORES GITHUB)
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.fallback-img').forEach(img => {
+                img.addEventListener('error', function() {
+                    if (!this.dataset.retried) {
+                        this.dataset.retried = "true";
+                        // Si falla un .jpg, intenta con .jpeg, .JPG, o .png. Magia pura.
+                        if (this.src.includes('.jpg')) this.src = this.src.replace('.jpg', '.JPG');
+                        else if (this.src.includes('.JPG')) this.src = this.src.replace('.JPG', '.jpeg');
+                        else if (this.src.includes('.jpeg')) this.src = this.src.replace('.jpeg', '.png');
+                        else if (this.src.includes('.png')) this.src = this.src.replace('.png', '.PNG');
+                        else if (this.src.includes('.PNG')) this.src = this.src.replace('.PNG', '.jpg');
+                    }
+                });
+            });
+        });
+
+        // ==========================================
+        // MOTOR DE IDIOMAS (i18n) TRADUCCIÓN ABSOLUTA
         // ==========================================
         const translations = {
             es: {
-                subtitle: "Creative Technologist | Portafolio 360°",
+                head_title: "Alejandro Vega | Director Creativo & Creative Technologist",
+                btn_vault_header: "🔒 Acceso Bóveda", subtitle: "Creative Technologist | Portafolio 360°",
                 btn_all: "Todo", btn_video: "Audiovisual", btn_photo: "Fotografía", btn_design: "Diseño Web / Gráfico", btn_audio: "Diseño Sonoro",
-                cat_artdir: "Dirección de Arte Comercial", cat_fashion: "Fashion Book & Belleza", cat_product: "Fotografía Comercial B2C", 
-                title_product: "Fotografía de Producto", cat_lighting: "Iluminación & Técnica", title_portraits: "Retratos de Estudio",
-                cat_music: "Industria Musical", title_emerging: "Artistas Emergentes", cat_exp: "Exploración de Luz", title_nature: "Naturaleza",
-                cat_post: "Postproducción",
+                
+                // Videos
+                vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara",
+                vid_cat_showreel: "Dirección Creativa", vid_tit_showreel: "Showreel 2026",
+                vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO",
+                vid_cat_evento: "Cobertura de Evento", vid_tit_evento: "Vallecaucanos",
+                vid_cat_chef: "Programa Gastronómico Online",
+                vid_cat_lyric: "Tipografía & Motion Graphics", vid_tit_lyric: "Video Lyrical",
+                
+                // Fotos & Diseño
+                cat_post: "Postproducción", vid_tit_mauna: "Mauna (Detrás de Cámaras)",
+                cat_artdir: "Dirección de Arte Comercial", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", 
+                cat_product: "Fotografía Comercial B2C", title_product: "Fotografía de Producto", 
+                cat_lighting: "Iluminación & Técnica", title_portraits: "Retratos de Estudio",
+                cat_editorial: "Fotografía Editorial", tit_sabrina: "Actriz: Sabrina",
+                cat_press: "Retrato Promocional (Prensa)", tit_kapo: "Artista: KAPO",
+                cat_casting: "Casting Visual", title_emerging: "Artistas Emergentes", 
+                cat_exp: "Exploración de Luz", tit_exp: "Experimental",
+                cat_land: "Paisaje y Bellas Artes", title_nature: "Naturaleza",
+                cat_banner: "Banner Web", cat_cover: "Diseño de Portada Musical", mauna_title: "Portada de la canción Suave del artista Mauna",
+                cat_vinyl: "Diseño de Vinilo", cat_id: "Identidad Estacional", tit_navidad: "Logo Navideño",
+                cat_vector: "Ilustración Vectorial", tit_koala: "Koala",
+                cat_corp: "Branding Corporativo", cat_edit: "Diseño Editorial", cat_mosaic: "Mosaico Digital", tit_school: "Colegio Parroquial",
+                tit_yumbo: "Alcaldía de Yumbo", cat_ad: "Diseño Publicitario", tit_cali: "Alcaldía de Cali",
+                cat_promo: "Diseño Promocional", cat_flyer: "Diseño de Volante",
+                
+                // Audio
+                aud_alone: "Acústico / Soul Cinematográfico", aud_trapped: "Tensión / Percusión de Acción",
+                aud_rock: "Rock Alternativo / Alta Energía", aud_rain: "Ambient / Synthwave Inspirador",
+                aud_hades: "Darkwave / Synth Industrial", aud_sauvage: "Beat Global / Fusión Urbana",
+                
+                // Secciones Finales
                 ecosystem_title: "Ecosistema Creativo", clients_title: "Empresas y Aliados",
                 contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Hablemos de innovación creativa.",
                 btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", btn_cv: "Descargar CV (PDF)", link_yt: "Canal de YouTube",
@@ -889,12 +906,37 @@
                 btn_submit: "Enviar Solicitud y Aceptar Términos", btn_connect: "CONECTEMOS"
             },
             en: {
-                subtitle: "Creative Technologist | 360° Portfolio",
+                head_title: "Alejandro Vega | Creative Director & Creative Technologist",
+                btn_vault_header: "🔒 Vault Access", subtitle: "Creative Technologist | 360° Portfolio",
                 btn_all: "All", btn_video: "Audiovisual", btn_photo: "Photography", btn_design: "Web / Graphic Design", btn_audio: "Sound Design",
-                cat_artdir: "Commercial Art Direction", cat_fashion: "Fashion Book & Beauty", cat_product: "B2C Commercial Photography", 
-                title_product: "Product Photography", cat_lighting: "Lighting & Technique", title_portraits: "Studio Portraits",
-                cat_music: "Music Industry", title_emerging: "Emerging Artists", cat_exp: "Light Exploration", title_nature: "Nature",
-                cat_post: "Post-production",
+                
+                vid_cat_clara: "AI Generative Strategy", vid_tit_clara: "Clara Project",
+                vid_cat_showreel: "Creative Direction", vid_tit_showreel: "2026 Showreel",
+                vid_cat_kapo: "Color Grading", vid_tit_kapo: "Color Test: KAPO",
+                vid_cat_evento: "Event Coverage", vid_tit_evento: "Vallecaucanos",
+                vid_cat_chef: "Online Culinary Show",
+                vid_cat_lyric: "Typography & Motion Graphics", vid_tit_lyric: "Lyric Video",
+                
+                cat_post: "Post-production", vid_tit_mauna: "Mauna (Behind The Scenes)",
+                cat_artdir: "Commercial Art Direction", cat_fashion: "Fashion Book & Beauty", tit_fashion: "Model Book", 
+                cat_product: "B2C Commercial Photography", title_product: "Product Photography", 
+                cat_lighting: "Lighting & Technique", title_portraits: "Studio Portraits",
+                cat_editorial: "Editorial Photography", tit_sabrina: "Actress: Sabrina",
+                cat_press: "Promotional Portrait (Press)", tit_kapo: "Artist: KAPO",
+                cat_casting: "Visual Casting", title_emerging: "Emerging Artists", 
+                cat_exp: "Light Exploration", tit_exp: "Experimental",
+                cat_land: "Landscape & Fine Art", title_nature: "Nature",
+                cat_banner: "Web Banner", cat_cover: "Music Cover Design", mauna_title: "Cover for the song 'Suave' by artist Mauna",
+                cat_vinyl: "Vinyl Wrap Design", cat_id: "Seasonal Identity", tit_navidad: "Christmas Logo",
+                cat_vector: "Vector Illustration", tit_koala: "Koala",
+                cat_corp: "Corporate Branding", cat_edit: "Editorial Design", cat_mosaic: "Digital Mosaic", tit_school: "Parochial School",
+                tit_yumbo: "Yumbo Mayor's Office", cat_ad: "Advertising Design", tit_cali: "Cali Mayor's Office",
+                cat_promo: "Promotional Design", cat_flyer: "Flyer Design",
+                
+                aud_alone: "Acoustic / Cinematic Soul", aud_trapped: "Tension / Action Percussion",
+                aud_rock: "Alternative Rock / High Energy", aud_rain: "Ambient / Uplifting Synthwave",
+                aud_hades: "Darkwave / Industrial Synth", aud_sauvage: "Global Beat / Urban Fusion",
+                
                 ecosystem_title: "Creative Ecosystem", clients_title: "Companies & Partners",
                 contact_title: "LET'S CONNECT", contact_desc: "Ready to elevate the digital and audiovisual narrative of your projects? Let's talk about creative innovation.",
                 btn_wa: "Text me on WhatsApp", btn_mail: "Send me an email", btn_cv: "Download Resume (PDF)", link_yt: "YouTube Channel",
@@ -911,11 +953,10 @@
 
         function applyTranslations(lang) {
             document.documentElement.lang = lang;
+            document.title = translations[lang]['head_title'];
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    el.innerHTML = translations[lang][key];
-                }
+                if (translations[lang][key]) { el.innerHTML = translations[lang][key]; }
             });
             document.getElementById('lang-es').classList.toggle('active', lang === 'es');
             document.getElementById('lang-en').classList.toggle('active', lang === 'en');
@@ -926,26 +967,17 @@
             applyTranslations(currentLang);
         }
 
-        // CARGA FLASH DE 1.5 SEGUNDOS (Cambiado de 'load' a 'DOMContentLoaded' para no depender de imágenes pesadas)
+        // INIT LOAD
         document.addEventListener('DOMContentLoaded', () => {
-            applyTranslations(currentLang); // Aplica idioma nativo al instante
-            setTimeout(() => {
-                document.body.classList.remove('is-loading');
-                document.body.classList.add('is-loaded');
-                document.body.style.overflow = 'auto'; 
-            }, 1500); 
+            applyTranslations(currentLang); 
         });
 
-        // ==========================================
-        // LÓGICA DE BOTÓN VOLVER ARRIBA
-        // ==========================================
+        // BOTÓN VOLVER ARRIBA
         window.addEventListener('scroll', () => {
             const btn = document.getElementById('backToTopBtn');
             if (window.scrollY > 500) { btn.classList.add('visible'); } 
             else { btn.classList.remove('visible'); }
         });
-
-        document.addEventListener('contextmenu', event => event.preventDefault());
 
         const galleryData = {
             'food': ['https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png'],
@@ -958,7 +990,7 @@
             'retratos': ['https://static.wixstatic.com/media/14f4fb_4f61d7e9e3cd4da6ad6e6f649d2d9d05~mv2_d_4000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_6fb679a244ef48de9ea749cbeb6e7824~mv2_d_4000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_d66070ef8db64e62a7b7abffa3099d80~mv2_d_4000_5547_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_5fb74448bec44efebd9d63489a942e4d~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a60c3996c5c443b6be56e08c91807dc9~mv2.png'],
             'producto': ['https://static.wixstatic.com/media/14f4fb_bde31a4c87be49a1882327dacb0882e0~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_09129e6b1cc648ed8f0dd806ea46ac95~mv2.jpg'],
             
-            // RUTAS WEB SAFE CONFIRMADAS
+            // RUTAS WEB SAFE 
             'diseno_1': ['Banner web Jdmaray Cali SPA.jpg'],
             'diseno_2': ['Banner web para Homecare Ebenezer.jpg'],
             'diseno_3': ['portada_mauna.png'], 
@@ -1060,7 +1092,6 @@
             });
         });
 
-        // VIDEOS YOUTUBE (Actualizado para cargar rápido tras el splash de 1.5s)
         document.addEventListener("DOMContentLoaded", function() {
             const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
             const iframes = document.querySelectorAll('.auto-observe-yt');
@@ -1107,7 +1138,7 @@
                 if (!scrollTimeout) scrollTimeout = setTimeout(() => { evaluateVideos(); scrollTimeout = null; }, 150);
             }, { passive: true });
             
-            setTimeout(evaluateVideos, 2000); 
+            setTimeout(evaluateVideos, 1600); 
         });
 
         const ytModal = document.getElementById('youtube-modal');

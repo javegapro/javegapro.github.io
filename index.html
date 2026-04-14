@@ -3,8 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="head_title">Alejandro Vega | Director Creativo & Creative Technologist</title>
-    <meta name="description" content="Portafolio oficial de Alejandro Vega.">
+    
+    <title data-i18n="head_title">Alejandro Vega | Creative Technologist & Director Creativo</title>
+    <meta name="description" content="Portafolio oficial de Alejandro Vega. Especialista en Inteligencia Artificial, Dirección Creativa, Producción Audiovisual, Fotografía y Diseño Sonoro.">
+    <meta name="keywords" content="Alejandro Vega, Creative Technologist, Director Creativo, Producción Audiovisual, Diseño Sonoro, Fotografía, IA, Autómatas, Yumbo, Cali, Colombia">
+    <meta name="author" content="Alejandro Vega">
+    
+    <meta property="og:title" content="Alejandro Vega | Portafolio 360°">
+    <meta property="og:description" content="Innovación audiovisual, tecnológica y sonora. Explora mis proyectos y conectemos.">
+    <meta property="og:type" content="profile">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Alejandro Vega",
+      "jobTitle": "Creative Technologist & Director Creativo",
+      "url": "https://alevega.com", 
+      "sameAs": [
+        "https://linkedin.com/in/javegapro",
+        "https://www.youtube.com/@javegapro",
+        "https://instagram.com/javegapro"
+      ]
+    }
+    </script>
     
     <link rel="preconnect" href="https://www.youtube.com">
     <link rel="preconnect" href="https://static.wixstatic.com">
@@ -29,7 +51,10 @@
         input { user-select: auto; -webkit-user-select: auto; -moz-user-select: auto; }
 
         body { background-color: var(--dark-bg); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        
+        /* Bloquea scroll hasta que las puertas se abren */
         body.is-loading { overflow: hidden; height: 100vh; }
+        
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
         /* ====================================================
@@ -89,7 +114,7 @@
         .lang-option { opacity: 0.4; font-size: 1.2rem; transition: 0.3s; filter: grayscale(100%); }
         .lang-option.active { opacity: 1; filter: grayscale(0%); transform: scale(1.1); }
 
-        /* Botón CÁPSULA Conectemos (Solución a Círculo Cian) */
+        /* Botón CÁPSULA Conectemos */
         .floating-connect {
             position: fixed; bottom: 30px; right: 30px; border-radius: 50px; padding: 12px 25px;
             background: var(--electric-cyan); color: var(--dark-bg); display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -148,7 +173,7 @@
         .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
         
         /* ====================================================
-           AUDIO (WEB AUDIO API)
+           AUDIO
         ==================================================== */
         .media-item.audio { border: none; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; cursor: default; transform: none !important; background-color: var(--dark-bg); }
         @keyframes rotateGlow { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
@@ -209,6 +234,21 @@
         .client-logo-unilever:hover { transform: scale(1.7); } 
         .client-logo-comfandi { transform: scale(1.3); transform-origin: center center; }
         .client-logo-comfandi:hover { transform: scale(1.4); }
+
+        @media (max-width: 768px) {
+            .clients-section { padding: 40px 5% 60px; }
+            .clients-section h3 { font-size: 1rem; margin-bottom: 30px; }
+            .marquee-track { gap: 40px; }
+            .client-logo { height: 40px; }
+            .client-logo-unilever { transform: scale(1.4); margin: 0 5px; }
+            .client-logo-comfandi { transform: scale(1.2); }
+            /* Reposicionamos los botones flotantes en móvil para no estorbar */
+            .lang-toggle { bottom: 20px; left: 20px; padding: 6px 10px;}
+            .floating-connect { bottom: 20px; right: 20px; padding: 10px 20px;}
+            .back-to-top { bottom: 85px; right: 25px; width: 40px; height: 40px; }
+            .vault-container { padding: 40px 20px; }
+            .header-vault-btn { top: 15px; right: 15px; font-size: 0.8rem; padding: 8px 12px; }
+        }
         @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 30px)); } }
 
         /* --- CONTACTO --- */
@@ -227,7 +267,7 @@
         .social-links a { color: var(--text-muted); text-decoration: none; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s;}
         .social-links a:hover { color: var(--electric-cyan); }
 
-        /* REDISEÑO BÓVEDA CORPORATIVA (MÁS LLAMATIVA) */
+        /* BÓVEDA CORPORATIVA */
         .vault-section { 
             background: linear-gradient(180deg, var(--card-bg) 0%, #060e22 100%); 
             padding: 120px 5% 150px; text-align: center; position: relative; border-top: 1px solid rgba(45, 212, 191, 0.1);
@@ -270,20 +310,6 @@
         .legal-warning { margin-bottom: 15px; padding: 15px; background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--danger-red); font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
         .legal-warning strong { color: var(--danger-red); }
         .error-message { color: var(--danger-red); font-size: 0.9rem; margin-bottom: 15px; display: none; font-weight: 600; padding: 10px; background: rgba(239, 68, 68, 0.1); border-radius: 6px;}
-
-        /* RESPONSIVE MÓVIL */
-        @media (max-width: 768px) {
-            .clients-section { padding: 40px 5% 60px; }
-            .marquee-track { gap: 40px; }
-            .client-logo { height: 40px; }
-            .client-logo-unilever { transform: scale(1.4); margin: 0 5px; }
-            .client-logo-comfandi { transform: scale(1.2); }
-            .lang-toggle { bottom: 20px; left: 20px; padding: 6px 10px;}
-            .floating-connect { bottom: 20px; right: 20px; padding: 10px 20px;}
-            .back-to-top { bottom: 85px; right: 25px; width: 40px; height: 40px; }
-            .vault-container { padding: 40px 20px; }
-            .header-vault-btn { top: 15px; right: 15px; font-size: 0.8rem; padding: 8px 12px; }
-        }
     </style>
 </head>
 <body class="is-loading">
@@ -844,7 +870,6 @@
                 img.addEventListener('error', function() {
                     if (!this.dataset.retried) {
                         this.dataset.retried = "true";
-                        // Si falla un .jpg, intenta con .jpeg, .JPG, o .png. Magia pura.
                         if (this.src.includes('.jpg')) this.src = this.src.replace('.jpg', '.JPG');
                         else if (this.src.includes('.JPG')) this.src = this.src.replace('.JPG', '.jpeg');
                         else if (this.src.includes('.jpeg')) this.src = this.src.replace('.jpeg', '.png');
@@ -967,9 +992,18 @@
             applyTranslations(currentLang);
         }
 
-        // INIT LOAD
+        // ==========================================
+        // INIT LOAD & APERTURA DE COMPUERTAS (EL FIX V 33.0)
+        // ==========================================
         document.addEventListener('DOMContentLoaded', () => {
             applyTranslations(currentLang); 
+            
+            // LA LLAVE DE LAS COMPUERTAS (Apertura rápida a los 1.5s)
+            setTimeout(() => {
+                document.body.classList.remove('is-loading');
+                document.body.classList.add('is-loaded');
+                document.body.style.overflow = 'auto'; 
+            }, 1500); 
         });
 
         // BOTÓN VOLVER ARRIBA
@@ -978,6 +1012,8 @@
             if (window.scrollY > 500) { btn.classList.add('visible'); } 
             else { btn.classList.remove('visible'); }
         });
+
+        document.addEventListener('contextmenu', event => event.preventDefault());
 
         const galleryData = {
             'food': ['https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png'],
@@ -1092,6 +1128,7 @@
             });
         });
 
+        // VIDEOS YOUTUBE
         document.addEventListener("DOMContentLoaded", function() {
             const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
             const iframes = document.querySelectorAll('.auto-observe-yt');
@@ -1138,7 +1175,7 @@
                 if (!scrollTimeout) scrollTimeout = setTimeout(() => { evaluateVideos(); scrollTimeout = null; }, 150);
             }, { passive: true });
             
-            setTimeout(evaluateVideos, 1600); 
+            setTimeout(evaluateVideos, 2000); 
         });
 
         const ytModal = document.getElementById('youtube-modal');

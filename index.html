@@ -73,7 +73,6 @@
             z-index: 9999; transform: translate3d(0, -50%, 0) scaleX(0); opacity: 1; transition: opacity 0.2s ease; 
             will-change: transform, opacity;
         }
-        /* El láser se dispara a los 1.2 segundos */
         body.is-loading .splash-laser { animation: laserShoot 0.3s cubic-bezier(0.8, 0, 0.2, 1) forwards 1.2s; }
         @keyframes laserShoot { 0% { transform: translate3d(0, -50%, 0) scaleX(0); } 100% { transform: translate3d(0, -50%, 0) scaleX(1); } }
 
@@ -113,29 +112,31 @@
             100% { color: var(--text-main); text-shadow: 0 0 20px rgba(45, 212, 191, 0.6); -webkit-text-stroke: 0;}
         }
 
-        /* --- TEXTO DE PERFIL (NUEVO PITCH BASADO EN CV) --- */
+        /* --- TEXTO DE PERFIL (V40.0: TARJETA GLASSMORPHISM ANIMADA) --- */
         .profile-pitch {
-            max-width: 900px; margin: 20px auto 40px; font-size: 1.1rem; line-height: 1.7;
-            color: var(--text-muted); opacity: 0; transition: 1s ease 0.5s;
+            max-width: 900px; margin: 30px auto 40px; font-size: 1.15rem; line-height: 1.7;
+            color: var(--text-muted); opacity: 0; 
+            background: rgba(2, 6, 23, 0.5); 
+            border: 1px solid rgba(45, 212, 191, 0.15);
+            border-left: 4px solid var(--electric-cyan);
+            border-radius: 12px; padding: 25px 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            transform: translateY(20px); will-change: transform, opacity;
+            pointer-events: auto; /* Permite seleccionar el texto */
         }
-        body.is-loaded .profile-pitch { opacity: 1; }
-        .highlight-tech { color: var(--electric-cyan); font-weight: 600; }
+        body.is-loaded .profile-pitch { 
+            animation: slideUpPitch 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s; 
+        }
+        @keyframes slideUpPitch {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .highlight-tech { color: var(--electric-cyan); font-weight: 700; letter-spacing: 0.5px; }
 
         /* ====================================================
            UI AVANZADA: BOTONES FLOTANTES
         ==================================================== */
-        .header-vault-btn {
-            position: fixed; top: 20px; right: 25px; 
-            background: transparent; border: 2px solid rgba(255,255,255,0.2); color: var(--text-main);
-            padding: 10px 25px; border-radius: 50px; cursor: pointer; font-family: 'Montserrat', sans-serif; 
-            font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; 
-            transition: all 0.3s ease; z-index: 9900; backdrop-filter: blur(5px);
-        }
-        .header-vault-btn:hover { 
-            background-color: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan);
-            transform: translateY(-3px); box-shadow: 0 10px 20px rgba(45, 212, 191, 0.15); 
-        }
-
         .lang-toggle {
             position: fixed; bottom: 30px; left: 30px; background: rgba(2, 6, 23, 0.85); border: 1px solid rgba(255,255,255,0.2);
             padding: 8px 12px; border-radius: 30px; cursor: pointer; z-index: 900; display: flex; gap: 8px; align-items: center;
@@ -167,12 +168,13 @@
         .back-to-top:hover svg { stroke: var(--dark-bg); transform: translateY(-3px); }
 
         /* --- SUBTÍTULO Y FILTROS --- */
-        header p { color: var(--electric-cyan); font-weight: 600; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 2px;}
+        header p.subtitle { color: var(--electric-cyan); font-weight: 600; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 2px;}
         .filter-container { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 20px; padding: 10px 5% 50px; position: relative; z-index: 10;}
         
         .filter-btn { background: transparent; border: 2px solid rgba(255,255,255,0.2); color: var(--text-main); padding: 12px 30px; border-radius: 50px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; }
         .filter-btn:hover, .filter-btn.active { background-color: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(45, 212, 191, 0.15); }
 
+        /* V40.0: BOTÓN BÓVEDA EN EL MENÚ DE FILTROS */
         .vault-filter-btn {
             background: rgba(45, 212, 191, 0.1); border: 2px solid var(--electric-cyan); color: var(--electric-cyan); 
             padding: 12px 30px; border-radius: 50px; cursor: pointer; font-family: 'Montserrat', sans-serif; 
@@ -180,7 +182,7 @@
             display: flex; align-items: center; gap: 8px; box-shadow: 0 0 15px rgba(45, 212, 191, 0.2);
         }
         .vault-filter-btn:hover {
-            background-color: var(--electric-cyan); color: var(--dark-bg);
+            background-color: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan);
             transform: translateY(-3px); box-shadow: 0 10px 25px rgba(45, 212, 191, 0.4);
         }
 
@@ -241,6 +243,7 @@
         }
         @media (min-width: 1024px) {
             header { padding: 40px 5% 20px; } header h1 { font-size: 5rem; letter-spacing: 5px; }
+            header p.subtitle { font-size: 1.4rem; letter-spacing: 3px; }
             .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 3vw; }
             .portfolio-grid.masonry-mode { -webkit-column-count: 3; column-count: 3; }
             .media-item h2 { font-size: 3rem; } .media-item p { font-size: 1.1rem; }
@@ -273,6 +276,10 @@
         
         .client-logo { height: 60px; width: auto; object-fit: contain; transition: transform 0.3s ease, filter 0.3s ease; filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255,255,255,0.1)); cursor: pointer; }
         .client-logo:hover { transform: scale(1.1); filter: brightness(0) invert(1) drop-shadow(0 0 15px var(--electric-cyan)); }
+        .client-logo-unilever { transform: scale(1.6); transform-origin: center center; margin: 0 15px; }
+        .client-logo-unilever:hover { transform: scale(1.7); } 
+        .client-logo-comfandi { transform: scale(1.3); transform-origin: center center; }
+        .client-logo-comfandi:hover { transform: scale(1.4); }
 
         @keyframes scrollMarquee { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(calc(-50% - 30px), 0, 0); } }
 
@@ -281,11 +288,13 @@
             .clients-section h3 { font-size: 1rem; margin-bottom: 30px; }
             .marquee-track { gap: 40px; }
             .client-logo { height: 40px; }
+            .client-logo-unilever { transform: scale(1.4); margin: 0 5px; }
+            .client-logo-comfandi { transform: scale(1.2); }
             .lang-toggle { bottom: 20px; left: 20px; padding: 6px 10px;}
             .floating-connect { bottom: 20px; right: 20px; padding: 10px 20px;}
             .back-to-top { bottom: 85px; right: 25px; width: 40px; height: 40px; }
-            .header-vault-btn { top: 15px; right: 15px; font-size: 0.75rem; padding: 8px 15px; }
-            .profile-pitch { font-size: 0.95rem; }
+            .profile-pitch { font-size: 0.95rem; padding: 20px; }
+            .vault-filter-btn { font-size: 0.8rem; padding: 10px 20px; }
         }
 
         /* --- CONTACTO --- */
@@ -304,7 +313,7 @@
         .social-links a { color: var(--text-muted); text-decoration: none; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s;}
         .social-links a:hover { color: var(--electric-cyan); }
 
-        /* BÓVEDA CORPORATIVA */
+        /* BÓVEDA CORPORATIVA FINAL */
         .vault-section { background: linear-gradient(180deg, var(--card-bg) 0%, #060e22 100%); padding: 120px 5% 150px; text-align: center; position: relative; border-top: 1px solid rgba(45, 212, 191, 0.1); }
         .vault-container { max-width: 800px; margin: 0 auto; position: relative; z-index: 2; padding: 60px 40px; border: 1px solid rgba(45, 212, 191, 0.3); border-radius: 20px; background: rgba(2, 6, 23, 0.6); box-shadow: 0 0 50px rgba(45, 212, 191, 0.05) inset, 0 20px 50px rgba(0,0,0,0.5); backdrop-filter: blur(10px); }
         .vault-icon-glow { font-size: 4rem; margin-bottom: 20px; display: inline-block; filter: drop-shadow(0 0 15px var(--electric-cyan)); animation: float 3s ease-in-out infinite;}
@@ -344,13 +353,10 @@
         .modal-req-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; line-height: 1.5; text-align: center;}
         .modal-logos-mini { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; justify-content: center; align-items: center; }
         .modal-logos-mini img { height: 25px; width: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.8; }
-        
         .modal-logo-unilever { transform: scale(1.6); transform-origin: center center; margin: 0 10px; }
     </style>
 </head>
 <body class="is-loading">
-
-    <button class="header-vault-btn" onclick="openVaultModal()" data-i18n="btn_vault_header">🔒 Acceso Bóveda</button>
 
     <div class="lang-toggle" onclick="toggleLanguage()">
         <span id="lang-es" class="lang-option active">🇪🇸</span>
@@ -374,7 +380,7 @@
         <div id="title-wrapper">
             <h1 id="main-title">Alejandro Vega</h1>
         </div>
-        <p class="reveal-content" data-i18n="subtitle">Líder de Innovación Creativa | Identidad Visual & E-learning</p>
+        <p class="subtitle reveal-content" data-i18n="subtitle">Líder de Innovación Creativa | Identidad Visual & E-learning</p>
         
         <div class="profile-pitch reveal-content">
             <span data-i18n="profile_text">
@@ -389,6 +395,8 @@
         <button class="filter-btn" onclick="filterGallery('fotografia')" data-i18n="btn_photo">Fotografía</button>
         <button class="filter-btn" onclick="filterGallery('diseno')" data-i18n="btn_design">Identidad Visual & E-learning</button>
         <button class="filter-btn" onclick="filterGallery('audio')" data-i18n="btn_audio">Diseño Sonoro</button>
+        
+        <button class="vault-filter-btn" onclick="openVaultModal()"><span class="icon">🔒</span> <span data-i18n="btn_vault_header">Acceso Bóveda</span></button>
     </div>
 
     <main class="portfolio-grid reveal-content" id="main-grid">
@@ -620,7 +628,7 @@
             <div class="media-texture"></div>
             <img src="Logo Another Reality VR.png" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Another Reality VR">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_corp">Branding Corporativo</p><h2>Another Reality VR</h2></div>
+            <div class="media-overlay"><p>Branding</p><h2>Another Reality VR</h2></div>
         </div>
 
         <div class="media-item diseno" onclick="openGalleryModal('diseno_8')">
@@ -690,11 +698,17 @@
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
                 <canvas class="audio-visualizer"></canvas>
-                <div class="audio-text-content"><h2>Alone</h2><p data-i18n="aud_alone">Acústico / Soul Cinematográfico</p></div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_cec3885e857446d5bb03641eed32c0d8.mp3" crossorigin="anonymous"></audio>
+                <div class="media-texture"></div>
+                <div class="audio-text-content">
+                    <h2>Alone</h2>
+                    <p data-i18n="aud_alone">Acústico / Soul Cinematográfico</p>
+                </div>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_cec3885e857446d5bb03641eed32c0d8.mp3" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
+                    <span class="time-display time-current">0:00</span>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
+                    <span class="time-display time-total">0:00</span>
                 </div>
             </div>
         </div>
@@ -703,11 +717,17 @@
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
                 <canvas class="audio-visualizer"></canvas>
-                <div class="audio-text-content"><h2>Trapped</h2><p data-i18n="aud_trapped">Tensión / Percusión de Acción</p></div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_4dd9a047e1694fd799a5de974a745fe1.mp3" crossorigin="anonymous"></audio>
+                <div class="media-texture"></div>
+                <div class="audio-text-content">
+                    <h2>Trapped</h2>
+                    <p data-i18n="aud_trapped">Tensión / Percusión de Acción</p>
+                </div>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_4dd9a047e1694fd799a5de974a745fe1.mp3" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
+                    <span class="time-display time-current">0:00</span>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
+                    <span class="time-display time-total">0:00</span>
                 </div>
             </div>
         </div>
@@ -716,11 +736,17 @@
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
                 <canvas class="audio-visualizer"></canvas>
-                <div class="audio-text-content"><h2>Rock Your Reel</h2><p data-i18n="aud_rock">Rock Alternativo / Alta Energía</p></div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_6a5c635e24cd44c59d95766e10c3ae17.mp3" crossorigin="anonymous"></audio>
+                <div class="media-texture"></div>
+                <div class="audio-text-content">
+                    <h2>Rock Your Reel</h2>
+                    <p data-i18n="aud_rock">Rock Alternativo / Alta Energía</p>
+                </div>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_6a5c635e24cd44c59d95766e10c3ae17.mp3" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
+                    <span class="time-display time-current">0:00</span>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
+                    <span class="time-display time-total">0:00</span>
                 </div>
             </div>
         </div>
@@ -729,11 +755,17 @@
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
                 <canvas class="audio-visualizer"></canvas>
-                <div class="audio-text-content"><h2>Rain</h2><p data-i18n="aud_rain">Ambient / Synthwave Inspirador</p></div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_f898bea04df24d778cc63caa54c0e8d9.mp3" crossorigin="anonymous"></audio>
+                <div class="media-texture"></div>
+                <div class="audio-text-content">
+                    <h2>Rain</h2>
+                    <p data-i18n="aud_rain">Ambient / Synthwave Inspirador</p>
+                </div>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_f898bea04df24d778cc63caa54c0e8d9.mp3" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
+                    <span class="time-display time-current">0:00</span>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
+                    <span class="time-display time-total">0:00</span>
                 </div>
             </div>
         </div>
@@ -742,11 +774,17 @@
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
                 <canvas class="audio-visualizer"></canvas>
-                <div class="audio-text-content"><h2>Hades</h2><p data-i18n="aud_hades">Darkwave / Synth Industrial</p></div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_c3a196ceaa134db4bf63c7c7ead10845.wav" crossorigin="anonymous"></audio>
+                <div class="media-texture"></div>
+                <div class="audio-text-content">
+                    <h2>Hades</h2>
+                    <p data-i18n="aud_hades">Darkwave / Synth Industrial</p>
+                </div>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_c3a196ceaa134db4bf63c7c7ead10845.wav" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
+                    <span class="time-display time-current">0:00</span>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
+                    <span class="time-display time-total">0:00</span>
                 </div>
             </div>
         </div>
@@ -755,11 +793,17 @@
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
                 <canvas class="audio-visualizer"></canvas>
-                <div class="audio-text-content"><h2>Sauvage</h2><p data-i18n="aud_sauvage">Beat Global / Fusión Urbana</p></div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_84e760602c584506aeb3a5d417a9dcf1.mp3" crossorigin="anonymous"></audio>
+                <div class="media-texture"></div>
+                <div class="audio-text-content">
+                    <h2>Sauvage</h2>
+                    <p data-i18n="aud_sauvage">Beat Global / Fusión Urbana</p>
+                </div>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_84e760602c584506aeb3a5d417a9dcf1.mp3" preload="metadata" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
+                    <span class="time-display time-current">0:00</span>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
+                    <span class="time-display time-total">0:00</span>
                 </div>
             </div>
         </div>
@@ -898,7 +942,7 @@
         const translations = {
             es: {
                 head_title: "Alejandro Vega | Líder de Innovación Creativa & Especialista Tecnológico",
-                btn_vault_header: "🔒 Acceso Bóveda", subtitle: "Líder de Innovación Creativa | Identidad Visual & E-learning",
+                btn_vault_header: "Acceso Bóveda", subtitle: "Líder de Innovación Creativa | Identidad Visual & E-learning",
                 profile_text: 'Estratega multidisciplinario y <span class="highlight-tech">Especialista Creativo Tecnológico</span> con más de 8 años de experiencia fusionando diseño, producción audiovisual e <span class="highlight-tech">Inteligencia Artificial</span>. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente entre la visión de negocio, la estética visual y la adopción tecnológica (Product Owner).',
                 btn_all: "Todo", btn_video: "Producción Audiovisual", btn_photo: "Fotografía", btn_design: "Identidad Visual & E-learning", btn_audio: "Diseño Sonoro",
                 vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara",
@@ -938,7 +982,7 @@
             },
             en: {
                 head_title: "Alejandro Vega | Creative Innovation Leader & Technology Specialist",
-                btn_vault_header: "🔒 Vault Access", subtitle: "Creative Innovation Leader | Visual Identity & E-learning",
+                btn_vault_header: "Vault Access", subtitle: "Creative Innovation Leader | Visual Identity & E-learning",
                 profile_text: 'Multidisciplinary Strategist and <span class="highlight-tech">Creative Technology Specialist</span> with over 8 years of experience merging design, audiovisual production, and <span class="highlight-tech">Artificial Intelligence</span>. I specialize in building solid brand identities and high-impact E-learning ecosystems. I act as the bridge between business vision, visual aesthetics, and technological adoption (Product Owner).',
                 btn_all: "All", btn_video: "Audiovisual Production", btn_photo: "Photography", btn_design: "Visual Identity & E-learning", btn_audio: "Sound Design",
                 vid_cat_clara: "AI Generative Strategy", vid_tit_clara: "Clara Project",
@@ -996,7 +1040,7 @@
             applyTranslations(currentLang);
         }
 
-        // CARGA FLASH DE 1.5 SEGUNDOS
+        // CARGA FLASH Y APERTURA A LOS 1.5S EXACTOS
         document.addEventListener('DOMContentLoaded', () => {
             applyTranslations(currentLang); 
             setTimeout(() => {
@@ -1004,10 +1048,9 @@
                 document.body.classList.add('is-loaded');
                 document.body.style.overflow = 'auto'; 
             }, 1500); 
-            initIntersectionObserver(); // Activa el motor 60FPS de video
+            initIntersectionObserver(); // MOTOR 60FPS DE YOUTUBE
         });
 
-        // BOTÓN VOLVER ARRIBA
         window.addEventListener('scroll', () => {
             const btn = document.getElementById('backToTopBtn');
             if (window.scrollY > 500) { btn.classList.add('visible'); } 
@@ -1129,7 +1172,7 @@
             });
         });
 
-        // 2. MOTOR DE VIDEO YOUTUBE 60FPS (INTERSECTION OBSERVER)
+        // MOTOR DE VIDEO YOUTUBE 60FPS (INTERSECTION OBSERVER)
         function sendYTCommand(iframe, func) {
             if (iframe && iframe.contentWindow && iframe.src) {
                 iframe.contentWindow.postMessage(JSON.stringify({event: 'command', func: func, args: []}), '*');

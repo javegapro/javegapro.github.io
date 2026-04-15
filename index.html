@@ -83,8 +83,8 @@
         .reveal-content { opacity: 0; transition: opacity 0.6s ease 0.1s; will-change: opacity; }
         body.is-loaded .reveal-content { opacity: 1; }
 
-        /* --- CABECERA Y EL ESCUDO ANTI-LÁSER --- */
-        header { padding: 40px 5% 20px; text-align: center; position: relative; z-index: 10000; pointer-events: none;}
+        /* --- CABECERA (MARGENES COMPACTADOS) --- */
+        header { padding: 30px 5% 10px; text-align: center; position: relative; z-index: 10000; pointer-events: none;}
         
         #title-wrapper { 
             display: inline-block; transform: translate3d(0, 0, 0) scale(1); 
@@ -112,26 +112,21 @@
             100% { color: var(--text-main); text-shadow: 0 0 20px rgba(45, 212, 191, 0.6); -webkit-text-stroke: 0;}
         }
 
-        /* --- TEXTO DE PERFIL (V40.0: TARJETA GLASSMORPHISM ANIMADA) --- */
+        /* --- TEXTO DE PERFIL COMPACTADO --- */
         .profile-pitch {
-            max-width: 900px; margin: 30px auto 40px; font-size: 1.15rem; line-height: 1.7;
+            max-width: 900px; margin: 15px auto 25px; font-size: 1.15rem; line-height: 1.6;
             color: var(--text-muted); opacity: 0; 
             background: rgba(2, 6, 23, 0.5); 
             border: 1px solid rgba(45, 212, 191, 0.15);
             border-left: 4px solid var(--electric-cyan);
-            border-radius: 12px; padding: 25px 40px;
+            border-radius: 12px; padding: 20px 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             transform: translateY(20px); will-change: transform, opacity;
-            pointer-events: auto; /* Permite seleccionar el texto */
+            pointer-events: auto; 
         }
-        body.is-loaded .profile-pitch { 
-            animation: slideUpPitch 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s; 
-        }
-        @keyframes slideUpPitch {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
+        body.is-loaded .profile-pitch { animation: slideUpPitch 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s; }
+        @keyframes slideUpPitch { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
         .highlight-tech { color: var(--electric-cyan); font-weight: 700; letter-spacing: 0.5px; }
 
         /* ====================================================
@@ -167,14 +162,13 @@
         .back-to-top:hover { background: var(--electric-cyan); box-shadow: 0 0 15px var(--electric-cyan); }
         .back-to-top:hover svg { stroke: var(--dark-bg); transform: translateY(-3px); }
 
-        /* --- SUBTÍTULO Y FILTROS --- */
+        /* --- FILTROS (SUBIDOS ESTRATÉGICAMENTE) --- */
         header p.subtitle { color: var(--electric-cyan); font-weight: 600; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 2px;}
-        .filter-container { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 20px; padding: 10px 5% 50px; position: relative; z-index: 10;}
+        .filter-container { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 20px; padding: 0 5% 40px; position: relative; z-index: 10;}
         
         .filter-btn { background: transparent; border: 2px solid rgba(255,255,255,0.2); color: var(--text-main); padding: 12px 30px; border-radius: 50px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; }
         .filter-btn:hover, .filter-btn.active { background-color: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(45, 212, 191, 0.15); }
 
-        /* V40.0: BOTÓN BÓVEDA EN EL MENÚ DE FILTROS */
         .vault-filter-btn {
             background: rgba(45, 212, 191, 0.1); border: 2px solid var(--electric-cyan); color: var(--electric-cyan); 
             padding: 12px 30px; border-radius: 50px; cursor: pointer; font-family: 'Montserrat', sans-serif; 
@@ -242,7 +236,7 @@
             body.is-loading #title-wrapper { transform: translate3d(0, calc(50vh - 60px), 0) scale(1.6); }
         }
         @media (min-width: 1024px) {
-            header { padding: 40px 5% 20px; } header h1 { font-size: 5rem; letter-spacing: 5px; }
+            header { padding: 30px 5% 10px; } header h1 { font-size: 5rem; letter-spacing: 5px; }
             header p.subtitle { font-size: 1.4rem; letter-spacing: 3px; }
             .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 3vw; }
             .portfolio-grid.masonry-mode { -webkit-column-count: 3; column-count: 3; }
@@ -293,7 +287,7 @@
             .lang-toggle { bottom: 20px; left: 20px; padding: 6px 10px;}
             .floating-connect { bottom: 20px; right: 20px; padding: 10px 20px;}
             .back-to-top { bottom: 85px; right: 25px; width: 40px; height: 40px; }
-            .profile-pitch { font-size: 0.95rem; padding: 20px; }
+            .profile-pitch { font-size: 0.95rem; padding: 15px 20px; }
             .vault-filter-btn { font-size: 0.8rem; padding: 10px 20px; }
         }
 
@@ -404,7 +398,7 @@
         <div class="media-item audiovisual" onclick="openYoutubeModal('0ivRf3-IvGs')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/0ivRf3-IvGs/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Clara">
-            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/0ivRf3-IvGs?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=0ivRf3-IvGs" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/0ivRf3-IvGs?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=0ivRf3-IvGs" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="vid_cat_clara">Estrategia Generativa IA</p><h2 data-i18n="vid_tit_clara">Proyecto Clara</h2></div>
         </div>
@@ -412,7 +406,7 @@
         <div class="media-item audiovisual" onclick="openYoutubeModal('ntMooW2DwVw')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/ntMooW2DwVw/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Showreel">
-            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/ntMooW2DwVw?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=ntMooW2DwVw" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/ntMooW2DwVw?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=ntMooW2DwVw" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="vid_cat_showreel">Dirección Creativa</p><h2 data-i18n="vid_tit_showreel">Showreel 2026</h2></div>
         </div>
@@ -420,7 +414,7 @@
         <div class="media-item audiovisual" onclick="openYoutubeModal('kZLIan0Hr-E')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/kZLIan0Hr-E/hqdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Kapo Test">
-            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/kZLIan0Hr-E?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=kZLIan0Hr-E" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/kZLIan0Hr-E?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=kZLIan0Hr-E" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="vid_cat_kapo">Etalonaje</p><h2 data-i18n="vid_tit_kapo">Prueba de Color: KAPO</h2></div>
         </div>
@@ -428,7 +422,7 @@
         <div class="media-item audiovisual" onclick="openYoutubeModal('NUm0rt_XRkQ')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/NUm0rt_XRkQ/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Vallecaucanos">
-            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/NUm0rt_XRkQ?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=NUm0rt_XRkQ" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/NUm0rt_XRkQ?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=NUm0rt_XRkQ" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="vid_cat_evento">Cobertura de Evento</p><h2 data-i18n="vid_tit_evento">Vallecaucanos</h2></div>
         </div>
@@ -436,7 +430,7 @@
         <div class="media-item audiovisual" onclick="openYoutubeModal('3GLjAoBXZV8')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/3GLjAoBXZV8/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="BTS">
-            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/3GLjAoBXZV8?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=3GLjAoBXZV8" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/3GLjAoBXZV8?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=3GLjAoBXZV8" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_post">Postproducción</p><h2 data-i18n="vid_tit_mauna">Mauna (Detrás de Cámaras)</h2></div>
         </div>
@@ -444,7 +438,7 @@
         <div class="media-item audiovisual" onclick="openYoutubeModal('TLjHcX4UPHg')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/TLjHcX4UPHg/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Unichef 1">
-            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/TLjHcX4UPHg?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=TLjHcX4UPHg" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/TLjHcX4UPHg?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=TLjHcX4UPHg" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2 data-i18n="vid_tit_chef1">UniChef: Cheesecake</h2></div>
         </div>
@@ -452,7 +446,7 @@
         <div class="media-item audiovisual" onclick="openYoutubeModal('SRH1ImvnXFI')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/SRH1ImvnXFI/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Unichef 2">
-            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/SRH1ImvnXFI?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=SRH1ImvnXFI" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/SRH1ImvnXFI?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=SRH1ImvnXFI" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2 data-i18n="vid_tit_chef2">UniChef: Pamplona</h2></div>
         </div>
@@ -460,7 +454,7 @@
         <div class="media-item audiovisual" onclick="openYoutubeModal('rtvkiEu0xyo')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/rtvkiEu0xyo/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Unichef 3">
-            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/rtvkiEu0xyo?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=rtvkiEu0xyo" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/rtvkiEu0xyo?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=rtvkiEu0xyo" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2 data-i18n="vid_tit_chef3">UniChef: Postre</h2></div>
         </div>
@@ -468,7 +462,7 @@
         <div class="media-item audiovisual" onclick="openYoutubeModal('CGccljx4QxQ')">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/CGccljx4QxQ/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Lyric">
-            <iframe class="media-iframe auto-observe-yt" data-src="https://www.youtube.com/embed/CGccljx4QxQ?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=CGccljx4QxQ" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/CGccljx4QxQ?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=CGccljx4QxQ" frameborder="0" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="vid_cat_lyric">Tipografía & Motion Graphics</p><h2 data-i18n="vid_tit_lyric">Video Lyrical</h2></div>
         </div>
@@ -698,17 +692,11 @@
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
                 <canvas class="audio-visualizer"></canvas>
-                <div class="media-texture"></div>
-                <div class="audio-text-content">
-                    <h2>Alone</h2>
-                    <p data-i18n="aud_alone">Acústico / Soul Cinematográfico</p>
-                </div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_cec3885e857446d5bb03641eed32c0d8.mp3" preload="metadata" crossorigin="anonymous"></audio>
+                <div class="audio-text-content"><h2>Alone</h2><p data-i18n="aud_alone">Acústico / Soul Cinematográfico</p></div>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_cec3885e857446d5bb03641eed32c0d8.mp3" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
-                    <span class="time-display time-current">0:00</span>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
-                    <span class="time-display time-total">0:00</span>
                 </div>
             </div>
         </div>
@@ -717,17 +705,11 @@
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
                 <canvas class="audio-visualizer"></canvas>
-                <div class="media-texture"></div>
-                <div class="audio-text-content">
-                    <h2>Trapped</h2>
-                    <p data-i18n="aud_trapped">Tensión / Percusión de Acción</p>
-                </div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_4dd9a047e1694fd799a5de974a745fe1.mp3" preload="metadata" crossorigin="anonymous"></audio>
+                <div class="audio-text-content"><h2>Trapped</h2><p data-i18n="aud_trapped">Tensión / Percusión de Acción</p></div>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_4dd9a047e1694fd799a5de974a745fe1.mp3" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
-                    <span class="time-display time-current">0:00</span>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
-                    <span class="time-display time-total">0:00</span>
                 </div>
             </div>
         </div>
@@ -736,17 +718,11 @@
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
                 <canvas class="audio-visualizer"></canvas>
-                <div class="media-texture"></div>
-                <div class="audio-text-content">
-                    <h2>Rock Your Reel</h2>
-                    <p data-i18n="aud_rock">Rock Alternativo / Alta Energía</p>
-                </div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_6a5c635e24cd44c59d95766e10c3ae17.mp3" preload="metadata" crossorigin="anonymous"></audio>
+                <div class="audio-text-content"><h2>Rock Your Reel</h2><p data-i18n="aud_rock">Rock Alternativo / Alta Energía</p></div>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_6a5c635e24cd44c59d95766e10c3ae17.mp3" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
-                    <span class="time-display time-current">0:00</span>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
-                    <span class="time-display time-total">0:00</span>
                 </div>
             </div>
         </div>
@@ -755,17 +731,11 @@
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
                 <canvas class="audio-visualizer"></canvas>
-                <div class="media-texture"></div>
-                <div class="audio-text-content">
-                    <h2>Rain</h2>
-                    <p data-i18n="aud_rain">Ambient / Synthwave Inspirador</p>
-                </div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_f898bea04df24d778cc63caa54c0e8d9.mp3" preload="metadata" crossorigin="anonymous"></audio>
+                <div class="audio-text-content"><h2>Rain</h2><p data-i18n="aud_rain">Ambient / Synthwave Inspirador</p></div>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_f898bea04df24d778cc63caa54c0e8d9.mp3" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
-                    <span class="time-display time-current">0:00</span>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
-                    <span class="time-display time-total">0:00</span>
                 </div>
             </div>
         </div>
@@ -774,17 +744,11 @@
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
                 <canvas class="audio-visualizer"></canvas>
-                <div class="media-texture"></div>
-                <div class="audio-text-content">
-                    <h2>Hades</h2>
-                    <p data-i18n="aud_hades">Darkwave / Synth Industrial</p>
-                </div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_c3a196ceaa134db4bf63c7c7ead10845.wav" preload="metadata" crossorigin="anonymous"></audio>
+                <div class="audio-text-content"><h2>Hades</h2><p data-i18n="aud_hades">Darkwave / Synth Industrial</p></div>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_c3a196ceaa134db4bf63c7c7ead10845.wav" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
-                    <span class="time-display time-current">0:00</span>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
-                    <span class="time-display time-total">0:00</span>
                 </div>
             </div>
         </div>
@@ -793,17 +757,11 @@
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
                 <canvas class="audio-visualizer"></canvas>
-                <div class="media-texture"></div>
-                <div class="audio-text-content">
-                    <h2>Sauvage</h2>
-                    <p data-i18n="aud_sauvage">Beat Global / Fusión Urbana</p>
-                </div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_84e760602c584506aeb3a5d417a9dcf1.mp3" preload="metadata" crossorigin="anonymous"></audio>
+                <div class="audio-text-content"><h2>Sauvage</h2><p data-i18n="aud_sauvage">Beat Global / Fusión Urbana</p></div>
+                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_84e760602c584506aeb3a5d417a9dcf1.mp3" crossorigin="anonymous"></audio>
                 <div class="custom-player">
                     <button class="play-btn">▶</button>
-                    <span class="time-display time-current">0:00</span>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
-                    <span class="time-display time-total">0:00</span>
                 </div>
             </div>
         </div>
@@ -812,11 +770,9 @@
 
     <section class="ecosystem-section reveal-content">
         <h3 data-i18n="ecosystem_title">Ecosistema Creativo</h3>
-        <div class="ecosystem-brands">
-            <a href="https://automatas.co" target="_blank" class="brand-btn-clean">
-                <img src="MARCA DE AGUA H COLOR.png" alt="Autómatas" class="brand-logo-img automatas-logo fallback-img">
-            </a>
-        </div>
+        <a href="https://automatas.co" target="_blank" class="brand-btn-clean">
+            <img src="MARCA DE AGUA H COLOR.png" alt="Autómatas" class="brand-logo-img automatas-logo fallback-img">
+        </a>
     </section>
 
     <section class="clients-section reveal-content">
@@ -922,7 +878,7 @@
     </div>
 
     <script>
-        // SCRIPT DE FALLBACK (ANTI-ERRORES DE RUTAS)
+        // SCRIPT DE FALLBACK (ANTI-ERRORES DE RUTAS GITHUB)
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.fallback-img').forEach(img => {
                 img.addEventListener('error', function() {
@@ -943,7 +899,7 @@
             es: {
                 head_title: "Alejandro Vega | Líder de Innovación Creativa & Especialista Tecnológico",
                 btn_vault_header: "Acceso Bóveda", subtitle: "Líder de Innovación Creativa | Identidad Visual & E-learning",
-                profile_text: 'Estratega multidisciplinario y <span class="highlight-tech">Especialista Creativo Tecnológico</span> con más de 8 años de experiencia fusionando diseño, producción audiovisual e <span class="highlight-tech">Inteligencia Artificial</span>. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente entre la visión de negocio, la estética visual y la adopción tecnológica (Product Owner).',
+                profile_text: 'Estratega multidisciplinario y <span class="highlight-tech">Especialista Creativo Tecnológico</span> con más de 8 años de experiencia fusionando diseño, producción audiovisual e <span class="highlight-tech">Inteligencia Artificial</span>. Actúo como el puente entre la visión de negocio, la estética visual y la adopción tecnológica (Product Owner).',
                 btn_all: "Todo", btn_video: "Producción Audiovisual", btn_photo: "Fotografía", btn_design: "Identidad Visual & E-learning", btn_audio: "Diseño Sonoro",
                 vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara",
                 vid_cat_showreel: "Dirección Creativa", vid_tit_showreel: "Showreel 2026",
@@ -983,7 +939,7 @@
             en: {
                 head_title: "Alejandro Vega | Creative Innovation Leader & Technology Specialist",
                 btn_vault_header: "Vault Access", subtitle: "Creative Innovation Leader | Visual Identity & E-learning",
-                profile_text: 'Multidisciplinary Strategist and <span class="highlight-tech">Creative Technology Specialist</span> with over 8 years of experience merging design, audiovisual production, and <span class="highlight-tech">Artificial Intelligence</span>. I specialize in building solid brand identities and high-impact E-learning ecosystems. I act as the bridge between business vision, visual aesthetics, and technological adoption (Product Owner).',
+                profile_text: 'Multidisciplinary Strategist and <span class="highlight-tech">Creative Technology Specialist</span> with over 8 years of experience merging design, audiovisual production, and <span class="highlight-tech">Artificial Intelligence</span>. I act as the bridge between business vision, visual aesthetics, and technological adoption (Product Owner).',
                 btn_all: "All", btn_video: "Audiovisual Production", btn_photo: "Photography", btn_design: "Visual Identity & E-learning", btn_audio: "Sound Design",
                 vid_cat_clara: "AI Generative Strategy", vid_tit_clara: "Clara Project",
                 vid_cat_showreel: "Creative Direction", vid_tit_showreel: "2026 Showreel",
@@ -1040,7 +996,7 @@
             applyTranslations(currentLang);
         }
 
-        // CARGA FLASH Y APERTURA A LOS 1.5S EXACTOS
+        // CARGA FLASH DE 1.5 SEGUNDOS
         document.addEventListener('DOMContentLoaded', () => {
             applyTranslations(currentLang); 
             setTimeout(() => {
@@ -1048,13 +1004,7 @@
                 document.body.classList.add('is-loaded');
                 document.body.style.overflow = 'auto'; 
             }, 1500); 
-            initIntersectionObserver(); // MOTOR 60FPS DE YOUTUBE
-        });
-
-        window.addEventListener('scroll', () => {
-            const btn = document.getElementById('backToTopBtn');
-            if (window.scrollY > 500) { btn.classList.add('visible'); } 
-            else { btn.classList.remove('visible'); }
+            initIntersectionObserver(); // Activa el motor de YouTube
         });
 
         document.addEventListener('contextmenu', event => event.preventDefault());
@@ -1172,7 +1122,9 @@
             });
         });
 
-        // MOTOR DE VIDEO YOUTUBE 60FPS (INTERSECTION OBSERVER)
+        // ==========================================
+        // MOTOR DE VIDEO YOUTUBE 60FPS (ÚNICO OBSERVER)
+        // ==========================================
         function sendYTCommand(iframe, func) {
             if (iframe && iframe.contentWindow && iframe.src) {
                 iframe.contentWindow.postMessage(JSON.stringify({event: 'command', func: func, args: []}), '*');
@@ -1180,25 +1132,32 @@
         }
 
         function initIntersectionObserver() {
-            const options = { threshold: 0.5 };
+            // El video se pausará si menos del 30% está visible en pantalla.
+            const options = { root: null, rootMargin: '0px', threshold: 0.3 };
+            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const iframe = entry.target.querySelector('.media-iframe');
                     const thumb = entry.target.querySelector('.yt-thumbnail');
-                    
+                    if (!iframe) return;
+
                     if (entry.isIntersecting) {
+                        // Play video
                         if (!iframe.src) {
                             iframe.src = iframe.dataset.src;
                             iframe.onload = () => {
                                 iframe.style.opacity = "1";
                                 if (thumb) thumb.style.opacity = "0";
-                                setTimeout(() => sendYTCommand(iframe, 'playVideo'), 200);
+                                setTimeout(() => sendYTCommand(iframe, 'playVideo'), 300);
                             };
                         } else {
                             sendYTCommand(iframe, 'playVideo');
                         }
                     } else {
-                        if (iframe.src) sendYTCommand(iframe, 'pauseVideo');
+                        // Pause video immediately when leaving screen
+                        if (iframe.src) {
+                            sendYTCommand(iframe, 'pauseVideo');
+                        }
                     }
                 });
             }, options);

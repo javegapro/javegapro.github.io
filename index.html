@@ -6,24 +6,8 @@
     
     <title data-i18n="head_title">Alejandro Vega | Líder de Innovación Creativa & Especialista Tecnológico</title>
     <meta name="description" content="Estratega multidisciplinario y Especialista Creativo Tecnológico. Más de 8 años fusionando diseño, producción audiovisual, E-learning e Inteligencia Artificial.">
-    <meta name="keywords" content="Alejandro Vega, Líder de Innovación Creativa, Especialista Creativo Tecnológico, Identidad Visual, E-learning, IA Generativa, Product Owner, Producción Audiovisual, Diseño Instruccional, Colombia, Yumbo, Cali">
+    <meta name="keywords" content="Alejandro Vega, Líder de Innovación Creativa, Especialista Creativo Tecnológico, Identidad Visual, IA Generativa, Producción Audiovisual">
     <meta name="author" content="Alejandro Vega">
-    
-    <meta property="og:title" content="Alejandro Vega | Portafolio 360°">
-    <meta property="og:description" content="Estratega multidisciplinario fusionando diseño, producción audiovisual e IA. Explora mis proyectos y agendemos una sesión estratégica.">
-    <meta property="og:type" content="profile">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Alejandro Vega",
-      "jobTitle": "Líder de Innovación Creativa & Especialista Creativo Tecnológico",
-      "url": "https://alevega.com", 
-      "description": "Especializado en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto.",
-      "knowsAbout": ["IA Generativa", "Product Ownership", "Estrategia de Marca", "Diseño Instruccional", "Dirección Audiovisual", "Identidad Visual", "E-learning"]
-    }
-    </script>
     
     <link rel="preconnect" href="https://www.youtube.com">
     <link rel="preconnect" href="https://static.wixstatic.com">
@@ -44,7 +28,6 @@
             --text-muted: #94a3b8;
             --danger-red: #ef4444;
             --whatsapp-green: #25D366;
-            --automatas-green: #7fff50; 
             --transition-speed: 0.4s;
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
             
@@ -67,7 +50,7 @@
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
         /* ====================================================
-           2. SPLASH SCREEN Y ANIMACIÓN DE ENTRADA
+           2. SPLASH SCREEN Y ANIMACIÓN GLITCH DE ENTRADA
         ==================================================== */
         .splash-panel { 
             position: fixed; left: 0; width: 100%; height: 50dvh; background-color: var(--dark-bg); z-index: 9998; 
@@ -87,21 +70,21 @@
         body.is-loaded .splash-panel.bottom { transform: translate3d(0, 100%, 0); }
         body.is-loaded .splash-laser { opacity: 0; }
 
-        /* Efecto de aparición para elementos secundarios */
         .reveal-element { opacity: 0; transition: opacity 0.8s ease; will-change: opacity; }
         body.is-loaded .reveal-element { opacity: 1; }
 
-        /* --- CABECERA Y TITULO DINÁMICO --- */
-        header { padding: max(30px, 4dvh) 5% 10px; text-align: center; position: relative; z-index: 100;}
+        /* --- CABECERA Y TITULO DINÁMICO (Z-INDEX ALTO PARA GLITCH) --- */
+        /* z-index: 100000 asegura que el nombre esté por encima del panel negro durante la carga */
+        header { padding: max(30px, 4dvh) 5% 10px; text-align: center; position: relative; z-index: 100000; pointer-events: none;}
         
         #title-wrapper { 
             display: inline-block; 
             transform: translate3d(0, 0, 0) scale(1); 
-            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1); 
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1); 
             will-change: transform;
         }
         /* El título nace en el centro de la pantalla mientras carga */
-        body.is-loading #title-wrapper { transform: translate3d(0, 35dvh, 0) scale(1.4); }
+        body.is-loading #title-wrapper { transform: translate3d(0, 35dvh, 0) scale(1.5); }
 
         #main-title { font-size: clamp(2.5rem, 6vw, 5rem); text-transform: uppercase; letter-spacing: clamp(2px, 1vw, 8px); color: var(--text-main); }
         body.is-loading #main-title { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); animation: textGlitch 1.2s var(--ease-out-expo) forwards 0.2s; }
@@ -118,25 +101,24 @@
         header p.subtitle { color: var(--electric-cyan); font-weight: 600; text-transform: uppercase; font-size: clamp(0.85rem, 2vw, 1.2rem); letter-spacing: 2px; margin-top: 10px;}
 
         /* ====================================================
-           3. UI FLOTANTE (SIEMPRE VISIBLE, SIN OPACIDAD 0)
+           3. UI FLOTANTE (SIEMPRE VISIBLE)
         ==================================================== */
         .lang-toggle {
             position: fixed; bottom: max(20px, var(--safe-bottom)); left: max(20px, var(--safe-left)); 
             background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255,255,255,0.1);
             padding: 8px 12px; border-radius: 30px; cursor: pointer; z-index: 900; display: flex; gap: 8px; align-items: center;
-            transition: all 0.3s ease; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
-        .lang-toggle:hover { border-color: var(--electric-cyan); box-shadow: 0 0 15px var(--electric-cyan-glow); }
         .lang-option { opacity: 0.4; font-size: 1.2rem; transition: 0.3s; filter: grayscale(100%); }
         .lang-option.active { opacity: 1; filter: grayscale(0%); transform: scale(1.1); }
 
+        /* Botón Conectemos aislado de la clase reveal para que sea visible siempre */
         .floating-connect {
             position: fixed; bottom: max(20px, var(--safe-bottom)); right: max(20px, var(--safe-right)); 
             border-radius: 50px; padding: 12px clamp(15px, 3vw, 25px);
             background: linear-gradient(135deg, var(--electric-cyan), #14b8a6); color: var(--dark-bg); 
             display: flex; align-items: center; justify-content: center; gap: 10px;
             box-shadow: 0 10px 25px var(--electric-cyan-glow); transition: all 0.3s ease; z-index: 900; text-decoration: none;
-            opacity: 1 !important; /* Fuerza visibilidad */
         }
         .floating-connect:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.6); }
         .floating-connect .icon { font-size: 1.5rem; line-height: 0; }
@@ -144,10 +126,9 @@
 
         .back-to-top {
             position: fixed; bottom: calc(80px + var(--safe-bottom)); right: max(20px, var(--safe-right)); 
-            width: 45px; height: 45px; border-radius: 50%;
-            background: rgba(15, 23, 42, 0.9); border: 1px solid var(--electric-cyan); color: var(--electric-cyan);
+            width: 45px; height: 45px; border-radius: 50%; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--electric-cyan); color: var(--electric-cyan);
             display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.4s var(--ease-out-expo); z-index: 899; cursor: pointer; 
-            backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); transform: translateY(20px);
+            backdrop-filter: blur(5px); transform: translateY(20px);
         }
         .back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
         .back-to-top:hover { background: var(--electric-cyan); box-shadow: 0 0 20px var(--electric-cyan-glow); }
@@ -155,7 +136,7 @@
         .back-to-top svg { width: 20px; height: 20px; fill: none; stroke: var(--electric-cyan); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; transition: all 0.3s; }
 
         /* ====================================================
-           4. FILTROS Y SECCIÓN DE PERFIL AISLADA
+           4. FILTROS
         ==================================================== */
         .filter-container { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; padding: 20px 5% 40px; position: relative; z-index: 10;}
         .filter-btn { 
@@ -165,8 +146,6 @@
             backdrop-filter: blur(5px);
         }
         .filter-btn:hover, .filter-btn.active { background-color: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan); box-shadow: 0 5px 15px var(--electric-cyan-glow); }
-
-        /* Botón de Perfil Especial */
         .filter-btn[data-filter="perfil"] { border-color: var(--electric-cyan); color: var(--electric-cyan); }
         .filter-btn[data-filter="perfil"].active { background-color: var(--electric-cyan); color: var(--dark-bg); }
 
@@ -178,83 +157,126 @@
         }
         .vault-filter-btn:hover { background-color: var(--electric-cyan); color: var(--dark-bg); box-shadow: 0 5px 15px var(--electric-cyan-glow); }
 
-        /* Contenedor del Perfil (Oculto por defecto para priorizar multimedia) */
-        #profile-section {
-            display: none; /* Se activa con el filtro */
-            padding: 0 5% 100px;
-            animation: fadeIn 0.5s ease;
-        }
+        /* ====================================================
+           5. PERFIL PROFESIONAL (ALTO IMPACTO VISUAL)
+        ==================================================== */
+        #profile-section { display: none; padding: 0 5% 100px; animation: fadeIn 0.5s ease; position: relative; z-index: 10; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .profile-pitch {
-            max-width: 900px; margin: 0 auto; font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.8;
-            color: var(--text-muted); text-align: center;
-            background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(45, 212, 191, 0.2);
-            border-top: 4px solid var(--electric-cyan); border-radius: 16px; padding: 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5); backdrop-filter: blur(12px);
+        .profile-container {
+            max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 40px;
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.8), rgba(2, 6, 23, 0.9));
+            border: 1px solid rgba(45, 212, 191, 0.2); border-radius: 24px; padding: clamp(30px, 5vw, 60px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 0 40px rgba(45, 212, 191, 0.05);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            position: relative; overflow: hidden;
         }
-        .highlight-tech { color: var(--electric-cyan); font-weight: 700; }
+
+        /* Borde animado rotativo */
+        .profile-container::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(transparent, transparent, transparent, var(--electric-cyan));
+            animation: rotateBorder 6s linear infinite; opacity: 0.15; z-index: 0; pointer-events: none;
+        }
+        @keyframes rotateBorder { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .profile-content { position: relative; z-index: 2; }
+        
+        .profile-stats { display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap; }
+        .stat-box { background: rgba(0,0,0,0.4); padding: 15px 25px; border-radius: 12px; border-left: 3px solid var(--electric-cyan); }
+        .stat-num { font-size: 2.5rem; font-family: 'Montserrat', sans-serif; font-weight: 900; color: var(--electric-cyan); line-height: 1; }
+        .stat-label { font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-top: 5px; display: block;}
+
+        .profile-text { font-size: clamp(1.1rem, 1.5vw, 1.3rem); line-height: 1.8; color: var(--text-main); font-weight: 400; margin-bottom: 30px;}
+        
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 12px; }
+        .tech-tag { background: rgba(45, 212, 191, 0.1); color: var(--electric-cyan); padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border: 1px solid rgba(45, 212, 191, 0.3); box-shadow: 0 0 10px rgba(45, 212, 191, 0.1); }
+
+        @media (min-width: 900px) {
+            .profile-container { grid-template-columns: 1fr 2fr; align-items: center; }
+            .profile-stats { flex-direction: column; }
+        }
 
         /* ====================================================
-           5. MOTOR DE GRILLA EXTREMADAMENTE FLUIDO
+           6. MOTOR DE GRILLA EXTREMADAMENTE FLUIDO
         ==================================================== */
         .portfolio-grid { 
             display: grid; grid-template-columns: 1fr; gap: clamp(20px, 3vw, 40px); 
             padding: 0 5% 100px; width: 100%; max-width: 2500px; margin: 0 auto; 
             position: relative; z-index: 5; 
         }
-        
         .media-item.hide { display: none !important; }
         
         .media-item { 
             position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; cursor: pointer; 
             border: 1px solid rgba(255, 255, 255, 0.05); background-color: var(--card-bg); 
-            transition: transform 0.3s ease, box-shadow 0.3s ease; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transform: translateZ(0); /* Aceleración por hardware para fluidez pura */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateZ(0); 
         }
         
-        .portfolio-grid.masonry-mode { display: block; column-count: 1; column-gap: clamp(20px, 3vw, 40px); }
-        .portfolio-grid.masonry-mode .media-item { 
-            display: inline-block; width: 100%; margin-bottom: clamp(20px, 3vw, 40px); 
-            aspect-ratio: auto; break-inside: avoid; page-break-inside: avoid;
+        /* TETRIS MODE (Diseño Visual) - Sin Gaps, Sin Bordes */
+        .portfolio-grid.tetris-mode { 
+            display: block; column-count: 2; column-gap: 0; padding: 0 2%;
         }
+        .portfolio-grid.tetris-mode .media-item { 
+            display: inline-block; width: 100%; margin-bottom: 0; 
+            aspect-ratio: auto; break-inside: avoid; page-break-inside: avoid;
+            border-radius: 0; border: 1px solid rgba(255,255,255,0.02);
+            box-shadow: none;
+        }
+        .portfolio-grid.tetris-mode .yt-thumbnail, .portfolio-grid.tetris-mode .hc-img { position: relative; width: 100%; height: auto; }
 
         .media-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.15; pointer-events: none; z-index: 4; mix-blend-mode: overlay;}
         .protect-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 6; pointer-events: none; }
         
         .hover-carousel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        
+        /* object-position top center vital para que las caras no se corten */
         .hc-img, .yt-thumbnail { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            object-fit: cover; object-position: top center;
             filter: grayscale(40%) brightness(0.7); 
-            transition: opacity 0.5s ease, filter var(--transition-speed) ease, transform 0.5s ease; 
+            transition: opacity 0.4s ease, filter var(--transition-speed) ease, transform 0.5s ease; 
         }
         .hc-img { opacity: 0; }
         .hc-img.active { opacity: 1; z-index: 2; }
-        .fix-models-portada { object-position: top center !important; }
         
+        /* Iframes reincorporados para el Autoplay (IntersectionObserver los controlará) */
+        .media-iframe { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; 
+            border: none; background-color: var(--card-bg); filter: grayscale(10%) brightness(0.9); opacity: 0; 
+            transition: opacity var(--transition-speed) ease; 
+        }
+
         .media-item:not(.audio):hover { 
             border-color: rgba(45, 212, 191, 0.4); box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 20px var(--electric-cyan-glow); 
             transform: translateY(-5px) scale(1.01); z-index: 10; 
         }
+        .portfolio-grid.tetris-mode .media-item:not(.audio):hover { transform: scale(1.02); z-index: 20; border-radius: 8px;}
+
         .media-item:not(.audio):hover .hc-img, .media-item:not(.audio):hover .yt-thumbnail { filter: grayscale(0%) brightness(1.1); transform: scale(1.03); }
 
         .media-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 50px 30px 20px; background: linear-gradient(to top, rgba(2,6,23,0.98) 10%, transparent); z-index: 5; pointer-events: none; transition: padding 0.3s ease; }
         .media-item:hover .media-overlay { padding-bottom: 30px; }
+        .portfolio-grid.tetris-mode .media-item:hover .media-overlay { padding-bottom: 10px; }
         .media-item h2 { font-size: clamp(1.4rem, 2vw, 2.2rem); text-transform: uppercase; margin-bottom: 5px; line-height: 1.1; text-shadow: 0 4px 10px rgba(0,0,0,0.8);}
         .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
         
         @media (min-width: 768px) {
             .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
-            .portfolio-grid.masonry-mode { column-count: 2; }
+            .portfolio-grid.tetris-mode { column-count: 3; }
         }
         @media (min-width: 1200px) {
             .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
-            .portfolio-grid.masonry-mode { column-count: 3; }
+            .portfolio-grid.tetris-mode { column-count: 4; }
+        }
+        @media (max-width: 767px) {
+            .portfolio-grid.tetris-mode { column-count: 1; padding: 0 5%; gap: 15px;}
+            .portfolio-grid.tetris-mode .media-item { border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1);}
         }
 
         /* ====================================================
-           AUDIO (WEB AUDIO API)
+           7. AUDIO (WEB AUDIO API)
         ==================================================== */
         .media-item.audio { border: none; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; cursor: default; transform: none !important; background-color: var(--dark-bg); }
         @keyframes rotateGlow { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
@@ -271,7 +293,7 @@
         .progress-wrapper { flex-grow: 1; height: 6px; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; cursor: pointer; position: relative; overflow: hidden; }
         .progress-fill { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background-color: var(--electric-cyan); border-radius: 10px; box-shadow: 0 0 10px var(--electric-cyan); pointer-events: none; transition: width 0.1s linear;}
 
-        /* --- SECCIONES FINALES --- */
+        /* --- SECCIONES FINALES Y DRAG-MARQUEE --- */
         .ecosystem-section { padding: 80px 5%; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); background-color: var(--card-bg); }
         .ecosystem-section h3 { font-size: 2rem; color: var(--text-main); margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;}
         .brand-btn-clean { display: inline-flex; align-items: center; justify-content: center; background: transparent; border: none; padding: 15px; transition: transform 0.3s ease; cursor: pointer; }
@@ -281,13 +303,20 @@
 
         .clients-section { padding: 80px 5%; text-align: center; background-color: var(--dark-bg); overflow: hidden; }
         .clients-section h3 { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 50px; text-transform: uppercase; letter-spacing: 4px; font-weight: 600;}
-        .marquee-container { width: 100%; overflow: hidden; white-space: nowrap; position: relative; padding: 40px 0; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
-        .marquee-track { display: inline-flex; align-items: center; gap: clamp(40px, 5vw, 80px); animation: scrollMarquee 30s linear infinite; }
-        .marquee-track:hover { animation-play-state: paused; }
-        .client-logo { height: clamp(40px, 4vw, 60px); width: auto; object-fit: contain; filter: brightness(0) invert(1) opacity(0.6); transition: all 0.3s ease; cursor: pointer; }
-        .client-logo:hover { filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 15px var(--electric-cyan)); transform: scale(1.1); }
+        
+        /* Motor físico para Marquee: Eliminamos la animación CSS para controlarla con JS */
+        .marquee-container { 
+            width: 100%; overflow: hidden; white-space: nowrap; position: relative; padding: 40px 0; 
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); 
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); 
+            cursor: grab; /* Indica que se puede agarrar */
+        }
+        .marquee-container:active { cursor: grabbing; }
+        .marquee-track { display: inline-flex; align-items: center; gap: clamp(40px, 5vw, 80px); will-change: transform; }
+        
+        .client-logo { height: clamp(40px, 4vw, 60px); width: auto; object-fit: contain; filter: brightness(0) invert(1) opacity(0.6); transition: filter 0.3s ease; pointer-events: none; }
+        .client-logo:hover { filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 15px var(--electric-cyan)); }
         .client-logo-unilever { transform: scale(1.6); margin: 0 15px; } .client-logo-comfandi { transform: scale(1.3); }
-        @keyframes scrollMarquee { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(calc(-50% - 40px), 0, 0); } }
 
         .contact-section { padding: 80px 5% 100px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); background: var(--card-bg); }
         .contact-section h2 { font-size: clamp(2.5rem, 4vw, 4rem); margin-bottom: 15px; text-transform: uppercase; letter-spacing: clamp(5px, 2vw, 12px); }
@@ -307,7 +336,6 @@
         .vault-section { background: linear-gradient(180deg, var(--card-bg) 0%, var(--dark-bg) 100%); padding: 100px 5% 150px; text-align: center; position: relative; }
         .vault-container { max-width: 800px; margin: 0 auto; position: relative; z-index: 2; padding: clamp(40px, 5vw, 60px) clamp(20px, 4vw, 40px); border: 1px solid rgba(45, 212, 191, 0.2); border-radius: 24px; background: rgba(15, 23, 42, 0.6); box-shadow: 0 20px 50px rgba(0,0,0,0.5); backdrop-filter: blur(15px);}
         .vault-icon-glow { font-size: 4rem; margin-bottom: 20px; display: inline-block; filter: drop-shadow(0 0 15px var(--electric-cyan)); animation: float 3s ease-in-out infinite;}
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
         .vault-container h3 { font-size: clamp(2rem, 3vw, 2.5rem); margin-bottom: 20px; color: var(--electric-cyan); letter-spacing: 2px;}
         .vault-container p { color: var(--text-muted); margin-bottom: 40px; font-size: 1.1rem; line-height: 1.6;}
         .vault-btn { background: var(--electric-cyan); color: var(--dark-bg); border: none; padding: 18px 40px; font-weight: 900; border-radius: 50px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px var(--electric-cyan-glow);}
@@ -339,8 +367,8 @@
         }
         .gallery-nav:hover { background: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan); transform: translateY(-50%) scale(1.1);}
         .gallery-prev { left: max(20px, var(--safe-left)); } .gallery-next { right: max(20px, var(--safe-right)); }
-        .gallery-dots { position: absolute; bottom: max(30px, var(--safe-bottom)); left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 1010; background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 30px; backdrop-filter: blur(5px);}
-        .gallery-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: 0.3s; }
+        .gallery-dots { position: absolute; bottom: max(30px, var(--safe-bottom)); left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 1010; background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 30px; backdrop-filter: blur(5px); max-width: 90vw; overflow-x: auto;}
+        .gallery-dot { width: 10px; height: 10px; flex-shrink: 0; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: 0.3s; }
         .gallery-dot.active { background: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan); transform: scale(1.2);}
 
         .form-modal-box { background-color: var(--card-bg); padding: clamp(30px, 5vw, 50px); border-radius: 20px; max-width: 600px; width: 90%; border: 1px solid rgba(45, 212, 191, 0.2); text-align: left; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.8); max-height: 90dvh; overflow-y: auto; }
@@ -383,21 +411,32 @@
     </header>
 
     <div class="filter-container reveal-element">
-        <button class="filter-btn active" data-filter="all" data-i18n="btn_all">Todo</button>
         <button class="filter-btn" data-filter="perfil" data-i18n="btn_profile">Perfil Profesional</button>
-        
+        <button class="filter-btn active" data-filter="all" data-i18n="btn_all">Todo</button>
         <button class="filter-btn" data-filter="audiovisual" data-i18n="btn_video">Producción Audiovisual</button>
         <button class="filter-btn" data-filter="fotografia" data-i18n="btn_photo">Fotografía</button>
-        <button class="filter-btn" data-filter="diseno" data-i18n="btn_design">Identidad Visual & E-learning</button>
+        <button class="filter-btn" data-filter="diseno" data-i18n="btn_design">Diseño Visual</button>
         <button class="filter-btn" data-filter="audio" data-i18n="btn_audio">Diseño Sonoro</button>
         <button class="vault-filter-btn" id="openVaultBtnHeader"><span class="icon">🔒</span> <span data-i18n="btn_vault_header">Acceso Bóveda</span></button>
     </div>
 
     <div id="profile-section">
-        <div class="profile-pitch">
-            <span data-i18n="profile_text">
-                Estratega multidisciplinario y <span class="highlight-tech">Especialista Creativo Tecnológico</span> con más de 8 años de experiencia fusionando diseño, producción audiovisual e <span class="highlight-tech">Inteligencia Artificial</span>. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente entre la visión de negocio, la estética visual y la adopción tecnológica (Product Owner).
-            </span>
+        <div class="profile-container">
+            <div class="profile-stats">
+                <div class="stat-box"><span class="stat-num">8+</span><span class="stat-label" data-i18n="stat_years">Años de Experiencia</span></div>
+                <div class="stat-box"><span class="stat-num">PO</span><span class="stat-label" data-i18n="stat_po">Product Owner</span></div>
+            </div>
+            <div class="profile-content">
+                <p class="profile-text" data-i18n="profile_text">
+                    Estratega multidisciplinario y <span class="highlight-tech">Especialista Creativo Tecnológico</span>. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente estratégico entre la visión de negocio, la estética visual de vanguardia y la adopción tecnológica en empresas top.
+                </p>
+                <div class="tech-tags">
+                    <span class="tech-tag">IA Generativa</span>
+                    <span class="tech-tag">E-learning</span>
+                    <span class="tech-tag">UX/UI</span>
+                    <span class="tech-tag">Dirección de Arte</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -406,6 +445,7 @@
         <div class="media-item audiovisual" data-yt-id="0ivRf3-IvGs">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/0ivRf3-IvGs/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Clara">
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/0ivRf3-IvGs?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=0ivRf3-IvGs" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="vid_cat_clara">Estrategia Generativa IA</p><h2 data-i18n="vid_tit_clara">Proyecto Clara</h2></div>
         </div>
@@ -413,6 +453,7 @@
         <div class="media-item audiovisual" data-yt-id="ntMooW2DwVw">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/ntMooW2DwVw/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Showreel">
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/ntMooW2DwVw?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=ntMooW2DwVw" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="vid_cat_showreel">Dirección Creativa</p><h2 data-i18n="vid_tit_showreel">Showreel 2026</h2></div>
         </div>
@@ -420,6 +461,7 @@
         <div class="media-item audiovisual" data-yt-id="kZLIan0Hr-E">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/kZLIan0Hr-E/hqdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Kapo Test">
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/kZLIan0Hr-E?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=kZLIan0Hr-E" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="vid_cat_kapo">Etalonaje</p><h2 data-i18n="vid_tit_kapo">Prueba de Color: KAPO</h2></div>
         </div>
@@ -427,6 +469,7 @@
         <div class="media-item audiovisual" data-yt-id="NUm0rt_XRkQ">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/NUm0rt_XRkQ/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Vallecaucanos">
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/NUm0rt_XRkQ?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=NUm0rt_XRkQ" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="vid_cat_evento">Cobertura de Evento</p><h2 data-i18n="vid_tit_evento">Vallecaucanos</h2></div>
         </div>
@@ -434,6 +477,7 @@
         <div class="media-item audiovisual" data-yt-id="3GLjAoBXZV8">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/3GLjAoBXZV8/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="BTS">
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/3GLjAoBXZV8?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=3GLjAoBXZV8" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_post">Postproducción</p><h2 data-i18n="vid_tit_mauna">Mauna (Detrás de Cámaras)</h2></div>
         </div>
@@ -441,6 +485,7 @@
         <div class="media-item audiovisual" data-yt-id="TLjHcX4UPHg">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/TLjHcX4UPHg/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Unichef 1">
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/TLjHcX4UPHg?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=TLjHcX4UPHg" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2 data-i18n="vid_tit_chef1">UniChef: Cheesecake</h2></div>
         </div>
@@ -448,6 +493,7 @@
         <div class="media-item audiovisual" data-yt-id="SRH1ImvnXFI">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/SRH1ImvnXFI/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Unichef 2">
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/SRH1ImvnXFI?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=SRH1ImvnXFI" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2 data-i18n="vid_tit_chef2">UniChef: Pamplona</h2></div>
         </div>
@@ -455,6 +501,7 @@
         <div class="media-item audiovisual" data-yt-id="rtvkiEu0xyo">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/rtvkiEu0xyo/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Unichef 3">
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/rtvkiEu0xyo?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=rtvkiEu0xyo" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2 data-i18n="vid_tit_chef3">UniChef: Postre</h2></div>
         </div>
@@ -462,6 +509,7 @@
         <div class="media-item audiovisual" data-yt-id="CGccljx4QxQ">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/CGccljx4QxQ/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Lyric">
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/CGccljx4QxQ?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=CGccljx4QxQ" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="vid_cat_lyric">Tipografía & Motion Graphics</p><h2 data-i18n="vid_tit_lyric">Video Lyrical</h2></div>
         </div>
@@ -480,7 +528,7 @@
         <div class="media-item fotografia" data-gallery="modelos">
             <div class="media-texture"></div>
             <div class="hover-carousel">
-                <img src="https://static.wixstatic.com/media/14f4fb_963a7a6446284302a798edcf8457cffd~mv2_d_3471_3471_s_4_2.jpg" class="hc-img active fix-models-portada" loading="lazy" alt="Modelos 1">
+                <img src="https://static.wixstatic.com/media/14f4fb_963a7a6446284302a798edcf8457cffd~mv2_d_3471_3471_s_4_2.jpg" class="hc-img active" loading="lazy" alt="Modelos 1">
                 <img src="https://static.wixstatic.com/media/14f4fb_62c1344e52a441daaa100e3400a6cc19~mv2_d_3176_4000_s_4_2.jpg" class="hc-img" loading="lazy" alt="Modelos 2">
                 <img src="https://static.wixstatic.com/media/14f4fb_88875e89e124451b8dfd1ec60f0e7e69~mv2_d_5491_3928_s_4_2.jpg" class="hc-img" loading="lazy" alt="Modelos 3">
                 <img src="https://static.wixstatic.com/media/14f4fb_3e4d4dde8e184350aa6a5a52141ec414~mv2_d_4000_6000_s_4_2.png" class="hc-img" loading="lazy" alt="Modelos 4">
@@ -575,112 +623,112 @@
             <div class="media-overlay"><p data-i18n="cat_land">Paisaje y Bellas Artes</p><h2 data-i18n="title_nature">Naturaleza</h2></div>
         </div>
 
-        <div class="media-item diseno" data-gallery="diseno_1">
+        <div class="media-item diseno" data-diseno-idx="0">
             <div class="media-texture"></div>
             <img src="Banner web Jdmaray Cali SPA.jpg" class="yt-thumbnail fallback-img" loading="lazy" alt="Banner web Jdmaray Cali SPA">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_banner">Banner Web</p><h2>Jdmaray Cali SPA</h2></div>
         </div>
 
-        <div class="media-item diseno" data-gallery="diseno_2">
+        <div class="media-item diseno" data-diseno-idx="1">
             <div class="media-texture"></div>
             <img src="Banner web para Homecare Ebenezer.jpg" class="yt-thumbnail fallback-img" loading="lazy" alt="Banner Homecare Ebenezer">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_banner">Banner Web</p><h2>Homecare Ebenezer</h2></div>
         </div>
 
-        <div class="media-item diseno" data-gallery="diseno_3">
+        <div class="media-item diseno" data-diseno-idx="2">
             <div class="media-texture"></div>
             <img src="portada_mauna.png" class="yt-thumbnail fallback-img" loading="lazy" alt="Portada Mauna">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_cover">Diseño de Portada Musical</p><h2 data-i18n="mauna_title">Portada de la canción Suave del artista Mauna</h2></div>
         </div>
         
-        <div class="media-item diseno" data-gallery="diseno_4">
+        <div class="media-item diseno" data-diseno-idx="3">
             <div class="media-texture"></div>
             <img src="vinilo_xbox.jpg" class="yt-thumbnail fallback-img" loading="lazy" alt="Vinilo Xbox">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_vinyl">Diseño de Vinilo</p><h2>Xbox: Gears of War</h2></div>
         </div>
 
-        <div class="media-item diseno" data-gallery="diseno_5">
+        <div class="media-item diseno" data-diseno-idx="4">
             <div class="media-texture"></div>
             <img src="logo_navideno.jpeg" class="yt-thumbnail fallback-img" loading="lazy" alt="Logo Navideño">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_id">Identidad Estacional</p><h2 data-i18n="tit_navidad">Logo Navideño</h2></div>
         </div>
 
-        <div class="media-item diseno" data-gallery="diseno_6">
+        <div class="media-item diseno" data-diseno-idx="5">
             <div class="media-texture"></div>
             <img src="Ilustracion vectorial Koala con gafas y pipa.png" class="yt-thumbnail fallback-img" loading="lazy" alt="Ilustración Koala">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_vector">Ilustración Vectorial</p><h2 data-i18n="tit_koala">Koala</h2></div>
         </div>
 
-        <div class="media-item diseno" data-gallery="diseno_7">
+        <div class="media-item diseno" data-diseno-idx="6">
             <div class="media-texture"></div>
             <img src="Logo Another Reality VR.png" class="yt-thumbnail fallback-img" loading="lazy" alt="Another Reality VR">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Branding</p><h2>Another Reality VR</h2></div>
         </div>
 
-        <div class="media-item diseno" data-gallery="diseno_8">
+        <div class="media-item diseno" data-diseno-idx="7">
             <div class="media-texture"></div>
             <img src="Logo Sulmajafra venta de productos de belleza.jpg" class="yt-thumbnail fallback-img" loading="lazy" alt="Logo Sulmajafra">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_corp">Branding Corporativo</p><h2>Sulmajafra</h2></div>
         </div>
 
-        <div class="media-item diseno" data-gallery="diseno_9">
+        <div class="media-item diseno" data-diseno-idx="8">
             <div class="media-texture"></div>
             <img src="ruta_sabor.jpg" class="yt-thumbnail fallback-img" loading="lazy" alt="La Ruta del Sabor">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_edit">Diseño Editorial</p><h2 data-i18n="tit_ruta">La Ruta del Sabor</h2></div>
         </div>
 
-        <div class="media-item diseno" data-gallery="diseno_10">
+        <div class="media-item diseno" data-diseno-idx="9">
             <div class="media-texture"></div>
             <img src="mosaico_colegio.jpg" class="yt-thumbnail fallback-img" loading="lazy" alt="Mosaico Conmemorativo">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_mosaic">Mosaico Digital</p><h2 data-i18n="tit_school">Colegio Parroquial</h2></div>
         </div>
 
-        <div class="media-item diseno" data-gallery="diseno_11">
+        <div class="media-item diseno" data-diseno-idx="10">
             <div class="media-texture"></div>
             <img src="Pieza Conversatorio Tuberculosis Hospital y Alcaldia de Yumbo.jpg" class="yt-thumbnail fallback-img" loading="lazy" alt="Alcaldía de Yumbo">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Social Media</p><h2 data-i18n="tit_yumbo">Alcaldía de Yumbo</h2></div>
         </div>
 
-        <div class="media-item diseno" data-gallery="diseno_12">
+        <div class="media-item diseno" data-diseno-idx="11">
             <div class="media-texture"></div>
             <img src="Pieza de servicio de Tonificacion corporal para Agua Marina esthetic center.jpg" class="yt-thumbnail fallback-img" loading="lazy" alt="Agua Marina Esthetic">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Social Media</p><h2>Agua Marina Esthetic</h2></div>
         </div>
 
-        <div class="media-item diseno" data-gallery="diseno_13">
+        <div class="media-item diseno" data-diseno-idx="12">
             <div class="media-texture"></div>
             <img src="Pieza invitacion de encuentro cultural para la alcaldia de Cali.jpg" class="yt-thumbnail fallback-img" loading="lazy" alt="Alcaldía de Cali">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_ad">Diseño Publicitario</p><h2 data-i18n="tit_cali">Alcaldía de Cali</h2></div>
         </div>
 
-        <div class="media-item diseno" data-gallery="diseno_14">
+        <div class="media-item diseno" data-diseno-idx="13">
             <div class="media-texture"></div>
             <img src="Pieza promocional de capacitacion para programa de afiliados de Virtuosa venta de ropa para comunidades religiosas.jpg" class="yt-thumbnail fallback-img" loading="lazy" alt="Virtuosa">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_promo">Diseño Promocional</p><h2>Virtuosa</h2></div>
         </div>
 
-        <div class="media-item diseno" data-gallery="diseno_15">
+        <div class="media-item diseno" data-diseno-idx="14">
             <div class="media-texture"></div>
             <img src="noches_feria.jpg" class="yt-thumbnail fallback-img" loading="lazy" alt="Noches D'Feria">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_promo">Diseño Promocional</p><h2 data-i18n="tit_noches">Noches D'Feria</h2></div>
         </div>
 
-        <div class="media-item diseno" data-gallery="diseno_16">
+        <div class="media-item diseno" data-diseno-idx="15">
             <div class="media-texture"></div>
             <img src="volante_vape.png" class="yt-thumbnail fallback-img" loading="lazy" alt="Vape Expo 2020">
             <div class="protect-layer"></div>
@@ -770,23 +818,23 @@
 
     <section class="clients-section reveal-element">
         <h3 data-i18n="clients_title">Empresas y Aliados</h3>
-        <div class="marquee-container">
-            <div class="marquee-track">
+        <div class="marquee-container" id="marqueeContainer">
+            <div class="marquee-track" id="marqueeTrack">
                 <img src="Logo Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy">
                 <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy">
                 <img src="Logo derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy">
-                <img src="Logo espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img vault-trigger" loading="lazy">
                 <img src="Logo fanalca.png" alt="Fanalca" class="client-logo fallback-img vault-trigger" loading="lazy">
                 <img src="Logo eficacia.png" alt="Eficacia" class="client-logo fallback-img vault-trigger" loading="lazy">
-                <img src="Logo comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img vault-trigger" loading="lazy">
+                <img src="Logo espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy">
                 <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img vault-trigger" loading="lazy">
                 <img src="Logo Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy">
                 <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy">
                 <img src="Logo derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy">
-                <img src="Logo espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img vault-trigger" loading="lazy">
                 <img src="Logo fanalca.png" alt="Fanalca" class="client-logo fallback-img vault-trigger" loading="lazy">
                 <img src="Logo eficacia.png" alt="Eficacia" class="client-logo fallback-img vault-trigger" loading="lazy">
-                <img src="Logo comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img vault-trigger" loading="lazy">
+                <img src="Logo espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy">
                 <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img vault-trigger" loading="lazy">
             </div>
         </div>
@@ -814,7 +862,7 @@
         <div class="vault-container">
             <div class="vault-icon-glow">🔒</div>
             <h3 data-i18n="vault_title">Bóveda Corporativa</h3>
-            <p data-i18n="vault_desc">Mis diseños de E-learning e infografías para <strong>Unilever, Alquería y Derco</strong> están sujetos a NDA. Si usted es un reclutador autorizado, solicite la llave de acceso.</p>
+            <p data-i18n="vault_desc">Mis diseños de E-learning e infografías para <strong>Unilever, Alquería y Derco</strong> están sujetos a NDA.</p>
             <button class="vault-btn" id="openVaultBtnFooter" data-i18n="vault_btn">Solicitar Acceso Seguro</button>
         </div>
     </section>
@@ -872,16 +920,18 @@
                 es: {
                     head_title: "Alejandro Vega | Líder de Innovación", btn_profile: "Perfil Profesional",
                     btn_vault_header: "Acceso Bóveda", subtitle: "Líder de Innovación Creativa | Identidad Visual & E-learning",
-                    profile_text: 'Estratega multidisciplinario y Especialista Creativo Tecnológico con más de 8 años de experiencia fusionando diseño, producción audiovisual e Inteligencia Artificial. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente entre la visión de negocio, la estética visual y la adopción tecnológica (Product Owner).',
-                    btn_all: "Todo", btn_video: "Producción Audiovisual", btn_photo: "Fotografía", btn_design: "Identidad Visual & E-learning", btn_audio: "Diseño Sonoro",
-                    vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara", vid_cat_showreel: "Dirección Creativa", vid_tit_showreel: "Showreel 2026", vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO", vid_cat_evento: "Cobertura de Evento", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Programa Gastronómico Online", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Postre", vid_cat_lyric: "Tipografía & Motion Graphics", vid_tit_lyric: "Video Lyrical", cat_post: "Postproducción", vid_tit_mauna: "Mauna (Detrás de Cámaras)", cat_artdir: "Dirección de Arte Comercial", tit_food: "Food Styling", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", cat_product: "Fotografía Comercial B2C", title_product: "Fotografía de Producto", cat_lighting: "Iluminación & Técnica", title_portraits: "Retratos de Estudio", cat_editorial: "Fotografía Editorial", tit_sabrina: "Actriz: Sabrina", cat_press: "Retrato Promocional (Prensa)", tit_kapo: "Artista: KAPO", cat_casting: "Casting Visual", title_emerging: "Artistas Emergentes", cat_exp: "Exploración de Luz", tit_exp: "Experimental", cat_land: "Paisaje y Bellas Artes", title_nature: "Naturaleza", cat_banner: "Banner Web", cat_cover: "Diseño de Portada Musical", mauna_title: "Portada de la canción Suave del artista Mauna", cat_vinyl: "Diseño de Vinilo", cat_id: "Identidad Estacional", tit_navidad: "Logo Navideño", cat_vector: "Ilustración Vectorial", tit_koala: "Koala", cat_corp: "Branding Corporativo", cat_edit: "Diseño Editorial", tit_ruta: "La Ruta del Sabor", cat_mosaic: "Mosaico Digital", tit_school: "Colegio Parroquial", tit_yumbo: "Alcaldía de Yumbo", cat_ad: "Diseño Publicitario", tit_cali: "Alcaldía de Cali", cat_promo: "Diseño Promocional", tit_noches: "Noches D'Feria", cat_flyer: "Diseño de Volante", tit_vape: "Vape Expo 2020", aud_alone: "Acústico / Soul Cinematográfico", aud_trapped: "Tensión / Percusión de Acción", aud_rock: "Rock Alternativo / Alta Energía", aud_rain: "Ambient / Synthwave Inspirador", aud_hades: "Darkwave / Synth Industrial", aud_sauvage: "Beat Global / Fusión Urbana", ecosystem_title: "Ecosistema Creativo", clients_title: "Empresas y Aliados", contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.", btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", btn_cv: "Descargar CV (PDF)", link_yt: "Canal de YouTube", vault_title: "Bóveda Corporativa", vault_desc: "Mis diseños de E-learning e infografías para Unilever, Alquería y Derco están sujetos a NDA. Si usted es un reclutador autorizado, solicite la llave de acceso.", vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]", modal_req_title: "Solicitud de Acceso", modal_req_desc: "Está a punto de solicitar acceso a la Bóveda de NDA. Clientes protegidos:", label_name: "Su Nombre Completo:", label_company: "Empresa o Agencia:", label_email: "Su Correo Corporativo:", nda_title: "ACUERDO DE CONFIDENCIALIDAD (NDA):", nda_text: "Al solicitar acceso a esta bóveda, usted reconoce y acepta expresamente que el material contenido es de carácter estrictamente confidencial.", btn_submit: "Enviar Solicitud y Aceptar Términos", btn_connect: "CONECTEMOS"
+                    profile_text: 'Estratega multidisciplinario y Especialista Creativo Tecnológico. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente estratégico entre la visión de negocio, la estética visual de vanguardia y la adopción tecnológica en empresas top.',
+                    stat_years: "Años de Experiencia", stat_po: "Product Owner",
+                    btn_all: "Todo", btn_video: "Producción Audiovisual", btn_photo: "Fotografía", btn_design: "Diseño Visual", btn_audio: "Diseño Sonoro",
+                    vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara", vid_cat_showreel: "Dirección Creativa", vid_tit_showreel: "Showreel 2026", vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO", vid_cat_evento: "Cobertura de Evento", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Programa Gastronómico Online", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Postre", vid_cat_lyric: "Tipografía & Motion Graphics", vid_tit_lyric: "Video Lyrical", cat_post: "Postproducción", vid_tit_mauna: "Mauna (Detrás de Cámaras)", cat_artdir: "Dirección de Arte Comercial", tit_food: "Food Styling", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", cat_product: "Fotografía Comercial B2C", title_product: "Fotografía de Producto", cat_lighting: "Iluminación & Técnica", title_portraits: "Retratos de Estudio", cat_editorial: "Fotografía Editorial", tit_sabrina: "Actriz: Sabrina", cat_press: "Retrato Promocional (Prensa)", tit_kapo: "Artista: KAPO", cat_casting: "Casting Visual", title_emerging: "Artistas Emergentes", cat_exp: "Exploración de Luz", tit_exp: "Experimental", cat_land: "Paisaje y Bellas Artes", title_nature: "Naturaleza", cat_banner: "Banner Web", cat_cover: "Diseño de Portada Musical", mauna_title: "Portada de la canción Suave del artista Mauna", cat_vinyl: "Diseño de Vinilo", cat_id: "Identidad Estacional", tit_navidad: "Logo Navideño", cat_vector: "Ilustración Vectorial", tit_koala: "Koala", cat_corp: "Branding Corporativo", cat_edit: "Diseño Editorial", tit_ruta: "La Ruta del Sabor", cat_mosaic: "Mosaico Digital", tit_school: "Colegio Parroquial", tit_yumbo: "Alcaldía de Yumbo", cat_ad: "Diseño Publicitario", tit_cali: "Alcaldía de Cali", cat_promo: "Diseño Promocional", tit_noches: "Noches D'Feria", cat_flyer: "Diseño de Volante", tit_vape: "Vape Expo 2020", aud_alone: "Acústico / Soul Cinematográfico", aud_trapped: "Tensión / Percusión de Acción", aud_rock: "Rock Alternativo / Alta Energía", aud_rain: "Ambient / Synthwave Inspirador", aud_hades: "Darkwave / Synth Industrial", aud_sauvage: "Beat Global / Fusión Urbana", ecosystem_title: "Ecosistema Creativo", clients_title: "Empresas y Aliados", contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.", btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", btn_cv: "Descargar CV (PDF)", link_yt: "Canal de YouTube", vault_title: "Bóveda Corporativa", vault_desc: "Mis diseños de E-learning e infografías para Unilever, Alquería y Derco están sujetos a NDA.", vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]", modal_req_title: "Solicitud de Acceso", modal_req_desc: "Está a punto de solicitar acceso a la Bóveda protegida por NDA.", label_name: "Su Nombre Completo:", label_company: "Empresa o Agencia:", label_email: "Su Correo Corporativo:", nda_title: "ACUERDO DE CONFIDENCIALIDAD (NDA):", nda_text: "Al solicitar acceso, usted reconoce y acepta expresamente que el material es confidencial.", btn_submit: "Enviar Solicitud", btn_connect: "CONECTEMOS"
                 },
                 en: {
                     head_title: "Alejandro Vega | Innovation Leader", btn_profile: "Professional Profile",
                     btn_vault_header: "Vault Access", subtitle: "Creative Innovation Leader | Visual Identity & E-learning",
-                    profile_text: 'Multidisciplinary Strategist and Creative Technology Specialist with over 8 years of experience. I specialize in building solid brand identities and high-impact E-learning ecosystems.',
-                    btn_all: "All", btn_video: "Audiovisual Production", btn_photo: "Photography", btn_design: "Visual Identity & E-learning", btn_audio: "Sound Design",
-                    vid_cat_clara: "AI Generative Strategy", vid_tit_clara: "Clara Project", vid_cat_showreel: "Creative Direction", vid_tit_showreel: "2026 Showreel", vid_cat_kapo: "Color Grading", vid_tit_kapo: "Color Test: KAPO", vid_cat_evento: "Event Coverage", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Online Culinary Show", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Dessert", vid_cat_lyric: "Typography & Motion Graphics", vid_tit_lyric: "Lyric Video", cat_post: "Post-production", vid_tit_mauna: "Mauna (Behind The Scenes)", cat_artdir: "Commercial Art Direction", tit_food: "Food Styling", cat_fashion: "Fashion Book & Beauty", tit_fashion: "Model Book", cat_product: "B2C Commercial Photography", title_product: "Product Photography", cat_lighting: "Lighting & Technique", title_portraits: "Studio Portraits", cat_editorial: "Editorial Photography", tit_sabrina: "Actress: Sabrina", cat_press: "Promotional Portrait (Press)", tit_kapo: "Artist: KAPO", cat_casting: "Visual Casting", title_emerging: "Emerging Artists", cat_exp: "Light Exploration", tit_exp: "Experimental", cat_land: "Landscape & Fine Art", title_nature: "Nature", cat_banner: "Web Banner", cat_cover: "Music Cover Design", mauna_title: "Cover for the song 'Suave' by artist Mauna", cat_vinyl: "Vinyl Wrap Design", cat_id: "Seasonal Identity", tit_navidad: "Christmas Logo", cat_vector: "Vector Illustration", tit_koala: "Koala", cat_corp: "Corporate Branding", cat_edit: "Editorial Design", tit_ruta: "The Flavor Route", cat_mosaic: "Digital Mosaic", tit_school: "Parochial School", tit_yumbo: "Yumbo Mayor's Office", cat_ad: "Advertising Design", tit_cali: "Cali Mayor's Office", cat_promo: "Promotional Design", tit_noches: "Noches D'Feria", cat_flyer: "Flyer Design", tit_vape: "Vape Expo 2020", aud_alone: "Acoustic / Cinematic Soul", aud_trapped: "Tension / Action Percussion", aud_rock: "Alternative Rock / High Energy", aud_rain: "Ambient / Uplifting Synthwave", aud_hades: "Darkwave / Industrial Synth", aud_sauvage: "Global Beat / Urban Fusion", ecosystem_title: "Creative Ecosystem", clients_title: "Companies & Partners", contact_title: "LET'S CONNECT", contact_desc: "Ready to elevate the digital and audiovisual narrative of your projects? Let's schedule a strategic session today.", btn_wa: "Text me on WhatsApp", btn_mail: "Send me an email", btn_cv: "Download Resume (PDF)", link_yt: "YouTube Channel", vault_title: "Corporate Vault", vault_desc: "My E-learning and infographic designs for Unilever, Alquería, and Derco are subject to NDA.", vault_btn: "Request Secure Access", btn_close: "CLOSE [X]", modal_req_title: "Access Request", modal_req_desc: "You are about to request access to the NDA Protected Vault.", label_name: "Your Full Name:", label_company: "Company or Agency:", label_email: "Your Corporate Email:", nda_title: "NON-DISCLOSURE AGREEMENT (NDA):", nda_text: "By requesting access, you expressly agree that the material is strictly confidential.", btn_submit: "Submit Request & Accept Terms", btn_connect: "LET'S CONNECT"
+                    profile_text: 'Multidisciplinary Strategist and Creative Technology Specialist. I specialize in building solid brand identities and high-impact E-learning ecosystems. I act as the strategic bridge between business vision, cutting-edge aesthetics, and tech adoption in top companies.',
+                    stat_years: "Years of Experience", stat_po: "Product Owner",
+                    btn_all: "All", btn_video: "Audiovisual Production", btn_photo: "Photography", btn_design: "Visual Design", btn_audio: "Sound Design",
+                    vid_cat_clara: "AI Generative Strategy", vid_tit_clara: "Clara Project", vid_cat_showreel: "Creative Direction", vid_tit_showreel: "2026 Showreel", vid_cat_kapo: "Color Grading", vid_tit_kapo: "Color Test: KAPO", vid_cat_evento: "Event Coverage", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Online Culinary Show", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Dessert", vid_cat_lyric: "Typography & Motion Graphics", vid_tit_lyric: "Lyric Video", cat_post: "Post-production", vid_tit_mauna: "Mauna (Behind The Scenes)", cat_artdir: "Commercial Art Direction", tit_food: "Food Styling", cat_fashion: "Fashion Book & Beauty", tit_fashion: "Model Book", cat_product: "B2C Commercial Photography", title_product: "Product Photography", cat_lighting: "Lighting & Technique", title_portraits: "Studio Portraits", cat_editorial: "Editorial Photography", tit_sabrina: "Actress: Sabrina", cat_press: "Promotional Portrait (Press)", tit_kapo: "Artist: KAPO", cat_casting: "Visual Casting", title_emerging: "Emerging Artists", cat_exp: "Light Exploration", tit_exp: "Experimental", cat_land: "Landscape & Fine Art", title_nature: "Nature", cat_banner: "Web Banner", cat_cover: "Music Cover Design", mauna_title: "Cover for 'Suave' by Mauna", cat_vinyl: "Vinyl Wrap Design", cat_id: "Seasonal Identity", tit_navidad: "Christmas Logo", cat_vector: "Vector Illustration", tit_koala: "Koala", cat_corp: "Corporate Branding", cat_edit: "Editorial Design", tit_ruta: "The Flavor Route", cat_mosaic: "Digital Mosaic", tit_school: "Parochial School", tit_yumbo: "Yumbo Mayor's Office", cat_ad: "Advertising Design", tit_cali: "Cali Mayor's Office", cat_promo: "Promotional Design", tit_noches: "Noches D'Feria", cat_flyer: "Flyer Design", tit_vape: "Vape Expo 2020", aud_alone: "Acoustic / Cinematic Soul", aud_trapped: "Tension / Action Percussion", aud_rock: "Alternative Rock / High Energy", aud_rain: "Ambient / Uplifting Synthwave", aud_hades: "Darkwave / Industrial Synth", aud_sauvage: "Global Beat / Urban Fusion", ecosystem_title: "Creative Ecosystem", clients_title: "Companies & Partners", contact_title: "LET'S CONNECT", contact_desc: "Ready to elevate the digital narrative of your projects? Let's schedule a strategic session.", btn_wa: "Text me on WhatsApp", btn_mail: "Send me an email", btn_cv: "Download Resume (PDF)", link_yt: "YouTube Channel", vault_title: "Corporate Vault", vault_desc: "My E-learning designs for Unilever, Alquería, and Derco are subject to NDA.", vault_btn: "Request Secure Access", btn_close: "CLOSE [X]", modal_req_title: "Access Request", modal_req_desc: "You are requesting access to the NDA Protected Vault.", label_name: "Your Full Name:", label_company: "Company or Agency:", label_email: "Your Corporate Email:", nda_title: "NON-DISCLOSURE AGREEMENT (NDA):", nda_text: "By requesting access, you agree that the material is strictly confidential.", btn_submit: "Submit Request", btn_connect: "LET'S CONNECT"
                 }
             };
 
@@ -903,7 +953,7 @@
                 updateLanguage(currentLang);
             });
 
-            // 2. FILTROS Y ENRUTADOR DE VISTAS (PERFIL VS GRILLA)
+            // 2. ENRUTADOR VISTAS Y FILTROS (PERFIL VS MULTIMEDIA)
             const FilterManager = (() => {
                 const grid = document.getElementById('main-grid');
                 const profileSection = document.getElementById('profile-section');
@@ -918,11 +968,11 @@
                         grid.style.display = 'none';
                         profileSection.style.display = 'block';
                     } else {
-                        grid.style.display = category === 'diseno' ? 'block' : 'grid';
+                        grid.style.display = 'grid'; // tetris y normal comparten css grid container
                         profileSection.style.display = 'none';
                         
-                        if (category === 'diseno') grid.classList.add('masonry-mode');
-                        else grid.classList.remove('masonry-mode');
+                        if (category === 'diseno') grid.classList.add('tetris-mode');
+                        else grid.classList.remove('tetris-mode');
 
                         document.querySelectorAll('.media-item').forEach(item => {
                             if (category === 'all' || item.classList.contains(category)) {
@@ -932,7 +982,7 @@
                             }
                         });
                     }
-                    window.dispatchEvent(new Event('scroll'));
+                    window.dispatchEvent(new Event('scroll')); // Refresca observer
                 };
 
                 document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -940,10 +990,43 @@
                 });
             })();
 
-            // 3. GESTOR DE VIDEO YOUTUBE (SOLO MODAL = RENDIMIENTO ABSOLUTO)
+            // 3. YOUTUBE AUTOPLAY (IntersectionObserver Calibrado al 70%)
             const VideoManager = (() => {
                 const ytModal = document.getElementById('youtube-modal');
                 const ytIframe = document.getElementById('youtube-iframe');
+
+                const sendCommand = (iframe, func) => {
+                    if (iframe && iframe.contentWindow && iframe.src) {
+                        iframe.contentWindow.postMessage(JSON.stringify({event: 'command', func: func, args: []}), '*');
+                    }
+                };
+
+                const initObserver = () => {
+                    // threshold: 0.7 significa que el video debe estar un 70% visible para arrancar
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            const iframe = entry.target.querySelector('.media-iframe');
+                            const thumb = entry.target.querySelector('.yt-thumbnail');
+                            if (!iframe) return;
+
+                            if (entry.isIntersecting) {
+                                if (!iframe.src) {
+                                    iframe.src = iframe.dataset.src;
+                                    iframe.onload = () => {
+                                        iframe.style.opacity = "1";
+                                        if (thumb) thumb.style.opacity = "0";
+                                    };
+                                } else {
+                                    sendCommand(iframe, 'playVideo');
+                                }
+                            } else {
+                                sendCommand(iframe, 'pauseVideo');
+                            }
+                        });
+                    }, { threshold: 0.7 });
+
+                    document.querySelectorAll('.media-item.audiovisual').forEach(item => observer.observe(item));
+                };
 
                 const openModal = (id) => {
                     AudioManager.pauseAll();
@@ -961,107 +1044,10 @@
                 });
                 document.getElementById('closeYtBtn').addEventListener('click', closeModal);
 
-                return { closeModal };
+                return { initObserver, closeModal };
             })();
 
-            // 4. GESTOR DE AUDIO
-            const AudioManager = (() => {
-                let audioCtx = null;
-                const activeAudios = new Set(); 
-
-                const initContext = () => {
-                    if (!audioCtx) try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
-                    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-                };
-
-                const pauseAll = (exceptElement = null) => {
-                    activeAudios.forEach(item => {
-                        if (item.audio !== exceptElement) {
-                            item.audio.pause();
-                            item.playBtn.innerHTML = '▶';
-                            item.playerUi.classList.remove('playing');
-                            item.isPlaying = false;
-                        }
-                    });
-                };
-
-                const setupAudios = () => {
-                    document.querySelectorAll('.media-item.audio').forEach(item => {
-                        const audio = new Audio(item.dataset.audioSrc);
-                        audio.crossOrigin = "anonymous";
-                        
-                        const playBtn = item.querySelector('.play-btn');
-                        const playerUi = item.querySelector('.custom-player');
-                        const progressFill = item.querySelector('.progress-fill');
-                        const progressWrapper = item.querySelector('.progress-wrapper');
-                        const canvas = item.querySelector('.audio-visualizer');
-                        const ctx = canvas.getContext('2d');
-                        
-                        let analyser = null; let dataArray = null; let isApiReady = false;
-                        const itemData = { audio, playBtn, playerUi, isPlaying: false };
-                        activeAudios.add(itemData);
-
-                        const buildVisualizer = () => {
-                            if (isApiReady || !audioCtx) return;
-                            const source = audioCtx.createMediaElementSource(audio);
-                            analyser = audioCtx.createAnalyser();
-                            analyser.fftSize = 128;
-                            source.connect(analyser); analyser.connect(audioCtx.destination);
-                            dataArray = new Uint8Array(analyser.frequencyBinCount);
-                            isApiReady = true;
-                        };
-
-                        const draw = () => {
-                            if (!itemData.isPlaying) return;
-                            requestAnimationFrame(draw);
-                            ctx.clearRect(0, 0, canvas.width, canvas.height);
-                            if (isApiReady && analyser) {
-                                analyser.getByteFrequencyData(dataArray);
-                                const barWidth = (canvas.width / dataArray.length) * 1.5;
-                                let x = 0;
-                                for (let i = 0; i < dataArray.length; i++) {
-                                    const barHeight = (dataArray[i] / 255) * (canvas.height * 0.8);
-                                    ctx.fillStyle = `rgba(45, 212, 191, ${dataArray[i]/255})`;
-                                    ctx.beginPath();
-                                    ctx.roundRect(x, canvas.height - barHeight, barWidth, barHeight, [4, 4, 0, 0]);
-                                    ctx.fill();
-                                    x += barWidth + 2;
-                                }
-                            }
-                        };
-
-                        playBtn.addEventListener('click', (e) => {
-                            e.stopPropagation(); initContext();
-                            if (audio.paused) {
-                                pauseAll(audio); buildVisualizer(); audio.play();
-                                playBtn.innerHTML = '❚❚'; playerUi.classList.add('playing');
-                                itemData.isPlaying = true; canvas.width = item.offsetWidth; canvas.height = item.offsetHeight; draw();
-                            } else {
-                                audio.pause(); playBtn.innerHTML = '▶'; playerUi.classList.remove('playing'); itemData.isPlaying = false;
-                            }
-                        });
-
-                        audio.addEventListener('timeupdate', () => {
-                            const percent = (audio.currentTime / audio.duration) * 100;
-                            if (progressFill) progressFill.style.width = `${percent || 0}%`;
-                        });
-
-                        progressWrapper.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            const rect = progressWrapper.getBoundingClientRect();
-                            audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
-                        });
-
-                        audio.addEventListener('ended', () => {
-                            playBtn.innerHTML = '▶'; playerUi.classList.remove('playing'); itemData.isPlaying = false; progressFill.style.width = '0%';
-                            setTimeout(() => { if(![...activeAudios].some(a => a.isPlaying)) audioCtx.suspend(); }, 1000);
-                        });
-                    });
-                };
-                return { setupAudios, pauseAll };
-            })();
-
-            // 5. GESTOR DE GALERÍA DE FOTOS
+            // 4. GALERÍA DE FOTOS Y CONEXIÓN DE DISEÑOS (Tetris Modal)
             const GalleryManager = (() => {
                 const galleryData = {
                     'food': ['https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png'],
@@ -1073,7 +1059,8 @@
                     'modelos': ['https://static.wixstatic.com/media/14f4fb_963a7a6446284302a798edcf8457cffd~mv2_d_3471_3471_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_62c1344e52a441daaa100e3400a6cc19~mv2_d_3176_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_88875e89e124451b8dfd1ec60f0e7e69~mv2_d_5491_3928_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_3e4d4dde8e184350aa6a5a52141ec414~mv2_d_4000_6000_s_4_2.png', 'https://static.wixstatic.com/media/14f4fb_28502a138679481f89b571e599cf0fc4~mv2.jpg'],
                     'retratos': ['https://static.wixstatic.com/media/14f4fb_4f61d7e9e3cd4da6ad6e6f649d2d9d05~mv2_d_4000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_6fb679a244ef48de9ea749cbeb6e7824~mv2_d_4000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_d66070ef8db64e62a7b7abffa3099d80~mv2_d_4000_5547_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_5fb74448bec44efebd9d63489a942e4d~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a60c3996c5c443b6be56e08c91807dc9~mv2.png'],
                     'producto': ['https://static.wixstatic.com/media/14f4fb_bde31a4c87be49a1882327dacb0882e0~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_09129e6b1cc648ed8f0dd806ea46ac95~mv2.jpg'],
-                    'diseno_1': ['Banner web Jdmaray Cali SPA.jpg'], 'diseno_2': ['Banner web para Homecare Ebenezer.jpg'], 'diseno_3': ['portada_mauna.png'], 'diseno_4': ['vinilo_xbox.jpg'], 'diseno_5': ['logo_navideno.jpeg'], 'diseno_6': ['Ilustracion vectorial Koala con gafas y pipa.png'], 'diseno_7': ['Logo Another Reality VR.png'], 'diseno_8': ['Logo Sulmajafra venta de productos de belleza.jpg'], 'diseno_9': ['ruta_sabor.jpg'], 'diseno_10': ['mosaico_colegio.jpg'], 'diseno_11': ['Pieza Conversatorio Tuberculosis Hospital y Alcaldia de Yumbo.jpg'], 'diseno_12': ['Pieza de servicio de Tonificacion corporal para Agua Marina esthetic center.jpg'], 'diseno_13': ['Pieza invitacion de encuentro cultural para la alcaldia de Cali.jpg'], 'diseno_14': ['Pieza promocional de capacitacion para programa de afiliados de Virtuosa venta de ropa para comunidades religiosas.jpg'], 'diseno_15': ['noches_feria.jpg'], 'diseno_16': ['volante_vape.png']
+                    // Colección Maestra de Diseños
+                    'diseno_all': [] 
                 };
 
                 const modal = document.getElementById('gallery-modal');
@@ -1081,22 +1068,28 @@
                 const dotsContainer = document.getElementById('gallery-dots');
                 let collection = []; let currentIdx = 0; let touchStartX = 0;
 
+                // Extraer todas las imágenes de diseño al array maestro
+                document.querySelectorAll('.media-item.diseno').forEach(item => {
+                    const img = item.querySelector('img').src;
+                    galleryData.diseno_all.push(img);
+                });
+
                 const updateImage = () => {
                     imgEl.style.opacity = '0';
-                    setTimeout(() => { imgEl.src = collection[currentIdx]; imgEl.style.opacity = '1'; }, 200);
+                    setTimeout(() => { imgEl.src = collection[currentIdx]; imgEl.style.opacity = '1'; }, 150);
                     Array.from(dotsContainer.children).forEach((dot, i) => dot.classList.toggle('active', i === currentIdx));
                 };
 
                 const nextSlide = (e) => { if(e) e.stopPropagation(); currentIdx = (currentIdx + 1) % collection.length; updateImage(); };
                 const prevSlide = (e) => { if(e) e.stopPropagation(); currentIdx = (currentIdx - 1 + collection.length) % collection.length; updateImage(); };
 
-                const openModal = (id) => {
+                const openModal = (id, startIndex = 0) => {
                     AudioManager.pauseAll();
                     collection = galleryData[id] || []; if (!collection.length) return;
-                    currentIdx = 0; dotsContainer.innerHTML = '';
+                    currentIdx = startIndex; dotsContainer.innerHTML = '';
                     collection.forEach((_, i) => {
                         const dot = document.createElement('div');
-                        dot.className = `gallery-dot ${i===0 ? 'active' : ''}`;
+                        dot.className = `gallery-dot ${i===currentIdx ? 'active' : ''}`;
                         dot.addEventListener('click', (e) => { e.stopPropagation(); currentIdx = i; updateImage(); });
                         dotsContainer.appendChild(dot);
                     });
@@ -1106,36 +1099,203 @@
 
                 const closeModal = () => { modal.classList.remove('active-modal'); setTimeout(() => { imgEl.src = ""; }, 300); };
 
+                // Swipes en el Modal
                 imgEl.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, {passive: true});
                 imgEl.addEventListener('touchend', e => {
                     const touchEndX = e.changedTouches[0].screenX;
                     if (touchEndX < touchStartX - 50) nextSlide(); if (touchEndX > touchStartX + 50) prevSlide();
                 }, {passive: true});
 
-                document.querySelectorAll('.media-item.fotografia, .media-item.diseno').forEach(item => item.addEventListener('click', () => openModal(item.dataset.gallery)));
+                // Asignar clicks a Fotografía
+                document.querySelectorAll('.media-item.fotografia').forEach(item => item.addEventListener('click', () => openModal(item.dataset.gallery)));
+                
+                // Asignar clicks a Diseños (Conectados)
+                document.querySelectorAll('.media-item.diseno').forEach(item => {
+                    item.addEventListener('click', () => {
+                        const idx = parseInt(item.dataset.disenoIdx);
+                        openModal('diseno_all', idx);
+                    });
+                });
+
                 document.getElementById('galleryNextBtn').addEventListener('click', nextSlide);
                 document.getElementById('galleryPrevBtn').addEventListener('click', prevSlide);
                 document.getElementById('closeGalleryBtn').addEventListener('click', closeModal);
 
+                // Hover Interno (Velocidad a 600ms) y Local Swipe (Móvil)
                 const hoverTimers = new Map();
                 document.querySelectorAll('.media-item.fotografia, .media-item.diseno').forEach(item => {
                     const images = item.querySelectorAll('.hc-img');
                     if(images.length <= 1) return;
+                    
                     item.addEventListener('mouseenter', () => {
                         let idx = 0;
-                        const timer = setInterval(() => { images[idx].classList.remove('active'); idx = (idx + 1) % images.length; images[idx].classList.add('active'); }, 1200); 
+                        const timer = setInterval(() => { images[idx].classList.remove('active'); idx = (idx + 1) % images.length; images[idx].classList.add('active'); }, 600); // Rápido
                         hoverTimers.set(item, timer);
                     });
                     item.addEventListener('mouseleave', () => {
                         clearInterval(hoverTimers.get(item));
                         images.forEach(img => img.classList.remove('active')); images[0].classList.add('active'); 
                     });
+
+                    // Swipe local dentro de la tarjeta (Móvil)
+                    let cardStartX = 0;
+                    item.addEventListener('touchstart', e => cardStartX = e.changedTouches[0].screenX, {passive: true});
+                    item.addEventListener('touchend', e => {
+                        const touchEndX = e.changedTouches[0].screenX;
+                        const diff = touchEndX - cardStartX;
+                        if (Math.abs(diff) > 40) {
+                            // Detenemos propagación para que no abra el modal si hubo un swipe intencional
+                            e.preventDefault(); e.stopPropagation(); 
+                            
+                            // Encontrar imagen activa y rotar localmente
+                            let activeIdx = Array.from(images).findIndex(img => img.classList.contains('active'));
+                            images[activeIdx].classList.remove('active');
+                            if (diff < 0) { // Swipe Left (Siguiente)
+                                activeIdx = (activeIdx + 1) % images.length;
+                            } else { // Swipe Right (Anterior)
+                                activeIdx = (activeIdx - 1 + images.length) % images.length;
+                            }
+                            images[activeIdx].classList.add('active');
+                        }
+                    });
                 });
 
                 return { closeModal };
             })();
 
-            // 6. GESTOR DE BÓVEDA
+            // 5. GESTOR DE AUDIO (WEB AUDIO API)
+            const AudioManager = (() => {
+                let audioCtx = null; const activeAudios = new Set(); 
+
+                const initContext = () => {
+                    if (!audioCtx) try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
+                    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+                };
+
+                const pauseAll = (exceptElement = null) => {
+                    activeAudios.forEach(item => {
+                        if (item.audio !== exceptElement) {
+                            item.audio.pause(); item.playBtn.innerHTML = '▶'; item.playerUi.classList.remove('playing'); item.isPlaying = false;
+                        }
+                    });
+                };
+
+                const setupAudios = () => {
+                    document.querySelectorAll('.media-item.audio').forEach(item => {
+                        const audio = new Audio(item.dataset.audioSrc); audio.crossOrigin = "anonymous";
+                        const playBtn = item.querySelector('.play-btn'); const playerUi = item.querySelector('.custom-player');
+                        const progressFill = item.querySelector('.progress-fill'); const progressWrapper = item.querySelector('.progress-wrapper');
+                        const canvas = item.querySelector('.audio-visualizer'); const ctx = canvas.getContext('2d');
+                        
+                        let analyser = null; let dataArray = null; let isApiReady = false;
+                        const itemData = { audio, playBtn, playerUi, isPlaying: false }; activeAudios.add(itemData);
+
+                        const buildVisualizer = () => {
+                            if (isApiReady || !audioCtx) return;
+                            const source = audioCtx.createMediaElementSource(audio);
+                            analyser = audioCtx.createAnalyser(); analyser.fftSize = 128;
+                            source.connect(analyser); analyser.connect(audioCtx.destination);
+                            dataArray = new Uint8Array(analyser.frequencyBinCount); isApiReady = true;
+                        };
+
+                        const draw = () => {
+                            if (!itemData.isPlaying) return; requestAnimationFrame(draw);
+                            ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            if (isApiReady && analyser) {
+                                analyser.getByteFrequencyData(dataArray);
+                                const barWidth = (canvas.width / dataArray.length) * 1.5; let x = 0;
+                                for (let i = 0; i < dataArray.length; i++) {
+                                    const barHeight = (dataArray[i] / 255) * (canvas.height * 0.8);
+                                    ctx.fillStyle = `rgba(45, 212, 191, ${dataArray[i]/255})`;
+                                    ctx.beginPath(); ctx.roundRect(x, canvas.height - barHeight, barWidth, barHeight, [4, 4, 0, 0]); ctx.fill();
+                                    x += barWidth + 2;
+                                }
+                            }
+                        };
+
+                        playBtn.addEventListener('click', (e) => {
+                            e.stopPropagation(); initContext();
+                            if (audio.paused) {
+                                pauseAll(audio); buildVisualizer(); audio.play(); playBtn.innerHTML = '❚❚'; playerUi.classList.add('playing');
+                                itemData.isPlaying = true; canvas.width = item.offsetWidth; canvas.height = item.offsetHeight; draw();
+                            } else { audio.pause(); playBtn.innerHTML = '▶'; playerUi.classList.remove('playing'); itemData.isPlaying = false; }
+                        });
+                        audio.addEventListener('timeupdate', () => { const percent = (audio.currentTime / audio.duration) * 100; if (progressFill) progressFill.style.width = `${percent || 0}%`; });
+                        progressWrapper.addEventListener('click', (e) => { e.stopPropagation(); const rect = progressWrapper.getBoundingClientRect(); audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration; });
+                        audio.addEventListener('ended', () => { playBtn.innerHTML = '▶'; playerUi.classList.remove('playing'); itemData.isPlaying = false; progressFill.style.width = '0%'; setTimeout(() => { if(![...activeAudios].some(a => a.isPlaying)) audioCtx.suspend(); }, 1000); });
+                    });
+                };
+                return { setupAudios, pauseAll };
+            })();
+
+            // 6. MOTOR FÍSICO DE MARQUEE (LANZAR / DRAG)
+            const MarqueePhysics = (() => {
+                const track = document.getElementById('marqueeTrack');
+                const container = document.getElementById('marqueeContainer');
+                
+                let currentX = 0;
+                let isDragging = false;
+                let startX = 0;
+                let velocityX = 0; 
+                const baseSpeed = -1; // Píxeles por frame de izquierda a derecha
+                let lastDragX = 0;
+                let animationId = null;
+
+                const loop = () => {
+                    if (!isDragging) {
+                        // Inercia y recuperación de velocidad
+                        // La velocidad decae (fricción) pero busca volver a baseSpeed (-1)
+                        velocityX = velocityX * 0.95 + baseSpeed * 0.05; 
+                        currentX += velocityX;
+                    }
+                    
+                    // Loop infinito matemático (cuando llegamos a la mitad de los items duplicados, reseteamos)
+                    // El ancho del track es dinámico, por seguridad reseteamos tras cierto desplazamiento
+                    if (currentX < -2000) currentX += 2000; 
+                    if (currentX > 0) currentX -= 2000;
+
+                    track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+                    animationId = requestAnimationFrame(loop);
+                };
+
+                const down = (e) => {
+                    isDragging = true;
+                    startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+                    lastDragX = startX;
+                    velocityX = 0; // Pausa inmediata al tocar
+                    container.style.cursor = 'grabbing';
+                };
+
+                const move = (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault(); // Prevenir scroll nativo
+                    const x = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+                    const diff = x - lastDragX;
+                    currentX += diff;
+                    velocityX = diff; // Guardamos el momento de la fuerza
+                    lastDragX = x;
+                };
+
+                const up = () => {
+                    isDragging = false;
+                    container.style.cursor = 'grab';
+                    // Al soltar, velocityX retiene el impulso (física de lanzamiento) y el loop se encarga de suavizarlo.
+                };
+
+                const init = () => {
+                    container.addEventListener('mousedown', down);
+                    container.addEventListener('touchstart', down, {passive: false});
+                    window.addEventListener('mousemove', move, {passive: false});
+                    window.addEventListener('touchmove', move, {passive: false});
+                    window.addEventListener('mouseup', up);
+                    window.addEventListener('touchend', up);
+                    animationId = requestAnimationFrame(loop);
+                };
+
+                return { init };
+            })();
+
+            // 7. BÓVEDA NDA
             const VaultManager = (() => {
                 const modal = document.getElementById('vault-modal');
                 const form = document.getElementById('vault-form');
@@ -1175,23 +1335,12 @@
                 }
             });
 
-            const shuffleDesignItems = () => {
-                const grid = document.getElementById('main-grid');
-                const designItems = Array.from(grid.querySelectorAll('.media-item.diseno'));
-                const firstAudio = grid.querySelector('.media-item.audio');
-                for (let i = designItems.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [designItems[i], designItems[j]] = [designItems[j], designItems[i]];
-                }
-                designItems.forEach(item => firstAudio ? grid.insertBefore(item, firstAudio) : grid.appendChild(item));
-            };
-
             document.addEventListener('contextmenu', e => { if(e.target.tagName === 'IMG') e.preventDefault(); });
 
-            // INICIALIZACIÓN Y ANIMACIÓN DE ENTRADA
+            // INICIALIZACIÓN 
             document.addEventListener('DOMContentLoaded', () => {
                 updateLanguage(currentLang);
-                shuffleDesignItems();
+                MarqueePhysics.init(); // Arrancar físicas de clientes
                 
                 document.querySelectorAll('.fallback-img').forEach(img => {
                     img.addEventListener('error', function() {
@@ -1204,19 +1353,19 @@
                     }, { passive: true });
                 });
 
-                // Control del botón de subir
-                const backToTopBtn = document.getElementById('backToTopBtn');
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 500) backToTopBtn.classList.add('visible');
-                    else backToTopBtn.classList.remove('visible');
-                }, { passive: true });
-                backToTopBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
-
-                // Esperamos la carga y luego ejecutamos la entrada dramática de tu nombre
+                // Carga Flash Initial (Quitar Splash)
                 setTimeout(() => {
                     document.body.classList.remove('is-loading');
                     document.body.classList.add('is-loaded');
                     document.body.style.overflow = ''; 
+                    
+                    // Inicializar Observer Visual
+                    const visualObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
+                    }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+                    document.querySelectorAll('.reveal-element').forEach(el => visualObserver.observe(el));
+
+                    VideoManager.initObserver();
                     AudioManager.setupAudios();
                 }, 1000); 
             });

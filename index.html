@@ -72,6 +72,7 @@
         .reveal-element { opacity: 0; transition: opacity 0.8s ease; will-change: opacity; }
         body.is-loaded .reveal-element { opacity: 1; }
 
+        /* Z-INDEX DEL HEADER CALIBRADO (Debajo de los modales) */
         header { padding: max(30px, 4dvh) 5% 10px; text-align: center; position: relative; z-index: 100000; pointer-events: none;}
         
         #title-wrapper { display: inline-block; transform: translate3d(0, 0, 0) scale(1); transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1); will-change: transform;}
@@ -119,7 +120,7 @@
         .vault-filter-btn:hover { background-color: var(--electric-cyan); color: var(--dark-bg); box-shadow: 0 5px 15px var(--electric-cyan-glow); }
 
         /* ====================================================
-           5. PERFIL PROFESIONAL (DASHBOARD EXTRAÍDO DEL CV)
+           5. PERFIL PROFESIONAL (DASHBOARD)
         ==================================================== */
         #profile-section { display: none; padding: 0 5% 100px; animation: fadeIn 0.5s ease; position: relative; z-index: 10; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -146,7 +147,6 @@
         .role-list li { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;}
         .role-list li::before { content: '■'; color: var(--electric-cyan); font-size: 0.5rem; }
 
-        /* Barras animadas para Tech Skills */
         .skill-bar { margin-bottom: 15px; }
         .skill-info { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; text-transform: uppercase; color: var(--text-main);}
         .progress-track { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
@@ -156,13 +156,21 @@
         .c-tag { background: rgba(255,255,255,0.05); padding: 5px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); border: 1px solid rgba(255,255,255,0.1);}
 
         /* ====================================================
-           6. MOTOR DE GRILLA Y TETRIS ALEATORIO (DISEÑO VISUAL)
+           6. MOTOR DE GRILLA (BASE: MASSIVE IMPACT)
         ==================================================== */
         .portfolio-grid { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-            gap: clamp(15px, 2vw, 30px); padding: 0 5% 100px; width: 100%; max-width: 2500px; margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: 1fr; /* Móviles: 1 columna masiva */
+            gap: clamp(20px, 3vw, 40px); 
+            padding: 0 5% 100px; width: 100%; max-width: 2500px; margin: 0 auto; 
             position: relative; z-index: 5; 
         }
+        
+        /* Escritorio: 2 columnas inmensas para fotos y videos */
+        @media (min-width: 768px) {
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         .media-item.hide { display: none !important; }
         
         .media-item { 
@@ -172,60 +180,63 @@
             transform: translateZ(0); 
         }
 
-        /* TETRIS MODE: Cuadrícula densa sin huecos */
+        /* TETRIS MODE: Sobrescribe la cuadrícula solo para diseños */
         .portfolio-grid.tetris-mode { 
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            grid-auto-rows: 250px; /* Altura base para forzar el encaje */
-            grid-auto-flow: dense; /* Magia pura: el navegador rellena huecos */
-            gap: 10px; padding: 0 2%;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-auto-rows: 280px; 
+            grid-auto-flow: dense; 
+            gap: 15px; padding: 0 2%;
         }
         
         .portfolio-grid.tetris-mode .media-item { 
             aspect-ratio: unset; height: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); box-shadow: none;
         }
 
-        /* Clases utilitarias inyectadas por JS para el Tetris */
+        /* Clases utilitarias inyectadas dinámicamente por TetrisEngine */
         .span-col-2 { grid-column: span 2; }
         .span-row-2 { grid-row: span 2; }
 
+        @media (max-width: 767px) {
+            .portfolio-grid.tetris-mode { grid-template-columns: 1fr; grid-auto-rows: auto; aspect-ratio: unset; gap: 15px; padding: 0 5%;}
+            .portfolio-grid.tetris-mode .media-item { border-radius: 12px; margin-bottom: 0; aspect-ratio: 16/9; }
+            .span-col-2 { grid-column: auto; } .span-row-2 { grid-row: auto; }
+        }
+
+        /* CAPAS DE MEDIA (IMÁGENES Y VIDEOS) */
         .media-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.15; pointer-events: none; z-index: 4; mix-blend-mode: overlay;}
         .protect-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 6; pointer-events: none; }
         .hover-carousel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         
-        /* ENCUADRE INTELIGENTE */
+        /* ENCUADRE DE IMÁGENES (CENTER POR DEFECTO, TOP PARA ROSTROS) */
         .hc-img, .yt-thumbnail { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            object-fit: cover; object-position: center; /* Default es centro para evitar cortes feos */
+            object-fit: cover; object-position: center; 
             filter: grayscale(40%) brightness(0.7); 
             transition: opacity 0.3s ease, filter var(--transition-speed) ease, transform 0.5s ease; 
         }
         .hc-img { opacity: 0; }
         .hc-img.active { opacity: 1; z-index: 2; }
         
-        /* Clase especial para rostros (Modelos, Retratos) */
+        /* Inyectado en las carpetas de modelos y retratos */
         .focus-top { object-position: top center !important; }
 
         .media-iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; border: none; background-color: var(--card-bg); filter: grayscale(10%) brightness(0.9); opacity: 0; transition: opacity var(--transition-speed) ease; }
 
+        /* HOVER EFFECTS */
         .media-item:not(.audio):hover { border-color: rgba(45, 212, 191, 0.4); box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 20px var(--electric-cyan-glow); transform: translateY(-5px) scale(1.01); z-index: 10; }
         .portfolio-grid.tetris-mode .media-item:not(.audio):hover { transform: scale(1.02); z-index: 20;}
 
         .media-item:not(.audio):hover .hc-img, .media-item:not(.audio):hover .yt-thumbnail { filter: grayscale(0%) brightness(1.1); transform: scale(1.03); }
 
+        /* OVERLAYS DE TEXTO */
         .media-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 50px 30px 20px; background: linear-gradient(to top, rgba(2,6,23,0.98) 10%, transparent); z-index: 5; pointer-events: none; transition: padding 0.3s ease; }
         .media-item:hover .media-overlay { padding-bottom: 30px; }
         .portfolio-grid.tetris-mode .media-item:hover .media-overlay { padding-bottom: 10px; }
         .media-item h2 { font-size: clamp(1.4rem, 2vw, 2.2rem); text-transform: uppercase; margin-bottom: 5px; line-height: 1.1; text-shadow: 0 4px 10px rgba(0,0,0,0.8);}
         .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
-        
-        @media (max-width: 767px) {
-            .portfolio-grid.tetris-mode { grid-template-columns: 1fr; grid-auto-rows: auto; aspect-ratio: unset; gap: 15px;}
-            .portfolio-grid.tetris-mode .media-item { border-radius: 12px; margin-bottom: 0; aspect-ratio: 16/9; }
-            .span-col-2 { grid-column: auto; } .span-row-2 { grid-row: auto; }
-        }
 
         /* ====================================================
-           7. AUDIO API
+           7. AUDIO (WEB AUDIO API)
         ==================================================== */
         .media-item.audio { border: none; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; cursor: default; transform: none !important; background-color: var(--dark-bg); }
         @keyframes rotateGlow { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
@@ -257,8 +268,9 @@
         .marquee-container:active { cursor: grabbing; }
         .marquee-track { display: inline-flex; align-items: center; gap: clamp(40px, 5vw, 80px); will-change: transform; }
         
-        .client-logo { height: clamp(40px, 4vw, 60px); width: auto; object-fit: contain; filter: brightness(0) invert(1) opacity(0.6); transition: filter 0.3s ease; pointer-events: none; }
-        .client-logo.hover-glow { filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 15px var(--electric-cyan)); }
+        /* Clicables de nuevo (sin pointer-events none) */
+        .client-logo { height: clamp(40px, 4vw, 60px); width: auto; object-fit: contain; filter: brightness(0) invert(1) opacity(0.6); transition: filter 0.3s ease; cursor: pointer; }
+        .client-logo.hover-glow, .client-logo:hover { filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 15px var(--electric-cyan)); }
         .client-logo-unilever { transform: scale(1.6); margin: 0 15px; } .client-logo-comfandi { transform: scale(1.3); }
 
         .contact-section { padding: 80px 5% 100px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); background: var(--card-bg); }
@@ -284,9 +296,9 @@
         .vault-btn { background: var(--electric-cyan); color: var(--dark-bg); border: none; padding: 18px 40px; font-weight: 900; border-radius: 50px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px var(--electric-cyan-glow);}
         .vault-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.6); }
 
-        /* --- MODALES --- */
+        /* --- MODALES (Z-INDEX 9999999) --- */
         .modal-fullscreen { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100dvh; background: rgba(2,6,23,0.98); z-index: 10000; display: none; 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100dvh; background: rgba(2,6,23,0.98); z-index: 9999999; display: none; 
             justify-content: center; align-items: center; padding: 2% 5%; backdrop-filter: blur(10px); opacity: 0; transition: opacity 0.2s ease;
         }
         .modal-fullscreen.active-modal { display: flex; opacity: 1; }
@@ -296,7 +308,7 @@
             position: fixed; top: max(20px, env(safe-area-inset-top, 20px)); right: max(20px, var(--safe-right)); 
             color: var(--text-main); background-color: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.2); 
             padding: 10px 20px; border-radius: 8px; cursor: pointer; font-family: 'Montserrat', sans-serif; 
-            font-size: 0.9rem; z-index: 99999; transition: all 0.3s; letter-spacing: 1px; backdrop-filter: blur(5px);
+            font-size: 0.9rem; z-index: 10000000; transition: all 0.3s; letter-spacing: 1px; backdrop-filter: blur(5px);
         }
         .close-btn:hover { background-color: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan); transform: scale(1.05);}
 
@@ -327,6 +339,11 @@
     </style>
 </head>
 <body class="is-loading">
+
+    <script>
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        window.scrollTo(0, 0);
+    </script>
 
     <div class="lang-toggle" id="langToggleBtn">
         <span id="lang-es" class="lang-option active">🇪🇸</span>
@@ -485,8 +502,8 @@
             <div class="media-texture"></div>
             <div class="hover-carousel">
                 <img src="https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg" class="hc-img active" alt="Food 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg" class="hc-img" loading="lazy" decoding="async" alt="Food 2">
-                <img src="https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png" class="hc-img" loading="lazy" decoding="async" alt="Food 3">
+                <img src="https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg" class="hc-img" loading="lazy" alt="Food 2">
+                <img src="https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png" class="hc-img" loading="lazy" alt="Food 3">
             </div>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_artdir">Dirección de Arte Comercial</p><h2 data-i18n="tit_food">Food Styling</h2></div>
@@ -496,10 +513,10 @@
             <div class="media-texture"></div>
             <div class="hover-carousel">
                 <img src="https://static.wixstatic.com/media/14f4fb_963a7a6446284302a798edcf8457cffd~mv2_d_3471_3471_s_4_2.jpg" class="hc-img active focus-top" alt="Modelos 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_62c1344e52a441daaa100e3400a6cc19~mv2_d_3176_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Modelos 2">
-                <img src="https://static.wixstatic.com/media/14f4fb_88875e89e124451b8dfd1ec60f0e7e69~mv2_d_5491_3928_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Modelos 3">
-                <img src="https://static.wixstatic.com/media/14f4fb_3e4d4dde8e184350aa6a5a52141ec414~mv2_d_4000_6000_s_4_2.png" class="hc-img focus-top" loading="lazy" decoding="async" alt="Modelos 4">
-                <img src="https://static.wixstatic.com/media/14f4fb_28502a138679481f89b571e599cf0fc4~mv2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Modelos 5">
+                <img src="https://static.wixstatic.com/media/14f4fb_62c1344e52a441daaa100e3400a6cc19~mv2_d_3176_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" alt="Modelos 2">
+                <img src="https://static.wixstatic.com/media/14f4fb_88875e89e124451b8dfd1ec60f0e7e69~mv2_d_5491_3928_s_4_2.jpg" class="hc-img focus-top" loading="lazy" alt="Modelos 3">
+                <img src="https://static.wixstatic.com/media/14f4fb_3e4d4dde8e184350aa6a5a52141ec414~mv2_d_4000_6000_s_4_2.png" class="hc-img focus-top" loading="lazy" alt="Modelos 4">
+                <img src="https://static.wixstatic.com/media/14f4fb_28502a138679481f89b571e599cf0fc4~mv2.jpg" class="hc-img focus-top" loading="lazy" alt="Modelos 5">
             </div>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_fashion">Fashion Book & Belleza</p><h2 data-i18n="tit_fashion">Book Modelos</h2></div>
@@ -509,7 +526,7 @@
             <div class="media-texture"></div>
             <div class="hover-carousel">
                 <img src="https://static.wixstatic.com/media/14f4fb_bde31a4c87be49a1882327dacb0882e0~mv2.jpg" class="hc-img active" alt="Producto 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_09129e6b1cc648ed8f0dd806ea46ac95~mv2.jpg" class="hc-img" loading="lazy" decoding="async" alt="Producto 2">
+                <img src="https://static.wixstatic.com/media/14f4fb_09129e6b1cc648ed8f0dd806ea46ac95~mv2.jpg" class="hc-img" loading="lazy" alt="Producto 2">
             </div>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_product">Fotografía Comercial B2C</p><h2 data-i18n="title_product">Fotografía de Producto</h2></div>
@@ -519,10 +536,10 @@
             <div class="media-texture"></div>
             <div class="hover-carousel">
                 <img src="https://static.wixstatic.com/media/14f4fb_4f61d7e9e3cd4da6ad6e6f649d2d9d05~mv2_d_4000_4000_s_4_2.jpg" class="hc-img active focus-top" alt="Retratos 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_6fb679a244ef48de9ea749cbeb6e7824~mv2_d_4000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Retratos 2">
-                <img src="https://static.wixstatic.com/media/14f4fb_d66070ef8db64e62a7b7abffa3099d80~mv2_d_4000_5547_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Retratos 3">
-                <img src="https://static.wixstatic.com/media/14f4fb_5fb74448bec44efebd9d63489a942e4d~mv2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Retratos 4">
-                <img src="https://static.wixstatic.com/media/14f4fb_a60c3996c5c443b6be56e08c91807dc9~mv2.png" class="hc-img focus-top" loading="lazy" decoding="async" alt="Retratos 5">
+                <img src="https://static.wixstatic.com/media/14f4fb_6fb679a244ef48de9ea749cbeb6e7824~mv2_d_4000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" alt="Retratos 2">
+                <img src="https://static.wixstatic.com/media/14f4fb_d66070ef8db64e62a7b7abffa3099d80~mv2_d_4000_5547_s_4_2.jpg" class="hc-img focus-top" loading="lazy" alt="Retratos 3">
+                <img src="https://static.wixstatic.com/media/14f4fb_5fb74448bec44efebd9d63489a942e4d~mv2.jpg" class="hc-img focus-top" loading="lazy" alt="Retratos 4">
+                <img src="https://static.wixstatic.com/media/14f4fb_a60c3996c5c443b6be56e08c91807dc9~mv2.png" class="hc-img focus-top" loading="lazy" alt="Retratos 5">
             </div>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_lighting">Iluminación & Técnica</p><h2 data-i18n="title_portraits">Retratos de Estudio</h2></div>
@@ -532,10 +549,10 @@
             <div class="media-texture"></div>
             <div class="hover-carousel">
                 <img src="https://static.wixstatic.com/media/14f4fb_cfb665c8cecc4a3f915d59ecc7372cdf~mv2.png" class="hc-img active focus-top" alt="Sabrina 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_ccfb094089134b27a65b8008ab140548~mv2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Sabrina 2">
-                <img src="https://static.wixstatic.com/media/14f4fb_8cd04cc0174b4bc2b5fdd33f7c95bcee~mv2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Sabrina 3">
-                <img src="https://static.wixstatic.com/media/14f4fb_74ff5ed1e6a641ec8530ebb424a29590~mv2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Sabrina 4">
-                <img src="https://static.wixstatic.com/media/14f4fb_f2b9a122bb454eb18d439cf4aa55f621~mv2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Sabrina 5">
+                <img src="https://static.wixstatic.com/media/14f4fb_ccfb094089134b27a65b8008ab140548~mv2.jpg" class="hc-img focus-top" loading="lazy" alt="Sabrina 2">
+                <img src="https://static.wixstatic.com/media/14f4fb_8cd04cc0174b4bc2b5fdd33f7c95bcee~mv2.jpg" class="hc-img focus-top" loading="lazy" alt="Sabrina 3">
+                <img src="https://static.wixstatic.com/media/14f4fb_74ff5ed1e6a641ec8530ebb424a29590~mv2.jpg" class="hc-img focus-top" loading="lazy" alt="Sabrina 4">
+                <img src="https://static.wixstatic.com/media/14f4fb_f2b9a122bb454eb18d439cf4aa55f621~mv2.jpg" class="hc-img focus-top" loading="lazy" alt="Sabrina 5">
             </div>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_editorial">Fotografía Editorial</p><h2 data-i18n="tit_sabrina">Actriz: Sabrina</h2></div>
@@ -545,8 +562,8 @@
             <div class="media-texture"></div>
             <div class="hover-carousel">
                 <img src="https://static.wixstatic.com/media/14f4fb_b9505e5b99434479a64c516219d4ba31~mv2_d_5357_3912_s_4_2.jpg" class="hc-img active focus-top" alt="Kapo 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_df15ab106fbb4b519ddcc1f23d435086~mv2_d_4000_4144_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Kapo 2">
-                <img src="https://static.wixstatic.com/media/14f4fb_c3a9c9a9eeea40e5a1b147b81234a83a~mv2_d_3662_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Kapo 3">
+                <img src="https://static.wixstatic.com/media/14f4fb_df15ab106fbb4b519ddcc1f23d435086~mv2_d_4000_4144_s_4_2.jpg" class="hc-img focus-top" loading="lazy" alt="Kapo 2">
+                <img src="https://static.wixstatic.com/media/14f4fb_c3a9c9a9eeea40e5a1b147b81234a83a~mv2_d_3662_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" alt="Kapo 3">
             </div>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_press">Retrato Promocional (Prensa)</p><h2 data-i18n="tit_kapo">Artista: KAPO</h2></div>
@@ -556,8 +573,8 @@
             <div class="media-texture"></div>
             <div class="hover-carousel">
                 <img src="https://static.wixstatic.com/media/14f4fb_e82cdeeb1f354ca38150280d46c711ec~mv2_d_6000_4000_s_4_2.jpg" class="hc-img active focus-top" alt="Emergentes 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_ace77dbc01c8427cbdda217f9ab1fe14~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Emergentes 2">
-                <img src="https://static.wixstatic.com/media/14f4fb_6a425cecae704f25aca53f67560a9169~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Emergentes 3">
+                <img src="https://static.wixstatic.com/media/14f4fb_ace77dbc01c8427cbdda217f9ab1fe14~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" alt="Emergentes 2">
+                <img src="https://static.wixstatic.com/media/14f4fb_6a425cecae704f25aca53f67560a9169~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" alt="Emergentes 3">
             </div>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_casting">Casting Visual</p><h2 data-i18n="title_emerging">Artistas Emergentes</h2></div>
@@ -567,10 +584,10 @@
             <div class="media-texture"></div>
             <div class="hover-carousel">
                 <img src="https://static.wixstatic.com/media/14f4fb_3c6ea1e81a93400bb35024d9af900c58~mv2.jpg" class="hc-img active focus-top" alt="Experimental 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_c7c328c79ef0435592619f0cc7ccbe8d~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Experimental 2">
-                <img src="https://static.wixstatic.com/media/14f4fb_545f729dd5a845bcbdd114895dd988a4~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Experimental 3">
-                <img src="https://static.wixstatic.com/media/14f4fb_6663382b6a134ee6ae6cf16348bf9375~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Experimental 4">
-                <img src="https://static.wixstatic.com/media/14f4fb_5f6933f6ec6348999c18eb538412b6b8~mv2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" alt="Experimental 5">
+                <img src="https://static.wixstatic.com/media/14f4fb_c7c328c79ef0435592619f0cc7ccbe8d~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" alt="Experimental 2">
+                <img src="https://static.wixstatic.com/media/14f4fb_545f729dd5a845bcbdd114895dd988a4~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" alt="Experimental 3">
+                <img src="https://static.wixstatic.com/media/14f4fb_6663382b6a134ee6ae6cf16348bf9375~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" alt="Experimental 4">
+                <img src="https://static.wixstatic.com/media/14f4fb_5f6933f6ec6348999c18eb538412b6b8~mv2.jpg" class="hc-img focus-top" loading="lazy" alt="Experimental 5">
             </div>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_exp">Exploración de Luz</p><h2 data-i18n="tit_exp">Experimental</h2></div>
@@ -580,11 +597,11 @@
             <div class="media-texture"></div>
             <div class="hover-carousel">
                 <img src="https://static.wixstatic.com/media/14f4fb_f2a7ed1846ad41fa86dce3758b73a792~mv2.jpg" class="hc-img active" alt="Naturaleza 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_5a786c1258bf4c26a079ad85b25813af~mv2.jpg" class="hc-img" loading="lazy" decoding="async" alt="Naturaleza 2">
-                <img src="https://static.wixstatic.com/media/14f4fb_c50af1954a4340858f6b59d67f59b974~mv2.png" class="hc-img" loading="lazy" decoding="async" alt="Naturaleza 3">
-                <img src="https://static.wixstatic.com/media/14f4fb_fc5461752fc54ada9334b00b39dc4282~mv2.jpg" class="hc-img" loading="lazy" decoding="async" alt="Naturaleza 4">
-                <img src="https://static.wixstatic.com/media/14f4fb_e37aec4ed1a34979b3e3333817ceadf~mv2.jpg" class="hc-img" loading="lazy" decoding="async" alt="Naturaleza 5">
-                <img src="https://static.wixstatic.com/media/14f4fb_6ed08e70b70a40ca8ed663a1067d5485~mv2_d_6000_4000_s_4_2.jpg" class="hc-img" loading="lazy" decoding="async" alt="Naturaleza 6">
+                <img src="https://static.wixstatic.com/media/14f4fb_5a786c1258bf4c26a079ad85b25813af~mv2.jpg" class="hc-img" loading="lazy" alt="Naturaleza 2">
+                <img src="https://static.wixstatic.com/media/14f4fb_c50af1954a4340858f6b59d67f59b974~mv2.png" class="hc-img" loading="lazy" alt="Naturaleza 3">
+                <img src="https://static.wixstatic.com/media/14f4fb_fc5461752fc54ada9334b00b39dc4282~mv2.jpg" class="hc-img" loading="lazy" alt="Naturaleza 4">
+                <img src="https://static.wixstatic.com/media/14f4fb_e37aec4ed1a34979b3e3333817ceadf~mv2.jpg" class="hc-img" loading="lazy" alt="Naturaleza 5">
+                <img src="https://static.wixstatic.com/media/14f4fb_6ed08e70b70a40ca8ed663a1067d5485~mv2_d_6000_4000_s_4_2.jpg" class="hc-img" loading="lazy" alt="Naturaleza 6">
             </div>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_land">Paisaje y Bellas Artes</p><h2 data-i18n="title_nature">Naturaleza</h2></div>
@@ -787,22 +804,23 @@
         <h3 data-i18n="clients_title">Empresas y Aliados</h3>
         <div class="marquee-container" id="marqueeContainer">
             <div class="marquee-track" id="marqueeTrack">
-                <img src="Logo Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img" loading="lazy">
-                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img" loading="lazy">
-                <img src="Logo derco.png" alt="Derco" class="client-logo fallback-img" loading="lazy">
-                <img src="Logo comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img" loading="lazy">
-                <img src="Logo fanalca.png" alt="Fanalca" class="client-logo fallback-img" loading="lazy">
-                <img src="Logo eficacia.png" alt="Eficacia" class="client-logo fallback-img" loading="lazy">
-                <img src="Logo espy.png" alt="Espy" class="client-logo fallback-img" loading="lazy">
-                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img" loading="lazy">
-                <img src="Logo Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img" loading="lazy">
-                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img" loading="lazy">
-                <img src="Logo derco.png" alt="Derco" class="client-logo fallback-img" loading="lazy">
-                <img src="Logo comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img" loading="lazy">
-                <img src="Logo fanalca.png" alt="Fanalca" class="client-logo fallback-img" loading="lazy">
-                <img src="Logo eficacia.png" alt="Eficacia" class="client-logo fallback-img" loading="lazy">
-                <img src="Logo espy.png" alt="Espy" class="client-logo fallback-img" loading="lazy">
-                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img" loading="lazy">
+                <img src="Logo Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy">
+                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img vault-trigger" loading="lazy">
+                <img src="Logo fanalca.png" alt="Fanalca" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo eficacia.png" alt="Eficacia" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img vault-trigger" loading="lazy">
+                
+                <img src="Logo Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy">
+                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img vault-trigger" loading="lazy">
+                <img src="Logo fanalca.png" alt="Fanalca" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo eficacia.png" alt="Eficacia" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img vault-trigger" loading="lazy">
             </div>
         </div>
     </section>
@@ -842,7 +860,7 @@
     </div>
 
     <div class="modal-fullscreen" id="gallery-modal">
-        <button class="close-btn" id="closeGalleryBtn" data-i18n="btn_close" style="z-index: 100000;">CERRAR [X]</button>
+        <button class="close-btn" id="closeGalleryBtn" data-i18n="btn_close">CERRAR [X]</button>
         <div class="gallery-nav gallery-prev" id="galleryPrevBtn">&#10094;</div>
         <img src="" id="gallery-image" alt="Galería Fotográfica" oncontextmenu="return false;">
         <div class="gallery-nav gallery-next" id="galleryNextBtn">&#10095;</div>
@@ -889,7 +907,7 @@
                     btn_vault_header: "Acceso Bóveda", subtitle: "Líder de Innovación Creativa | Identidad Visual & E-learning",
                     prof_title: "Impacto Estratégico", prof_rol: "Roles Principales", prof_skills: "Core Skills",
                     rol_1: "Co-Fundador & Líder de Producto (Autómatas)", rol_2: "Director General & Productor (JAVEGA)", rol_3: "Líder E-learning & Trade Marketing (Eficacia)", rol_4: "Director de Arte (Concepto Agencia)",
-                    profile_text: 'Estratega multidisciplinario y Especialista Creativo Tecnológico con más de 8 años de experiencia. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente entre la visión de negocio, la estética visual de vanguardia y la adopción tecnológica.',
+                    profile_text: 'Estratega multidisciplinario y Especialista Creativo Tecnológico con más de 8 años de experiencia. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente estratégico entre la visión de negocio, la estética visual de vanguardia y la adopción tecnológica.',
                     stat_years: "Años de Experiencia", stat_po: "Product Owner",
                     btn_all: "Todo", btn_video: "Producción Audiovisual", btn_photo: "Fotografía", btn_design: "Diseño Visual", btn_audio: "Diseño Sonoro",
                     vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara", vid_cat_showreel: "Dirección Creativa", vid_tit_showreel: "Showreel 2026", vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO", vid_cat_evento: "Cobertura de Evento", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Programa Gastronómico Online", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Postre", vid_cat_lyric: "Tipografía & Motion Graphics", vid_tit_lyric: "Video Lyrical", cat_post: "Postproducción", vid_tit_mauna: "Mauna (Detrás de Cámaras)", cat_artdir: "Dirección de Arte Comercial", tit_food: "Food Styling", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", cat_product: "Fotografía Comercial B2C", title_product: "Fotografía de Producto", cat_lighting: "Iluminación & Técnica", title_portraits: "Retratos de Estudio", cat_editorial: "Fotografía Editorial", tit_sabrina: "Actriz: Sabrina", cat_press: "Retrato Promocional (Prensa)", tit_kapo: "Artista: KAPO", cat_casting: "Casting Visual", title_emerging: "Artistas Emergentes", cat_exp: "Exploración de Luz", tit_exp: "Experimental", cat_land: "Paisaje y Bellas Artes", title_nature: "Naturaleza", cat_banner: "Banner Web", cat_cover: "Diseño de Portada Musical", mauna_title: "Portada de la canción Suave del artista Mauna", cat_vinyl: "Diseño de Vinilo", cat_id: "Identidad Estacional", tit_navidad: "Logo Navideño", cat_vector: "Ilustración Vectorial", tit_koala: "Koala", cat_corp: "Branding Corporativo", cat_edit: "Diseño Editorial", tit_ruta: "La Ruta del Sabor", cat_mosaic: "Mosaico Digital", tit_school: "Colegio Parroquial", tit_yumbo: "Alcaldía de Yumbo", cat_ad: "Diseño Publicitario", tit_cali: "Alcaldía de Cali", cat_promo: "Diseño Promocional", tit_noches: "Noches D'Feria", cat_flyer: "Diseño de Volante", tit_vape: "Vape Expo 2020", aud_alone: "Acústico / Soul Cinematográfico", aud_trapped: "Tensión / Percusión de Acción", aud_rock: "Rock Alternativo / Alta Energía", aud_rain: "Ambient / Synthwave Inspirador", aud_hades: "Darkwave / Synth Industrial", aud_sauvage: "Beat Global / Fusión Urbana", ecosystem_title: "Ecosistema Creativo", clients_title: "Empresas y Aliados", contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.", btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", btn_cv: "Descargar CV (PDF)", link_yt: "Canal de YouTube", vault_title: "Bóveda Corporativa", vault_desc: "Mis diseños de E-learning e infografías para Unilever, Alquería y Derco están sujetos a NDA.", vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]", modal_req_title: "Solicitud de Acceso", modal_req_desc: "Está a punto de solicitar acceso a la Bóveda de NDA. Clientes protegidos:", label_name: "Su Nombre Completo:", label_company: "Empresa o Agencia:", label_email: "Su Correo Corporativo:", nda_title: "ACUERDO DE CONFIDENCIALIDAD (NDA):", nda_text: "Al solicitar acceso a esta bóveda, usted reconoce y acepta expresamente que el material contenido es confidencial.", btn_submit: "Enviar Solicitud y Aceptar", btn_connect: "CONECTEMOS"
@@ -920,25 +938,19 @@
             };
 
             document.getElementById('langToggleBtn').addEventListener('click', () => {
-                currentLang = currentLang === 'es' ? 'en' : 'es'; updateLanguage(currentLang);
+                currentLang = currentLang === 'es' ? 'en' : 'es';
+                updateLanguage(currentLang);
             });
 
-            // 2. ENRUTADOR VISTAS Y ANIMACIÓN DE BARRAS DE PROGRESO
+            // 2. ENRUTADOR VISTAS Y BARRAS DE PROGRESO CV
             const FilterManager = (() => {
                 const grid = document.getElementById('main-grid');
                 const profileSection = document.getElementById('profile-section');
                 
                 const animateProgressBars = () => {
-                    setTimeout(() => {
-                        document.querySelectorAll('.progress-fill-cv').forEach(bar => {
-                            bar.style.width = bar.dataset.width;
-                        });
-                    }, 100);
+                    setTimeout(() => { document.querySelectorAll('.progress-fill-cv').forEach(bar => { bar.style.width = bar.dataset.width; }); }, 100);
                 };
-                
-                const resetProgressBars = () => {
-                    document.querySelectorAll('.progress-fill-cv').forEach(bar => bar.style.width = '0');
-                };
+                const resetProgressBars = () => { document.querySelectorAll('.progress-fill-cv').forEach(bar => bar.style.width = '0'); };
 
                 const filter = (category, btnTarget) => {
                     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
@@ -946,20 +958,15 @@
                     AudioManager.pauseAll();
 
                     if (category === 'perfil') {
-                        grid.style.display = 'none';
-                        profileSection.style.display = 'block';
-                        animateProgressBars();
+                        grid.style.display = 'none'; profileSection.style.display = 'block'; animateProgressBars();
                     } else {
-                        grid.style.display = 'grid'; 
-                        profileSection.style.display = 'none';
-                        resetProgressBars();
+                        grid.style.display = 'grid'; profileSection.style.display = 'none'; resetProgressBars();
                         
                         if (category === 'diseno') {
                             grid.classList.add('tetris-mode');
-                            TetrisEngine.randomize(); // Re-barajar el tetris en cada click
+                            TetrisEngine.randomize(); 
                         } else {
                             grid.classList.remove('tetris-mode');
-                            // Quitar clases tetris
                             document.querySelectorAll('.media-item.diseno').forEach(i => i.classList.remove('span-col-2', 'span-row-2'));
                         }
 
@@ -974,42 +981,33 @@
                 document.querySelectorAll('.filter-btn').forEach(btn => {
                     btn.addEventListener('click', (e) => filter(e.target.dataset.filter, e.target));
                 });
-                
-                return { animateProgressBars };
             })();
 
-            // 3. MOTOR TETRIS (ALEATORIEDAD DE DISEÑOS)
+            // 3. MOTOR TETRIS (ALGORITMO DINÁMICO)
             const TetrisEngine = (() => {
                 const randomize = () => {
                     const grid = document.getElementById('main-grid');
                     const designItems = Array.from(grid.querySelectorAll('.media-item.diseno'));
-                    // Barajar el array (Fisher-Yates)
                     for (let i = designItems.length - 1; i > 0; i--) {
                         const j = Math.floor(Math.random() * (i + 1));
                         [designItems[i], designItems[j]] = [designItems[j], designItems[i]];
                     }
-                    // Asignar clases de span aleatoriamente y reinsertar en DOM
                     designItems.forEach(item => {
                         item.classList.remove('span-col-2', 'span-row-2');
                         const rand = Math.random();
-                        if (rand > 0.8) item.classList.add('span-col-2'); // 20% son anchos
-                        else if (rand > 0.6) item.classList.add('span-row-2'); // 20% son altos
-                        
-                        grid.appendChild(item); // Reordenar en el DOM visualmente
+                        if (rand > 0.8) item.classList.add('span-col-2'); 
+                        else if (rand > 0.6) item.classList.add('span-row-2'); 
+                        grid.appendChild(item); 
                     });
                 };
                 return { randomize };
             })();
 
-            // 4. AUTOPLAY DE YOUTUBE (IntersectionObserver)
+            // 4. AUTOPLAY DE YOUTUBE
             const VideoManager = (() => {
                 const ytModal = document.getElementById('youtube-modal');
                 const ytIframe = document.getElementById('youtube-iframe');
-                const sendCommand = (iframe, func) => {
-                    if (iframe && iframe.contentWindow && iframe.src) {
-                        iframe.contentWindow.postMessage(JSON.stringify({event: 'command', func: func, args: []}), '*');
-                    }
-                };
+                const sendCommand = (iframe, func) => { if (iframe && iframe.contentWindow && iframe.src) { iframe.contentWindow.postMessage(JSON.stringify({event: 'command', func: func, args: []}), '*'); } };
 
                 const initObserver = () => {
                     const observer = new IntersectionObserver((entries) => {
@@ -1019,10 +1017,8 @@
                             if (!iframe) return;
 
                             if (entry.isIntersecting) {
-                                if (!iframe.src) {
-                                    iframe.src = iframe.dataset.src;
-                                    iframe.onload = () => { iframe.style.opacity = "1"; if (thumb) thumb.style.opacity = "0"; };
-                                } else { sendCommand(iframe, 'playVideo'); }
+                                if (!iframe.src) { iframe.src = iframe.dataset.src; iframe.onload = () => { iframe.style.opacity = "1"; if (thumb) thumb.style.opacity = "0"; }; } 
+                                else { sendCommand(iframe, 'playVideo'); }
                             } else { sendCommand(iframe, 'pauseVideo'); }
                         });
                     }, { threshold: 0.7 });
@@ -1037,7 +1033,7 @@
                 return { initObserver, closeModal };
             })();
 
-            // 5. GALERÍA DE FOTOS (SWIPE Y PRELOADER)
+            // 5. GALERÍA DE FOTOS Y PRELOADER
             const GalleryManager = (() => {
                 const galleryData = {
                     'food': ['https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png'],
@@ -1057,10 +1053,7 @@
                 const dotsContainer = document.getElementById('gallery-dots');
                 let collection = []; let currentIdx = 0; let touchStartX = 0;
 
-                document.querySelectorAll('.media-item.diseno').forEach(item => {
-                    galleryData.diseno_all.push(item.querySelector('img').src);
-                });
-
+                // Preloader Silencioso
                 const preloadImage = (index) => {
                     const nextImg = new Image();
                     nextImg.src = collection[(index + 1) % collection.length];
@@ -1071,7 +1064,7 @@
                     setTimeout(() => { 
                         imgEl.src = collection[currentIdx]; 
                         imgEl.style.opacity = '1'; 
-                        preloadImage(currentIdx); // Preloader instantáneo
+                        preloadImage(currentIdx); 
                     }, 150);
                     Array.from(dotsContainer.children).forEach((dot, i) => dot.classList.toggle('active', i === currentIdx));
                 };
@@ -1100,10 +1093,12 @@
                 }, {passive: true});
 
                 document.querySelectorAll('.media-item.fotografia').forEach(item => item.addEventListener('click', () => openModal(item.dataset.gallery)));
+                
                 document.querySelectorAll('.media-item.diseno').forEach(item => {
                     item.addEventListener('click', () => {
+                        // Recolectar diseños vivos post-tetris
                         const allDisenoImgs = Array.from(document.querySelectorAll('.media-item.diseno img')).map(img => img.src);
-                        galleryData.diseno_all = allDisenoImgs; // Asegurar orden correcto tras el tetris
+                        galleryData.diseno_all = allDisenoImgs; 
                         const idx = allDisenoImgs.indexOf(item.querySelector('img').src);
                         openModal('diseno_all', idx);
                     });
@@ -1128,7 +1123,6 @@
                         images.forEach(img => img.classList.remove('active')); images[0].classList.add('active'); 
                     });
 
-                    // Swipe local móvil
                     let cardStartX = 0;
                     item.addEventListener('touchstart', e => cardStartX = e.changedTouches[0].screenX, {passive: true});
                     item.addEventListener('touchend', e => {
@@ -1146,7 +1140,7 @@
                 return { closeModal };
             })();
 
-            // 6. MOTOR DE AUDIO (INTACTO)
+            // 6. MOTOR DE AUDIO
             const AudioManager = (() => {
                 let audioCtx = null; const activeAudios = new Set(); 
                 const initContext = () => { if (!audioCtx) try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {} if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); };
@@ -1187,12 +1181,12 @@
                 return { setupAudios, pauseAll };
             })();
 
-            // 7. MOTOR FÍSICO DE CLIENTES (DRAG & GLOW CLICK)
+            // 7. MOTOR FÍSICO DE CLIENTES (CLIC INTELIGENTE Y DRAG)
             const MarqueePhysics = (() => {
                 const track = document.getElementById('marqueeTrack');
                 const container = document.getElementById('marqueeContainer');
                 let currentX = 0; let isDragging = false; let velocityX = 0; const baseSpeed = -1; let lastDragX = 0; let animationId = null;
-                let dragDistance = 0; // Para diferenciar un click de un arrastre
+                let dragDistance = 0;
 
                 const loop = () => {
                     if (!isDragging) { velocityX = velocityX * 0.95 + baseSpeed * 0.05; currentX += velocityX; }
@@ -1211,13 +1205,12 @@
                     if (!isDragging) return; e.preventDefault();
                     const x = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
                     const diff = x - lastDragX;
-                    dragDistance += Math.abs(diff); // Calculamos si se movió el cursor
+                    dragDistance += Math.abs(diff);
                     currentX += diff; velocityX = diff; lastDragX = x;
                 };
 
                 const up = (e) => {
                     isDragging = false; container.style.cursor = 'grab';
-                    // Si el ratón no se movió más de 5 píxeles, se considera un Clic.
                     if (dragDistance < 5 && e.target.classList.contains('vault-trigger')) {
                         VaultManager.openModal();
                     }
@@ -1228,7 +1221,6 @@
                     window.addEventListener('mousemove', move, {passive: false}); window.addEventListener('touchmove', move, {passive: false});
                     window.addEventListener('mouseup', up); window.addEventListener('touchend', up);
                     
-                    // Hover glow CSS handler
                     document.querySelectorAll('.client-logo').forEach(l => {
                         l.addEventListener('mouseenter', () => l.classList.add('hover-glow'));
                         l.addEventListener('mouseleave', () => l.classList.remove('hover-glow'));
@@ -1256,16 +1248,16 @@
                 return { closeModal, openModal };
             })();
 
-            // TECLADO
+            // UTILIDADES
             document.addEventListener('keydown', (e) => { 
                 if (e.key === "Escape") { VideoManager.closeModal(); GalleryManager.closeModal(); VaultManager.closeModal(); }
                 if (document.getElementById('gallery-modal').classList.contains('active-modal')) { if (e.key === "ArrowRight") document.getElementById('galleryNextBtn').click(); if (e.key === "ArrowLeft") document.getElementById('galleryPrevBtn').click(); }
             });
             document.addEventListener('contextmenu', e => { if(e.target.tagName === 'IMG') e.preventDefault(); });
 
-            // ARRANQUE PRINCIPAL
+            // ARRANQUE
             document.addEventListener('DOMContentLoaded', () => {
-                updateLanguage(currentLang); MarqueePhysics.init(); TetrisEngine.randomize();
+                updateLanguage(currentLang); MarqueePhysics.init();
                 
                 document.querySelectorAll('.fallback-img').forEach(img => {
                     img.addEventListener('error', function() {
@@ -1273,7 +1265,6 @@
                     }, { passive: true });
                 });
 
-                // Back to top listener rescatado
                 const backToTopBtn = document.getElementById('backToTopBtn');
                 window.addEventListener('scroll', () => {
                     if (window.scrollY > 400) backToTopBtn.classList.add('visible');

@@ -2,41 +2,22 @@
 <html lang="es" id="html-root">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
     <title data-i18n="head_title">Alejandro Vega | Líder de Innovación Creativa & Especialista Tecnológico</title>
     <meta name="description" content="Estratega multidisciplinario y Especialista Creativo Tecnológico. Más de 8 años fusionando diseño, producción audiovisual, E-learning e Inteligencia Artificial.">
-    <meta name="keywords" content="Alejandro Vega, Líder de Innovación Creativa, Especialista Creativo Tecnológico, Identidad Visual, E-learning, IA Generativa, Product Owner, Producción Audiovisual, Diseño Instruccional, Colombia, Yumbo, Cali">
-    <meta name="author" content="Alejandro Vega">
-    
-    <meta property="og:title" content="Alejandro Vega | Portafolio 360°">
-    <meta property="og:description" content="Estratega multidisciplinario fusionando diseño, producción audiovisual e IA. Explora mis proyectos y agendemos una sesión estratégica.">
-    <meta property="og:type" content="profile">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Alejandro Vega",
-      "jobTitle": "Líder de Innovación Creativa & Especialista Creativo Tecnológico",
-      "url": "https://alevega.com", 
-      "description": "Especializado en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Product Owner e IA Generativa.",
-      "knowsAbout": ["IA Generativa", "Product Ownership", "Estrategia de Marca", "Diseño Instruccional", "Dirección Audiovisual", "Identidad Visual", "E-learning"],
-      "sameAs": [
-        "https://linkedin.com/in/javegapro",
-        "https://www.youtube.com/@javegapro",
-        "https://instagram.com/javegapro"
-      ]
-    }
-    </script>
     
     <link rel="preconnect" href="https://www.youtube.com">
     <link rel="preconnect" href="https://static.wixstatic.com">
-    <link rel="preconnect" href="https://i.ytimg.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
+        /* ====================================================
+           1. CORE & VARIABLES DE DISEÑO (ESTÁNDAR 2026)
+        ==================================================== */
         :root {
             --dark-bg: #020617; 
             --electric-cyan: #2dd4bf; 
@@ -45,309 +26,231 @@
             --text-muted: #94a3b8;
             --danger-red: #ef4444;
             --whatsapp-green: #25D366;
-            --automatas-green: #7fff50; 
-            --transition-speed: 0.5s;
+            --transition-speed: 0.4s;
+            /* Variables seguras para el notch/isla del iPhone */
+            --safe-bottom: env(safe-area-inset-bottom, 20px);
+            --safe-right: env(safe-area-inset-right, 20px);
+            --safe-left: env(safe-area-inset-left, 20px);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-user-drag: none; -webkit-touch-callout: none; user-select: none; }
-        input { user-select: auto; -webkit-user-select: auto; -moz-user-select: auto; }
+        /* Reset moderno: box-sizing universal y eliminación de márgenes */
+        *, *::before, *::after { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
 
-        body { background-color: var(--dark-bg); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        /* Prevención de desbordamiento horizontal en móviles */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        body { 
+            background-color: var(--dark-bg); 
+            color: var(--text-main); 
+            font-family: 'Inter', sans-serif; 
+            scroll-behavior: smooth;
+            /* Se evita el salto de layout en dispositivos táctiles */
+            -webkit-tap-highlight-color: transparent;
+        }
         
-        body.is-loading { overflow: hidden; height: 100vh; }
+        body.is-loading { 
+            overflow: hidden; 
+            /* Se usa dvh (Dynamic Viewport Height) en lugar de vh para móviles iOS */
+            height: 100dvh; 
+        }
+
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
         /* ====================================================
-           1. SPLASH SCREEN (ACELERACIÓN 60FPS GPU)
+           2. SPLASH SCREEN (HARDWARE ACCELERATED)
         ==================================================== */
         .splash-panel { 
-            position: fixed; left: 0; width: 100vw; height: 50vh; background-color: var(--dark-bg); 
-            z-index: 9998; transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-            will-change: transform; transform: translate3d(0,0,0);
+            position: fixed; 
+            left: 0; 
+            width: 100%; /* Cambiado de vw a % para evitar scroll horizontal fantasma */
+            height: 50dvh; /* dvh asegura que no se corte por las barras de Safari */
+            background-color: var(--dark-bg); 
+            z-index: 9998; 
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+            will-change: transform; 
         }
-        .splash-panel.top { top: 0; transform-origin: top; border-bottom: 2px solid var(--electric-cyan); box-shadow: 0 5px 30px rgba(45,212,191,0.3);}
-        .splash-panel.bottom { bottom: 0; transform-origin: bottom; border-top: 2px solid var(--electric-cyan); box-shadow: 0 -5px 30px rgba(45,212,191,0.3);}
-
-        .splash-laser { 
-            position: fixed; top: 50%; left: 0; width: 100vw; height: 4px; background: #fff; box-shadow: 0 0 20px 8px var(--electric-cyan); 
-            z-index: 9999; transform: translate3d(0, -50%, 0) scaleX(0); opacity: 1; transition: opacity 0.2s ease; 
-            will-change: transform, opacity;
-        }
-        body.is-loading .splash-laser { animation: laserShoot 0.3s cubic-bezier(0.8, 0, 0.2, 1) forwards 1.2s; }
-        @keyframes laserShoot { 0% { transform: translate3d(0, -50%, 0) scaleX(0); } 100% { transform: translate3d(0, -50%, 0) scaleX(1); } }
+        .splash-panel.top { top: 0; transform-origin: top; border-bottom: 2px solid var(--electric-cyan); }
+        .splash-panel.bottom { bottom: 0; transform-origin: bottom; border-top: 2px solid var(--electric-cyan); }
 
         body.is-loaded .splash-panel.top { transform: translate3d(0, -100%, 0); }
         body.is-loaded .splash-panel.bottom { transform: translate3d(0, 100%, 0); }
-        body.is-loaded .splash-laser { opacity: 0; }
 
-        .reveal-content { opacity: 0; transition: opacity 0.6s ease 0.1s; will-change: opacity; }
+        .reveal-content { 
+            opacity: 0; 
+            transition: opacity 0.6s ease 0.2s; 
+            will-change: opacity; 
+        }
         body.is-loaded .reveal-content { opacity: 1; }
 
-        /* --- CABECERA (MARGENES COMPACTADOS) --- */
-        header { padding: 30px 5% 10px; text-align: center; position: relative; z-index: 10000; pointer-events: none;}
+        /* ====================================================
+           3. CABECERA & TIPOGRAFÍA FLUIDA
+        ==================================================== */
+        header { 
+            padding: max(40px, 5dvh) 5% 20px; 
+            text-align: center; 
+            position: relative; 
+            z-index: 10;
+        }
+
+        #title-wrapper { transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1); border-radius: 50px; }
         
-        #title-wrapper { 
-            display: inline-block; transform: translate3d(0, 0, 0) scale(1); 
-            transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1); 
-            will-change: transform, background, box-shadow; 
-            border-radius: 50px; 
-            position: relative; z-index: 10001; 
+        /* Tipografía fluida con clamp() - Escala perfectamente en todos los dispositivos */
+        #main-title { 
+            font-size: clamp(2rem, 5vw + 1rem, 5rem); 
+            text-transform: uppercase; 
+            letter-spacing: clamp(2px, 1vw, 5px); 
+            color: var(--text-main); 
         }
         
-        body.is-loading #title-wrapper { 
-            transform: translate3d(0, calc(50vh - 80px), 0) scale(1.5); 
-            background-color: var(--dark-bg);
-            box-shadow: 0 0 25px 20px var(--dark-bg);
+        p.subtitle { 
+            color: var(--electric-cyan); 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            font-size: clamp(0.9rem, 2vw, 1.4rem); 
+            letter-spacing: 2px;
+            margin-top: 10px;
         }
 
-        #main-title { font-size: 3rem; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 5px; color: var(--text-main); transition: text-shadow 0.3s; will-change: text-shadow, color; }
-        body.is-loading #main-title { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); animation: textGlitch 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 0.1s; }
-
-        @keyframes textGlitch {
-            0% { text-shadow: 4px 0 0 var(--electric-cyan), -4px 0 0 var(--danger-red); opacity: 0; filter: blur(4px);}
-            20% { text-shadow: -3px 0 0 var(--electric-cyan), 3px 0 0 var(--danger-red); opacity: 1; filter: blur(0);}
-            40% { transform: translate(-2px, 2px); text-shadow: 4px 0 0 var(--danger-red), -4px 0 0 var(--electric-cyan);}
-            60% { transform: translate(2px, -2px); text-shadow: none; color: rgba(255,255,255,0.8); }
-            80% { transform: translate(0, 0); text-shadow: 3px 0 0 var(--electric-cyan); color: transparent; }
-            100% { color: var(--text-main); text-shadow: 0 0 20px rgba(45, 212, 191, 0.6); -webkit-text-stroke: 0;}
-        }
-
-        /* --- TEXTO DE PERFIL COMPACTADO --- */
         .profile-pitch {
-            max-width: 900px; margin: 15px auto 25px; font-size: 1.15rem; line-height: 1.6;
-            color: var(--text-muted); opacity: 0; 
-            background: rgba(2, 6, 23, 0.5); 
+            max-width: 900px; 
+            margin: 25px auto; 
+            font-size: clamp(1rem, 1.5vw, 1.15rem); 
+            line-height: 1.6;
+            color: var(--text-muted); 
+            background: rgba(2, 6, 23, 0.6); 
             border: 1px solid rgba(45, 212, 191, 0.15);
             border-left: 4px solid var(--electric-cyan);
-            border-radius: 12px; padding: 20px 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            transform: translateY(20px); will-change: transform, opacity;
-            pointer-events: auto; 
+            border-radius: 12px; 
+            padding: 20px clamp(15px, 3vw, 30px);
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px); /* Soporte iOS */
         }
-        body.is-loaded .profile-pitch { animation: slideUpPitch 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s; }
-        @keyframes slideUpPitch { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-        .highlight-tech { color: var(--electric-cyan); font-weight: 700; letter-spacing: 0.5px; }
+        .highlight-tech { color: var(--electric-cyan); font-weight: 700; }
 
         /* ====================================================
-           UI AVANZADA: BOTONES FLOTANTES
+           4. UI FLOTANTE (ADAPTADA PARA IPHONE 15 PRO)
         ==================================================== */
         .lang-toggle {
-            position: fixed; bottom: 30px; left: 30px; background: rgba(2, 6, 23, 0.85); border: 1px solid rgba(255,255,255,0.2);
-            padding: 8px 12px; border-radius: 30px; cursor: pointer; z-index: 900; display: flex; gap: 8px; align-items: center;
-            transition: 0.3s; backdrop-filter: blur(5px);
+            position: fixed; 
+            bottom: var(--safe-bottom); /* Respeta la barra de inicio de iOS */
+            left: var(--safe-left); 
+            background: rgba(2, 6, 23, 0.85); 
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 12px; 
+            border-radius: 30px; 
+            cursor: pointer; 
+            z-index: 900; 
+            display: flex; 
+            gap: 8px; 
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
-        .lang-toggle:hover { border-color: var(--electric-cyan); }
         .lang-option { opacity: 0.4; font-size: 1.2rem; transition: 0.3s; filter: grayscale(100%); }
         .lang-option.active { opacity: 1; filter: grayscale(0%); transform: scale(1.1); }
 
         .floating-connect {
-            position: fixed; bottom: 30px; right: 30px; border-radius: 50px; padding: 12px 25px;
-            background: var(--electric-cyan); color: var(--dark-bg); display: flex; align-items: center; justify-content: center; gap: 10px;
-            box-shadow: 0 0 20px rgba(45, 212, 191, 0.4); transition: all 0.3s ease; z-index: 900; text-decoration: none; pointer-events: auto;
-            animation: pulseGlow 2s infinite ease-in-out; will-change: transform, box-shadow;
-        }
-        @keyframes pulseGlow { 0% { box-shadow: 0 0 15px rgba(45, 212, 191, 0.4); } 50% { box-shadow: 0 0 30px rgba(45, 212, 191, 0.8); } 100% { box-shadow: 0 0 15px rgba(45, 212, 191, 0.4); } }
-        .floating-connect:hover { transform: translateY(-5px); background: #20b8a5; }
-        .floating-connect .icon { font-size: 1.5rem; line-height: 0; }
-        .floating-connect .text { font-weight: 900; text-transform: uppercase; font-family: 'Montserrat', sans-serif; letter-spacing: 1px;}
-
-        .back-to-top {
-            position: fixed; bottom: 100px; right: 40px; width: 45px; height: 45px; border-radius: 8px;
-            background: rgba(2, 6, 23, 0.9); border: 1px solid var(--electric-cyan); color: var(--electric-cyan);
-            display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s; z-index: 899; cursor: pointer; backdrop-filter: blur(5px);
-        }
-        .back-to-top svg { width: 24px; height: 24px; fill: none; stroke: var(--electric-cyan); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: all 0.3s; }
-        .back-to-top.visible { opacity: 1; pointer-events: auto; }
-        .back-to-top:hover { background: var(--electric-cyan); box-shadow: 0 0 15px var(--electric-cyan); }
-        .back-to-top:hover svg { stroke: var(--dark-bg); transform: translateY(-3px); }
-
-        /* --- FILTROS (SUBIDOS ESTRATÉGICAMENTE) --- */
-        header p.subtitle { color: var(--electric-cyan); font-weight: 600; text-transform: uppercase; font-size: 1.1rem; letter-spacing: 2px;}
-        .filter-container { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 20px; padding: 0 5% 40px; position: relative; z-index: 10;}
-        
-        .filter-btn { background: transparent; border: 2px solid rgba(255,255,255,0.2); color: var(--text-main); padding: 12px 30px; border-radius: 50px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; }
-        .filter-btn:hover, .filter-btn.active { background-color: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(45, 212, 191, 0.15); }
-
-        .vault-filter-btn {
-            background: rgba(45, 212, 191, 0.1); border: 2px solid var(--electric-cyan); color: var(--electric-cyan); 
-            padding: 12px 30px; border-radius: 50px; cursor: pointer; font-family: 'Montserrat', sans-serif; 
-            font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;
-            display: flex; align-items: center; gap: 8px; box-shadow: 0 0 15px rgba(45, 212, 191, 0.2);
-        }
-        .vault-filter-btn:hover {
-            background-color: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan);
-            transform: translateY(-3px); box-shadow: 0 10px 25px rgba(45, 212, 191, 0.4);
+            position: fixed; 
+            bottom: var(--safe-bottom); 
+            right: var(--safe-right); 
+            border-radius: 50px; 
+            padding: 12px clamp(15px, 3vw, 25px);
+            background: var(--electric-cyan); 
+            color: var(--dark-bg); 
+            display: flex; 
+            align-items: center; 
+            gap: 8px;
+            box-shadow: 0 0 20px rgba(45, 212, 191, 0.4); 
+            z-index: 900; 
+            text-decoration: none; 
+            font-weight: 900;
         }
 
         /* ====================================================
-           MOTOR DE GRILLA
+           5. MOTOR DE GRILLA FLUIDO Y OPTIMIZADO
         ==================================================== */
-        .portfolio-grid { display: grid; grid-template-columns: 1fr; gap: 2vw; padding: 0 5% 100px; width: 100%; max-width: 2500px; margin: 0 auto; transition: all 0.5s ease; position: relative; z-index: 5; }
+        .filter-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; padding: 0 5% 30px; }
+        .filter-btn { 
+            background: transparent; border: 1px solid rgba(255,255,255,0.2); 
+            color: var(--text-main); padding: 10px 20px; border-radius: 50px; 
+            cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; 
+            transition: all 0.3s ease; 
+        }
+        .filter-btn.active { background-color: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan); }
+
+        /* Grilla nativa que elimina media queries arbitrarias */
+        .portfolio-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr)); 
+            gap: clamp(15px, 2vw, 30px); 
+            padding: 0 5% 80px; 
+            width: 100%; 
+            max-width: 2000px; 
+            margin: 0 auto; 
+        }
+        
         .media-item.hide { display: none !important; }
-        .media-item { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; cursor: pointer; border: 1px solid rgba(45, 212, 191, 0.15); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 8px rgba(45, 212, 191, 0.05); background-color: var(--card-bg); transition: all var(--transition-speed) ease; }
-        .portfolio-grid.masonry-mode { display: block; -webkit-column-count: 1; column-count: 1; column-gap: 2vw; }
-        .portfolio-grid.masonry-mode .media-item { display: inline-block; width: 100%; margin-bottom: 2vw; aspect-ratio: auto; break-inside: avoid; }
-        .portfolio-grid.masonry-mode .yt-thumbnail, .portfolio-grid.masonry-mode .hc-img { position: relative; width: 100%; height: auto; }
-
-        .media-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.25; pointer-events: none; z-index: 4; }
-        .protect-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 6; pointer-events: none; }
         
-        .hover-carousel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-        .hc-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; filter: grayscale(50%) brightness(0.8); transition: opacity 0.8s ease, filter var(--transition-speed) ease, transform var(--transition-speed) ease; }
-        .hc-img.active { opacity: 1; z-index: 2; }
-        .fix-models-portada { object-position: top center !important; }
-
-        .yt-thumbnail { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; opacity: var(--overlay-opacity); filter: grayscale(50%) brightness(0.8); transition: opacity var(--transition-speed) ease, filter var(--transition-speed) ease, transform var(--transition-speed) ease; }
-        .media-iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; border: none; background-color: var(--card-bg); filter: grayscale(50%) brightness(0.6); opacity: 0; transition: opacity var(--transition-speed) ease, filter var(--transition-speed) ease, transform var(--transition-speed) ease; }
-        
-        .media-item:not(.audio):hover { border-color: rgba(45, 212, 191, 0.5); box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 25px rgba(45, 212, 191, 0.15); transform: translateY(-10px); z-index: 10; }
-        .media-item:not(.audio):hover .hc-img, .media-item:not(.audio):hover .yt-thumbnail, .media-item:not(.audio):hover .media-iframe { filter: grayscale(0%) brightness(1.1); transform: scale(1.05); }
-
-        .media-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 60px 40px 40px; background: linear-gradient(to top, rgba(2,6,23,0.98) 10%, transparent); z-index: 5; pointer-events: none; transition: padding 0.3s ease; }
-        .media-item:hover .media-overlay { padding-bottom: 50px; }
-        .media-item h2 { font-size: 2rem; text-transform: uppercase; margin-bottom: 8px; line-height: 1.1; text-shadow: 0 4px 10px rgba(0,0,0,0.8);}
-        .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
-        
-        /* ====================================================
-           AUDIO (WEB AUDIO API)
-        ==================================================== */
-        .media-item.audio { border: none; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; cursor: default; transform: none !important; background-color: var(--dark-bg); }
-        @keyframes rotateGlow { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
-        .audio-glow-ring { position: absolute; top: 50%; left: 50%; width: 200%; height: 200%; background: conic-gradient(transparent, transparent, rgba(45, 212, 191, 0.2), var(--electric-cyan)); animation: rotateGlow 4s linear infinite; z-index: 1; opacity: 0.8; transition: opacity 0.3s ease; }
-        .audio-inner-card { position: absolute; inset: 2px; background-color: var(--dark-bg); border-radius: 14px; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; overflow: hidden; }
-        .audio-inner-card .media-texture { z-index: 3; opacity: 0.15; }
-        .audio-visualizer { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; z-index: 4; pointer-events: none; opacity: 0.9;}
-        .audio-text-content { z-index: 5; margin-bottom: 30px; pointer-events: none; transition: transform 0.3s;}
-        .audio-text-content h2 { font-size: 2.5rem; text-transform: uppercase; margin-bottom: 5px; text-shadow: 0 5px 15px rgba(0,0,0,0.5);}
-        .audio-text-content p { color: var(--electric-cyan); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 4px; text-shadow: 0 2px 5px rgba(0,0,0,0.5);}
-        .custom-player { position: relative; z-index: 10; display: flex; align-items: center; justify-content: space-between; width: 85%; max-width: 400px; padding: 12px 25px; gap: 15px; background: transparent; border: 1px solid var(--electric-cyan); border-radius: 50px; box-shadow: 0 0 15px rgba(45, 212, 191, 0.2); transition: all 0.3s ease; }
-        .custom-player.playing { box-shadow: 0 0 25px rgba(45, 212, 191, 0.5); background: rgba(45, 212, 191, 0.05);}
-        .play-btn { background: transparent; border: none; color: var(--text-main); font-family: 'Inter', sans-serif; font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; transition: transform 0.2s, color 0.2s, text-shadow 0.2s; }
-        .play-btn:hover { transform: scale(1.1); color: var(--electric-cyan); text-shadow: 0 0 15px var(--electric-cyan);}
-        .time-display { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--electric-cyan); min-width: 45px; text-align: center;}
-        .progress-wrapper { flex-grow: 1; height: 4px; background-color: rgba(255, 255, 255, 0.15); border-radius: 10px; cursor: pointer; position: relative; overflow: hidden; }
-        .progress-fill { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background-color: var(--electric-cyan); border-radius: 10px; box-shadow: 0 0 10px var(--electric-cyan); pointer-events: none; }
-
-        /* --- MEDIA QUERIES GLOBALES --- */
-        @media (min-width: 768px) {
-            header h1 { font-size: 4rem; } .media-item h2 { font-size: 2.5rem; }
-            .portfolio-grid.masonry-mode { -webkit-column-count: 2; column-count: 2; }
-            body.is-loading #title-wrapper { transform: translate3d(0, calc(50vh - 60px), 0) scale(1.6); }
-        }
-        @media (min-width: 1024px) {
-            header { padding: 30px 5% 10px; } header h1 { font-size: 5rem; letter-spacing: 5px; }
-            header p.subtitle { font-size: 1.4rem; letter-spacing: 3px; }
-            .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 3vw; }
-            .portfolio-grid.masonry-mode { -webkit-column-count: 3; column-count: 3; }
-            .media-item h2 { font-size: 3rem; } .media-item p { font-size: 1.1rem; }
-            .media-overlay { padding: 80px 50px 50px; }
-            body.is-loading #title-wrapper { transform: translate3d(0, calc(50vh - 80px), 0) scale(1.8); }
+        .media-item { 
+            position: relative; 
+            aspect-ratio: 16 / 9; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            cursor: pointer; 
+            background-color: var(--card-bg); 
+            /* OPTIMIZACIÓN CORE WEB VITALS: content-visibility */
+            /* El navegador no renderiza los items fuera del viewport */
+            content-visibility: auto; 
+            contain-intrinsic-size: 350px; 
+            border: 1px solid rgba(45, 212, 191, 0.1);
+            transition: transform var(--transition-speed); 
+            will-change: transform;
+            /* Aceleración por hardware para el renderizado del ítem */
+            transform: translateZ(0); 
         }
 
-        /* --- ECOSISTEMA CREATIVO --- */
-        .ecosystem-section { padding: 80px 5%; text-align: center; border-top: 1px solid rgba(45, 212, 191, 0.2); background-color: var(--card-bg); }
-        .ecosystem-section h3 { font-size: 2rem; color: var(--text-main); margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;}
-        .ecosystem-brands { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
-        .brand-btn-clean { display: inline-flex; align-items: center; justify-content: center; background: transparent; border: none; text-decoration: none; padding: 15px; transition: all 0.3s ease; cursor: pointer; }
-        .brand-btn-clean:hover { transform: translateY(-5px); }
-        .brand-logo-img.automatas-logo { height: 45px; width: auto; transition: all 0.3s ease; }
-        .brand-btn-clean:hover .brand-logo-img.automatas-logo { transform: scale(1.05); filter: drop-shadow(0 0 15px var(--automatas-green)); }
+        .media-item:hover { transform: translateY(-5px); border-color: var(--electric-cyan); }
 
-        /* ====================================================
-           CLIENTES Y ALIADOS
-        ==================================================== */
-        .clients-section { padding: 80px 5%; text-align: center; background-color: var(--dark-bg); border-top: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden; }
-        .clients-section h3 { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 50px; text-transform: uppercase; letter-spacing: 4px; font-weight: 600;}
-        @keyframes pulseBorder { 0% { transform: scaleX(0); opacity: 0; } 50% { transform: scaleX(1); opacity: 1; } 100% { transform: scaleX(0); opacity: 0; } }
-        .marquee-container { width: 100%; overflow: hidden; white-space: nowrap; position: relative; background-color: var(--dark-bg); padding: 40px 0; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
-        .marquee-container::before, .marquee-container::after { content: ""; position: absolute; left: 0; width: 100%; height: 2px; background: linear-gradient(to right, transparent, var(--electric-cyan), transparent); box-shadow: 0 0 15px var(--electric-cyan); animation: pulseBorder 4s infinite ease-in-out; }
-        .marquee-container::before { top: 0; transform-origin: left; }
-        .marquee-container::after { bottom: 0; transform-origin: right; animation-delay: 2s; }
-        
-        .marquee-track { display: inline-flex; align-items: center; gap: 60px; animation: scrollMarquee 25s linear infinite; will-change: transform; }
-        .marquee-track:hover { animation-play-state: paused; }
-        
-        .client-logo { height: 60px; width: auto; object-fit: contain; transition: transform 0.3s ease, filter 0.3s ease; filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255,255,255,0.1)); cursor: pointer; }
-        .client-logo:hover { transform: scale(1.1); filter: brightness(0) invert(1) drop-shadow(0 0 15px var(--electric-cyan)); }
-        .client-logo-unilever { transform: scale(1.6); transform-origin: center center; margin: 0 15px; }
-        .client-logo-unilever:hover { transform: scale(1.7); } 
-        .client-logo-comfandi { transform: scale(1.3); transform-origin: center center; }
-        .client-logo-comfandi:hover { transform: scale(1.4); }
-
-        @keyframes scrollMarquee { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(calc(-50% - 30px), 0, 0); } }
-
-        @media (max-width: 768px) {
-            .clients-section { padding: 40px 5% 60px; }
-            .clients-section h3 { font-size: 1rem; margin-bottom: 30px; }
-            .marquee-track { gap: 40px; }
-            .client-logo { height: 40px; }
-            .client-logo-unilever { transform: scale(1.4); margin: 0 5px; }
-            .client-logo-comfandi { transform: scale(1.2); }
-            .lang-toggle { bottom: 20px; left: 20px; padding: 6px 10px;}
-            .floating-connect { bottom: 20px; right: 20px; padding: 10px 20px;}
-            .back-to-top { bottom: 85px; right: 25px; width: 40px; height: 40px; }
-            .profile-pitch { font-size: 0.95rem; padding: 15px 20px; }
-            .vault-filter-btn { font-size: 0.8rem; padding: 10px 20px; }
+        .hc-img, .yt-thumbnail, .media-iframe { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            object-fit: cover; transition: opacity var(--transition-speed); 
         }
+        
+        .media-iframe { border: none; opacity: 0; z-index: 2; pointer-events: none; }
+        .yt-thumbnail { z-index: 1; filter: brightness(0.7); }
+        .hc-img { opacity: 0; }
+        .hc-img.active { opacity: 1; }
 
-        /* --- CONTACTO --- */
-        .contact-section { padding: 80px 5% 100px; text-align: center; border-top: 1px solid rgba(45, 212, 191, 0.2); border-bottom: 1px solid rgba(45, 212, 191, 0.2); background: radial-gradient(circle at center, rgba(45, 212, 191, 0.05) 0%, var(--dark-bg) 100%); }
-        .contact-section h2 { font-size: 3rem; margin-bottom: 15px; color: var(--text-main); text-transform: uppercase; font-family: 'Montserrat', sans-serif; letter-spacing: 12px; margin-right: -12px; }
-        .contact-section p { color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.2rem;}
-        .contact-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 50px;}
-        .btn-primary, .btn-secondary, .btn-whatsapp { padding: 16px 35px; font-weight: 700; border-radius: 5px; transition: all 0.3s; font-family: 'Inter', sans-serif; font-size: 1rem; text-decoration: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .btn-primary { background-color: var(--electric-cyan); color: var(--dark-bg); }
-        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(45, 212, 191, 0.3); }
-        .btn-secondary { background-color: transparent; color: var(--text-main); border: 2px solid var(--text-muted); }
-        .btn-secondary:hover { border-color: var(--electric-cyan); color: var(--electric-cyan); }
-        .btn-whatsapp { background-color: var(--whatsapp-green); color: var(--dark-bg); box-shadow: 0 4px 10px rgba(37, 211, 102, 0.15);}
-        .btn-whatsapp:hover { background-color: #20b857; transform: translateY(-5px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4); }
-        .social-links { display: flex; justify-content: center; gap: 40px; padding-top: 30px; flex-wrap: wrap;}
-        .social-links a { color: var(--text-muted); text-decoration: none; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s;}
-        .social-links a:hover { color: var(--electric-cyan); }
+        .media-overlay { 
+            position: absolute; bottom: 0; left: 0; width: 100%; 
+            padding: 40px 20px 20px; 
+            background: linear-gradient(to top, rgba(2,6,23,0.95), transparent); 
+            z-index: 5; pointer-events: none; 
+        }
+        .media-item h2 { font-size: clamp(1.2rem, 2vw, 1.8rem); margin-bottom: 5px; }
+        .media-item p { color: var(--electric-cyan); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;}
 
-        /* BÓVEDA CORPORATIVA FINAL */
-        .vault-section { background: linear-gradient(180deg, var(--card-bg) 0%, #060e22 100%); padding: 120px 5% 150px; text-align: center; position: relative; border-top: 1px solid rgba(45, 212, 191, 0.1); }
-        .vault-container { max-width: 800px; margin: 0 auto; position: relative; z-index: 2; padding: 60px 40px; border: 1px solid rgba(45, 212, 191, 0.3); border-radius: 20px; background: rgba(2, 6, 23, 0.6); box-shadow: 0 0 50px rgba(45, 212, 191, 0.05) inset, 0 20px 50px rgba(0,0,0,0.5); backdrop-filter: blur(10px); }
-        .vault-icon-glow { font-size: 4rem; margin-bottom: 20px; display: inline-block; filter: drop-shadow(0 0 15px var(--electric-cyan)); animation: float 3s ease-in-out infinite;}
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
-        .vault-container h3 { font-size: 2.5rem; margin-bottom: 20px; color: var(--electric-cyan); letter-spacing: 2px;}
-        .vault-container p { color: var(--text-main); margin-bottom: 40px; font-size: 1.15rem; line-height: 1.6;}
-        .vault-btn { background: var(--electric-cyan); color: var(--dark-bg); border: none; padding: 18px 50px; font-weight: 900; border-radius: 50px; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px rgba(45, 212, 191, 0.3);}
-        .vault-btn:hover { background: #20b8a5; transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.5); }
-
-        /* --- MODALES --- */
-        .modal-fullscreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2,6,23,0.98); z-index: 10000; display: none; justify-content: center; align-items: center; padding: 2% 5%; }
+        /* Modales */
+        .modal-fullscreen { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100dvh; 
+            background: rgba(2,6,23,0.98); z-index: 10000; display: none; 
+            justify-content: center; align-items: center; padding: 2%; 
+            backdrop-filter: blur(10px);
+        }
         .active-modal { display: flex; }
-        .modal-content-wrapper { max-width: 100%; max-height: 90vh; position: relative; width: 1600px; aspect-ratio: 16/9; display: flex; justify-content: center; align-items: center;}
-        .modal-fullscreen iframe { width: 100%; height: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.9); display: block; border: none; background-color: black; }
-        .close-btn { position: fixed; top: 25px; right: 30px; color: var(--text-main); background-color: rgba(2, 6, 23, 0.85); border: 1px solid var(--electric-cyan); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 1.1rem; z-index: 99999; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.5); letter-spacing: 1px;}
-        .close-btn:hover { background-color: var(--electric-cyan); color: var(--dark-bg); transform: translateY(-2px);}
+        .modal-content-wrapper { width: 100%; max-width: 1200px; aspect-ratio: 16/9; position: relative; }
+        .modal-fullscreen iframe { width: 100%; height: 100%; border-radius: 12px; border: none; }
+        .close-btn { 
+            position: absolute; top: -40px; right: 0; color: var(--text-main); 
+            background: transparent; border: none; font-size: 1rem; cursor: pointer; 
+        }
 
-        #gallery-modal { padding: 0; }
-        #gallery-modal .modal-content-wrapper { width: 100%; height: 100%; aspect-ratio: auto; }
-        #gallery-image { max-width: 90vw; max-height: 85vh; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.9); object-fit: contain; transition: opacity 0.3s ease; display: block; }
-        .gallery-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(2,6,23,0.5); color: var(--electric-cyan); border: 1px solid rgba(45, 212, 191, 0.3); border-radius: 50%; width: 60px; height: 60px; font-size: 2rem; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: all 0.3s; z-index: 1010; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);}
-        .gallery-nav:hover { background: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan); transform: translateY(-50%) scale(1.1);}
-        .gallery-prev { left: 3%; } .gallery-next { right: 3%; }
-        .gallery-dots { position: absolute; bottom: 3%; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 1010; }
-        .gallery-dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: 0.3s; }
-        .gallery-dot.active { background: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan); }
-
-        .form-modal-box { background-color: var(--card-bg); padding: 50px; border-radius: 16px; max-width: 600px; width: 100%; border: 1px solid rgba(45, 212, 191, 0.3); text-align: left; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.8); max-height: 90vh; overflow-y: auto; }
-        .form-modal-box label { display: block; margin-bottom: 10px; font-size: 1rem; color: var(--text-muted); font-weight: 600;}
-        .form-modal-box input { width: 100%; padding: 15px; margin-bottom: 25px; background-color: var(--dark-bg); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 1.1rem; }
-        .form-modal-box input:focus { outline: none; border-color: var(--electric-cyan); }
-        .legal-warning { margin-bottom: 15px; padding: 15px; background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--danger-red); font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
-        .legal-warning strong { color: var(--danger-red); }
-        .error-message { color: var(--danger-red); font-size: 0.9rem; margin-bottom: 15px; display: none; font-weight: 600; padding: 10px; background: rgba(239, 68, 68, 0.1); border-radius: 6px;}
-
-        /* LOGOS MINIATURA EN MODAL */
-        .modal-req-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; line-height: 1.5; text-align: center;}
-        .modal-logos-mini { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; justify-content: center; align-items: center; }
-        .modal-logos-mini img { height: 25px; width: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.8; }
-        .modal-logo-unilever { transform: scale(1.6); transform-origin: center center; margin: 0 10px; }
     </style>
 </head>
 <body class="is-loading">
@@ -362,470 +265,58 @@
         <span class="text" data-i18n="btn_connect">CONECTEMOS</span>
     </a>
 
-    <div class="back-to-top" id="backToTopBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
-    </div>
-
     <div class="splash-panel top"></div>
     <div class="splash-panel bottom"></div>
-    <div class="splash-laser"></div>
 
     <header>
         <div id="title-wrapper">
             <h1 id="main-title">Alejandro Vega</h1>
         </div>
         <p class="subtitle reveal-content" data-i18n="subtitle">Líder de Innovación Creativa | Identidad Visual & E-learning</p>
-        
         <div class="profile-pitch reveal-content">
             <span data-i18n="profile_text">
-                Estratega multidisciplinario y <span class="highlight-tech">Especialista Creativo Tecnológico</span> con más de 8 años de experiencia fusionando diseño, producción audiovisual e <span class="highlight-tech">Inteligencia Artificial</span>. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente entre la visión de negocio, la estética visual y la adopción tecnológica (Product Owner).
+                Estratega multidisciplinario y <span class="highlight-tech">Especialista Creativo Tecnológico</span>. Construcción de identidades sólidas y ecosistemas E-learning de alto impacto. Product Owner experto en IA Generativa.
             </span>
         </div>
     </header>
 
     <div class="filter-container reveal-content">
         <button class="filter-btn active" onclick="filterGallery('all')" data-i18n="btn_all">Todo</button>
-        <button class="filter-btn" onclick="filterGallery('audiovisual')" data-i18n="btn_video">Producción Audiovisual</button>
+        <button class="filter-btn" onclick="filterGallery('audiovisual')" data-i18n="btn_video">Audiovisual</button>
         <button class="filter-btn" onclick="filterGallery('fotografia')" data-i18n="btn_photo">Fotografía</button>
-        <button class="filter-btn" onclick="filterGallery('diseno')" data-i18n="btn_design">Identidad Visual & E-learning</button>
-        <button class="filter-btn" onclick="filterGallery('audio')" data-i18n="btn_audio">Diseño Sonoro</button>
-        
-        <button class="vault-filter-btn" onclick="openVaultModal()"><span class="icon">🔒</span> <span data-i18n="btn_vault_header">Acceso Bóveda</span></button>
+        <button class="filter-btn" onclick="filterGallery('diseno')" data-i18n="btn_design">Diseño Visual</button>
     </div>
 
     <main class="portfolio-grid reveal-content" id="main-grid">
         
         <div class="media-item audiovisual" onclick="openYoutubeModal('0ivRf3-IvGs')">
-            <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/0ivRf3-IvGs/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Clara">
-            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/0ivRf3-IvGs?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=0ivRf3-IvGs" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-            <div class="protect-layer"></div>
+            <img src="https://img.youtube.com/vi/0ivRf3-IvGs/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" decoding="async" alt="Clara">
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/0ivRf3-IvGs?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&loop=1&playlist=0ivRf3-IvGs" allow="autoplay; encrypted-media"></iframe>
             <div class="media-overlay"><p data-i18n="vid_cat_clara">Estrategia Generativa IA</p><h2 data-i18n="vid_tit_clara">Proyecto Clara</h2></div>
         </div>
 
         <div class="media-item audiovisual" onclick="openYoutubeModal('ntMooW2DwVw')">
-            <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/ntMooW2DwVw/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Showreel">
-            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/ntMooW2DwVw?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=ntMooW2DwVw" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-            <div class="protect-layer"></div>
+            <img src="https://img.youtube.com/vi/ntMooW2DwVw/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" decoding="async" alt="Showreel">
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/ntMooW2DwVw?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&loop=1&playlist=ntMooW2DwVw" allow="autoplay; encrypted-media"></iframe>
             <div class="media-overlay"><p data-i18n="vid_cat_showreel">Dirección Creativa</p><h2 data-i18n="vid_tit_showreel">Showreel 2026</h2></div>
         </div>
 
-        <div class="media-item audiovisual" onclick="openYoutubeModal('kZLIan0Hr-E')">
-            <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/kZLIan0Hr-E/hqdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Kapo Test">
-            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/kZLIan0Hr-E?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=kZLIan0Hr-E" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="vid_cat_kapo">Etalonaje</p><h2 data-i18n="vid_tit_kapo">Prueba de Color: KAPO</h2></div>
-        </div>
-
-        <div class="media-item audiovisual" onclick="openYoutubeModal('NUm0rt_XRkQ')">
-            <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/NUm0rt_XRkQ/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Vallecaucanos">
-            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/NUm0rt_XRkQ?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=NUm0rt_XRkQ" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="vid_cat_evento">Cobertura de Evento</p><h2 data-i18n="vid_tit_evento">Vallecaucanos</h2></div>
-        </div>
-
-        <div class="media-item audiovisual" onclick="openYoutubeModal('3GLjAoBXZV8')">
-            <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/3GLjAoBXZV8/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="BTS">
-            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/3GLjAoBXZV8?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=3GLjAoBXZV8" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_post">Postproducción</p><h2 data-i18n="vid_tit_mauna">Mauna (Detrás de Cámaras)</h2></div>
-        </div>
-
-        <div class="media-item audiovisual" onclick="openYoutubeModal('TLjHcX4UPHg')">
-            <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/TLjHcX4UPHg/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Unichef 1">
-            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/TLjHcX4UPHg?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=TLjHcX4UPHg" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2 data-i18n="vid_tit_chef1">UniChef: Cheesecake</h2></div>
-        </div>
-
-        <div class="media-item audiovisual" onclick="openYoutubeModal('SRH1ImvnXFI')">
-            <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/SRH1ImvnXFI/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Unichef 2">
-            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/SRH1ImvnXFI?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=SRH1ImvnXFI" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2 data-i18n="vid_tit_chef2">UniChef: Pamplona</h2></div>
-        </div>
-
-        <div class="media-item audiovisual" onclick="openYoutubeModal('rtvkiEu0xyo')">
-            <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/rtvkiEu0xyo/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Unichef 3">
-            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/rtvkiEu0xyo?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=rtvkiEu0xyo" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2 data-i18n="vid_tit_chef3">UniChef: Postre</h2></div>
-        </div>
-
-        <div class="media-item audiovisual" onclick="openYoutubeModal('CGccljx4QxQ')">
-            <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/CGccljx4QxQ/maxresdefault.jpg" class="yt-thumbnail" loading="lazy" alt="Lyric">
-            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/CGccljx4QxQ?autoplay=0&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=CGccljx4QxQ" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="vid_cat_lyric">Tipografía & Motion Graphics</p><h2 data-i18n="vid_tit_lyric">Video Lyrical</h2></div>
-        </div>
-
-        <div class="media-item fotografia" onclick="openGalleryModal('food')">
-            <div class="media-texture"></div>
-            <div class="hover-carousel">
-                <img src="https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg" class="hc-img active" loading="lazy" alt="Food 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg" class="hc-img" loading="lazy" alt="Food 2">
-                <img src="https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png" class="hc-img" loading="lazy" alt="Food 3">
-            </div>
-            <div class="protect-layer"></div>
+        <div class="media-item fotografia">
+            <img src="https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg" class="hc-img active" loading="lazy" decoding="async" alt="Food Styling">
             <div class="media-overlay"><p data-i18n="cat_artdir">Dirección de Arte Comercial</p><h2 data-i18n="tit_food">Food Styling</h2></div>
         </div>
 
-        <div class="media-item fotografia" onclick="openGalleryModal('modelos')">
-            <div class="media-texture"></div>
-            <div class="hover-carousel">
-                <img src="https://static.wixstatic.com/media/14f4fb_963a7a6446284302a798edcf8457cffd~mv2_d_3471_3471_s_4_2.jpg" class="hc-img active fix-models-portada" loading="lazy" alt="Modelos 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_62c1344e52a441daaa100e3400a6cc19~mv2_d_3176_4000_s_4_2.jpg" class="hc-img" loading="lazy" alt="Modelos 2">
-                <img src="https://static.wixstatic.com/media/14f4fb_88875e89e124451b8dfd1ec60f0e7e69~mv2_d_5491_3928_s_4_2.jpg" class="hc-img" loading="lazy" alt="Modelos 3">
-                <img src="https://static.wixstatic.com/media/14f4fb_3e4d4dde8e184350aa6a5a52141ec414~mv2_d_4000_6000_s_4_2.png" class="hc-img" loading="lazy" alt="Modelos 4">
-                <img src="https://static.wixstatic.com/media/14f4fb_28502a138679481f89b571e599cf0fc4~mv2.jpg" class="hc-img" loading="lazy" alt="Modelos 5">
-            </div>
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_fashion">Fashion Book & Belleza</p><h2 data-i18n="tit_fashion">Book Modelos</h2></div>
-        </div>
-
-        <div class="media-item fotografia" onclick="openGalleryModal('producto')">
-            <div class="media-texture"></div>
-            <div class="hover-carousel">
-                <img src="https://static.wixstatic.com/media/14f4fb_bde31a4c87be49a1882327dacb0882e0~mv2.jpg" class="hc-img active" loading="lazy" alt="Producto 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_09129e6b1cc648ed8f0dd806ea46ac95~mv2.jpg" class="hc-img" loading="lazy" alt="Producto 2">
-            </div>
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_product">Fotografía Comercial B2C</p><h2 data-i18n="title_product">Fotografía de Producto</h2></div>
-        </div>
-
-        <div class="media-item fotografia" onclick="openGalleryModal('retratos')">
-            <div class="media-texture"></div>
-            <div class="hover-carousel">
-                <img src="https://static.wixstatic.com/media/14f4fb_4f61d7e9e3cd4da6ad6e6f649d2d9d05~mv2_d_4000_4000_s_4_2.jpg" class="hc-img active" loading="lazy" alt="Retratos 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_6fb679a244ef48de9ea749cbeb6e7824~mv2_d_4000_4000_s_4_2.jpg" class="hc-img" loading="lazy" alt="Retratos 2">
-                <img src="https://static.wixstatic.com/media/14f4fb_d66070ef8db64e62a7b7abffa3099d80~mv2_d_4000_5547_s_4_2.jpg" class="hc-img" loading="lazy" alt="Retratos 3">
-                <img src="https://static.wixstatic.com/media/14f4fb_5fb74448bec44efebd9d63489a942e4d~mv2.jpg" class="hc-img" loading="lazy" alt="Retratos 4">
-                <img src="https://static.wixstatic.com/media/14f4fb_a60c3996c5c443b6be56e08c91807dc9~mv2.png" class="hc-img" loading="lazy" alt="Retratos 5">
-            </div>
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_lighting">Iluminación & Técnica</p><h2 data-i18n="title_portraits">Retratos de Estudio</h2></div>
-        </div>
-
-        <div class="media-item fotografia" onclick="openGalleryModal('sabrina')">
-            <div class="media-texture"></div>
-            <div class="hover-carousel">
-                <img src="https://static.wixstatic.com/media/14f4fb_cfb665c8cecc4a3f915d59ecc7372cdf~mv2.png" class="hc-img active" loading="lazy" alt="Sabrina 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_ccfb094089134b27a65b8008ab140548~mv2.jpg" class="hc-img" loading="lazy" alt="Sabrina 2">
-                <img src="https://static.wixstatic.com/media/14f4fb_8cd04cc0174b4bc2b5fdd33f7c95bcee~mv2.jpg" class="hc-img" loading="lazy" alt="Sabrina 3">
-                <img src="https://static.wixstatic.com/media/14f4fb_74ff5ed1e6a641ec8530ebb424a29590~mv2.jpg" class="hc-img" loading="lazy" alt="Sabrina 4">
-                <img src="https://static.wixstatic.com/media/14f4fb_f2b9a122bb454eb18d439cf4aa55f621~mv2.jpg" class="hc-img" loading="lazy" alt="Sabrina 5">
-            </div>
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_editorial">Fotografía Editorial</p><h2 data-i18n="tit_sabrina">Actriz: Sabrina</h2></div>
-        </div>
-
-        <div class="media-item fotografia" onclick="openGalleryModal('kapo')">
-            <div class="media-texture"></div>
-            <div class="hover-carousel">
-                <img src="https://static.wixstatic.com/media/14f4fb_b9505e5b99434479a64c516219d4ba31~mv2_d_5357_3912_s_4_2.jpg" class="hc-img active" loading="lazy" alt="Kapo 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_df15ab106fbb4b519ddcc1f23d435086~mv2_d_4000_4144_s_4_2.jpg" class="hc-img" loading="lazy" alt="Kapo 2">
-                <img src="https://static.wixstatic.com/media/14f4fb_c3a9c9a9eeea40e5a1b147b81234a83a~mv2_d_3662_4000_s_4_2.jpg" class="hc-img" loading="lazy" alt="Kapo 3">
-            </div>
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_press">Retrato Promocional (Prensa)</p><h2 data-i18n="tit_kapo">Artista: KAPO</h2></div>
-        </div>
-
-        <div class="media-item fotografia" onclick="openGalleryModal('emergentes')">
-            <div class="media-texture"></div>
-            <div class="hover-carousel">
-                <img src="https://static.wixstatic.com/media/14f4fb_e82cdeeb1f354ca38150280d46c711ec~mv2_d_6000_4000_s_4_2.jpg" class="hc-img active" loading="lazy" alt="Emergentes 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_ace77dbc01c8427cbdda217f9ab1fe14~mv2_d_6000_4000_s_4_2.jpg" class="hc-img" loading="lazy" alt="Emergentes 2">
-                <img src="https://static.wixstatic.com/media/14f4fb_6a425cecae704f25aca53f67560a9169~mv2_d_6000_4000_s_4_2.jpg" class="hc-img" loading="lazy" alt="Emergentes 3">
-            </div>
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_casting">Casting Visual</p><h2 data-i18n="title_emerging">Artistas Emergentes</h2></div>
-        </div>
-
-        <div class="media-item fotografia" onclick="openGalleryModal('experimental')">
-            <div class="media-texture"></div>
-            <div class="hover-carousel">
-                <img src="https://static.wixstatic.com/media/14f4fb_3c6ea1e81a93400bb35024d9af900c58~mv2.jpg" class="hc-img active" loading="lazy" alt="Experimental 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_c7c328c79ef0435592619f0cc7ccbe8d~mv2_d_6000_4000_s_4_2.jpg" class="hc-img" loading="lazy" alt="Experimental 2">
-                <img src="https://static.wixstatic.com/media/14f4fb_545f729dd5a845bcbdd114895dd988a4~mv2_d_6000_4000_s_4_2.jpg" class="hc-img" loading="lazy" alt="Experimental 3">
-                <img src="https://static.wixstatic.com/media/14f4fb_6663382b6a134ee6ae6cf16348bf9375~mv2_d_6000_4000_s_4_2.jpg" class="hc-img" loading="lazy" alt="Experimental 4">
-                <img src="https://static.wixstatic.com/media/14f4fb_5f6933f6ec6348999c18eb538412b6b8~mv2.jpg" class="hc-img" loading="lazy" alt="Experimental 5">
-            </div>
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_exp">Exploración de Luz</p><h2 data-i18n="tit_exp">Experimental</h2></div>
-        </div>
-
-        <div class="media-item fotografia" onclick="openGalleryModal('naturaleza')">
-            <div class="media-texture"></div>
-            <div class="hover-carousel">
-                <img src="https://static.wixstatic.com/media/14f4fb_f2a7ed1846ad41fa86dce3758b73a792~mv2.jpg" class="hc-img active" loading="lazy" alt="Naturaleza 1">
-                <img src="https://static.wixstatic.com/media/14f4fb_5a786c1258bf4c26a079ad85b25813af~mv2.jpg" class="hc-img" loading="lazy" alt="Naturaleza 2">
-                <img src="https://static.wixstatic.com/media/14f4fb_c50af1954a4340858f6b59d67f59b974~mv2.png" class="hc-img" loading="lazy" alt="Naturaleza 3">
-                <img src="https://static.wixstatic.com/media/14f4fb_fc5461752fc54ada9334b00b39dc4282~mv2.jpg" class="hc-img" loading="lazy" alt="Naturaleza 4">
-                <img src="https://static.wixstatic.com/media/14f4fb_e37aec4ed1a34979b3e3333817ceadf~mv2.jpg" class="hc-img" loading="lazy" alt="Naturaleza 5">
-                <img src="https://static.wixstatic.com/media/14f4fb_6ed08e70b70a40ca8ed663a1067d5485~mv2_d_6000_4000_s_4_2.jpg" class="hc-img" loading="lazy" alt="Naturaleza 6">
-            </div>
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_land">Paisaje y Bellas Artes</p><h2 data-i18n="title_nature">Naturaleza</h2></div>
-        </div>
-
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_1')">
-            <div class="media-texture"></div>
-            <img src="Banner web Jdmaray Cali SPA.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Banner web Jdmaray Cali SPA">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_banner">Banner Web</p><h2>Jdmaray Cali SPA</h2></div>
-        </div>
-
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_2')">
-            <div class="media-texture"></div>
-            <img src="Banner web para Homecare Ebenezer.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Banner Homecare Ebenezer">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_banner">Banner Web</p><h2>Homecare Ebenezer</h2></div>
-        </div>
-
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_3')">
-            <div class="media-texture"></div>
-            <img src="portada_mauna.png" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Portada Mauna">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_cover">Diseño de Portada Musical</p><h2 data-i18n="mauna_title">Portada de la canción Suave del artista Mauna</h2></div>
+        <div class="media-item diseno">
+            <img src="portada_mauna.png" class="hc-img active fallback-img" loading="lazy" decoding="async" alt="Portada Mauna">
+            <div class="media-overlay"><p data-i18n="cat_cover">Diseño de Portada Musical</p><h2 data-i18n="mauna_title">Mauna</h2></div>
         </div>
         
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_4')">
-            <div class="media-texture"></div>
-            <img src="vinilo_xbox.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Vinilo Xbox">
-            <div class="protect-layer"></div>
+        <div class="media-item diseno">
+            <img src="vinilo_xbox.jpg" class="hc-img active fallback-img" loading="lazy" decoding="async" alt="Vinilo Xbox">
             <div class="media-overlay"><p data-i18n="cat_vinyl">Diseño de Vinilo</p><h2>Xbox: Gears of War</h2></div>
         </div>
 
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_5')">
-            <div class="media-texture"></div>
-            <img src="logo_navideno.jpeg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Logo Navideño">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_id">Identidad Estacional</p><h2 data-i18n="tit_navidad">Logo Navideño</h2></div>
-        </div>
-
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_6')">
-            <div class="media-texture"></div>
-            <img src="Ilustracion vectorial Koala con gafas y pipa.png" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Ilustración Koala">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_vector">Ilustración Vectorial</p><h2 data-i18n="tit_koala">Koala</h2></div>
-        </div>
-
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_7')">
-            <div class="media-texture"></div>
-            <img src="Logo Another Reality VR.png" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Another Reality VR">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Branding</p><h2>Another Reality VR</h2></div>
-        </div>
-
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_8')">
-            <div class="media-texture"></div>
-            <img src="Logo Sulmajafra venta de productos de belleza.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Logo Sulmajafra">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_corp">Branding Corporativo</p><h2>Sulmajafra</h2></div>
-        </div>
-
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_9')">
-            <div class="media-texture"></div>
-            <img src="ruta_sabor.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="La Ruta del Sabor">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_edit">Diseño Editorial</p><h2 data-i18n="tit_ruta">La Ruta del Sabor</h2></div>
-        </div>
-
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_10')">
-            <div class="media-texture"></div>
-            <img src="mosaico_colegio.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Mosaico Conmemorativo">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_mosaic">Mosaico Digital</p><h2 data-i18n="tit_school">Colegio Parroquial</h2></div>
-        </div>
-
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_11')">
-            <div class="media-texture"></div>
-            <img src="Pieza Conversatorio Tuberculosis Hospital y Alcaldia de Yumbo.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Alcaldía de Yumbo">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Social Media</p><h2 data-i18n="tit_yumbo">Alcaldía de Yumbo</h2></div>
-        </div>
-
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_12')">
-            <div class="media-texture"></div>
-            <img src="Pieza de servicio de Tonificacion corporal para Agua Marina esthetic center.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Agua Marina Esthetic">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Social Media</p><h2>Agua Marina Esthetic</h2></div>
-        </div>
-
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_13')">
-            <div class="media-texture"></div>
-            <img src="Pieza invitacion de encuentro cultural para la alcaldia de Cali.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Alcaldía de Cali">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_ad">Diseño Publicitario</p><h2 data-i18n="tit_cali">Alcaldía de Cali</h2></div>
-        </div>
-
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_14')">
-            <div class="media-texture"></div>
-            <img src="Pieza promocional de capacitacion para programa de afiliados de Virtuosa venta de ropa para comunidades religiosas.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Virtuosa">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_promo">Diseño Promocional</p><h2>Virtuosa</h2></div>
-        </div>
-
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_15')">
-            <div class="media-texture"></div>
-            <img src="noches_feria.jpg" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Noches D'Feria">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_promo">Diseño Promocional</p><h2 data-i18n="tit_noches">Noches D'Feria</h2></div>
-        </div>
-
-        <div class="media-item diseno" onclick="openGalleryModal('diseno_16')">
-            <div class="media-texture"></div>
-            <img src="volante_vape.png" class="yt-thumbnail fallback-img" loading="lazy" style="object-fit: cover;" alt="Vape Expo 2020">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_flyer">Diseño de Volante</p><h2 data-i18n="tit_vape">Vape Expo 2020</h2></div>
-        </div>
-
-        <div class="media-item audio">
-            <div class="audio-glow-ring"></div>
-            <div class="audio-inner-card">
-                <canvas class="audio-visualizer"></canvas>
-                <div class="audio-text-content"><h2>Alone</h2><p data-i18n="aud_alone">Acústico / Soul Cinematográfico</p></div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_cec3885e857446d5bb03641eed32c0d8.mp3" crossorigin="anonymous"></audio>
-                <div class="custom-player">
-                    <button class="play-btn">▶</button>
-                    <div class="progress-wrapper"><div class="progress-fill"></div></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="media-item audio">
-            <div class="audio-glow-ring"></div>
-            <div class="audio-inner-card">
-                <canvas class="audio-visualizer"></canvas>
-                <div class="audio-text-content"><h2>Trapped</h2><p data-i18n="aud_trapped">Tensión / Percusión de Acción</p></div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_4dd9a047e1694fd799a5de974a745fe1.mp3" crossorigin="anonymous"></audio>
-                <div class="custom-player">
-                    <button class="play-btn">▶</button>
-                    <div class="progress-wrapper"><div class="progress-fill"></div></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="media-item audio">
-            <div class="audio-glow-ring"></div>
-            <div class="audio-inner-card">
-                <canvas class="audio-visualizer"></canvas>
-                <div class="audio-text-content"><h2>Rock Your Reel</h2><p data-i18n="aud_rock">Rock Alternativo / Alta Energía</p></div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_6a5c635e24cd44c59d95766e10c3ae17.mp3" crossorigin="anonymous"></audio>
-                <div class="custom-player">
-                    <button class="play-btn">▶</button>
-                    <div class="progress-wrapper"><div class="progress-fill"></div></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="media-item audio">
-            <div class="audio-glow-ring"></div>
-            <div class="audio-inner-card">
-                <canvas class="audio-visualizer"></canvas>
-                <div class="audio-text-content"><h2>Rain</h2><p data-i18n="aud_rain">Ambient / Synthwave Inspirador</p></div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_f898bea04df24d778cc63caa54c0e8d9.mp3" crossorigin="anonymous"></audio>
-                <div class="custom-player">
-                    <button class="play-btn">▶</button>
-                    <div class="progress-wrapper"><div class="progress-fill"></div></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="media-item audio">
-            <div class="audio-glow-ring"></div>
-            <div class="audio-inner-card">
-                <canvas class="audio-visualizer"></canvas>
-                <div class="audio-text-content"><h2>Hades</h2><p data-i18n="aud_hades">Darkwave / Synth Industrial</p></div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_c3a196ceaa134db4bf63c7c7ead10845.wav" crossorigin="anonymous"></audio>
-                <div class="custom-player">
-                    <button class="play-btn">▶</button>
-                    <div class="progress-wrapper"><div class="progress-fill"></div></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="media-item audio">
-            <div class="audio-glow-ring"></div>
-            <div class="audio-inner-card">
-                <canvas class="audio-visualizer"></canvas>
-                <div class="audio-text-content"><h2>Sauvage</h2><p data-i18n="aud_sauvage">Beat Global / Fusión Urbana</p></div>
-                <audio class="hidden-audio" src="https://static.wixstatic.com/mp3/14f4fb_84e760602c584506aeb3a5d417a9dcf1.mp3" crossorigin="anonymous"></audio>
-                <div class="custom-player">
-                    <button class="play-btn">▶</button>
-                    <div class="progress-wrapper"><div class="progress-fill"></div></div>
-                </div>
-            </div>
-        </div>
-
     </main>
-
-    <section class="ecosystem-section reveal-content">
-        <h3 data-i18n="ecosystem_title">Ecosistema Creativo</h3>
-        <a href="https://automatas.co" target="_blank" class="brand-btn-clean">
-            <img src="MARCA DE AGUA H COLOR.png" alt="Autómatas" class="brand-logo-img automatas-logo fallback-img">
-        </a>
-    </section>
-
-    <section class="clients-section reveal-content">
-        <h3 data-i18n="clients_title">Empresas y Aliados</h3>
-        <div class="marquee-container">
-            <div class="marquee-track">
-                <img src="Logo Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img" onclick="openVaultModal()">
-                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img" onclick="openVaultModal()">
-                <img src="Logo derco.png" alt="Derco" class="client-logo fallback-img" onclick="openVaultModal()">
-                <img src="Logo espy.png" alt="Espy" class="client-logo fallback-img" onclick="openVaultModal()">
-                <img src="Logo fanalca.png" alt="Fanalca" class="client-logo fallback-img" onclick="openVaultModal()">
-                <img src="Logo eficacia.png" alt="Eficacia" class="client-logo fallback-img" onclick="openVaultModal()">
-                <img src="Logo comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img" onclick="openVaultModal()">
-                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img" onclick="openVaultModal()">
-                
-                <img src="Logo Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img" onclick="openVaultModal()">
-                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img" onclick="openVaultModal()">
-                <img src="Logo derco.png" alt="Derco" class="client-logo fallback-img" onclick="openVaultModal()">
-                <img src="Logo espy.png" alt="Espy" class="client-logo fallback-img" onclick="openVaultModal()">
-                <img src="Logo fanalca.png" alt="Fanalca" class="client-logo fallback-img" onclick="openVaultModal()">
-                <img src="Logo eficacia.png" alt="Eficacia" class="client-logo fallback-img" onclick="openVaultModal()">
-                <img src="Logo comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img" onclick="openVaultModal()">
-                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img" onclick="openVaultModal()">
-            </div>
-        </div>
-    </section>
-
-    <section class="contact-section reveal-content" id="contacto">
-        <h2 data-i18n="contact_title">Conectemos</h2>
-        <p data-i18n="contact_desc">¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.</p>
-        <div class="contact-actions">
-            <a href="https://wa.me/573001404327?text=Hola%20Alejandro,%20estoy%20viendo%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20escribirte." target="_blank" class="btn-whatsapp">
-                <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                <span data-i18n="btn_wa">Escríbeme por WhatsApp</span>
-            </a>
-            <a href="mailto:Alejandro.960822@gmail.com" class="btn-primary" data-i18n="btn_mail">Escríbeme un correo</a>
-            <a href="ALEJANDRO_VEGA_HV_2026.pdf" target="_blank" class="btn-secondary" data-i18n="btn_cv">Descargar CV (PDF)</a>
-        </div>
-        <div class="social-links">
-            <a href="https://linkedin.com/in/javegapro" target="_blank">LinkedIn</a>
-            <a href="https://www.youtube.com/@javegapro" target="_blank" data-i18n="link_yt">Canal de YouTube</a>
-            <a href="https://instagram.com/javegapro" target="_blank">Instagram</a>
-        </div>
-    </section>
-
-    <section class="vault-section reveal-content">
-        <div class="vault-container">
-            <div class="vault-icon-glow">🔒</div>
-            <h3 data-i18n="vault_title">Bóveda Corporativa</h3>
-            <p data-i18n="vault_desc">Mis diseños de E-learning e infografías para <strong>Unilever, Alquería y Derco</strong> están sujetos a NDA. Si usted es un reclutador autorizado, solicite la llave de acceso.</p>
-            <button class="vault-btn" onclick="openVaultModal()" data-i18n="vault_btn">Solicitar Acceso Seguro</button>
-        </div>
-    </section>
 
     <div class="modal-fullscreen" id="youtube-modal">
         <div class="modal-content-wrapper">
@@ -834,158 +325,32 @@
         </div>
     </div>
 
-    <div class="modal-fullscreen" id="gallery-modal">
-        <button class="close-btn" onclick="closeGalleryModal()" data-i18n="btn_close">CERRAR [X]</button>
-        <div class="gallery-nav gallery-prev" onclick="prevSlide(event)">&#10094;</div>
-        <img src="" id="gallery-image" alt="Galería Fotográfica" oncontextmenu="return false;">
-        <div class="gallery-nav gallery-next" onclick="nextSlide(event)">&#10095;</div>
-        <div class="gallery-dots" id="gallery-dots"></div>
-    </div>
-
-    <div class="modal-fullscreen" id="vault-modal">
-        <div class="form-modal-box">
-            <span class="close-btn" style="position: absolute; top: 20px; right: 25px; background: transparent; border: none; color: var(--text-muted); box-shadow: none;" onclick="closeVaultModal()">[X]</span>
-            <h3 style="color: var(--electric-cyan); margin-bottom: 5px; font-size: 1.8rem;" data-i18n="modal_req_title">Solicitud de Acceso</h3>
-            
-            <p class="modal-req-desc" data-i18n="modal_req_desc">Está a punto de solicitar acceso a la Bóveda de trabajos protegidos por NDA. Estos son algunos de los clientes bajo esta cláusula:</p>
-            <div class="modal-logos-mini">
-                <img src="Logo Unilever.png" alt="Unilever" class="fallback-img modal-logo-unilever">
-                <img src="Logo_Alqueria.png" alt="Alquería" class="fallback-img">
-                <img src="Logo derco.png" alt="Derco" class="fallback-img">
-                <img src="Logo espy.png" alt="Espy" class="fallback-img">
-                <img src="Logo fanalca.png" alt="Fanalca" class="fallback-img">
-                <img src="Logo eficacia.png" alt="Eficacia" class="fallback-img">
-                <img src="Logo comfandi.png" alt="Comfandi" class="fallback-img">
-            </div>
-            
-            <div id="vault-error" class="error-message"></div>
-
-            <form id="vault-form" onsubmit="sendVaultEmail(event)">
-                <label for="req-name" data-i18n="label_name">Su Nombre Completo:</label>
-                <input type="text" id="req-name" placeholder="Ej. Juan Pérez" required>
-                <label for="req-company" data-i18n="label_company">Empresa o Agencia:</label>
-                <input type="text" id="req-company" placeholder="Ej. Google / Leo Burnett" required>
-                <label for="req-email" data-i18n="label_email">Su Correo Corporativo:</label>
-                <input type="email" id="req-email" placeholder="ejemplo@empresa.com" required>
-                
-                <div class="legal-warning">
-                    <strong data-i18n="nda_title">ACUERDO DE CONFIDENCIALIDAD (NDA):</strong> <span data-i18n="nda_text">Al solicitar acceso a esta bóveda, usted reconoce y acepta expresamente que el material contenido es de carácter estrictamente confidencial. Queda terminantemente prohibida su descarga, reproducción, distribución o uso para fines ajenos a la evaluación profesional de este portafolio.</span>
-                </div>
-                
-                <button type="submit" class="btn-primary" style="width: 100%;" data-i18n="btn_submit">Enviar Solicitud y Aceptar Términos</button>
-            </form>
-        </div>
-    </div>
-
     <script>
-        // SCRIPT DE FALLBACK (ANTI-ERRORES DE RUTAS GITHUB)
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.fallback-img').forEach(img => {
-                img.addEventListener('error', function() {
-                    if (!this.dataset.retried) {
-                        this.dataset.retried = "true";
-                        if (this.src.includes('.jpg')) this.src = this.src.replace('.jpg', '.JPG');
-                        else if (this.src.includes('.JPG')) this.src = this.src.replace('.JPG', '.jpeg');
-                        else if (this.src.includes('.jpeg')) this.src = this.src.replace('.jpeg', '.png');
-                        else if (this.src.includes('.png')) this.src = this.src.replace('.png', '.PNG');
-                        else if (this.src.includes('.PNG')) this.src = this.src.replace('.PNG', '.jpg');
-                    }
-                });
-            });
-        });
-
-        // MOTOR DE IDIOMAS
-        const translations = {
+        // 1. DICCIONARIO DE IDIOMAS (Mapeo seguro por textContent)
+        const i18n = {
             es: {
-                head_title: "Alejandro Vega | Líder de Innovación Creativa & Especialista Tecnológico",
-                btn_vault_header: "Acceso Bóveda", subtitle: "Líder de Innovación Creativa | Identidad Visual & E-learning",
-                profile_text: 'Estratega multidisciplinario y <span class="highlight-tech">Especialista Creativo Tecnológico</span> con más de 8 años de experiencia fusionando diseño, producción audiovisual e <span class="highlight-tech">Inteligencia Artificial</span>. Actúo como el puente entre la visión de negocio, la estética visual y la adopción tecnológica (Product Owner).',
-                btn_all: "Todo", btn_video: "Producción Audiovisual", btn_photo: "Fotografía", btn_design: "Identidad Visual & E-learning", btn_audio: "Diseño Sonoro",
-                vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara",
-                vid_cat_showreel: "Dirección Creativa", vid_tit_showreel: "Showreel 2026",
-                vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO",
-                vid_cat_evento: "Cobertura de Evento", vid_tit_evento: "Vallecaucanos",
-                vid_cat_chef: "Programa Gastronómico Online",
-                vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Postre",
-                vid_cat_lyric: "Tipografía & Motion Graphics", vid_tit_lyric: "Video Lyrical",
-                cat_post: "Postproducción", vid_tit_mauna: "Mauna (Detrás de Cámaras)",
-                cat_artdir: "Dirección de Arte Comercial", tit_food: "Food Styling", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", 
-                cat_product: "Fotografía Comercial B2C", title_product: "Fotografía de Producto", 
-                cat_lighting: "Iluminación & Técnica", title_portraits: "Retratos de Estudio",
-                cat_editorial: "Fotografía Editorial", tit_sabrina: "Actriz: Sabrina",
-                cat_press: "Retrato Promocional (Prensa)", tit_kapo: "Artista: KAPO",
-                cat_casting: "Casting Visual", title_emerging: "Artistas Emergentes", 
-                cat_exp: "Exploración de Luz", tit_exp: "Experimental",
-                cat_land: "Paisaje y Bellas Artes", title_nature: "Naturaleza",
-                cat_banner: "Banner Web", cat_cover: "Diseño de Portada Musical", mauna_title: "Portada de la canción Suave del artista Mauna",
-                cat_vinyl: "Diseño de Vinilo", cat_id: "Identidad Estacional", tit_navidad: "Logo Navideño",
-                cat_vector: "Ilustración Vectorial", tit_koala: "Koala",
-                cat_corp: "Branding Corporativo", cat_edit: "Diseño Editorial", tit_ruta: "La Ruta del Sabor", cat_mosaic: "Mosaico Digital", tit_school: "Colegio Parroquial",
-                tit_yumbo: "Alcaldía de Yumbo", cat_ad: "Diseño Publicitario", tit_cali: "Alcaldía de Cali",
-                cat_promo: "Diseño Promocional", tit_noches: "Noches D'Feria", cat_flyer: "Diseño de Volante", tit_vape: "Vape Expo 2020",
-                aud_alone: "Acústico / Soul Cinematográfico", aud_trapped: "Tensión / Percusión de Acción",
-                aud_rock: "Rock Alternativo / Alta Energía", aud_rain: "Ambient / Synthwave Inspirador",
-                aud_hades: "Darkwave / Synth Industrial", aud_sauvage: "Beat Global / Fusión Urbana",
-                ecosystem_title: "Ecosistema Creativo", clients_title: "Empresas y Aliados",
-                contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.",
-                btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", btn_cv: "Descargar CV (PDF)", link_yt: "Canal de YouTube",
-                vault_title: "Bóveda Corporativa", vault_desc: "Mis diseños de E-learning e infografías para <strong>Unilever, Alquería y Derco</strong> están sujetos a NDA. Si usted es un reclutador autorizado, solicite la llave de acceso.",
-                vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]",
-                modal_req_title: "Solicitud de Acceso", modal_req_desc: "Está a punto de solicitar acceso a la Bóveda de trabajos protegidos por NDA. Estos son algunos de los clientes bajo esta cláusula:",
-                label_name: "Su Nombre Completo:", label_company: "Empresa o Agencia:", label_email: "Su Correo Corporativo:",
-                nda_title: "ACUERDO DE CONFIDENCIALIDAD (NDA):", nda_text: "Al solicitar acceso a esta bóveda, usted reconoce y acepta expresamente que el material contenido es de carácter estrictamente confidencial. Queda terminantemente prohibida su descarga, reproducción, distribución o uso para fines ajenos a la evaluación profesional de este portafolio.",
-                btn_submit: "Enviar Solicitud y Aceptar Términos", btn_connect: "CONECTEMOS"
+                head_title: "Alejandro Vega | Innovación", subtitle: "Líder de Innovación Creativa | Identidad Visual & E-learning",
+                profile_text: "Estratega multidisciplinario y Especialista Creativo Tecnológico. Construcción de identidades sólidas y ecosistemas E-learning de alto impacto.",
+                btn_all: "Todo", btn_video: "Audiovisual", btn_photo: "Fotografía", btn_design: "Diseño Visual", btn_connect: "CONECTEMOS", btn_close: "CERRAR [X]",
+                vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara", vid_cat_showreel: "Dirección Creativa", vid_tit_showreel: "Showreel 2026",
+                cat_artdir: "Dirección de Arte", tit_food: "Food Styling", cat_cover: "Portada Musical", mauna_title: "Mauna", cat_vinyl: "Diseño de Vinilo"
             },
             en: {
-                head_title: "Alejandro Vega | Creative Innovation Leader & Technology Specialist",
-                btn_vault_header: "Vault Access", subtitle: "Creative Innovation Leader | Visual Identity & E-learning",
-                profile_text: 'Multidisciplinary Strategist and <span class="highlight-tech">Creative Technology Specialist</span> with over 8 years of experience merging design, audiovisual production, and <span class="highlight-tech">Artificial Intelligence</span>. I act as the bridge between business vision, visual aesthetics, and technological adoption (Product Owner).',
-                btn_all: "All", btn_video: "Audiovisual Production", btn_photo: "Photography", btn_design: "Visual Identity & E-learning", btn_audio: "Sound Design",
-                vid_cat_clara: "AI Generative Strategy", vid_tit_clara: "Clara Project",
-                vid_cat_showreel: "Creative Direction", vid_tit_showreel: "2026 Showreel",
-                vid_cat_kapo: "Color Grading", vid_tit_kapo: "Color Test: KAPO",
-                vid_cat_evento: "Event Coverage", vid_tit_evento: "Vallecaucanos",
-                vid_cat_chef: "Online Culinary Show",
-                vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Dessert",
-                vid_cat_lyric: "Typography & Motion Graphics", vid_tit_lyric: "Lyric Video",
-                cat_post: "Post-production", vid_tit_mauna: "Mauna (Behind The Scenes)",
-                cat_artdir: "Commercial Art Direction", tit_food: "Food Styling", cat_fashion: "Fashion Book & Beauty", tit_fashion: "Model Book", 
-                cat_product: "B2C Commercial Photography", title_product: "Product Photography", 
-                cat_lighting: "Lighting & Technique", title_portraits: "Studio Portraits",
-                cat_editorial: "Editorial Photography", tit_sabrina: "Actress: Sabrina",
-                cat_press: "Promotional Portrait (Press)", tit_kapo: "Artist: KAPO",
-                cat_casting: "Visual Casting", title_emerging: "Emerging Artists", 
-                cat_exp: "Light Exploration", tit_exp: "Experimental",
-                cat_land: "Landscape & Fine Art", title_nature: "Nature",
-                cat_banner: "Web Banner", cat_cover: "Music Cover Design", mauna_title: "Cover for the song 'Suave' by artist Mauna",
-                cat_vinyl: "Vinyl Wrap Design", cat_id: "Seasonal Identity", tit_navidad: "Christmas Logo",
-                cat_vector: "Vector Illustration", tit_koala: "Koala",
-                cat_corp: "Corporate Branding", cat_edit: "Editorial Design", tit_ruta: "The Flavor Route", cat_mosaic: "Digital Mosaic", tit_school: "Parochial School",
-                tit_yumbo: "Yumbo Mayor's Office", cat_ad: "Advertising Design", tit_cali: "Cali Mayor's Office",
-                cat_promo: "Promotional Design", tit_noches: "Noches D'Feria", cat_flyer: "Flyer Design", tit_vape: "Vape Expo 2020",
-                aud_alone: "Acoustic / Cinematic Soul", aud_trapped: "Tension / Action Percussion",
-                aud_rock: "Alternative Rock / High Energy", aud_rain: "Ambient / Uplifting Synthwave",
-                aud_hades: "Darkwave / Industrial Synth", aud_sauvage: "Global Beat / Urban Fusion",
-                ecosystem_title: "Creative Ecosystem", clients_title: "Companies & Partners",
-                contact_title: "LET'S CONNECT", contact_desc: "Ready to elevate the digital and audiovisual narrative of your projects? Let's schedule a strategic session today.",
-                btn_wa: "Text me on WhatsApp", btn_mail: "Send me an email", btn_cv: "Download Resume (PDF)", link_yt: "YouTube Channel",
-                vault_title: "Corporate Vault", vault_desc: "My E-learning and infographic designs for <strong>Unilever, Alquería, and Derco</strong> are subject to NDA. If you are an authorized recruiter, please request the access key.",
-                vault_btn: "Request Secure Access", btn_close: "CLOSE [X]",
-                modal_req_title: "Access Request", modal_req_desc: "You are about to request access to the NDA Protected Vault. These are some of the clients under this clause:",
-                label_name: "Your Full Name:", label_company: "Company or Agency:", label_email: "Your Corporate Email:",
-                nda_title: "NON-DISCLOSURE AGREEMENT (NDA):", nda_text: "By requesting access to this vault, you expressly acknowledge and agree that the material contained herein is strictly confidential. Its download, reproduction, distribution, or use for purposes other than the professional evaluation of this portfolio is strictly prohibited.",
-                btn_submit: "Submit Request & Accept Terms", btn_connect: "LET'S CONNECT"
+                head_title: "Alejandro Vega | Innovation", subtitle: "Creative Innovation Leader | Visual Identity & E-learning",
+                profile_text: "Multidisciplinary Strategist and Creative Technology Specialist. Building solid identities and high-impact E-learning ecosystems.",
+                btn_all: "All", btn_video: "Audiovisual", btn_photo: "Photography", btn_design: "Visual Design", btn_connect: "LET'S CONNECT", btn_close: "CLOSE [X]",
+                vid_cat_clara: "Generative AI Strategy", vid_tit_clara: "Clara Project", vid_cat_showreel: "Creative Direction", vid_tit_showreel: "Showreel 2026",
+                cat_artdir: "Art Direction", tit_food: "Food Styling", cat_cover: "Music Cover", mauna_title: "Mauna", cat_vinyl: "Vinyl Design"
             }
         };
 
-        let currentLang = navigator.language.startsWith('en') ? 'en' : 'es';
+        let currentLang = 'es';
 
+        // Inyección segura de texto (Prevención XSS)
         function applyTranslations(lang) {
-            document.documentElement.lang = lang;
-            document.title = translations[lang]['head_title'];
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) { el.innerHTML = translations[lang][key]; }
+                if (i18n[lang][key]) el.textContent = i18n[lang][key]; 
             });
             document.getElementById('lang-es').classList.toggle('active', lang === 'es');
             document.getElementById('lang-en').classList.toggle('active', lang === 'en');
@@ -996,145 +361,25 @@
             applyTranslations(currentLang);
         }
 
-        // CARGA FLASH DE 1.5 SEGUNDOS
-        document.addEventListener('DOMContentLoaded', () => {
-            applyTranslations(currentLang); 
-            setTimeout(() => {
-                document.body.classList.remove('is-loading');
-                document.body.classList.add('is-loaded');
-                document.body.style.overflow = 'auto'; 
-            }, 1500); 
-            initIntersectionObserver(); // Activa el motor de YouTube
-        });
-
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
-        const galleryData = {
-            'food': ['https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png'],
-            'sabrina': ['https://static.wixstatic.com/media/14f4fb_cfb665c8cecc4a3f915d59ecc7372cdf~mv2.png', 'https://static.wixstatic.com/media/14f4fb_ccfb094089134b27a65b8008ab140548~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_8cd04cc0174b4bc2b5fdd33f7c95bcee~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_74ff5ed1e6a641ec8530ebb424a29590~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_f2b9a122bb454eb18d439cf4aa55f621~mv2.jpg'],
-            'naturaleza': ['https://static.wixstatic.com/media/14f4fb_f2a7ed1846ad41fa86dce3758b73a792~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_5a786c1258bf4c26a079ad85b25813af~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_c50af1954a4340858f6b59d67f59b974~mv2.png', 'https://static.wixstatic.com/media/14f4fb_fc5461752fc54ada9334b00b39dc4282~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_e37aec4ed1a34979b3e3333817ceadf~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_6ed08e70b70a40ca8ed663a1067d5485~mv2_d_6000_4000_s_4_2.jpg'],
-            'experimental': ['https://static.wixstatic.com/media/14f4fb_3c6ea1e81a93400bb35024d9af900c58~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_c7c328c79ef0435592619f0cc7ccbe8d~mv2_d_6000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_545f729dd5a845bcbdd114895dd988a4~mv2_d_6000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_6663382b6a134ee6ae6cf16348bf9375~mv2_d_6000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_5f6933f6ec6348999c18eb538412b6b8~mv2.jpg'],
-            'kapo': ['https://static.wixstatic.com/media/14f4fb_b9505e5b99434479a64c516219d4ba31~mv2_d_5357_3912_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_df15ab106fbb4b519ddcc1f23d435086~mv2_d_4000_4144_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_c3a9c9a9eeea40e5a1b147b81234a83a~mv2_d_3662_4000_s_4_2.jpg'],
-            'emergentes': ['https://static.wixstatic.com/media/14f4fb_e82cdeeb1f354ca38150280d46c711ec~mv2_d_6000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_ace77dbc01c8427cbdda217f9ab1fe14~mv2_d_6000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_6a425cecae704f25aca53f67560a9169~mv2_d_6000_4000_s_4_2.jpg'],
-            'modelos': ['https://static.wixstatic.com/media/14f4fb_963a7a6446284302a798edcf8457cffd~mv2_d_3471_3471_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_62c1344e52a441daaa100e3400a6cc19~mv2_d_3176_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_88875e89e124451b8dfd1ec60f0e7e69~mv2_d_5491_3928_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_3e4d4dde8e184350aa6a5a52141ec414~mv2_d_4000_6000_s_4_2.png', 'https://static.wixstatic.com/media/14f4fb_28502a138679481f89b571e599cf0fc4~mv2.jpg'],
-            'retratos': ['https://static.wixstatic.com/media/14f4fb_4f61d7e9e3cd4da6ad6e6f649d2d9d05~mv2_d_4000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_6fb679a244ef48de9ea749cbeb6e7824~mv2_d_4000_4000_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_d66070ef8db64e62a7b7abffa3099d80~mv2_d_4000_5547_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_5fb74448bec44efebd9d63489a942e4d~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a60c3996c5c443b6be56e08c91807dc9~mv2.png'],
-            'producto': ['https://static.wixstatic.com/media/14f4fb_bde31a4c87be49a1882327dacb0882e0~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_09129e6b1cc648ed8f0dd806ea46ac95~mv2.jpg'],
-            
-            // RUTAS WEB SAFE 
-            'diseno_1': ['Banner web Jdmaray Cali SPA.jpg'],
-            'diseno_2': ['Banner web para Homecare Ebenezer.jpg'],
-            'diseno_3': ['portada_mauna.png'], 
-            'diseno_4': ['vinilo_xbox.jpg'], 
-            'diseno_5': ['logo_navideno.jpeg'], 
-            'diseno_6': ['Ilustracion vectorial Koala con gafas y pipa.png'],
-            'diseno_7': ['Logo Another Reality VR.png'],
-            'diseno_8': ['Logo Sulmajafra venta de productos de belleza.jpg'],
-            'diseno_9': ['ruta_sabor.jpg'], 
-            'diseno_10': ['mosaico_colegio.jpg'], 
-            'diseno_11': ['Pieza Conversatorio Tuberculosis Hospital y Alcaldia de Yumbo.jpg'],
-            'diseno_12': ['Pieza de servicio de Tonificacion corporal para Agua Marina esthetic center.jpg'],
-            'diseno_13': ['Pieza invitacion de encuentro cultural para la alcaldia de Cali.jpg'],
-            'diseno_14': ['Pieza promocional de capacitacion para programa de afiliados de Virtuosa venta de ropa para comunidades religiosas.jpg'],
-            'diseno_15': ['noches_feria.jpg'], 
-            'diseno_16': ['volante_vape.png'] 
-        };
-
-        const hoverTimers = new Map();
-        document.querySelectorAll('.media-item.fotografia, .media-item.diseno').forEach(item => {
-            const images = item.querySelectorAll('.hc-img');
-            if(images.length <= 1) return;
-            item.addEventListener('mouseenter', () => {
-                let idx = 0;
-                const timer = setInterval(() => {
-                    images[idx].classList.remove('active');
-                    idx = (idx + 1) % images.length;
-                    images[idx].classList.add('active');
-                }, 1500); 
-                hoverTimers.set(item, timer);
-            });
-            item.addEventListener('mouseleave', () => {
-                clearInterval(hoverTimers.get(item));
-                images.forEach(img => img.classList.remove('active'));
-                images[0].classList.add('active'); 
+        // 2. FALLBACK SCRIPT DE GITHUB PAGES (Ejecución pasiva diferida)
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.fallback-img').forEach(img => {
+                img.addEventListener('error', function() {
+                    if (!this.dataset.retried) {
+                        this.dataset.retried = "true";
+                        const extensions = ['.jpg', '.JPG', '.jpeg', '.png', '.PNG'];
+                        let currentExt = extensions.find(ext => this.src.includes(ext));
+                        if(currentExt) {
+                            let nextExt = extensions[(extensions.indexOf(currentExt) + 1) % extensions.length];
+                            this.src = this.src.replace(currentExt, nextExt);
+                        }
+                    }
+                }, { passive: true });
             });
         });
 
-        let currentCollection = [];
-        let currentSlideIdx = 0;
-        let galleryAutoPlayTimer;
-        const galleryModal = document.getElementById('gallery-modal');
-        const galleryImage = document.getElementById('gallery-image');
-        const galleryDots = document.getElementById('gallery-dots');
-
-        function openGalleryModal(collectionId) {
-            pauseAllAudio(); 
-            currentCollection = galleryData[collectionId] || [];
-            if(currentCollection.length === 0) return;
-            currentSlideIdx = 0;
-            galleryDots.innerHTML = '';
-            currentCollection.forEach((_, i) => {
-                const dot = document.createElement('div');
-                dot.className = 'gallery-dot';
-                if(i === 0) dot.classList.add('active');
-                dot.onclick = (e) => { e.stopPropagation(); goToSlide(i); };
-                galleryDots.appendChild(dot);
-            });
-            updateGalleryImage();
-            galleryModal.classList.add('active-modal');
-            startGalleryAutoPlay();
-        }
-        function updateGalleryImage() {
-            galleryImage.style.opacity = '0';
-            setTimeout(() => {
-                galleryImage.src = currentCollection[currentSlideIdx];
-                galleryImage.style.opacity = '1';
-            }, 150);
-            document.querySelectorAll('.gallery-dot').forEach((dot, i) => {
-                if (i === currentSlideIdx) dot.classList.add('active');
-                else dot.classList.remove('active');
-            });
-        }
-        function nextSlide(e) { if(e) e.stopPropagation(); currentSlideIdx = (currentSlideIdx + 1) % currentCollection.length; updateGalleryImage(); resetGalleryAutoPlay(); }
-        function prevSlide(e) { if(e) e.stopPropagation(); currentSlideIdx = (currentSlideIdx - 1 + currentCollection.length) % currentCollection.length; updateGalleryImage(); resetGalleryAutoPlay(); }
-        function goToSlide(idx) { currentSlideIdx = idx; updateGalleryImage(); resetGalleryAutoPlay(); }
-        function startGalleryAutoPlay() { galleryAutoPlayTimer = setInterval(() => nextSlide(), 5000); }
-        function resetGalleryAutoPlay() { clearInterval(galleryAutoPlayTimer); startGalleryAutoPlay(); }
-        function closeGalleryModal() {
-            galleryModal.classList.remove('active-modal');
-            clearInterval(galleryAutoPlayTimer);
-            setTimeout(() => { galleryImage.src = ""; }, 300);
-        }
-
-        // MOTOR DE ALEATORIEDAD DISEÑO
-        document.addEventListener("DOMContentLoaded", function() {
-            const grid = document.getElementById('main-grid');
-            const designItems = Array.from(grid.querySelectorAll('.media-item.diseno'));
-            const firstAudio = grid.querySelector('.media-item.audio');
-
-            for (let i = designItems.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [designItems[i], designItems[j]] = [designItems[j], designItems[i]];
-            }
-
-            designItems.forEach(item => {
-                if(firstAudio) { grid.insertBefore(item, firstAudio); } 
-                else { grid.appendChild(item); }
-            });
-        });
-
-        // ==========================================
-        // MOTOR DE VIDEO YOUTUBE 60FPS (ÚNICO OBSERVER)
-        // ==========================================
-        function sendYTCommand(iframe, func) {
-            if (iframe && iframe.contentWindow && iframe.src) {
-                iframe.contentWindow.postMessage(JSON.stringify({event: 'command', func: func, args: []}), '*');
-            }
-        }
-
-        function initIntersectionObserver() {
-            // El video se pausará si menos del 30% está visible en pantalla.
-            const options = { root: null, rootMargin: '0px', threshold: 0.3 };
-            
+        // 3. OPTIMIZACIÓN AGRESIVA DE YOUTUBE (Evita carga en background)
+        function initVideoObserver() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const iframe = entry.target.querySelector('.media-iframe');
@@ -1142,257 +387,58 @@
                     if (!iframe) return;
 
                     if (entry.isIntersecting) {
-                        // Play video
-                        if (!iframe.src) {
-                            iframe.src = iframe.dataset.src;
-                            iframe.onload = () => {
-                                iframe.style.opacity = "1";
-                                if (thumb) thumb.style.opacity = "0";
-                                setTimeout(() => sendYTCommand(iframe, 'playVideo'), 300);
-                            };
-                        } else {
-                            sendYTCommand(iframe, 'playVideo');
-                        }
+                        // Carga perezosa (Lazy Load) absoluta: Solo asigna src si se ve en pantalla
+                        if (!iframe.src) iframe.src = iframe.dataset.src;
+                        iframe.style.opacity = "1";
+                        if(thumb) thumb.style.opacity = "0";
+                        
+                        // Envía comando Play si la API está lista
+                        iframe.contentWindow?.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
                     } else {
-                        // Pause video immediately when leaving screen
-                        if (iframe.src) {
-                            sendYTCommand(iframe, 'pauseVideo');
-                        }
+                        // Pausa de hardware agresiva para liberar RAM del teléfono
+                        iframe.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
                     }
                 });
-            }, options);
+            }, { rootMargin: '50px', threshold: 0.1 }); 
 
-            document.querySelectorAll('.media-item.audiovisual').forEach(item => observer.observe(item));
+            document.querySelectorAll('.media-item.audiovisual').forEach(el => observer.observe(el));
+        }
+
+        // 4. LÓGICA DE INTERFAZ Y MODALES
+        function filterGallery(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.querySelectorAll('.media-item').forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.classList.remove('hide');
+                } else {
+                    item.classList.add('hide');
+                }
+            });
         }
 
         const ytModal = document.getElementById('youtube-modal');
         const ytIframe = document.getElementById('youtube-iframe');
-        function openYoutubeModal(urlOrId) {
-            pauseAllAudio(); 
+        
+        function openYoutubeModal(id) {
             ytModal.classList.add('active-modal');
-            ytIframe.src = `https://www.youtube.com/embed/${urlOrId}?autoplay=1&rel=0`;
+            ytIframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
         }
+        
         function closeYoutubeModal() {
             ytModal.classList.remove('active-modal');
-            ytIframe.src = ""; 
+            ytIframe.src = ""; // Destruye el iframe para liberar RAM
         }
 
-        let audioCtx; 
-
-        function pauseAllAudio(exceptAudio = null) {
-            document.querySelectorAll('.hidden-audio').forEach(audio => {
-                if (audio !== exceptAudio) {
-                    audio.pause();
-                    const parent = audio.closest('.media-item');
-                    if(parent) {
-                        const playBtn = parent.querySelector('.play-btn');
-                        const customPlayer = parent.querySelector('.custom-player');
-                        if(playBtn) playBtn.innerHTML = '▶';
-                        if(customPlayer) customPlayer.classList.remove('playing');
-                    }
-                }
-            });
-        }
-
-        function formatTime(seconds) {
-            if (isNaN(seconds) || seconds === Infinity) return "0:00";
-            const m = Math.floor(seconds / 60);
-            const s = Math.floor(seconds % 60);
-            return `${m}:${s < 10 ? '0' : ''}${s}`;
-        }
-
-        document.querySelectorAll('.media-item.audio').forEach(item => {
-            const audio = item.querySelector('.hidden-audio');
-            const playBtn = item.querySelector('.play-btn');
-            const customPlayer = item.querySelector('.custom-player');
-            const timeCurrent = item.querySelector('.time-current');
-            const timeTotal = item.querySelector('.time-total');
-            const progressWrapper = item.querySelector('.progress-wrapper');
-            const progressFill = item.querySelector('.progress-fill');
-            const canvas = item.querySelector('.audio-visualizer');
-            const ctx = canvas.getContext('2d');
-            
-            let isPlaying = false;
-            let analyser, dataArray;
-            let isApiInitialized = false;
-
-            audio.addEventListener('loadedmetadata', () => { timeTotal.textContent = formatTime(audio.duration); });
-            if (audio.readyState >= 1) { timeTotal.textContent = formatTime(audio.duration); }
-
-            function initWebAudioAPI() {
-                if(isApiInitialized) return;
-                try {
-                    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    analyser = audioCtx.createAnalyser();
-                    analyser.fftSize = 128; 
-                    
-                    const source = audioCtx.createMediaElementSource(audio);
-                    source.connect(analyser);
-                    analyser.connect(audioCtx.destination);
-                    
-                    const bufferLength = analyser.frequencyBinCount;
-                    dataArray = new Uint8Array(bufferLength);
-                    isApiInitialized = true;
-                } catch(e) {
-                    console.warn("Audio Context API Error:", e);
-                }
-            }
-
-            playBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (audio.paused) {
-                    pauseAllAudio(audio);
-                    initWebAudioAPI();
-                    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-                    
-                    audio.play();
-                    playBtn.innerHTML = '❚❚';
-                    customPlayer.classList.add('playing');
-                    isPlaying = true;
-                    drawVisualizer();
-                } else {
-                    audio.pause();
-                    playBtn.innerHTML = '▶';
-                    customPlayer.classList.remove('playing');
-                    isPlaying = false;
-                }
-            });
-
-            audio.addEventListener('timeupdate', () => {
-                if(timeCurrent) timeCurrent.textContent = formatTime(audio.currentTime);
-                const percent = (audio.currentTime / audio.duration) * 100;
-                if(progressFill) progressFill.style.width = `${percent}%`;
-            });
-
-            if(progressWrapper) {
-                progressWrapper.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const rect = progressWrapper.getBoundingClientRect();
-                    const percent = (e.clientX - rect.left) / rect.width;
-                    audio.currentTime = percent * audio.duration;
-                });
-            }
-
-            audio.addEventListener('ended', () => {
-                playBtn.innerHTML = '▶';
-                customPlayer.classList.remove('playing');
-                isPlaying = false;
-                if(progressFill) progressFill.style.width = '0%';
-                if(timeCurrent) timeCurrent.textContent = "0:00";
-            });
-
-            const resizeCanvas = () => { canvas.width = item.offsetWidth; canvas.height = item.offsetHeight; };
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-
-            function drawVisualizer() {
-                if (!isPlaying) return;
-                requestAnimationFrame(drawVisualizer);
-                
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                if (isApiInitialized && analyser) {
-                    analyser.getByteFrequencyData(dataArray);
-                    const barWidth = (canvas.width / dataArray.length) * 1.5; 
-                    let x = 0;
-
-                    for (let i = 0; i < dataArray.length; i++) {
-                        const barHeight = (dataArray[i] / 255) * (canvas.height * 0.7); 
-                        
-                        const gradient = ctx.createLinearGradient(0, canvas.height, 0, canvas.height - barHeight);
-                        gradient.addColorStop(0, 'rgba(45, 212, 191, 0.1)');
-                        gradient.addColorStop(1, 'rgba(45, 212, 191, 0.8)');
-                        
-                        ctx.fillStyle = gradient;
-                        ctx.shadowColor = 'rgba(45, 212, 191, 0.5)';
-                        ctx.shadowBlur = 10;
-                        
-                        ctx.beginPath();
-                        ctx.roundRect(x, canvas.height - barHeight, barWidth, barHeight, [5, 5, 0, 0]);
-                        ctx.fill();
-
-                        x += barWidth + 2; 
-                    }
-                }
-            }
-        });
-
-        function filterGallery(category) {
-            const btns = document.querySelectorAll('.filter-btn');
-            btns.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            const grid = document.getElementById('main-grid');
-            const items = document.querySelectorAll('.media-item');
-            
-            if (category === 'diseno') {
-                grid.classList.add('masonry-mode');
-            } else {
-                grid.classList.remove('masonry-mode');
-            }
-
-            items.forEach(item => {
-                if (category === 'all') {
-                    item.classList.remove('hide');
-                } else {
-                    item.classList.contains(category) ? item.classList.remove('hide') : item.classList.add('hide');
-                }
-            });
-            window.dispatchEvent(new Event('scroll'));
-            pauseAllAudio();
-        }
-
-        const vaultModal = document.getElementById('vault-modal');
-        function openVaultModal() { vaultModal.classList.add('active-modal'); }
-        function closeVaultModal() { vaultModal.classList.remove('active-modal'); }
-        
-        function sendVaultEmail(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('req-name').value.trim();
-            const company = document.getElementById('req-company').value.trim();
-            const email = document.getElementById('req-email').value.trim();
-            const errorDiv = document.getElementById('vault-error');
-            
-            const nameRegex = /^[A-Za-záéíóúÁÉÍÓÚñÑ\s]{3,50}$/; 
-            const companyRegex = /[A-Za-záéíóúÁÉÍÓÚñÑ]/; 
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
-            
-            if (!nameRegex.test(name)) {
-                errorDiv.textContent = currentLang === 'es' ? "Error: Su nombre debe contener solo letras y al menos 3 caracteres." : "Error: Your name must contain only letters and at least 3 characters.";
-                errorDiv.style.display = "block";
-                return;
-            }
-            if (!companyRegex.test(company) || company.length < 2) {
-                errorDiv.textContent = currentLang === 'es' ? "Error: El nombre de la empresa no es válido." : "Error: The company name is not valid.";
-                errorDiv.style.display = "block";
-                return;
-            }
-            if (!emailRegex.test(email)) {
-                errorDiv.textContent = currentLang === 'es' ? "Error: Ingrese un correo corporativo válido." : "Error: Please enter a valid corporate email.";
-                errorDiv.style.display = "block";
-                return;
-            }
-            
-            errorDiv.style.display = "none";
-            
-            const bodyText = currentLang === 'es' ? 
-                `Estimado Alejandro,\n\nMi nombre es ${name}, representando a ${company}. Por medio de la presente, solicito formalmente acceso a su Bóveda Corporativa.\n\nDatos de contacto: ${email}\n\nAl enviar esta solicitud, declaro expresamente que he leído, comprendo y acepto el compromiso de confidencialidad (NDA), obligándome a no descargar, reproducir ni compartir el material protegido, utilizándolo exclusivamente para fines de evaluación profesional.\n\nAtentamente,\n${name}` :
-                `Dear Alejandro,\n\nMy name is ${name}, representing ${company}. I am formally requesting access to your Corporate Vault.\n\nContact details: ${email}\n\nBy sending this request, I expressly declare that I have read, understood, and accept the Non-Disclosure Agreement (NDA), committing not to download, reproduce, or share the protected material, using it exclusively for the professional evaluation of this portfolio.\n\nSincerely,\n${name}`;
-            
-            const body = encodeURIComponent(bodyText);
-            const subject = encodeURIComponent(currentLang === 'es' ? `Acceso Bóveda Corporativa - ${company}` : `Corporate Vault Access - ${company}`);
-            
-            window.location.href = `mailto:Alejandro.960822@gmail.com?subject=${subject}&body=${body}`;
-            closeVaultModal();
-        }
-
-        document.addEventListener('keydown', (e) => { 
-            if (e.key === "Escape") { closeYoutubeModal(); closeGalleryModal(); closeVaultModal(); }
-            if (document.getElementById('gallery-modal').classList.contains('active-modal')) {
-                if (e.key === "ArrowRight") nextSlide();
-                if (e.key === "ArrowLeft") prevSlide();
-            }
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            applyTranslations(currentLang);
+            setTimeout(() => {
+                document.body.classList.remove('is-loading');
+                document.body.classList.add('is-loaded');
+            }, 800);
+            initVideoObserver();
         });
     </script>
 </body>

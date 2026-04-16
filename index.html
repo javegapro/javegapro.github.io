@@ -72,7 +72,6 @@
         .reveal-element { opacity: 0; transition: opacity 0.8s ease; will-change: opacity; }
         body.is-loaded .reveal-element { opacity: 1; }
 
-        /* Z-INDEX DEL HEADER CALIBRADO (Debajo de los modales) */
         header { padding: max(30px, 4dvh) 5% 10px; text-align: center; position: relative; z-index: 100000; pointer-events: none;}
         
         #title-wrapper { display: inline-block; transform: translate3d(0, 0, 0) scale(1); transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1); will-change: transform;}
@@ -120,43 +119,81 @@
         .vault-filter-btn:hover { background-color: var(--electric-cyan); color: var(--dark-bg); box-shadow: 0 5px 15px var(--electric-cyan-glow); }
 
         /* ====================================================
-           5. PERFIL PROFESIONAL (DASHBOARD)
+           5. BENTO BOX UI: PERFIL PROFESIONAL ÉLITE
         ==================================================== */
         #profile-section { display: none; padding: 0 5% 100px; animation: fadeIn 0.5s ease; position: relative; z-index: 10; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .profile-dashboard {
-            max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 30px;
-            background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(45, 212, 191, 0.2); 
-            border-radius: 20px; padding: clamp(20px, 4vw, 40px); box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            backdrop-filter: blur(15px);
+        .bento-grid { 
+            display: grid; grid-template-columns: 1fr; gap: 20px; 
+            max-width: 1300px; margin: 0 auto; 
         }
 
-        .prof-header { text-align: center; margin-bottom: 20px; }
-        .prof-header h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--electric-cyan); margin-bottom: 10px; text-transform: uppercase;}
-        .prof-header p { font-size: 1.1rem; color: var(--text-main); line-height: 1.6; max-width: 800px; margin: 0 auto;}
+        .bento-card { 
+            background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(45, 212, 191, 0.15); 
+            border-radius: 24px; padding: clamp(25px, 4vw, 40px); 
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+            position: relative; overflow: hidden; 
+            display: flex; flex-direction: column; justify-content: center;
+        }
 
-        .prof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        /* Ambient Glow Interno */
+        .bento-card::before { 
+            content: ''; position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; 
+            background: var(--electric-cyan); border-radius: 50%; filter: blur(80px); 
+            opacity: 0.1; transition: opacity 0.4s; pointer-events: none; z-index: 0;
+        }
+        .bento-card:hover { transform: translateY(-5px); border-color: rgba(45, 212, 191, 0.4); box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(45, 212, 191, 0.05); }
+        .bento-card:hover::before { opacity: 0.25; }
         
-        .prof-card { background: rgba(0,0,0,0.4); padding: 25px; border-radius: 12px; border-top: 3px solid var(--electric-cyan); transition: transform 0.3s; }
-        .prof-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        .prof-card h3 { font-size: 1.2rem; color: var(--text-main); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;}
-        .prof-card h3::before { content: '>'; color: var(--electric-cyan); font-weight: 900;}
-        
-        .role-list { list-style: none; margin-bottom: 15px; }
-        .role-list li { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;}
-        .role-list li::before { content: '■'; color: var(--electric-cyan); font-size: 0.5rem; }
+        .bento-content { position: relative; z-index: 2; }
 
-        .skill-bar { margin-bottom: 15px; }
-        .skill-info { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; text-transform: uppercase; color: var(--text-main);}
-        .progress-track { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
-        .progress-fill-cv { height: 100%; background: var(--electric-cyan); border-radius: 10px; width: 0; transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 0 10px var(--electric-cyan);}
+        /* Typography & Elements inside Bento */
+        .bento-card h3 { font-size: clamp(1.3rem, 2vw, 1.8rem); color: var(--electric-cyan); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; text-transform: uppercase;}
         
-        .client-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;}
-        .c-tag { background: rgba(255,255,255,0.05); padding: 5px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); border: 1px solid rgba(255,255,255,0.1);}
+        /* Bio Card */
+        .bento-bio p { font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.7; color: var(--text-main); margin-bottom: 30px; font-weight: 400;}
+        .bento-metrics { display: flex; gap: 30px; flex-wrap: wrap;}
+        .bento-metric { display: flex; flex-direction: column; }
+        .bento-metric .num { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 900; color: var(--electric-cyan); line-height: 1;}
+        .bento-metric .label { font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-top: 5px; font-weight: 600;}
+
+        /* Experience Timeline */
+        .cv-timeline { border-left: 2px solid rgba(45, 212, 191, 0.2); padding-left: 20px; display: flex; flex-direction: column; gap: 25px; margin-top: 10px;}
+        .cv-item { position: relative; }
+        .cv-item::before { content: ''; position: absolute; left: -26px; top: 5px; width: 10px; height: 10px; background: var(--dark-bg); border: 2px solid var(--electric-cyan); border-radius: 50%; transition: background 0.3s;}
+        .cv-item:hover::before { background: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan);}
+        .cv-item h4 { color: var(--text-main); font-size: 1.1rem; margin-bottom: 3px; font-weight: 700;}
+        .cv-item span { color: var(--electric-cyan); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;}
+        .cv-item p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;}
+
+        /* Skills Progress Bars (Mantenemos clases JS) */
+        .skill-bar { margin-bottom: 20px; }
+        .skill-info { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; color: var(--text-main); letter-spacing: 1px;}
+        .progress-track { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+        .progress-fill-cv { height: 100%; background: var(--electric-cyan); border-radius: 10px; width: 0; transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 0 15px var(--electric-cyan);}
+
+        /* Certifications & Badges */
+        .cert-list { display: flex; flex-direction: column; gap: 15px; }
+        .cert-item { background: rgba(0,0,0,0.3); padding: 15px 20px; border-radius: 12px; border-left: 3px solid var(--electric-cyan); display: flex; flex-direction: column;}
+        .cert-item strong { color: var(--text-main); font-size: 1rem; margin-bottom: 3px;}
+        .cert-item span { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;}
+
+        /* Desktop Asymmetric Grid (El verdadero Bento) */
+        @media (min-width: 900px) {
+            .bento-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(200px, auto); }
+            .bento-bio { grid-column: span 2; grid-row: span 2; justify-content: flex-start;}
+            .bento-exp { grid-column: span 1; grid-row: span 3; } /* Columna lateral alta */
+            .bento-skills { grid-column: span 2; }
+            .bento-certs { grid-column: span 3; flex-direction: row; align-items: center; justify-content: space-between;}
+            .bento-certs .cert-list { flex-direction: row; width: 100%; justify-content: space-around;}
+            .bento-certs .cert-item { width: 30%; }
+        }
 
         /* ====================================================
-           6. MOTOR DE GRILLA (BASE: MASSIVE IMPACT)
+           6. MOTOR DE GRILLA (MASSIVE IMPACT + TETRIS)
         ==================================================== */
         .portfolio-grid { 
             display: grid; 
@@ -166,10 +203,8 @@
             position: relative; z-index: 5; 
         }
         
-        /* Escritorio: 2 columnas inmensas para fotos y videos */
-        @media (min-width: 768px) {
-            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+        /* Escritorio Default: 2 columnas inmensas */
+        @media (min-width: 768px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
 
         .media-item.hide { display: none !important; }
         
@@ -180,17 +215,15 @@
             transform: translateZ(0); 
         }
 
-        /* TETRIS MODE: Sobrescribe la cuadrícula solo para diseños */
+        /* TETRIS MODE: Sobrescribe la cuadrícula solo para la pestaña diseños */
         .portfolio-grid.tetris-mode { 
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             grid-auto-rows: 280px; 
-            grid-auto-flow: dense; 
+            grid-auto-flow: dense; /* Magia pura de CSS Grid para rellenar huecos */
             gap: 15px; padding: 0 2%;
         }
         
-        .portfolio-grid.tetris-mode .media-item { 
-            aspect-ratio: unset; height: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); box-shadow: none;
-        }
+        .portfolio-grid.tetris-mode .media-item { aspect-ratio: unset; height: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); box-shadow: none; }
 
         /* Clases utilitarias inyectadas dinámicamente por TetrisEngine */
         .span-col-2 { grid-column: span 2; }
@@ -202,22 +235,22 @@
             .span-col-2 { grid-column: auto; } .span-row-2 { grid-row: auto; }
         }
 
-        /* CAPAS DE MEDIA (IMÁGENES Y VIDEOS) */
+        /* CAPAS DE MEDIA */
         .media-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.15; pointer-events: none; z-index: 4; mix-blend-mode: overlay;}
         .protect-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 6; pointer-events: none; }
         .hover-carousel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         
-        /* ENCUADRE DE IMÁGENES (CENTER POR DEFECTO, TOP PARA ROSTROS) */
+        /* ENCUADRE DE IMÁGENES */
         .hc-img, .yt-thumbnail { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            object-fit: cover; object-position: center; 
+            object-fit: cover; object-position: center; /* Centrado por defecto */
             filter: grayscale(40%) brightness(0.7); 
             transition: opacity 0.3s ease, filter var(--transition-speed) ease, transform 0.5s ease; 
         }
         .hc-img { opacity: 0; }
         .hc-img.active { opacity: 1; z-index: 2; }
         
-        /* Inyectado en las carpetas de modelos y retratos */
+        /* Inyectado programáticamente a los rostros */
         .focus-top { object-position: top center !important; }
 
         .media-iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; border: none; background-color: var(--card-bg); filter: grayscale(10%) brightness(0.9); opacity: 0; transition: opacity var(--transition-speed) ease; }
@@ -296,7 +329,7 @@
         .vault-btn { background: var(--electric-cyan); color: var(--dark-bg); border: none; padding: 18px 40px; font-weight: 900; border-radius: 50px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px var(--electric-cyan-glow);}
         .vault-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.6); }
 
-        /* --- MODALES (Z-INDEX 9999999) --- */
+        /* --- MODALES (Z-INDEX SUPERIOR A TODO: 9999999) --- */
         .modal-fullscreen { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100dvh; background: rgba(2,6,23,0.98); z-index: 9999999; display: none; 
             justify-content: center; align-items: center; padding: 2% 5%; backdrop-filter: blur(10px); opacity: 0; transition: opacity 0.2s ease;
@@ -381,46 +414,71 @@
     </div>
 
     <div id="profile-section">
-        <div class="profile-dashboard">
-            <div class="prof-header">
-                <h2 data-i18n="prof_title">Impacto Estratégico</h2>
-                <p data-i18n="profile_text">Estratega multidisciplinario y Especialista Creativo Tecnológico. Diseño de identidades de marca sólidas y ecosistemas E-learning. Actúo como puente entre la visión de negocio, la estética visual y la tecnología.</p>
-            </div>
+        <div class="bento-grid">
             
-            <div class="prof-grid">
-                <div class="prof-card">
-                    <h3 data-i18n="prof_rol">Roles Principales</h3>
-                    <ul class="role-list">
-                        <li data-i18n="rol_1">Co-Fundador & Líder de Producto (Autómatas)</li>
-                        <li data-i18n="rol_2">Director General & Productor (JAVEGA)</li>
-                        <li data-i18n="rol_3">Líder E-learning & Trade Marketing (Eficacia)</li>
-                        <li data-i18n="rol_4">Director de Arte (Concepto Agencia)</li>
-                    </ul>
-                    <div class="client-tags">
-                        <span class="c-tag">Unilever</span><span class="c-tag">Alquería</span><span class="c-tag">Derco</span><span class="c-tag">Espy</span><span class="c-tag">Fanalca</span>
-                    </div>
+            <div class="bento-card bento-bio bento-content">
+                <h3 data-i18n="prof_title">Impacto Estratégico</h3>
+                <p data-i18n="profile_text">Estratega multidisciplinario y Especialista Creativo Tecnológico. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente estratégico entre la visión de negocio, la estética visual de vanguardia y la adopción tecnológica en empresas top.</p>
+                <div class="bento-metrics">
+                    <div class="bento-metric"><span class="num">8+</span><span class="label" data-i18n="stat_years">Años de Exp.</span></div>
+                    <div class="bento-metric"><span class="num">PO</span><span class="label" data-i18n="stat_po">Product Owner</span></div>
                 </div>
-                
-                <div class="prof-card">
-                    <h3 data-i18n="prof_skills">Core Skills</h3>
-                    <div class="skill-bar">
-                        <div class="skill-info"><span>Product Ownership / Estrategia</span><span>95%</span></div>
-                        <div class="progress-track"><div class="progress-fill-cv" data-width="95%"></div></div>
+            </div>
+
+            <div class="bento-card bento-exp bento-content">
+                <h3 data-i18n="prof_rol">Experiencia TOP</h3>
+                <div class="cv-timeline">
+                    <div class="cv-item">
+                        <span data-i18n="rol_1">Co-Fundador & Líder</span>
+                        <h4>Autómatas</h4>
+                        <p data-i18n="rol_1_desc">Gestión Creativa de IA</p>
                     </div>
-                    <div class="skill-bar">
-                        <div class="skill-info"><span>IA Generativa (Flow)</span><span>90%</span></div>
-                        <div class="progress-track"><div class="progress-fill-cv" data-width="90%"></div></div>
+                    <div class="cv-item">
+                        <span data-i18n="rol_2">Director General</span>
+                        <h4>JAVEGA</h4>
+                        <p data-i18n="rol_2_desc">Producción Audiovisual B2B</p>
                     </div>
-                    <div class="skill-bar">
-                        <div class="skill-info"><span>Diseño Instruccional / E-learning</span><span>95%</span></div>
-                        <div class="progress-track"><div class="progress-fill-cv" data-width="95%"></div></div>
+                    <div class="cv-item">
+                        <span data-i18n="rol_3">Líder E-learning</span>
+                        <h4>Eficacia</h4>
+                        <p data-i18n="rol_3_desc">Trade Marketing</p>
                     </div>
-                    <div class="skill-bar">
-                        <div class="skill-info"><span>Dirección Audiovisual (Adobe/FCP)</span><span>100%</span></div>
-                        <div class="progress-track"><div class="progress-fill-cv" data-width="100%"></div></div>
+                    <div class="cv-item">
+                        <span data-i18n="rol_4">Director de Arte</span>
+                        <h4>Concepto Agencia</h4>
                     </div>
                 </div>
             </div>
+
+            <div class="bento-card bento-skills bento-content">
+                <h3 data-i18n="prof_skills">Core Skills</h3>
+                <div class="skill-bar">
+                    <div class="skill-info"><span>Product Ownership / Estrategia</span><span>95%</span></div>
+                    <div class="progress-track"><div class="progress-fill-cv" data-width="95%"></div></div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-info"><span>IA Generativa (Flow)</span><span>90%</span></div>
+                    <div class="progress-track"><div class="progress-fill-cv" data-width="90%"></div></div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-info"><span>Diseño Instruccional / E-learning</span><span>95%</span></div>
+                    <div class="progress-track"><div class="progress-fill-cv" data-width="95%"></div></div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-info"><span>Dirección Audiovisual (Adobe/FCP)</span><span>100%</span></div>
+                    <div class="progress-track"><div class="progress-fill-cv" data-width="100%"></div></div>
+                </div>
+            </div>
+
+            <div class="bento-card bento-certs bento-content">
+                <h3 data-i18n="cert_title" style="margin-bottom: 0;">Educación & Certs</h3>
+                <div class="cert-list">
+                    <div class="cert-item"><strong data-i18n="cert_1">Ingeniería Multimedia</strong><span>U. San Buenaventura</span></div>
+                    <div class="cert-item"><strong data-i18n="cert_2">PSPOI Product Owner</strong><span>Scrum.org</span></div>
+                    <div class="cert-item"><strong data-i18n="cert_3">Fundamentos Marketing</strong><span>Google Actívate</span></div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -905,20 +963,28 @@
                 es: {
                     head_title: "Alejandro Vega | Líder de Innovación", btn_profile: "Perfil Profesional",
                     btn_vault_header: "Acceso Bóveda", subtitle: "Líder de Innovación Creativa | Identidad Visual & E-learning",
-                    prof_title: "Impacto Estratégico", prof_rol: "Roles Principales", prof_skills: "Core Skills",
-                    rol_1: "Co-Fundador & Líder de Producto (Autómatas)", rol_2: "Director General & Productor (JAVEGA)", rol_3: "Líder E-learning & Trade Marketing (Eficacia)", rol_4: "Director de Arte (Concepto Agencia)",
-                    profile_text: 'Estratega multidisciplinario y Especialista Creativo Tecnológico con más de 8 años de experiencia. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente estratégico entre la visión de negocio, la estética visual de vanguardia y la adopción tecnológica.',
-                    stat_years: "Años de Experiencia", stat_po: "Product Owner",
+                    prof_title: "Impacto Estratégico", prof_rol: "Experiencia TOP", prof_skills: "Core Skills",
+                    rol_1: "Co-Fundador & Líder", rol_1_desc: "Gestión Creativa de IA",
+                    rol_2: "Director General", rol_2_desc: "Producción Audiovisual B2B",
+                    rol_3: "Líder E-learning", rol_3_desc: "Trade Marketing",
+                    rol_4: "Director de Arte", 
+                    cert_title: "Educación & Certs", cert_1: "Ingeniería Multimedia", cert_2: "PSPOI Product Owner", cert_3: "Fundamentos Marketing",
+                    profile_text: 'Estratega multidisciplinario y Especialista Creativo Tecnológico. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente estratégico entre la visión de negocio, la estética visual de vanguardia y la adopción tecnológica en empresas top.',
+                    stat_years: "Años de Exp.", stat_po: "Product Owner",
                     btn_all: "Todo", btn_video: "Producción Audiovisual", btn_photo: "Fotografía", btn_design: "Diseño Visual", btn_audio: "Diseño Sonoro",
                     vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara", vid_cat_showreel: "Dirección Creativa", vid_tit_showreel: "Showreel 2026", vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO", vid_cat_evento: "Cobertura de Evento", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Programa Gastronómico Online", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Postre", vid_cat_lyric: "Tipografía & Motion Graphics", vid_tit_lyric: "Video Lyrical", cat_post: "Postproducción", vid_tit_mauna: "Mauna (Detrás de Cámaras)", cat_artdir: "Dirección de Arte Comercial", tit_food: "Food Styling", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", cat_product: "Fotografía Comercial B2C", title_product: "Fotografía de Producto", cat_lighting: "Iluminación & Técnica", title_portraits: "Retratos de Estudio", cat_editorial: "Fotografía Editorial", tit_sabrina: "Actriz: Sabrina", cat_press: "Retrato Promocional (Prensa)", tit_kapo: "Artista: KAPO", cat_casting: "Casting Visual", title_emerging: "Artistas Emergentes", cat_exp: "Exploración de Luz", tit_exp: "Experimental", cat_land: "Paisaje y Bellas Artes", title_nature: "Naturaleza", cat_banner: "Banner Web", cat_cover: "Diseño de Portada Musical", mauna_title: "Portada de la canción Suave del artista Mauna", cat_vinyl: "Diseño de Vinilo", cat_id: "Identidad Estacional", tit_navidad: "Logo Navideño", cat_vector: "Ilustración Vectorial", tit_koala: "Koala", cat_corp: "Branding Corporativo", cat_edit: "Diseño Editorial", tit_ruta: "La Ruta del Sabor", cat_mosaic: "Mosaico Digital", tit_school: "Colegio Parroquial", tit_yumbo: "Alcaldía de Yumbo", cat_ad: "Diseño Publicitario", tit_cali: "Alcaldía de Cali", cat_promo: "Diseño Promocional", tit_noches: "Noches D'Feria", cat_flyer: "Diseño de Volante", tit_vape: "Vape Expo 2020", aud_alone: "Acústico / Soul Cinematográfico", aud_trapped: "Tensión / Percusión de Acción", aud_rock: "Rock Alternativo / Alta Energía", aud_rain: "Ambient / Synthwave Inspirador", aud_hades: "Darkwave / Synth Industrial", aud_sauvage: "Beat Global / Fusión Urbana", ecosystem_title: "Ecosistema Creativo", clients_title: "Empresas y Aliados", contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.", btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", btn_cv: "Descargar CV (PDF)", link_yt: "Canal de YouTube", vault_title: "Bóveda Corporativa", vault_desc: "Mis diseños de E-learning e infografías para Unilever, Alquería y Derco están sujetos a NDA.", vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]", modal_req_title: "Solicitud de Acceso", modal_req_desc: "Está a punto de solicitar acceso a la Bóveda de NDA. Clientes protegidos:", label_name: "Su Nombre Completo:", label_company: "Empresa o Agencia:", label_email: "Su Correo Corporativo:", nda_title: "ACUERDO DE CONFIDENCIALIDAD (NDA):", nda_text: "Al solicitar acceso a esta bóveda, usted reconoce y acepta expresamente que el material contenido es confidencial.", btn_submit: "Enviar Solicitud y Aceptar", btn_connect: "CONECTEMOS"
                 },
                 en: {
                     head_title: "Alejandro Vega | Innovation Leader", btn_profile: "Professional Profile",
                     btn_vault_header: "Vault Access", subtitle: "Creative Innovation Leader | Visual Identity & E-learning",
-                    prof_title: "Strategic Impact", prof_rol: "Main Roles", prof_skills: "Core Skills",
-                    rol_1: "Co-Founder & Product Lead (Autómatas)", rol_2: "General Director & Producer (JAVEGA)", rol_3: "E-learning & Trade Marketing Lead (Eficacia)", rol_4: "Art Director (Concepto Agencia)",
-                    profile_text: 'Multidisciplinary Strategist and Creative Technology Specialist with over 8 years of experience. I specialize in building solid brand identities and high-impact E-learning ecosystems. I act as the strategic bridge between business vision, cutting-edge aesthetics, and tech adoption in top companies.',
-                    stat_years: "Years of Experience", stat_po: "Product Owner",
+                    prof_title: "Strategic Impact", prof_rol: "Top Experience", prof_skills: "Core Skills",
+                    rol_1: "Co-Founder & Lead", rol_1_desc: "AI Creative Management",
+                    rol_2: "General Director", rol_2_desc: "B2B Audiovisual Production",
+                    rol_3: "E-learning Lead", rol_3_desc: "Trade Marketing",
+                    rol_4: "Art Director", 
+                    cert_title: "Education & Certs", cert_1: "Multimedia Engineering", cert_2: "PSPOI Product Owner", cert_3: "Marketing Fundamentals",
+                    profile_text: 'Multidisciplinary Strategist and Creative Technology Specialist. I specialize in building solid brand identities and high-impact E-learning ecosystems. I act as the strategic bridge between business vision, cutting-edge aesthetics, and tech adoption in top companies.',
+                    stat_years: "Years Exp.", stat_po: "Product Owner",
                     btn_all: "All", btn_video: "Audiovisual Production", btn_photo: "Photography", btn_design: "Visual Design", btn_audio: "Sound Design",
                     vid_cat_clara: "AI Generative Strategy", vid_tit_clara: "Clara Project", vid_cat_showreel: "Creative Direction", vid_tit_showreel: "2026 Showreel", vid_cat_kapo: "Color Grading", vid_tit_kapo: "Color Test: KAPO", vid_cat_evento: "Event Coverage", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Online Culinary Show", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Dessert", vid_cat_lyric: "Typography & Motion Graphics", vid_tit_lyric: "Lyric Video", cat_post: "Post-production", vid_tit_mauna: "Mauna (Behind The Scenes)", cat_artdir: "Commercial Art Direction", tit_food: "Food Styling", cat_fashion: "Fashion Book & Beauty", tit_fashion: "Model Book", cat_product: "B2C Commercial Photography", title_product: "Product Photography", cat_lighting: "Lighting & Technique", title_portraits: "Studio Portraits", cat_editorial: "Editorial Photography", tit_sabrina: "Actress: Sabrina", cat_press: "Promotional Portrait (Press)", tit_kapo: "Artist: KAPO", cat_casting: "Visual Casting", title_emerging: "Emerging Artists", cat_exp: "Light Exploration", tit_exp: "Experimental", cat_land: "Landscape & Fine Art", title_nature: "Nature", cat_banner: "Web Banner", cat_cover: "Music Cover Design", mauna_title: "Cover for 'Suave' by Mauna", cat_vinyl: "Vinyl Wrap Design", cat_id: "Seasonal Identity", tit_navidad: "Christmas Logo", cat_vector: "Vector Illustration", tit_koala: "Koala", cat_corp: "Corporate Branding", cat_edit: "Editorial Design", tit_ruta: "The Flavor Route", cat_mosaic: "Digital Mosaic", tit_school: "Parochial School", tit_yumbo: "Yumbo Mayor's Office", cat_ad: "Advertising Design", tit_cali: "Cali Mayor's Office", cat_promo: "Promotional Design", tit_noches: "Noches D'Feria", cat_flyer: "Flyer Design", tit_vape: "Vape Expo 2020", aud_alone: "Acoustic / Cinematic Soul", aud_trapped: "Tension / Action Percussion", aud_rock: "Alternative Rock / High Energy", aud_rain: "Ambient / Uplifting Synthwave", aud_hades: "Darkwave / Industrial Synth", aud_sauvage: "Global Beat / Urban Fusion", ecosystem_title: "Creative Ecosystem", clients_title: "Companies & Partners", contact_title: "LET'S CONNECT", contact_desc: "Ready to elevate the digital narrative of your projects? Let's schedule a strategic session.", btn_wa: "Text me on WhatsApp", btn_mail: "Send me an email", btn_cv: "Download Resume (PDF)", link_yt: "YouTube Channel", vault_title: "Corporate Vault", vault_desc: "My E-learning designs for Unilever, Alquería, and Derco are subject to NDA.", vault_btn: "Request Secure Access", btn_close: "CLOSE [X]", modal_req_title: "Access Request", modal_req_desc: "You are requesting access to the NDA Protected Vault.", label_name: "Your Full Name:", label_company: "Company or Agency:", label_email: "Your Corporate Email:", nda_title: "NON-DISCLOSURE AGREEMENT (NDA):", nda_text: "By requesting access, you agree that the material is strictly confidential.", btn_submit: "Submit Request", btn_connect: "LET'S CONNECT"
                 }
@@ -942,7 +1008,7 @@
                 updateLanguage(currentLang);
             });
 
-            // 2. ENRUTADOR VISTAS Y BARRAS DE PROGRESO CV
+            // 2. ENRUTADOR VISTAS Y BARRAS DE PROGRESO BENTO
             const FilterManager = (() => {
                 const grid = document.getElementById('main-grid');
                 const profileSection = document.getElementById('profile-section');
@@ -1053,7 +1119,6 @@
                 const dotsContainer = document.getElementById('gallery-dots');
                 let collection = []; let currentIdx = 0; let touchStartX = 0;
 
-                // Preloader Silencioso
                 const preloadImage = (index) => {
                     const nextImg = new Image();
                     nextImg.src = collection[(index + 1) % collection.length];
@@ -1096,7 +1161,6 @@
                 
                 document.querySelectorAll('.media-item.diseno').forEach(item => {
                     item.addEventListener('click', () => {
-                        // Recolectar diseños vivos post-tetris
                         const allDisenoImgs = Array.from(document.querySelectorAll('.media-item.diseno img')).map(img => img.src);
                         galleryData.diseno_all = allDisenoImgs; 
                         const idx = allDisenoImgs.indexOf(item.querySelector('img').src);
@@ -1140,7 +1204,7 @@
                 return { closeModal };
             })();
 
-            // 6. MOTOR DE AUDIO
+            // 6. MOTOR DE AUDIO (INTACTO)
             const AudioManager = (() => {
                 let audioCtx = null; const activeAudios = new Set(); 
                 const initContext = () => { if (!audioCtx) try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {} if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); };
@@ -1221,11 +1285,6 @@
                     window.addEventListener('mousemove', move, {passive: false}); window.addEventListener('touchmove', move, {passive: false});
                     window.addEventListener('mouseup', up); window.addEventListener('touchend', up);
                     
-                    document.querySelectorAll('.client-logo').forEach(l => {
-                        l.addEventListener('mouseenter', () => l.classList.add('hover-glow'));
-                        l.addEventListener('mouseleave', () => l.classList.remove('hover-glow'));
-                    });
-                    
                     animationId = requestAnimationFrame(loop);
                 };
                 return { init };
@@ -1248,14 +1307,14 @@
                 return { closeModal, openModal };
             })();
 
-            // UTILIDADES
+            // UTILIDADES Y KEYDOWNS
             document.addEventListener('keydown', (e) => { 
                 if (e.key === "Escape") { VideoManager.closeModal(); GalleryManager.closeModal(); VaultManager.closeModal(); }
                 if (document.getElementById('gallery-modal').classList.contains('active-modal')) { if (e.key === "ArrowRight") document.getElementById('galleryNextBtn').click(); if (e.key === "ArrowLeft") document.getElementById('galleryPrevBtn').click(); }
             });
             document.addEventListener('contextmenu', e => { if(e.target.tagName === 'IMG') e.preventDefault(); });
 
-            // ARRANQUE
+            // ARRANQUE PRINCIPAL
             document.addEventListener('DOMContentLoaded', () => {
                 updateLanguage(currentLang); MarqueePhysics.init();
                 

@@ -136,6 +136,9 @@
             position: relative; overflow: hidden; 
             display: flex; flex-direction: column; justify-content: center;
         }
+        
+        /* Ajuste específico para anular el centrado vertical masivo en el móvil de la tarjeta de experiencia */
+        .bento-exp { justify-content: flex-start; }
 
         .bento-card::before { 
             content: ''; position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; 
@@ -154,13 +157,18 @@
         .bento-metric .num { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 900; color: var(--electric-cyan); line-height: 1;}
         .bento-metric .label { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-top: 8px; font-weight: 700;}
 
-        .cv-timeline { border-left: 2px solid rgba(45, 212, 191, 0.2); padding-left: 20px; display: flex; flex-direction: column; gap: 25px; margin-top: 5px;}
-        .cv-item { position: relative; }
-        .cv-item::before { content: ''; position: absolute; left: -26px; top: 5px; width: 10px; height: 10px; background: var(--dark-bg); border: 2px solid var(--electric-cyan); border-radius: 50%; transition: background 0.3s, box-shadow 0.3s;}
-        .cv-item:hover::before { background: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan);}
-        .cv-year { color: var(--text-muted); font-size: 0.75rem; letter-spacing: 1.5px; margin-bottom: 3px; display: block; font-weight: 600; }
+        /* Experience Timeline Mejorado (Con Sub-tarjetas) */
+        .cv-timeline { position: relative; padding-left: 30px; display: flex; flex-direction: column; gap: 20px; margin-top: 15px; }
+        .cv-timeline::before { content: ''; position: absolute; left: 5px; top: 10px; bottom: 10px; width: 2px; background: rgba(45, 212, 191, 0.2); }
+        
+        .cv-item { position: relative; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.02); transition: transform 0.3s, border-color 0.3s; }
+        .cv-item:hover { transform: translateX(5px); border-color: rgba(45, 212, 191, 0.3); }
+        .cv-item::after { content: ''; position: absolute; left: -32px; top: 22px; width: 14px; height: 14px; background: var(--dark-bg); border: 2px solid var(--electric-cyan); border-radius: 50%; transition: all 0.3s;}
+        .cv-item:hover::after { background: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan); transform: scale(1.2);}
+        
+        .cv-year { color: var(--text-muted); font-size: 0.75rem; letter-spacing: 1.5px; margin-bottom: 5px; display: block; font-weight: 600; }
         .cv-item span.cv-role { color: var(--electric-cyan); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;}
-        .cv-item h4 { color: var(--text-main); font-size: 1.15rem; margin-bottom: 3px; font-weight: 700;}
+        .cv-item h4 { color: var(--text-main); font-size: 1.15rem; margin-bottom: 0; font-weight: 700;}
 
         .skill-category { margin-bottom: 25px; }
         .skill-category:last-child { margin-bottom: 0; }
@@ -288,7 +296,6 @@
         .marquee-container { width: 100%; overflow: hidden; white-space: nowrap; position: relative; padding: 40px 0; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); cursor: grab; }
         .marquee-container:active { cursor: grabbing; }
         .marquee-track { display: inline-flex; align-items: center; gap: clamp(40px, 5vw, 80px); will-change: transform; }
-        
         .client-logo { height: clamp(40px, 4vw, 60px); width: auto; object-fit: contain; filter: brightness(0) invert(1) opacity(0.6); transition: filter 0.3s ease; cursor: pointer; }
         .client-logo.hover-glow, .client-logo:hover { filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 15px var(--electric-cyan)); }
         .client-logo-unilever { transform: scale(1.6); margin: 0 15px; } .client-logo-comfandi { transform: scale(1.3); }
@@ -316,7 +323,7 @@
         .vault-btn { background: var(--electric-cyan); color: var(--dark-bg); border: none; padding: 18px 40px; font-weight: 900; border-radius: 50px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px var(--electric-cyan-glow);}
         .vault-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.6); }
 
-        /* --- MODALES (Z-INDEX SUPERIOR A TODO: 9999999) --- */
+        /* --- MODALES (Z-INDEX 9999999) --- */
         .modal-fullscreen { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100dvh; background: rgba(2,6,23,0.98); 
             z-index: 9999999; display: none; justify-content: center; align-items: center; padding: 2% 5%; 
@@ -1015,15 +1022,14 @@
             };
 
             document.getElementById('langToggleBtn').addEventListener('click', () => {
-                currentLang = currentLang === 'es' ? 'en' : 'es';
-                updateLanguage(currentLang);
+                currentLang = currentLang === 'es' ? 'en' : 'es'; updateLanguage(currentLang);
             });
 
-            // 2. ENRUTADOR VISTAS BENTO / MULTIMEDIA
+            // 2. ENRUTADOR VISTAS
             const FilterManager = (() => {
                 const grid = document.getElementById('main-grid');
                 const profileSection = document.getElementById('profile-section');
-                
+
                 const filter = (category, btnTarget) => {
                     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
                     btnTarget.classList.add('active');
@@ -1055,7 +1061,7 @@
                 });
             })();
 
-            // 3. MOTOR TETRIS
+            // 3. MOTOR TETRIS (ALGORITMO DINÁMICO)
             const TetrisEngine = (() => {
                 const randomize = () => {
                     const grid = document.getElementById('main-grid');
@@ -1290,6 +1296,7 @@
                     container.addEventListener('mousedown', down); container.addEventListener('touchstart', down, {passive: false});
                     window.addEventListener('mousemove', move, {passive: false}); window.addEventListener('touchmove', move, {passive: false});
                     window.addEventListener('mouseup', up); window.addEventListener('touchend', up);
+                    
                     animationId = requestAnimationFrame(loop);
                 };
                 return { init };

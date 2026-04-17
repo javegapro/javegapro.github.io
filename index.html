@@ -120,15 +120,12 @@
         .vault-filter-btn:hover { background-color: var(--electric-cyan); color: var(--dark-bg); box-shadow: 0 5px 15px var(--electric-cyan-glow); }
 
         /* ====================================================
-           5. PERFIL PROFESIONAL (BENTO BOX UI ELITE)
+           5. PERFIL PROFESIONAL BENTO BOX
         ==================================================== */
         #profile-section { display: none; padding: 0 5% 100px; animation: fadeIn 0.5s ease; position: relative; z-index: 10; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .bento-grid { 
-            display: grid; grid-template-columns: 1fr; gap: 20px; 
-            max-width: 1300px; margin: 0 auto; 
-        }
+        .bento-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 1300px; margin: 0 auto; }
 
         .bento-card { 
             background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(45, 212, 191, 0.15); 
@@ -140,54 +137,38 @@
             display: flex; flex-direction: column; justify-content: center;
         }
 
-        /* Ambient Glow Interno y Hover Elevado */
         .bento-card::before { 
             content: ''; position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; 
             background: var(--electric-cyan); border-radius: 50%; filter: blur(80px); 
             opacity: 0.1; transition: opacity 0.4s; pointer-events: none; z-index: 0;
         }
-        .bento-card:hover { 
-            transform: translateY(-5px); 
-            border-color: var(--electric-cyan); 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 0 20px rgba(45, 212, 191, 0.15); 
-        }
+        .bento-card:hover { transform: translateY(-5px); border-color: var(--electric-cyan); box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 0 20px rgba(45, 212, 191, 0.15); }
         .bento-card:hover::before { opacity: 0.3; }
         
         .bento-content { position: relative; z-index: 2; }
-
-        /* Typography inside Bento */
         .bento-card h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); color: var(--electric-cyan); margin-bottom: 25px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 1px;}
         
-        /* Bio Card & 3 Metrics */
         .bento-bio p { font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.7; color: var(--text-main); margin-bottom: 35px; font-weight: 400;}
         .bento-metrics { display: flex; gap: 30px; flex-wrap: wrap; justify-content: flex-start;}
         .bento-metric { display: flex; flex-direction: column; }
         .bento-metric .num { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 900; color: var(--electric-cyan); line-height: 1;}
         .bento-metric .label { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-top: 8px; font-weight: 700;}
 
-        /* Experience Timeline (Con Fechas) */
         .cv-timeline { border-left: 2px solid rgba(45, 212, 191, 0.2); padding-left: 20px; display: flex; flex-direction: column; gap: 25px; margin-top: 5px;}
         .cv-item { position: relative; }
         .cv-item::before { content: ''; position: absolute; left: -26px; top: 5px; width: 10px; height: 10px; background: var(--dark-bg); border: 2px solid var(--electric-cyan); border-radius: 50%; transition: background 0.3s, box-shadow 0.3s;}
         .cv-item:hover::before { background: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan);}
-        
         .cv-year { color: var(--text-muted); font-size: 0.75rem; letter-spacing: 1.5px; margin-bottom: 3px; display: block; font-weight: 600; }
         .cv-item span.cv-role { color: var(--electric-cyan); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;}
         .cv-item h4 { color: var(--text-main); font-size: 1.15rem; margin-bottom: 3px; font-weight: 700;}
 
-        /* Skills Tag Cloud */
         .skill-category { margin-bottom: 25px; }
         .skill-category:last-child { margin-bottom: 0; }
         .skill-category-title { font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; font-weight: 700; letter-spacing: 1px;}
         .tag-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
-        .tech-pill { 
-            background: rgba(255,255,255,0.03); color: var(--text-main); padding: 8px 16px; 
-            border-radius: 50px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.1); 
-            transition: all 0.3s ease; font-weight: 600;
-        }
+        .tech-pill { background: rgba(255,255,255,0.03); color: var(--text-main); padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease; font-weight: 600; }
         .tech-pill:hover { background: rgba(45, 212, 191, 0.1); border-color: var(--electric-cyan); color: var(--electric-cyan); transform: translateY(-2px); }
 
-        /* Certifications & Badges (Con Iconos) */
         .cert-list { display: flex; flex-direction: column; gap: 15px; width: 100%;}
         .cert-item { background: rgba(0,0,0,0.3); padding: 15px 20px; border-radius: 12px; border: 1px solid rgba(45, 212, 191, 0.1); display: flex; flex-direction: row; align-items: center; gap: 15px; transition: border 0.3s;}
         .cert-item:hover { border-color: var(--electric-cyan); }
@@ -196,7 +177,6 @@
         .cert-text strong { color: var(--text-main); font-size: 1rem; margin-bottom: 3px;}
         .cert-text span { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;}
 
-        /* Desktop Asymmetric Grid */
         @media (min-width: 900px) {
             .bento-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(200px, auto); }
             .bento-bio { grid-column: span 2; grid-row: span 2; justify-content: flex-start;}
@@ -212,13 +192,12 @@
         ==================================================== */
         .portfolio-grid { 
             display: grid; 
-            grid-template-columns: 1fr; /* Móviles: 1 columna masiva */
+            grid-template-columns: 1fr; 
             gap: clamp(20px, 3vw, 40px); 
             padding: 0 5% 100px; width: 100%; max-width: 2500px; margin: 0 auto; 
             position: relative; z-index: 5; 
         }
         
-        /* Escritorio Default: 2 columnas inmensas */
         @media (min-width: 768px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
 
         .media-item.hide { display: none !important; }
@@ -230,17 +209,15 @@
             transform: translateZ(0); 
         }
 
-        /* TETRIS MODE: Sobrescribe la cuadrícula solo para la pestaña diseños */
         .portfolio-grid.tetris-mode { 
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             grid-auto-rows: 280px; 
-            grid-auto-flow: dense; /* Magia pura de CSS Grid para rellenar huecos */
+            grid-auto-flow: dense; 
             gap: 15px; padding: 0 2%;
         }
         
         .portfolio-grid.tetris-mode .media-item { aspect-ratio: unset; height: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); box-shadow: none; }
 
-        /* Clases utilitarias inyectadas dinámicamente por TetrisEngine */
         .span-col-2 { grid-column: span 2; }
         .span-row-2 { grid-row: span 2; }
 
@@ -255,28 +232,24 @@
         .protect-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 6; pointer-events: none; }
         .hover-carousel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         
-        /* ENCUADRE DE IMÁGENES */
         .hc-img, .yt-thumbnail { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            object-fit: cover; object-position: center; /* Centrado por defecto */
+            object-fit: cover; object-position: center; 
             filter: grayscale(40%) brightness(0.7); 
             transition: opacity 0.3s ease, filter var(--transition-speed) ease, transform 0.5s ease; 
         }
         .hc-img { opacity: 0; }
         .hc-img.active { opacity: 1; z-index: 2; }
         
-        /* Inyectado programáticamente a los rostros */
         .focus-top { object-position: top center !important; }
 
         .media-iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; border: none; background-color: var(--card-bg); filter: grayscale(10%) brightness(0.9); opacity: 0; transition: opacity var(--transition-speed) ease; }
 
-        /* HOVER EFFECTS */
         .media-item:not(.audio):hover { border-color: rgba(45, 212, 191, 0.4); box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 20px var(--electric-cyan-glow); transform: translateY(-5px) scale(1.01); z-index: 10; }
         .portfolio-grid.tetris-mode .media-item:not(.audio):hover { transform: scale(1.02); z-index: 20;}
 
         .media-item:not(.audio):hover .hc-img, .media-item:not(.audio):hover .yt-thumbnail { filter: grayscale(0%) brightness(1.1); transform: scale(1.03); }
 
-        /* OVERLAYS DE TEXTO */
         .media-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 50px 30px 20px; background: linear-gradient(to top, rgba(2,6,23,0.98) 10%, transparent); z-index: 5; pointer-events: none; transition: padding 0.3s ease; }
         .media-item:hover .media-overlay { padding-bottom: 30px; }
         .portfolio-grid.tetris-mode .media-item:hover .media-overlay { padding-bottom: 10px; }
@@ -307,7 +280,6 @@
         .brand-btn-clean { display: inline-flex; align-items: center; justify-content: center; background: transparent; border: none; padding: 15px; transition: transform 0.3s ease; cursor: pointer; }
         .brand-btn-clean:hover { transform: translateY(-5px); }
         .brand-logo-img.automatas-logo { height: 45px; width: auto; transition: transform 0.3s ease, filter 0.3s ease; }
-        /* GLOW VERDE AUTÓMATAS RESTAURADO */
         .brand-btn-clean:hover .brand-logo-img.automatas-logo { transform: scale(1.05); filter: drop-shadow(0 0 15px var(--automatas-green)); }
 
         .clients-section { padding: 80px 5%; text-align: center; background-color: var(--dark-bg); overflow: hidden; }
@@ -344,14 +316,16 @@
         .vault-btn { background: var(--electric-cyan); color: var(--dark-bg); border: none; padding: 18px 40px; font-weight: 900; border-radius: 50px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px var(--electric-cyan-glow);}
         .vault-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.6); }
 
-        /* --- MODALES (Z-INDEX 9999999) --- */
+        /* --- MODALES (Z-INDEX SUPERIOR A TODO: 9999999) --- */
         .modal-fullscreen { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100dvh; background: rgba(2,6,23,0.98); z-index: 9999999; display: none; 
-            justify-content: center; align-items: center; padding: 2% 5%; backdrop-filter: blur(10px); opacity: 0; transition: opacity 0.2s ease;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100dvh; background: rgba(2,6,23,0.98); 
+            z-index: 9999999; display: none; justify-content: center; align-items: center; padding: 2% 5%; 
+            backdrop-filter: blur(10px); opacity: 0; transition: opacity 0.2s ease;
         }
         .modal-fullscreen.active-modal { display: flex; opacity: 1; }
         .modal-content-wrapper { max-width: 100%; max-height: 90dvh; position: relative; width: 1600px; aspect-ratio: 16/9; display: flex; justify-content: center; align-items: center;}
         .modal-fullscreen iframe { width: 100%; height: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.9); display: block; border: none; background-color: black; }
+        
         .close-btn { 
             position: fixed; top: max(20px, env(safe-area-inset-top, 20px)); right: max(20px, var(--safe-right)); 
             color: var(--text-main); background-color: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.2); 
@@ -469,7 +443,6 @@
 
             <div class="bento-card bento-skills bento-content">
                 <h3 data-i18n="prof_skills">Core Skills</h3>
-                
                 <div class="skill-category">
                     <div class="skill-category-title" data-i18n="skill_cat_1">Gestión & Estrategia</div>
                     <div class="tag-cloud">
@@ -478,7 +451,6 @@
                         <span class="tech-pill">Design Thinking</span>
                     </div>
                 </div>
-                
                 <div class="skill-category">
                     <div class="skill-category-title" data-i18n="skill_cat_2">Tecnología & IA</div>
                     <div class="tag-cloud">
@@ -488,7 +460,6 @@
                         <span class="tech-pill">ChatGPT Advanced</span>
                     </div>
                 </div>
-                
                 <div class="skill-category">
                     <div class="skill-category-title" data-i18n="skill_cat_3">Creación & Diseño</div>
                     <div class="tag-cloud">
@@ -503,31 +474,16 @@
                 <h3 data-i18n="cert_title" style="margin-bottom: 20px;">Educación & Certs</h3>
                 <div class="cert-list">
                     <div class="cert-item">
-                        <div class="cert-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12 3L1 9L12 15L21 10.09V17H23V9M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z"/></svg>
-                        </div>
-                        <div class="cert-text">
-                            <strong data-i18n="cert_1">Ingeniería Multimedia</strong>
-                            <span>U. San Buenaventura</span>
-                        </div>
+                        <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 3L1 9L12 15L21 10.09V17H23V9M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z"/></svg></div>
+                        <div class="cert-text"><strong data-i18n="cert_1">Ingeniería Multimedia</strong><span>U. San Buenaventura</span></div>
                     </div>
                     <div class="cert-item">
-                        <div class="cert-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 1 0 22 12A10 10 0 0 0 12 2ZM11 19.93A8 8 0 0 1 4.07 13H6.14A6 6 0 0 0 11 17.93ZM13 19.93V17.93A6 6 0 0 0 17.86 13H19.93A8 8 0 0 1 13 19.93ZM19.93 11H17.86A6 6 0 0 0 13 6.07V4.07A8 8 0 0 1 19.93 11ZM11 4.07V6.07A6 6 0 0 0 6.14 11H4.07A8 8 0 0 1 11 4.07Z"/></svg>
-                        </div>
-                        <div class="cert-text">
-                            <strong data-i18n="cert_2">PSPOI Product Owner</strong>
-                            <span>Scrum.org</span>
-                        </div>
+                        <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 1 0 22 12A10 10 0 0 0 12 2ZM11 19.93A8 8 0 0 1 4.07 13H6.14A6 6 0 0 0 11 17.93ZM13 19.93V17.93A6 6 0 0 0 17.86 13H19.93A8 8 0 0 1 13 19.93ZM19.93 11H17.86A6 6 0 0 0 13 6.07V4.07A8 8 0 0 1 19.93 11ZM11 4.07V6.07A6 6 0 0 0 6.14 11H4.07A8 8 0 0 1 11 4.07Z"/></svg></div>
+                        <div class="cert-text"><strong data-i18n="cert_2">PSPOI Product Owner</strong><span>Scrum.org</span></div>
                     </div>
                     <div class="cert-item">
-                        <div class="cert-icon">
-                            <svg viewBox="0 0 24 24"><path d="M21.35,11.1H12.18V13.83H18.69C18.36,17.64 15.19,19.27 12.19,19.27C8.36,19.27 5,16.25 5,12C5,7.9 8.2,4.73 12.2,4.73C15.29,4.73 17.1,6.7 17.1,6.7L19,4.72C19,4.72 16.56,2 12.1,2C6.42,2 2.03,6.8 2.03,12C2.03,17.05 6.16,22 12.25,22C17.6,22 21.5,18.33 21.5,12.91C21.5,11.76 21.35,11.1 21.35,11.1Z"/></svg>
-                        </div>
-                        <div class="cert-text">
-                            <strong data-i18n="cert_3">Fundamentos Marketing</strong>
-                            <span>Google Actívate</span>
-                        </div>
+                        <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M21.35,11.1H12.18V13.83H18.69C18.36,17.64 15.19,19.27 12.19,19.27C8.36,19.27 5,16.25 5,12C5,7.9 8.2,4.73 12.2,4.73C15.29,4.73 17.1,6.7 17.1,6.7L19,4.72C19,4.72 16.56,2 12.1,2C6.42,2 2.03,6.8 2.03,12C2.03,17.05 6.16,22 12.25,22C17.6,22 21.5,18.33 21.5,12.91C21.5,11.76 21.35,11.1 21.35,11.1Z"/></svg></div>
+                        <div class="cert-text"><strong data-i18n="cert_3">Fundamentos Marketing</strong><span>Google Actívate</span></div>
                     </div>
                 </div>
             </div>
@@ -720,14 +676,14 @@
 
         <div class="media-item diseno" data-diseno-idx="0">
             <div class="media-texture"></div>
-            <img src="Banner web Jdmaray Cali SPA.jpg" class="yt-thumbnail fallback-img" alt="Banner web Jdmaray Cali SPA">
+            <img src="Banner%20web%20Jdmaray%20Cali%20SPA.jpg" class="yt-thumbnail fallback-img" alt="Banner web Jdmaray Cali SPA">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_banner">Banner Web</p><h2>Jdmaray Cali SPA</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="1">
             <div class="media-texture"></div>
-            <img src="Banner web para Homecare Ebenezer.jpg" class="yt-thumbnail fallback-img" alt="Banner Homecare Ebenezer">
+            <img src="Banner%20web%20para%20Homecare%20Ebenezer.jpg" class="yt-thumbnail fallback-img" alt="Banner Homecare Ebenezer">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_banner">Banner Web</p><h2>Homecare Ebenezer</h2></div>
         </div>
@@ -755,21 +711,21 @@
 
         <div class="media-item diseno" data-diseno-idx="5">
             <div class="media-texture"></div>
-            <img src="Ilustracion vectorial Koala con gafas y pipa.png" class="yt-thumbnail fallback-img" alt="Ilustración Koala">
+            <img src="Ilustracion%20vectorial%20Koala%20con%20gafas%20y%20pipa.png" class="yt-thumbnail fallback-img" alt="Ilustración Koala">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_vector">Ilustración Vectorial</p><h2 data-i18n="tit_koala">Koala</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="6">
             <div class="media-texture"></div>
-            <img src="Logo Another Reality VR.png" class="yt-thumbnail fallback-img" alt="Another Reality VR">
+            <img src="Logo%20Another%20Reality%20VR.png" class="yt-thumbnail fallback-img" alt="Another Reality VR">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Branding</p><h2>Another Reality VR</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="7">
             <div class="media-texture"></div>
-            <img src="Logo Sulmajafra venta de productos de belleza.jpg" class="yt-thumbnail fallback-img" alt="Logo Sulmajafra">
+            <img src="Logo%20Sulmajafra%20venta%20de%20productos%20de%20belleza.jpg" class="yt-thumbnail fallback-img" alt="Logo Sulmajafra">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_corp">Branding Corporativo</p><h2>Sulmajafra</h2></div>
         </div>
@@ -790,28 +746,28 @@
 
         <div class="media-item diseno" data-diseno-idx="10">
             <div class="media-texture"></div>
-            <img src="Pieza Conversatorio Tuberculosis Hospital y Alcaldia de Yumbo.jpg" class="yt-thumbnail fallback-img" alt="Alcaldía de Yumbo">
+            <img src="Pieza%20Conversatorio%20Tuberculosis%20Hospital%20y%20Alcaldia%20de%20Yumbo.jpg" class="yt-thumbnail fallback-img" alt="Alcaldía de Yumbo">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Social Media</p><h2 data-i18n="tit_yumbo">Alcaldía de Yumbo</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="11">
             <div class="media-texture"></div>
-            <img src="Pieza de servicio de Tonificacion corporal para Agua Marina esthetic center.jpg" class="yt-thumbnail fallback-img" alt="Agua Marina Esthetic">
+            <img src="Pieza%20de%20servicio%20de%20Tonificacion%20corporal%20para%20Agua%20Marina%20esthetic%20center.jpg" class="yt-thumbnail fallback-img" alt="Agua Marina Esthetic">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Social Media</p><h2>Agua Marina Esthetic</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="12">
             <div class="media-texture"></div>
-            <img src="Pieza invitacion de encuentro cultural para la alcaldia de Cali.jpg" class="yt-thumbnail fallback-img" alt="Alcaldía de Cali">
+            <img src="Pieza%20invitacion%20de%20encuentro%20cultural%20para%20la%20alcaldia%20de%20Cali.jpg" class="yt-thumbnail fallback-img" alt="Alcaldía de Cali">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_ad">Diseño Publicitario</p><h2 data-i18n="tit_cali">Alcaldía de Cali</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="13">
             <div class="media-texture"></div>
-            <img src="Pieza promocional de capacitacion para programa de afiliados de Virtuosa venta de ropa para comunidades religiosas.jpg" class="yt-thumbnail fallback-img" alt="Virtuosa">
+            <img src="Pieza%20promocional%20de%20capacitacion%20para%20programa%20de%20afiliados%20de%20Virtuosa%20venta%20de%20ropa%20para%20comunidades%20religiosas.jpg" class="yt-thumbnail fallback-img" alt="Virtuosa">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_promo">Diseño Promocional</p><h2>Virtuosa</h2></div>
         </div>
@@ -907,7 +863,7 @@
     <section class="ecosystem-section reveal-element">
         <h3 data-i18n="ecosystem_title">Ecosistema Creativo</h3>
         <a href="https://automatas.co" target="_blank" class="brand-btn-clean">
-            <img src="MARCA DE AGUA H COLOR.png" alt="Autómatas" class="brand-logo-img automatas-logo fallback-img" loading="lazy">
+            <img src="MARCA%20DE%20AGUA%20H%20COLOR.png" alt="Autómatas" class="brand-logo-img automatas-logo fallback-img" loading="lazy">
         </a>
     </section>
 
@@ -915,22 +871,22 @@
         <h3 data-i18n="clients_title">Empresas y Aliados</h3>
         <div class="marquee-container" id="marqueeContainer">
             <div class="marquee-track" id="marqueeTrack">
-                <img src="Logo Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy">
+                <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy">
                 <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy">
-                <img src="Logo derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy">
-                <img src="Logo comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img vault-trigger" loading="lazy">
-                <img src="Logo fanalca.png" alt="Fanalca" class="client-logo fallback-img vault-trigger" loading="lazy">
-                <img src="Logo eficacia.png" alt="Eficacia" class="client-logo fallback-img vault-trigger" loading="lazy">
-                <img src="Logo espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo%20derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img vault-trigger" loading="lazy">
+                <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo%20espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy">
                 <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img vault-trigger" loading="lazy">
                 
-                <img src="Logo Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy">
+                <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy">
                 <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy">
-                <img src="Logo derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy">
-                <img src="Logo comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img vault-trigger" loading="lazy">
-                <img src="Logo fanalca.png" alt="Fanalca" class="client-logo fallback-img vault-trigger" loading="lazy">
-                <img src="Logo eficacia.png" alt="Eficacia" class="client-logo fallback-img vault-trigger" loading="lazy">
-                <img src="Logo espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo%20derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img vault-trigger" loading="lazy">
+                <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo fallback-img vault-trigger" loading="lazy">
+                <img src="Logo%20espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy">
                 <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img vault-trigger" loading="lazy">
             </div>
         </div>
@@ -984,10 +940,10 @@
             <h3 style="color: var(--electric-cyan); margin-bottom: 5px; font-size: 1.8rem;" data-i18n="modal_req_title">Solicitud de Acceso</h3>
             <p class="modal-req-desc" data-i18n="modal_req_desc">Está a punto de solicitar acceso a la Bóveda protegida por NDA.</p>
             <div class="modal-logos-mini">
-                <img src="Logo Unilever.png" alt="Unilever" class="fallback-img modal-logo-unilever">
+                <img src="Logo%20Unilever.png" alt="Unilever" class="fallback-img modal-logo-unilever">
                 <img src="Logo_Alqueria.png" alt="Alquería" class="fallback-img">
-                <img src="Logo derco.png" alt="Derco" class="fallback-img">
-                <img src="Logo comfandi.png" alt="Comfandi" class="fallback-img">
+                <img src="Logo%20derco.png" alt="Derco" class="fallback-img">
+                <img src="Logo%20comfandi.png" alt="Comfandi" class="fallback-img">
             </div>
             
             <div id="vault-error" class="error-message"></div>
@@ -1017,7 +973,10 @@
                     head_title: "Alejandro Vega | Líder de Innovación", btn_profile: "Perfil Profesional",
                     btn_vault_header: "Acceso Bóveda", subtitle: "Líder de Innovación Creativa | Identidad Visual & E-learning",
                     prof_title: "Impacto Estratégico", prof_rol: "Experiencia TOP", prof_skills: "Core Skills",
-                    rol_1: "Co-Fundador & Líder", rol_2: "Director General", rol_3: "Líder E-learning", rol_4: "Director de Arte", 
+                    rol_1: "Co-Fundador & Líder", rol_1_desc: "Gestión Creativa de IA",
+                    rol_2: "Director General", rol_2_desc: "Producción Audiovisual B2B",
+                    rol_3: "Líder E-learning", rol_3_desc: "Trade Marketing",
+                    rol_4: "Director de Arte", 
                     skill_cat_1: "Gestión & Estrategia", skill_cat_2: "Tecnología & IA", skill_cat_3: "Creación & Diseño",
                     cert_title: "Educación & Certs", cert_1: "Ingeniería Multimedia", cert_2: "PSPOI Product Owner", cert_3: "Fundamentos Marketing",
                     profile_text: 'Estratega multidisciplinario y Especialista Creativo Tecnológico. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente estratégico entre la visión de negocio, la estética visual de vanguardia y la adopción tecnológica en empresas top.',
@@ -1029,7 +988,10 @@
                     head_title: "Alejandro Vega | Innovation Leader", btn_profile: "Professional Profile",
                     btn_vault_header: "Vault Access", subtitle: "Creative Innovation Leader | Visual Identity & E-learning",
                     prof_title: "Strategic Impact", prof_rol: "Top Experience", prof_skills: "Core Skills",
-                    rol_1: "Co-Founder & Lead", rol_2: "General Director", rol_3: "E-learning Lead", rol_4: "Art Director", 
+                    rol_1: "Co-Founder & Lead", rol_1_desc: "AI Creative Management",
+                    rol_2: "General Director", rol_2_desc: "B2B Audiovisual Production",
+                    rol_3: "E-learning Lead", rol_3_desc: "Trade Marketing",
+                    rol_4: "Art Director", 
                     skill_cat_1: "Management & Strategy", skill_cat_2: "Technology & AI", skill_cat_3: "Creation & Design",
                     cert_title: "Education & Certs", cert_1: "Multimedia Engineering", cert_2: "PSPOI Product Owner", cert_3: "Marketing Fundamentals",
                     profile_text: 'Multidisciplinary Strategist and Creative Technology Specialist. I specialize in building solid brand identities and high-impact E-learning ecosystems. I act as the strategic bridge between business vision, cutting-edge aesthetics, and tech adoption in top companies.',
@@ -1061,16 +1023,16 @@
             const FilterManager = (() => {
                 const grid = document.getElementById('main-grid');
                 const profileSection = document.getElementById('profile-section');
-
+                
                 const filter = (category, btnTarget) => {
                     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
                     btnTarget.classList.add('active');
                     AudioManager.pauseAll();
 
                     if (category === 'perfil') {
-                        grid.style.display = 'none'; profileSection.style.display = 'block';
+                        grid.style.display = 'none'; profileSection.style.display = 'block'; 
                     } else {
-                        grid.style.display = 'grid'; profileSection.style.display = 'none';
+                        grid.style.display = 'grid'; profileSection.style.display = 'none'; 
                         
                         if (category === 'diseno') {
                             grid.classList.add('tetris-mode');
@@ -1093,7 +1055,7 @@
                 });
             })();
 
-            // 3. MOTOR TETRIS (ALGORITMO DINÁMICO)
+            // 3. MOTOR TETRIS
             const TetrisEngine = (() => {
                 const randomize = () => {
                     const grid = document.getElementById('main-grid');
@@ -1113,7 +1075,7 @@
                 return { randomize };
             })();
 
-            // 4. AUTOPLAY DE YOUTUBE
+            // 4. YOUTUBE AUTOPLAY
             const VideoManager = (() => {
                 const ytModal = document.getElementById('youtube-modal');
                 const ytIframe = document.getElementById('youtube-iframe');
@@ -1143,7 +1105,7 @@
                 return { initObserver, closeModal };
             })();
 
-            // 5. GALERÍA DE FOTOS Y PRELOADER
+            // 5. GALERÍA DE FOTOS Y PRELOADER URL ENCODED
             const GalleryManager = (() => {
                 const galleryData = {
                     'food': ['https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png'],
@@ -1289,7 +1251,7 @@
                 return { setupAudios, pauseAll };
             })();
 
-            // 7. MOTOR FÍSICO DE CLIENTES (CLIC INTELIGENTE Y DRAG)
+            // 7. MOTOR FÍSICO DE CLIENTES (CLIC VS DRAG INTELIGENTE)
             const MarqueePhysics = (() => {
                 const track = document.getElementById('marqueeTrack');
                 const container = document.getElementById('marqueeContainer');
@@ -1363,7 +1325,12 @@
                 
                 document.querySelectorAll('.fallback-img').forEach(img => {
                     img.addEventListener('error', function() {
-                        if (!this.dataset.retried) { this.dataset.retried = "true"; const exts = ['.jpg', '.JPG', '.jpeg', '.png', '.PNG']; let curExt = exts.find(e => this.src.includes(e)); if(curExt) this.src = this.src.replace(curExt, exts[(exts.indexOf(curExt) + 1) % exts.length]); }
+                        if (!this.dataset.retried) { 
+                            this.dataset.retried = "true"; 
+                            const exts = ['.jpg', '.JPG', '.jpeg', '.png', '.PNG']; 
+                            let curExt = exts.find(e => this.src.includes(e)); 
+                            if(curExt) this.src = this.src.replace(curExt, exts[(exts.indexOf(curExt) + 1) % exts.length]); 
+                        }
                     }, { passive: true });
                 });
 

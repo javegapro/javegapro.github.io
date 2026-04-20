@@ -372,9 +372,34 @@
         .btn-secondary:hover { border-color: var(--electric-cyan); color: var(--electric-cyan); }
         .btn-whatsapp { background-color: var(--whatsapp-green); color: var(--dark-bg); }
         .btn-whatsapp:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4); }
+        
+        /* Modificaciones en Enlaces Sociales */
         .social-links { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;}
-        .social-links a { color: var(--text-muted); text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s;}
+        .social-links a { color: var(--text-muted); text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s; display: flex; align-items: center; justify-content: center; }
         .social-links a:hover { color: var(--electric-cyan); }
+        
+        /* Control Lógico de Estado Outline a Fill para SVGs Sociales */
+        .social-links a svg {
+            fill: transparent;
+            stroke: currentColor;
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover svg {
+            fill: currentColor;
+            stroke: transparent;
+        }
+        /* Ajustes matemáticos para que los cortes internos de los iconos sigan siendo visibles sobre el fondo de relleno */
+        .social-links a.in-link:hover svg rect,
+        .social-links a.in-link:hover svg circle {
+            fill: var(--dark-bg);
+        }
+        .social-links a.yt-link:hover svg polygon {
+            fill: var(--dark-bg);
+        }
+        .social-links a.ig-link:hover svg path,
+        .social-links a.ig-link:hover svg line {
+            stroke: var(--dark-bg);
+        }
 
         .vault-section { background: linear-gradient(180deg, var(--card-bg) 0%, var(--dark-bg) 100%); padding: 100px 5% 150px; text-align: center; position: relative; }
         .vault-container { max-width: 800px; margin: 0 auto; position: relative; z-index: 2; padding: clamp(40px, 5vw, 60px) clamp(20px, 4vw, 40px); border: 1px solid rgba(45, 212, 191, 0.2); border-radius: 24px; background: rgba(15, 23, 42, 0.6); box-shadow: 0 20px 50px rgba(0,0,0,0.5); backdrop-filter: blur(15px);}
@@ -977,18 +1002,34 @@
     <section class="contact-section reveal-element" id="contacto">
         <h2 data-i18n="contact_title">Conectemos</h2>
         <p data-i18n="contact_desc">¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.</p>
+        
         <div class="contact-actions">
             <a href="https://wa.me/573001404327?text=Hola%20Alejandro,%20estoy%20viendo%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20escribirte." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
                 <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                 <span data-i18n="btn_wa">Escríbeme por WhatsApp</span>
             </a>
-            <a href="mailto:Alejandro.960822@gmail.com" class="btn-primary" data-i18n="btn_mail">Escríbeme un correo</a>
-            <a href="ALEJANDRO_VEGA_HV_2026.pdf" target="_blank" rel="noopener noreferrer" class="btn-secondary" data-i18n="btn_cv">Descargar CV (PDF)</a>
+            
+            <a href="mailto:Alejandro.960822@gmail.com" class="btn-primary">
+                <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span data-i18n="btn_mail">Escríbeme un correo</span>
+            </a>
+            
+            <a href="ALEJANDRO_VEGA_HV_2026.pdf" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span data-i18n="btn_cv">Descargar CV (PDF)</span>
+            </a>
         </div>
+        
         <div class="social-links">
-            <a href="https://linkedin.com/in/javegapro" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://www.youtube.com/@javegapro" target="_blank" rel="noopener noreferrer" data-i18n="link_yt">Canal de YouTube</a>
-            <a href="https://instagram.com/javegapro" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://linkedin.com/in/javegapro" target="_blank" rel="noopener noreferrer" class="in-link" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+            <a href="https://www.youtube.com/@javegapro" target="_blank" rel="noopener noreferrer" class="yt-link" aria-label="Canal de YouTube">
+                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+            </a>
+            <a href="https://instagram.com/javegapro" target="_blank" rel="noopener noreferrer" class="ig-link" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
         </div>
     </section>
 
@@ -1130,7 +1171,6 @@
                         });
                     }
                     
-                    // Asegurar que al cambiar de filtro volvemos a la sección
                     const filterSection = document.querySelector('.filter-container');
                     filterSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 };

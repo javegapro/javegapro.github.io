@@ -13,7 +13,8 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Jhon Alejandro Vega Ramírez | Portafolio Profesional">
     <meta property="og:description" content="Descubre el ecosistema creativo de Jhon Vega (JavegaPro): Diseño, Desarrollo Web y Producción Audiovisual.">
-    <meta property="og:url" content="https://javegapro.com/"> <meta property="og:site_name" content="JavegaPro">
+    <meta property="og:url" content="https://javegapro.com/">
+    <meta property="og:site_name" content="JavegaPro">
     <meta property="og:image" content="https://static.wixstatic.com/media/14f4fb_62c1344e52a441daaa100e3400a6cc19~mv2_d_3176_4000_s_4_2.jpg">
     
     <meta name="twitter:card" content="summary_large_image">
@@ -444,26 +445,10 @@
         .social-links a { color: var(--text-muted); text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s; display: flex; align-items: center; justify-content: center; }
         .social-links a:hover { color: var(--electric-cyan); }
         
-        .social-links a svg {
-            fill: transparent;
-            stroke: currentColor;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover svg {
-            fill: currentColor;
-            stroke: transparent;
-        }
-        
-        .social-links a.yt-link:hover svg polygon {
-            fill: var(--dark-bg);
-        }
-        
-        .social-links a.ig-link:hover svg path,
-        .social-links a.ig-link:hover svg line {
-            fill: transparent;
-            stroke: var(--dark-bg);
-        }
+        .social-links a svg { fill: transparent; stroke: currentColor; transition: all 0.3s ease; }
+        .social-links a:hover svg { fill: currentColor; stroke: transparent; }
+        .social-links a.yt-link:hover svg polygon { fill: var(--dark-bg); }
+        .social-links a.ig-link:hover svg path, .social-links a.ig-link:hover svg line { fill: transparent; stroke: var(--dark-bg); }
 
         .vault-section { background: linear-gradient(180deg, var(--card-bg) 0%, var(--dark-bg) 100%); padding: 100px 5% 150px; text-align: center; position: relative; }
         
@@ -482,7 +467,7 @@
         .vault-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.6); }
 
         /* ====================================================
-           9. MODALES MULTIMEDIA (IFRAMES, FOTOS Y FORMULARIOS)
+           9. MODALES MULTIMEDIA Y FORMULARIO (UI / ANIMACIONES)
         ==================================================== */
         .modal-fullscreen { 
             position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh; background: rgba(2,6,23,0.98); 
@@ -528,9 +513,22 @@
         .form-modal-box label { display: block; margin-bottom: 8px; font-size: 0.95rem; color: var(--text-muted); font-weight: 600;}
         .form-modal-box input { width: 100%; padding: 15px; margin-bottom: 20px; background-color: rgba(2, 6, 23, 0.8); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1rem; transition: border 0.3s; }
         .form-modal-box input:focus { outline: none; border-color: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan-glow);}
+        
         .legal-warning { margin-bottom: 20px; padding: 15px; background: rgba(239, 68, 68, 0.05); border-left: 4px solid var(--danger-red); font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; border-radius: 0 8px 8px 0;}
         .legal-warning strong { color: var(--danger-red); }
-        .error-message { color: var(--danger-red); font-size: 0.9rem; margin-bottom: 15px; display: none; font-weight: 600; padding: 10px; background: rgba(239, 68, 68, 0.1); border-radius: 6px;}
+        
+        /* Sistema de Alertas Visuales para Errores de Validación */
+        .error-message { color: var(--danger-red); font-size: 0.9rem; margin-bottom: 15px; display: none; font-weight: 600; padding: 12px; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3); line-height: 1.4;}
+        
+        /* Animación Háptica de Error (Shake) */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+        }
+        .shake-error { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
+
         .modal-req-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5; text-align: center;}
         .modal-logos-mini { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; justify-content: center; align-items: center; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px;}
         .modal-logos-mini img { height: 20px; width: auto; object-fit: contain; filter: brightness(0) invert(1) opacity(0.5); }
@@ -1152,7 +1150,7 @@
             
             <div id="vault-error" class="error-message"></div>
 
-            <form id="vault-form">
+            <form id="vault-form" novalidate>
                 <label for="req-name" data-i18n="label_name">Su Nombre Completo:</label>
                 <input type="text" id="req-name" placeholder="Ej. Juan Pérez" required>
                 <label for="req-company" data-i18n="label_company">Empresa o Agencia:</label>
@@ -1504,26 +1502,100 @@
                 return { init };
             })();
 
+            /* ====================================================
+               MOTOR DE SEGURIDAD DEL FORMULARIO (VAULT MANAGER)
+            ==================================================== */
             const VaultManager = (() => {
-                const modal = document.getElementById('vault-modal'); const form = document.getElementById('vault-form'); const errorDiv = document.getElementById('vault-error');
-                const openModal = () => modal.classList.add('active-modal');
-                const closeModal = () => { modal.classList.remove('active-modal'); form.reset(); errorDiv.style.display = 'none'; };
+                const modal = document.getElementById('vault-modal'); 
+                const form = document.getElementById('vault-form'); 
+                const errorDiv = document.getElementById('vault-error');
                 
+                // Lista Negra de correos no corporativos para forzar B2B
+                const freeEmailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'aol.com', 'live.com'];
+
+                const openModal = () => modal.classList.add('active-modal');
+                const closeModal = () => { 
+                    modal.classList.remove('active-modal'); 
+                    form.reset(); 
+                    errorDiv.style.display = 'none'; 
+                    form.classList.remove('shake-error');
+                };
+
+                // Sanitización contra inyección HTML en el Payload
+                const sanitizeHTML = (str) => {
+                    return str.replace(/[&<>'"]/g, 
+                        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+                    );
+                };
+
+                const validateForm = (name, company, email) => {
+                    const errors = [];
+                    // Regex Nombre: Solo letras y espacios. Entre 3 y 50 caracteres.
+                    if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]{3,50}$/.test(name)) {
+                        errors.push("❌ <strong>Nombre inválido:</strong> Use solo letras (3-50 caracteres).");
+                    }
+                    
+                    // Regex Empresa: Letras, números, espacios y guiones permitidos.
+                    if (!/^[A-Za-z0-9áéíóúÁÉÍÓÚñÑ\s\-\&]{2,50}$/.test(company)) {
+                        errors.push("❌ <strong>Empresa inválida:</strong> Evite caracteres especiales extraños.");
+                    }
+                    
+                    // Regex Correo y Filtro Corporativo B2B
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                        errors.push("❌ <strong>Correo inválido:</strong> Verifique el formato.");
+                    } else {
+                        const domain = email.split('@')[1].toLowerCase();
+                        if (freeEmailDomains.includes(domain)) {
+                            errors.push("❌ <strong>Acceso B2B:</strong> Se requiere un correo corporativo, no se admiten cuentas gratuitas.");
+                        }
+                    }
+                    return errors;
+                };
+
                 form.addEventListener('submit', (e) => {
                     e.preventDefault(); 
-                    const name = document.getElementById('req-name').value.trim(); 
-                    const company = document.getElementById('req-company').value.trim(); 
-                    const email = document.getElementById('req-email').value.trim();
+                    errorDiv.style.display = 'none';
+                    form.classList.remove('shake-error');
+
+                    // Extracción y Sanitización
+                    let name = sanitizeHTML(document.getElementById('req-name').value.trim()); 
+                    let company = sanitizeHTML(document.getElementById('req-company').value.trim()); 
+                    let email = sanitizeHTML(document.getElementById('req-email').value.trim());
                     
-                    if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]{3,50}$/.test(name)) { errorDiv.textContent = "Error: Nombre inválido."; errorDiv.style.display = "block"; return; }
-                    if (company.length < 2) { errorDiv.textContent = "Error: Empresa inválida."; errorDiv.style.display = "block"; return; }
+                    const validationErrors = validateForm(name, company, email);
+
+                    // Sistema de Rechazo (Error Handling)
+                    if (validationErrors.length > 0) {
+                        errorDiv.innerHTML = validationErrors.join('<br><br>');
+                        errorDiv.style.display = "block";
+                        // Truco de UI: Pequeño delay para forzar el reinicio de la animación si el usuario falla repetidamente
+                        setTimeout(() => form.classList.add('shake-error'), 10);
+                        return;
+                    }
                     
+                    // Bloqueo de botón para prevenir spam
+                    const btnSubmit = form.querySelector('button[type="submit"]');
+                    const btnOriginalText = btnSubmit.innerHTML;
+                    btnSubmit.disabled = true;
+                    btnSubmit.innerHTML = "Procesando...";
+
                     const bodyText = `Estimado Alejandro,\n\nMi nombre es ${name}, representando a ${company}. Solicito acceso a su Bóveda Corporativa.\n\nDatos de contacto: ${email}\n\nAcepto el NDA.`;
+                    
+                    // Doble codificación: URL Encoding final para el protocolo mailto
                     window.location.href = `mailto:Alejandro.960822@gmail.com?subject=${encodeURIComponent(`Acceso Bóveda Corporativa - ${company}`)}&body=${encodeURIComponent(bodyText)}`;
-                    closeModal();
+                    
+                    // Retorno a la normalidad
+                    setTimeout(() => {
+                        closeModal();
+                        btnSubmit.disabled = false;
+                        btnSubmit.innerHTML = btnOriginalText;
+                    }, 1000);
                 });
                 
-                document.getElementById('openVaultBtnHeader').addEventListener('click', openModal); document.getElementById('openVaultBtnFooter').addEventListener('click', openModal); document.getElementById('closeVaultBtn').addEventListener('click', closeModal);
+                document.getElementById('openVaultBtnHeader').addEventListener('click', openModal); 
+                document.getElementById('openVaultBtnFooter').addEventListener('click', openModal); 
+                document.getElementById('closeVaultBtn').addEventListener('click', closeModal);
+                
                 return { closeModal, openModal };
             })();
 

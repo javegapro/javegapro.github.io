@@ -234,7 +234,7 @@
         }
 
         /* ====================================================
-           5. PERFIL PROFESIONAL (ESTRUCTURA BENTO BOX DARK GLASS)
+           5. PERFIL PROFESIONAL
         ==================================================== */
         #profile-section { 
             display: none; padding: 0 5% 100px; animation: fadeIn 0.5s ease; position: relative; z-index: 10; 
@@ -312,7 +312,7 @@
         }
 
         /* ====================================================
-           6. MOTOR DE GRILLA GENERAL
+           6. MOTOR DE GRILLA MULTIMEDIA
         ==================================================== */
         .portfolio-grid { 
             display: grid; 
@@ -335,57 +335,52 @@
         }
 
         /* ====================================================
-           MODO MASONRY PURO (Para Diseños)
-           Sin recortes, respeta 1:1, 16:9, 9:16, simétrico.
+           7. MASONRY PURO (SOLO PARA DISEÑOS VISUALES)
+           Sin recortes, ajusta la relación de aspecto original (1:1, 16:9, 9:16)
         ==================================================== */
         .portfolio-grid.masonry-mode { 
-            display: block; /* Anulamos el Grid clásico para usar Columnas */
+            display: block; /* Anulamos Grid estricto */
             column-count: 3; 
             column-gap: 25px; 
             padding: 0 5% 100px;
         }
 
-        @media (max-width: 1024px) {
-            .portfolio-grid.masonry-mode { column-count: 2; column-gap: 20px; }
-        }
+        @media (max-width: 1024px) { .portfolio-grid.masonry-mode { column-count: 2; column-gap: 20px; } }
+        @media (max-width: 767px) { .portfolio-grid.masonry-mode { column-count: 1; } }
 
-        @media (max-width: 767px) {
-            .portfolio-grid.masonry-mode { column-count: 1; }
-        }
-
-        .portfolio-grid.masonry-mode .media-item { 
-            break-inside: avoid; /* Evita que el diseño se parta a la mitad entre columnas */
-            margin-bottom: 25px; 
-            aspect-ratio: unset; /* Anulamos el 16:9 forzado */
-            height: auto; 
-            display: block;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .portfolio-grid.masonry-mode .media-item img.masonry-img {
-            position: relative; /* La imagen dicta el alto del contenedor */
+        .portfolio-grid.masonry-mode .media-item.diseno { 
+            display: inline-block; /* Crítico para no partirse entre columnas */
             width: 100%;
-            height: auto; /* Respeta 100% la proporción original */
-            display: block;
-            object-fit: unset; /* Cero recortes */
-            opacity: 1; /* Forzamos visibilidad total */
+            margin-bottom: 25px; 
+            aspect-ratio: unset; /* Anulamos 16:9 */
+            height: auto; 
+            break-inside: avoid;
+        }
+
+        /* Base para la imagen en vista "Todo" (Ajustada al 16:9) */
+        .media-item.diseno img.masonry-img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; 
             filter: grayscale(20%) brightness(0.8);
             transition: all 0.4s ease;
         }
 
-        .portfolio-grid.masonry-mode .media-item:not(.audio):hover img.masonry-img {
-            filter: grayscale(0%) brightness(1.05);
-            transform: scale(1.02);
+        /* Comportamiento de la imagen en vista "Diseño" (Masonry puro) */
+        .portfolio-grid.masonry-mode .media-item.diseno img.masonry-img {
+            position: relative; /* Permite que la imagen dicte el alto */
+            height: auto; 
+            object-fit: unset; /* Cero recortes */
+            display: block;
         }
 
-        /* ====================================================
-           ESTILOS COMPARTIDOS (Texturas, Overlays, Audios)
-        ==================================================== */
+        .media-item.diseno:not(.audio):hover img.masonry-img {
+            filter: grayscale(0%) brightness(1.05);
+            transform: scale(1.03);
+        }
+
+        /* Shared Overlays */
         .media-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.15; pointer-events: none; z-index: 4; mix-blend-mode: overlay;}
-        
         .protect-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 6; pointer-events: none; }
-        
         .hover-carousel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         
         .hc-img, .yt-thumbnail { 
@@ -396,25 +391,23 @@
         }
         .hc-img { opacity: 0; }
         .hc-img.active { opacity: 1; z-index: 2; }
-        
         .focus-top { object-position: top center !important; }
 
         .media-iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; border: none; background-color: var(--card-bg); filter: grayscale(10%) brightness(0.9); opacity: 0; transition: opacity var(--transition-speed) ease; }
 
         .media-item:not(.audio):hover { border-color: rgba(45, 212, 191, 0.4); box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 20px var(--electric-cyan-glow); transform: translateY(-5px) scale(1.01); z-index: 10; }
+        .portfolio-grid.masonry-mode .media-item.diseno:hover { transform: scale(1.02); z-index: 20; }
 
         .media-item:not(.audio):hover .hc-img, .media-item:not(.audio):hover .yt-thumbnail { filter: grayscale(0%) brightness(1.1); transform: scale(1.03); }
 
         .media-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 50px 30px 20px; background: linear-gradient(to top, rgba(2,6,23,0.98) 10%, transparent); z-index: 5; pointer-events: none; transition: padding 0.3s ease; }
         .media-item:hover .media-overlay { padding-bottom: 30px; }
-        
-        .portfolio-grid.masonry-mode .media-item:hover .media-overlay { padding-bottom: 20px; }
-
+        .portfolio-grid.masonry-mode .media-item:hover .media-overlay { padding-bottom: 10px; }
         .media-item h2 { font-size: clamp(1.4rem, 2vw, 2.2rem); text-transform: uppercase; margin-bottom: 5px; line-height: 1.1; text-shadow: 0 4px 10px rgba(0,0,0,0.8);}
         .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
 
         /* ====================================================
-           7. REPRODUCTOR DE AUDIO NATIVO (WEB AUDIO API)
+           8. REPRODUCTOR DE AUDIO NATIVO
         ==================================================== */
         .media-item.audio { border: none; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; cursor: default; transform: none !important; background-color: var(--dark-bg); }
         @keyframes rotateGlow { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
@@ -432,7 +425,7 @@
         .progress-fill { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background-color: var(--electric-cyan); border-radius: 10px; box-shadow: 0 0 10px var(--electric-cyan); pointer-events: none; transition: width 0.1s linear;}
 
         /* ====================================================
-           8. SECCIONES FINALES (ECOSISTEMA, CLIENTES, CONTACTO)
+           9. SECCIONES FINALES
         ==================================================== */
         .ecosystem-section { padding: 80px 5%; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); background-color: var(--card-bg); }
         .ecosystem-section h3 { font-size: 2rem; color: var(--text-main); margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;}
@@ -496,9 +489,6 @@
         .vault-btn { background: var(--electric-cyan); color: var(--dark-bg); border: none; padding: 18px 40px; font-weight: 900; border-radius: 50px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px var(--electric-cyan-glow);}
         .vault-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.6); }
 
-        /* ====================================================
-           9. MODALES MULTIMEDIA Y FORMULARIO (UI / ANIMACIONES)
-        ==================================================== */
         .modal-fullscreen { 
             position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh; background: rgba(2,6,23,0.98); 
             z-index: 9999999; display: none; justify-content: center; align-items: center; padding: 2% 5%; 
@@ -546,7 +536,6 @@
         
         .legal-warning { margin-bottom: 20px; padding: 15px; background: rgba(239, 68, 68, 0.05); border-left: 4px solid var(--danger-red); font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; border-radius: 0 8px 8px 0;}
         .legal-warning strong { color: var(--danger-red); }
-        
         .error-message { color: var(--danger-red); font-size: 0.9rem; margin-bottom: 15px; display: none; font-weight: 600; padding: 12px; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3); line-height: 1.4;}
         
         @keyframes shake {
@@ -890,35 +879,35 @@
 
         <div class="media-item diseno" data-diseno-idx="0">
             <div class="media-texture"></div>
-            <img src="ruta.jpg" class="masonry-img" alt="La Ruta del Sabor" loading="lazy" decoding="async" draggable="false">
+            <img src="./ruta.jpg?v=1" class="masonry-img" alt="La Ruta del Sabor" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_edit">Diseño Editorial</p><h2 data-i18n="tit_ruta">La Ruta del Sabor</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="1">
             <div class="media-texture"></div>
-            <img src="mosaico.jpg" class="masonry-img" alt="Mosaico Conmemorativo" loading="lazy" decoding="async" draggable="false">
+            <img src="./mosaico.jpg?v=1" class="masonry-img" alt="Mosaico Conmemorativo" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_mosaic">Mosaico Digital</p><h2 data-i18n="tit_school">Colegio Parroquial</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="2">
             <div class="media-texture"></div>
-            <img src="noches.jpg" class="masonry-img" alt="Noches D'Feria" loading="lazy" decoding="async" draggable="false">
+            <img src="./noches.jpg?v=1" class="masonry-img" alt="Noches D'Feria" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_promo">Diseño Promocional</p><h2 data-i18n="tit_noches">Noches D'Feria</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="3">
             <div class="media-texture"></div>
-            <img src="vape.png" class="masonry-img" alt="Vape Expo 2020" loading="lazy" decoding="async" draggable="false">
+            <img src="./vape.png?v=1" class="masonry-img" alt="Vape Expo 2020" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_flyer">Diseño de Volante</p><h2 data-i18n="tit_vape">Vape Expo 2020</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="4">
             <div class="media-texture"></div>
-            <img src="suave.png" class="masonry-img" alt="Portada Mauna" loading="lazy" decoding="async" draggable="false">
+            <img src="./suave.png?v=1" class="masonry-img" alt="Portada Mauna" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_cover">Diseño de Portada Musical</p><h2 data-i18n="mauna_title">Portada Suave - Mauna</h2></div>
         </div>
@@ -1000,7 +989,7 @@
     <section class="ecosystem-section reveal-element">
         <h3 data-i18n="ecosystem_title">Ecosistema Creativo</h3>
         <a href="https://automatas.co" target="_blank" rel="noopener noreferrer" class="brand-btn-clean">
-            <img src="MARCA%20DE%20AGUA%20H%20COLOR.png" alt="Autómatas" class="brand-logo-img automatas-logo fallback-img" loading="lazy" decoding="async" draggable="false">
+            <img src="MARCA%20DE%20AGUA%20H%20COLOR.png" alt="Autómatas" class="brand-logo-img automatas-logo" loading="lazy" decoding="async" draggable="false">
         </a>
     </section>
 
@@ -1008,23 +997,23 @@
         <h3 data-i18n="clients_title">Empresas y Aliados</h3>
         <div class="marquee-container" id="marqueeContainer">
             <div class="marquee-track" id="marqueeTrack">
-                <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20derco.png" alt="Derco" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20espy.png" alt="Espy" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
                 
-                <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20derco.png" alt="Derco" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20espy.png" alt="Espy" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
             </div>
         </div>
     </section>
@@ -1093,10 +1082,10 @@
             <h3 style="color: var(--electric-cyan); margin-bottom: 5px; font-size: 1.8rem;" data-i18n="modal_req_title">Solicitud de Acceso</h3>
             <p class="modal-req-desc" data-i18n="modal_req_desc">Está a punto de solicitar acceso a la Bóveda protegida por NDA.</p>
             <div class="modal-logos-mini">
-                <img src="Logo%20Unilever.png" alt="Unilever" class="fallback-img modal-logo-unilever" draggable="false">
-                <img src="Logo_Alqueria.png" alt="Alquería" class="fallback-img" draggable="false">
-                <img src="Logo%20derco.png" alt="Derco" class="fallback-img" draggable="false">
-                <img src="Logo%20comfandi.png" alt="Comfandi" class="fallback-img" draggable="false">
+                <img src="Logo%20Unilever.png" alt="Unilever" class="modal-logo-unilever" draggable="false">
+                <img src="Logo_Alqueria.png" alt="Alquería" draggable="false">
+                <img src="Logo%20derco.png" alt="Derco" draggable="false">
+                <img src="Logo%20comfandi.png" alt="Comfandi" draggable="false">
             </div>
             
             <div id="vault-error" class="error-message"></div>
@@ -1187,7 +1176,7 @@
                     } else {
                         grid.style.display = 'grid'; profileSection.style.display = 'none'; 
                         
-                        // Lógica de Masonry Puro sin scripts randomizadores
+                        // Lógica exclusiva de activación para Masonry
                         if (category === 'diseno') {
                             grid.classList.add('masonry-mode');
                         } else {
@@ -1309,8 +1298,9 @@
                     item.addEventListener('click', () => {
                         const allDisenoImgs = Array.from(document.querySelectorAll('.media-item.diseno img')).map(img => img.src);
                         galleryData.diseno_all = allDisenoImgs; 
-                        const idx = allDisenoImgs.indexOf(item.querySelector('img').src);
-                        openModal('diseno_all', idx);
+                        // Corregido: Obtenemos el src limipio para ubicarlo en el array sin importar los parámetros de versión
+                        const idx = allDisenoImgs.findIndex(src => src.includes(item.querySelector('img').src.split('?')[0]));
+                        openModal('diseno_all', idx > -1 ? idx : 0);
                     });
                 });
 

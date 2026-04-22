@@ -69,6 +69,7 @@
     <style>
         /* ====================================================
            1. CORE Y VARIABLES CSS
+           La arquitectura de variables permite un mantenimiento ágil y tematización.
         ==================================================== */
         :root {
             --dark-bg: #020617; 
@@ -83,24 +84,27 @@
             --transition-speed: 0.4s;
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
             
+            /* Variables seguras para el Notch de iOS/Android */
             --safe-bottom: env(safe-area-inset-bottom, 20px);
             --safe-right: env(safe-area-inset-right, 20px);
             --safe-left: env(safe-area-inset-left, 20px);
         }
 
+        /* Reset global básico para evitar discrepancias entre navegadores */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-user-drag: none; }
         button, a, .media-item, .gallery-nav, .client-logo { user-select: none; -webkit-tap-highlight-color: transparent; }
         html, body { max-width: 100vw; overflow-x: hidden; }
 
+        /* Estilos base del body con degradados de fondo */
         body { 
             background-color: var(--dark-bg); color: var(--text-main); font-family: 'Inter', sans-serif; scroll-behavior: smooth;
             background-image: radial-gradient(circle at top right, rgba(45, 212, 191, 0.05), transparent 40%),
                               radial-gradient(circle at bottom left, rgba(2, 6, 23, 1), transparent 50%);
         }
-        body.is-loading { overflow: hidden; height: 100dvh; }
+        body.is-loading { overflow: hidden; height: 100dvh; } /* Bloquea el scroll mientras carga */
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
-        /* VIEW TRANSITIONS API CORE CSS */
+        /* VIEW TRANSITIONS API CORE CSS - Para transiciones fluidas entre vistas (Ej. Grid a Bento) */
         ::view-transition-old(root),
         ::view-transition-new(root) {
             animation-duration: 0.6s;
@@ -109,6 +113,7 @@
 
         /* ====================================================
            2. SPLASH SCREEN GLITCH
+           Pantalla de carga inmersiva con apertura en 2 paneles.
         ==================================================== */
         .splash-panel { 
             position: fixed; left: 0; width: 100%; height: 50dvh; background-color: var(--dark-bg); z-index: 9998; 
@@ -117,6 +122,7 @@
         .splash-panel.top { top: 0; transform-origin: top; border-bottom: 2px solid var(--electric-cyan); box-shadow: 0 5px 30px var(--electric-cyan-glow);}
         .splash-panel.bottom { bottom: 0; transform-origin: bottom; border-top: 2px solid var(--electric-cyan); box-shadow: 0 -5px 30px var(--electric-cyan-glow);}
 
+        /* Láser central animado */
         .splash-laser { 
             position: fixed; top: 50%; left: 0; width: 100%; height: 4px; background: #fff; box-shadow: 0 0 20px 8px var(--electric-cyan); 
             z-index: 9999; transform: translate3d(0, -50%, 0) scaleX(0); transition: opacity 0.3s ease; will-change: transform, opacity;
@@ -124,6 +130,7 @@
         body.is-loading .splash-laser { animation: laserShoot 0.4s var(--ease-out-expo) forwards 1s; }
         @keyframes laserShoot { 0% { transform: translate3d(0, -50%, 0) scaleX(0); } 100% { transform: translate3d(0, -50%, 0) scaleX(1); } }
 
+        /* Apertura de paneles al finalizar la carga */
         body.is-loaded .splash-panel.top { transform: translate3d(0, -100%, 0); }
         body.is-loaded .splash-panel.bottom { transform: translate3d(0, 100%, 0); }
         body.is-loaded .splash-laser { opacity: 0; }
@@ -137,6 +144,7 @@
         body.is-loading #title-wrapper { transform: translate3d(0, 35dvh, 0) scale(1.1); }
 
         #main-title { font-size: clamp(1.8rem, 6vw, 5rem); text-transform: uppercase; letter-spacing: clamp(1px, 1.5vw, 8px); color: var(--text-main); }
+        /* Efecto Glitch tipográfico aplicado solo durante la carga */
         body.is-loading #main-title { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); animation: textGlitch 1.2s var(--ease-out-expo) forwards 0.2s; }
 
         @media (min-width: 768px) {
@@ -194,6 +202,7 @@
             gap: 10px; padding: 20px 5% 40px; position: relative; z-index: 10;
         }
 
+        /* Adaptación a móvil: Scroll horizontal suave (Snapping) */
         @media (max-width: 767px) {
             .filter-container {
                 justify-content: flex-start; 
@@ -302,6 +311,7 @@
         .cert-text strong { color: var(--text-main); font-size: 1rem; margin-bottom: 3px;}
         .cert-text span { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;}
 
+        /* Configuración de grilla responsiva para el Bento Box */
         @media (min-width: 900px) {
             .bento-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(200px, auto); }
             .bento-bio { grid-column: span 2; grid-row: span 2; justify-content: flex-start;}
@@ -332,9 +342,10 @@
             position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; cursor: pointer; 
             border: 1px solid rgba(255, 255, 255, 0.05); background-color: var(--card-bg); 
             transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transform: translateZ(0); 
+            transform: translateZ(0); /* Hardware acceleration */
         }
 
+        /* Modo Tetris para la categoría Diseño Visual */
         .portfolio-grid.tetris-mode { 
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             grid-auto-rows: 280px; 
@@ -876,7 +887,7 @@
 
         <div class="media-item diseno" data-diseno-idx="2">
             <div class="media-texture"></div>
-            <img src="portada_mauna.png" class="yt-thumbnail fallback-img" alt="Portada Mauna" loading="lazy" decoding="async" draggable="false">
+            <img src="portadasuavemauna.png" class="yt-thumbnail fallback-img" alt="Portada Mauna" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_cover">Diseño de Portada Musical</p><h2 data-i18n="mauna_title">Portada Suave - Mauna</h2></div>
         </div>
@@ -918,14 +929,14 @@
 
         <div class="media-item diseno" data-diseno-idx="8">
             <div class="media-texture"></div>
-            <img src="ruta_sabor.jpg" class="yt-thumbnail fallback-img" alt="La Ruta del Sabor" loading="lazy" decoding="async" draggable="false">
+            <img src="rutadelsabor.jpg" class="yt-thumbnail fallback-img" alt="La Ruta del Sabor" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_edit">Diseño Editorial</p><h2 data-i18n="tit_ruta">La Ruta del Sabor</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="9">
             <div class="media-texture"></div>
-            <img src="mosaico_colegio.jpg" class="yt-thumbnail fallback-img" alt="Mosaico Conmemorativo" loading="lazy" decoding="async" draggable="false">
+            <img src="mosaico.jpg" class="yt-thumbnail fallback-img" alt="Mosaico Conmemorativo" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_mosaic">Mosaico Digital</p><h2 data-i18n="tit_school">Colegio Parroquial</h2></div>
         </div>
@@ -960,14 +971,14 @@
 
         <div class="media-item diseno" data-diseno-idx="14">
             <div class="media-texture"></div>
-            <img src="noches_feria.jpg" class="yt-thumbnail fallback-img" alt="Noches D'Feria" loading="lazy" decoding="async" draggable="false">
+            <img src="nochesdferia.jpg" class="yt-thumbnail fallback-img" alt="Noches D'Feria" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_promo">Diseño Promocional</p><h2 data-i18n="tit_noches">Noches D'Feria</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="15">
             <div class="media-texture"></div>
-            <img src="volante_vape.png" class="yt-thumbnail fallback-img" alt="Vape Expo 2020" loading="lazy" decoding="async" draggable="false">
+            <img src="volantevape.png" class="yt-thumbnail fallback-img" alt="Vape Expo 2020" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_flyer">Diseño de Volante</p><h2 data-i18n="tit_vape">Vape Expo 2020</h2></div>
         </div>
@@ -1169,6 +1180,10 @@
 
     <script>
         (() => {
+            /* ==========================================
+               DICCIONARIO i18n
+               Estructura para el switch de idiomas.
+            ========================================== */
             const translations = {
                 es: {
                     head_title: "Jhon Alejandro Vega Ramírez | Especialista Tecnológico (JavegaPro)", btn_profile: "Perfil Profesional",
@@ -1222,6 +1237,9 @@
                 updateLanguage(currentLang);
             });
 
+            /* ==========================================
+               GESTOR DE FILTRADO (FilterManager)
+            ========================================== */
             const FilterManager = (() => {
                 const grid = document.getElementById('main-grid');
                 const profileSection = document.getElementById('profile-section');
@@ -1229,7 +1247,7 @@
                 const applyFilterDOM = (category, btnTarget) => {
                     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
                     btnTarget.classList.add('active');
-                    AudioManager.pauseAll();
+                    AudioManager.pauseAll(); // Detiene cualquier audio en reproducción al cambiar la pestaña
 
                     if (category === 'perfil') {
                         grid.style.display = 'none'; profileSection.style.display = 'block'; 
@@ -1267,6 +1285,7 @@
                 });
             })();
 
+            /* Motor Tetris: Randomiza celdas para darle un aspecto orgánico tipo Pinterest */
             const TetrisEngine = (() => {
                 const randomize = () => {
                     const grid = document.getElementById('main-grid');
@@ -1286,6 +1305,9 @@
                 return { randomize };
             })();
 
+            /* ==========================================
+               GESTOR DE VIDEO
+            ========================================== */
             const VideoManager = (() => {
                 const ytModal = document.getElementById('youtube-modal');
                 const ytIframe = document.getElementById('youtube-iframe');
@@ -1315,6 +1337,9 @@
                 return { initObserver, closeModal };
             })();
 
+            /* ==========================================
+               GESTOR DE GALERÍA DE IMÁGENES
+            ========================================== */
             const GalleryManager = (() => {
                 const galleryData = {
                     'food': ['https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png'],
@@ -1419,6 +1444,9 @@
                 return { closeModal };
             })();
 
+            /* ==========================================
+               GESTOR DE AUDIO (Web Audio API)
+            ========================================== */
             const AudioManager = (() => {
                 let audioCtx = null; const activeAudios = new Set(); 
                 const initContext = () => { if (!audioCtx) try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {} if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); };
@@ -1459,6 +1487,9 @@
                 return { setupAudios, pauseAll };
             })();
 
+            /* ==========================================
+               FÍSICA DEL MARQUEE (Empresas y Aliados)
+            ========================================== */
             const MarqueePhysics = (() => {
                 const track = document.getElementById('marqueeTrack');
                 const container = document.getElementById('marqueeContainer');
@@ -1503,14 +1534,13 @@
             })();
 
             /* ====================================================
-               MOTOR DE SEGURIDAD DEL FORMULARIO (VAULT MANAGER)
+                MOTOR DE SEGURIDAD DEL FORMULARIO (VAULT MANAGER)
             ==================================================== */
             const VaultManager = (() => {
                 const modal = document.getElementById('vault-modal'); 
                 const form = document.getElementById('vault-form'); 
                 const errorDiv = document.getElementById('vault-error');
                 
-                // Lista Negra de correos no corporativos para forzar B2B
                 const freeEmailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'aol.com', 'live.com'];
 
                 const openModal = () => modal.classList.add('active-modal');
@@ -1521,7 +1551,6 @@
                     form.classList.remove('shake-error');
                 };
 
-                // Sanitización contra inyección HTML en el Payload
                 const sanitizeHTML = (str) => {
                     return str.replace(/[&<>'"]/g, 
                         tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
@@ -1530,17 +1559,12 @@
 
                 const validateForm = (name, company, email) => {
                     const errors = [];
-                    // Regex Nombre: Solo letras y espacios. Entre 3 y 50 caracteres.
                     if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]{3,50}$/.test(name)) {
                         errors.push("❌ <strong>Nombre inválido:</strong> Use solo letras (3-50 caracteres).");
                     }
-                    
-                    // Regex Empresa: Letras, números, espacios y guiones permitidos.
                     if (!/^[A-Za-z0-9áéíóúÁÉÍÓÚñÑ\s\-\&]{2,50}$/.test(company)) {
                         errors.push("❌ <strong>Empresa inválida:</strong> Evite caracteres especiales extraños.");
                     }
-                    
-                    // Regex Correo y Filtro Corporativo B2B
                     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                         errors.push("❌ <strong>Correo inválido:</strong> Verifique el formato.");
                     } else {
@@ -1557,23 +1581,19 @@
                     errorDiv.style.display = 'none';
                     form.classList.remove('shake-error');
 
-                    // Extracción y Sanitización
                     let name = sanitizeHTML(document.getElementById('req-name').value.trim()); 
                     let company = sanitizeHTML(document.getElementById('req-company').value.trim()); 
                     let email = sanitizeHTML(document.getElementById('req-email').value.trim());
                     
                     const validationErrors = validateForm(name, company, email);
 
-                    // Sistema de Rechazo (Error Handling)
                     if (validationErrors.length > 0) {
                         errorDiv.innerHTML = validationErrors.join('<br><br>');
                         errorDiv.style.display = "block";
-                        // Truco de UI: Pequeño delay para forzar el reinicio de la animación si el usuario falla repetidamente
                         setTimeout(() => form.classList.add('shake-error'), 10);
                         return;
                     }
                     
-                    // Bloqueo de botón para prevenir spam
                     const btnSubmit = form.querySelector('button[type="submit"]');
                     const btnOriginalText = btnSubmit.innerHTML;
                     btnSubmit.disabled = true;
@@ -1581,10 +1601,8 @@
 
                     const bodyText = `Estimado Alejandro,\n\nMi nombre es ${name}, representando a ${company}. Solicito acceso a su Bóveda Corporativa.\n\nDatos de contacto: ${email}\n\nAcepto el NDA.`;
                     
-                    // Doble codificación: URL Encoding final para el protocolo mailto
                     window.location.href = `mailto:Alejandro.960822@gmail.com?subject=${encodeURIComponent(`Acceso Bóveda Corporativa - ${company}`)}&body=${encodeURIComponent(bodyText)}`;
                     
-                    // Retorno a la normalidad
                     setTimeout(() => {
                         closeModal();
                         btnSubmit.disabled = false;
@@ -1599,6 +1617,9 @@
                 return { closeModal, openModal };
             })();
 
+            /* ==========================================
+               EVENTOS GLOBALES Y ACCESIBILIDAD (TECLADO)
+            ========================================== */
             document.addEventListener('keydown', (e) => { 
                 if (e.key === "Escape") { VideoManager.closeModal(); GalleryManager.closeModal(); VaultManager.closeModal(); }
                 if (document.getElementById('gallery-modal').classList.contains('active-modal')) { if (e.key === "ArrowRight") document.getElementById('galleryNextBtn').click(); if (e.key === "ArrowLeft") document.getElementById('galleryPrevBtn').click(); }
@@ -1606,9 +1627,15 @@
             
             document.addEventListener('contextmenu', e => { if(e.target.tagName === 'IMG') e.preventDefault(); });
 
+            /* ==========================================
+               INICIALIZACIÓN DEL SISTEMA
+            ========================================== */
             document.addEventListener('DOMContentLoaded', () => {
                 updateLanguage(currentLang); MarqueePhysics.init();
                 
+                /* El sistema de fallback interactúa con las nuevas rutas. Si github pages no sirve el .jpg
+                   el script buscará otras extensiones, aunque como has estandarizado, deberías subir
+                   exactamente esas extensiones declaradas. */
                 document.querySelectorAll('.fallback-img').forEach(img => {
                     img.addEventListener('error', function() {
                         if (!this.dataset.retried) { 

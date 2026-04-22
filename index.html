@@ -69,7 +69,6 @@
     <style>
         /* ====================================================
            1. CORE Y VARIABLES CSS
-           La arquitectura de variables permite un mantenimiento ágil y tematización.
         ==================================================== */
         :root {
             --dark-bg: #020617; 
@@ -84,27 +83,23 @@
             --transition-speed: 0.4s;
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
             
-            /* Variables seguras para el Notch de iOS/Android */
             --safe-bottom: env(safe-area-inset-bottom, 20px);
             --safe-right: env(safe-area-inset-right, 20px);
             --safe-left: env(safe-area-inset-left, 20px);
         }
 
-        /* Reset global básico para evitar discrepancias entre navegadores */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-user-drag: none; }
         button, a, .media-item, .gallery-nav, .client-logo { user-select: none; -webkit-tap-highlight-color: transparent; }
         html, body { max-width: 100vw; overflow-x: hidden; }
 
-        /* Estilos base del body con degradados de fondo */
         body { 
             background-color: var(--dark-bg); color: var(--text-main); font-family: 'Inter', sans-serif; scroll-behavior: smooth;
             background-image: radial-gradient(circle at top right, rgba(45, 212, 191, 0.05), transparent 40%),
                               radial-gradient(circle at bottom left, rgba(2, 6, 23, 1), transparent 50%);
         }
-        body.is-loading { overflow: hidden; height: 100dvh; } /* Bloquea el scroll mientras carga */
+        body.is-loading { overflow: hidden; height: 100dvh; }
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
-        /* VIEW TRANSITIONS API CORE CSS - Para transiciones fluidas entre vistas (Ej. Grid a Bento) */
         ::view-transition-old(root),
         ::view-transition-new(root) {
             animation-duration: 0.6s;
@@ -113,7 +108,6 @@
 
         /* ====================================================
            2. SPLASH SCREEN GLITCH
-           Pantalla de carga inmersiva con apertura en 2 paneles.
         ==================================================== */
         .splash-panel { 
             position: fixed; left: 0; width: 100%; height: 50dvh; background-color: var(--dark-bg); z-index: 9998; 
@@ -122,7 +116,6 @@
         .splash-panel.top { top: 0; transform-origin: top; border-bottom: 2px solid var(--electric-cyan); box-shadow: 0 5px 30px var(--electric-cyan-glow);}
         .splash-panel.bottom { bottom: 0; transform-origin: bottom; border-top: 2px solid var(--electric-cyan); box-shadow: 0 -5px 30px var(--electric-cyan-glow);}
 
-        /* Láser central animado */
         .splash-laser { 
             position: fixed; top: 50%; left: 0; width: 100%; height: 4px; background: #fff; box-shadow: 0 0 20px 8px var(--electric-cyan); 
             z-index: 9999; transform: translate3d(0, -50%, 0) scaleX(0); transition: opacity 0.3s ease; will-change: transform, opacity;
@@ -130,7 +123,6 @@
         body.is-loading .splash-laser { animation: laserShoot 0.4s var(--ease-out-expo) forwards 1s; }
         @keyframes laserShoot { 0% { transform: translate3d(0, -50%, 0) scaleX(0); } 100% { transform: translate3d(0, -50%, 0) scaleX(1); } }
 
-        /* Apertura de paneles al finalizar la carga */
         body.is-loaded .splash-panel.top { transform: translate3d(0, -100%, 0); }
         body.is-loaded .splash-panel.bottom { transform: translate3d(0, 100%, 0); }
         body.is-loaded .splash-laser { opacity: 0; }
@@ -144,7 +136,6 @@
         body.is-loading #title-wrapper { transform: translate3d(0, 35dvh, 0) scale(1.1); }
 
         #main-title { font-size: clamp(1.8rem, 6vw, 5rem); text-transform: uppercase; letter-spacing: clamp(1px, 1.5vw, 8px); color: var(--text-main); }
-        /* Efecto Glitch tipográfico aplicado solo durante la carga */
         body.is-loading #main-title { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); animation: textGlitch 1.2s var(--ease-out-expo) forwards 0.2s; }
 
         @media (min-width: 768px) {
@@ -202,7 +193,6 @@
             gap: 10px; padding: 20px 5% 40px; position: relative; z-index: 10;
         }
 
-        /* Adaptación a móvil: Scroll horizontal suave (Snapping) */
         @media (max-width: 767px) {
             .filter-container {
                 justify-content: flex-start; 
@@ -311,7 +301,6 @@
         .cert-text strong { color: var(--text-main); font-size: 1rem; margin-bottom: 3px;}
         .cert-text span { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;}
 
-        /* Configuración de grilla responsiva para el Bento Box */
         @media (min-width: 900px) {
             .bento-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(200px, auto); }
             .bento-bio { grid-column: span 2; grid-row: span 2; justify-content: flex-start;}
@@ -342,10 +331,9 @@
             position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; cursor: pointer; 
             border: 1px solid rgba(255, 255, 255, 0.05); background-color: var(--card-bg); 
             transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transform: translateZ(0); /* Hardware acceleration */
+            transform: translateZ(0); 
         }
 
-        /* Modo Tetris para la categoría Diseño Visual */
         .portfolio-grid.tetris-mode { 
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             grid-auto-rows: 280px; 
@@ -528,10 +516,8 @@
         .legal-warning { margin-bottom: 20px; padding: 15px; background: rgba(239, 68, 68, 0.05); border-left: 4px solid var(--danger-red); font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; border-radius: 0 8px 8px 0;}
         .legal-warning strong { color: var(--danger-red); }
         
-        /* Sistema de Alertas Visuales para Errores de Validación */
         .error-message { color: var(--danger-red); font-size: 0.9rem; margin-bottom: 15px; display: none; font-weight: 600; padding: 12px; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3); line-height: 1.4;}
         
-        /* Animación Háptica de Error (Shake) */
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-10px); }
@@ -1180,10 +1166,6 @@
 
     <script>
         (() => {
-            /* ==========================================
-               DICCIONARIO i18n
-               Estructura para el switch de idiomas.
-            ========================================== */
             const translations = {
                 es: {
                     head_title: "Jhon Alejandro Vega Ramírez | Especialista Tecnológico (JavegaPro)", btn_profile: "Perfil Profesional",
@@ -1237,9 +1219,6 @@
                 updateLanguage(currentLang);
             });
 
-            /* ==========================================
-               GESTOR DE FILTRADO (FilterManager)
-            ========================================== */
             const FilterManager = (() => {
                 const grid = document.getElementById('main-grid');
                 const profileSection = document.getElementById('profile-section');
@@ -1247,7 +1226,7 @@
                 const applyFilterDOM = (category, btnTarget) => {
                     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
                     btnTarget.classList.add('active');
-                    AudioManager.pauseAll(); // Detiene cualquier audio en reproducción al cambiar la pestaña
+                    AudioManager.pauseAll(); 
 
                     if (category === 'perfil') {
                         grid.style.display = 'none'; profileSection.style.display = 'block'; 
@@ -1285,7 +1264,6 @@
                 });
             })();
 
-            /* Motor Tetris: Randomiza celdas para darle un aspecto orgánico tipo Pinterest */
             const TetrisEngine = (() => {
                 const randomize = () => {
                     const grid = document.getElementById('main-grid');
@@ -1305,9 +1283,6 @@
                 return { randomize };
             })();
 
-            /* ==========================================
-               GESTOR DE VIDEO
-            ========================================== */
             const VideoManager = (() => {
                 const ytModal = document.getElementById('youtube-modal');
                 const ytIframe = document.getElementById('youtube-iframe');
@@ -1337,9 +1312,6 @@
                 return { initObserver, closeModal };
             })();
 
-            /* ==========================================
-               GESTOR DE GALERÍA DE IMÁGENES
-            ========================================== */
             const GalleryManager = (() => {
                 const galleryData = {
                     'food': ['https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png'],
@@ -1444,9 +1416,6 @@
                 return { closeModal };
             })();
 
-            /* ==========================================
-               GESTOR DE AUDIO (Web Audio API)
-            ========================================== */
             const AudioManager = (() => {
                 let audioCtx = null; const activeAudios = new Set(); 
                 const initContext = () => { if (!audioCtx) try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {} if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); };
@@ -1487,9 +1456,6 @@
                 return { setupAudios, pauseAll };
             })();
 
-            /* ==========================================
-               FÍSICA DEL MARQUEE (Empresas y Aliados)
-            ========================================== */
             const MarqueePhysics = (() => {
                 const track = document.getElementById('marqueeTrack');
                 const container = document.getElementById('marqueeContainer');
@@ -1533,9 +1499,6 @@
                 return { init };
             })();
 
-            /* ====================================================
-                MOTOR DE SEGURIDAD DEL FORMULARIO (VAULT MANAGER)
-            ==================================================== */
             const VaultManager = (() => {
                 const modal = document.getElementById('vault-modal'); 
                 const form = document.getElementById('vault-form'); 
@@ -1617,9 +1580,6 @@
                 return { closeModal, openModal };
             })();
 
-            /* ==========================================
-               EVENTOS GLOBALES Y ACCESIBILIDAD (TECLADO)
-            ========================================== */
             document.addEventListener('keydown', (e) => { 
                 if (e.key === "Escape") { VideoManager.closeModal(); GalleryManager.closeModal(); VaultManager.closeModal(); }
                 if (document.getElementById('gallery-modal').classList.contains('active-modal')) { if (e.key === "ArrowRight") document.getElementById('galleryNextBtn').click(); if (e.key === "ArrowLeft") document.getElementById('galleryPrevBtn').click(); }
@@ -1627,15 +1587,9 @@
             
             document.addEventListener('contextmenu', e => { if(e.target.tagName === 'IMG') e.preventDefault(); });
 
-            /* ==========================================
-               INICIALIZACIÓN DEL SISTEMA
-            ========================================== */
             document.addEventListener('DOMContentLoaded', () => {
                 updateLanguage(currentLang); MarqueePhysics.init();
                 
-                /* El sistema de fallback interactúa con las nuevas rutas. Si github pages no sirve el .jpg
-                   el script buscará otras extensiones, aunque como has estandarizado, deberías subir
-                   exactamente esas extensiones declaradas. */
                 document.querySelectorAll('.fallback-img').forEach(img => {
                     img.addEventListener('error', function() {
                         if (!this.dataset.retried) { 

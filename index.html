@@ -312,7 +312,7 @@
         }
 
         /* ====================================================
-           6. MOTOR DE GRILLA (MASSIVE IMPACT + TETRIS SMART)
+           6. MOTOR DE GRILLA GENERAL
         ==================================================== */
         .portfolio-grid { 
             display: grid; 
@@ -334,44 +334,54 @@
             transform: translateZ(0); 
         }
 
-        /* ----- LÓGICA CSS TETRIS & PREVENCIÓN DE CROPPING ----- */
-        .portfolio-grid.tetris-mode { 
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            grid-auto-rows: 280px; 
-            grid-auto-flow: dense; 
-            gap: 15px; padding: 0 2%;
-        }
-        
-        /* Ajuste de la tarjeta en modo diseño */
-        .portfolio-grid.tetris-mode .media-item { 
-            aspect-ratio: unset; height: 100%; border-radius: 8px; 
-            border: 1px solid rgba(255,255,255,0.05); box-shadow: none; 
-            background-color: rgba(15, 23, 42, 0.5); /* Fondo para efecto passepartout */
+        /* ====================================================
+           MODO MASONRY PURO (Para Diseños)
+           Sin recortes, respeta 1:1, 16:9, 9:16, simétrico.
+        ==================================================== */
+        .portfolio-grid.masonry-mode { 
+            display: block; /* Anulamos el Grid clásico para usar Columnas */
+            column-count: 3; 
+            column-gap: 25px; 
+            padding: 0 5% 100px;
         }
 
-        /* Aquí prevenimos el cropping forzando Contain y un padding de respiro visual */
-        .portfolio-grid.tetris-mode .media-item .yt-thumbnail,
-        .portfolio-grid.tetris-mode .media-item .hc-img {
-            object-fit: contain !important;
-            padding: 12px;
-            background-color: transparent;
+        @media (max-width: 1024px) {
+            .portfolio-grid.masonry-mode { column-count: 2; column-gap: 20px; }
         }
-
-        .span-col-2 { grid-column: span 2; }
-        .span-row-2 { grid-row: span 2; }
 
         @media (max-width: 767px) {
-            .portfolio-grid.tetris-mode { grid-template-columns: 1fr; grid-auto-rows: auto; aspect-ratio: unset; gap: 15px; padding: 0 5%;}
-            .portfolio-grid.tetris-mode .media-item { border-radius: 12px; margin-bottom: 0; aspect-ratio: 16/9; }
-            .span-col-2 { grid-column: auto; } .span-row-2 { grid-row: auto; }
-            
-            /* En móviles preservamos la contención del diseño gráfico */
-            .portfolio-grid.tetris-mode .media-item .yt-thumbnail {
-                object-fit: contain !important;
-                padding: 8px;
-            }
+            .portfolio-grid.masonry-mode { column-count: 1; }
         }
 
+        .portfolio-grid.masonry-mode .media-item { 
+            break-inside: avoid; /* Evita que el diseño se parta a la mitad entre columnas */
+            margin-bottom: 25px; 
+            aspect-ratio: unset; /* Anulamos el 16:9 forzado */
+            height: auto; 
+            display: block;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .portfolio-grid.masonry-mode .media-item img.masonry-img {
+            position: relative; /* La imagen dicta el alto del contenedor */
+            width: 100%;
+            height: auto; /* Respeta 100% la proporción original */
+            display: block;
+            object-fit: unset; /* Cero recortes */
+            opacity: 1; /* Forzamos visibilidad total */
+            filter: grayscale(20%) brightness(0.8);
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-grid.masonry-mode .media-item:not(.audio):hover img.masonry-img {
+            filter: grayscale(0%) brightness(1.05);
+            transform: scale(1.02);
+        }
+
+        /* ====================================================
+           ESTILOS COMPARTIDOS (Texturas, Overlays, Audios)
+        ==================================================== */
         .media-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.15; pointer-events: none; z-index: 4; mix-blend-mode: overlay;}
         
         .protect-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 6; pointer-events: none; }
@@ -392,13 +402,14 @@
         .media-iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; border: none; background-color: var(--card-bg); filter: grayscale(10%) brightness(0.9); opacity: 0; transition: opacity var(--transition-speed) ease; }
 
         .media-item:not(.audio):hover { border-color: rgba(45, 212, 191, 0.4); box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 20px var(--electric-cyan-glow); transform: translateY(-5px) scale(1.01); z-index: 10; }
-        .portfolio-grid.tetris-mode .media-item:not(.audio):hover { transform: scale(1.02); z-index: 20;}
 
         .media-item:not(.audio):hover .hc-img, .media-item:not(.audio):hover .yt-thumbnail { filter: grayscale(0%) brightness(1.1); transform: scale(1.03); }
 
         .media-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 50px 30px 20px; background: linear-gradient(to top, rgba(2,6,23,0.98) 10%, transparent); z-index: 5; pointer-events: none; transition: padding 0.3s ease; }
         .media-item:hover .media-overlay { padding-bottom: 30px; }
-        .portfolio-grid.tetris-mode .media-item:hover .media-overlay { padding-bottom: 10px; }
+        
+        .portfolio-grid.masonry-mode .media-item:hover .media-overlay { padding-bottom: 20px; }
+
         .media-item h2 { font-size: clamp(1.4rem, 2vw, 2.2rem); text-transform: uppercase; margin-bottom: 5px; line-height: 1.1; text-shadow: 0 4px 10px rgba(0,0,0,0.8);}
         .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
 
@@ -879,114 +890,37 @@
 
         <div class="media-item diseno" data-diseno-idx="0">
             <div class="media-texture"></div>
-            <img src="Banner%20web%20Jdmaray%20Cali%20SPA.jpg" class="yt-thumbnail fallback-img" alt="Banner web Jdmaray Cali SPA" loading="lazy" decoding="async" draggable="false">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_banner">Banner Web</p><h2>Jdmaray Cali SPA</h2></div>
-        </div>
-
-        <div class="media-item diseno" data-diseno-idx="1">
-            <div class="media-texture"></div>
-            <img src="Banner%20web%20para%20Homecare%20Ebenezer.jpg" class="yt-thumbnail fallback-img" alt="Banner Homecare Ebenezer" loading="lazy" decoding="async" draggable="false">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_banner">Banner Web</p><h2>Homecare Ebenezer</h2></div>
-        </div>
-
-        <div class="media-item diseno" data-diseno-idx="2">
-            <div class="media-texture"></div>
-            <img src="suave.png" class="yt-thumbnail" alt="Portada Mauna" loading="lazy" decoding="async" draggable="false">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_cover">Diseño de Portada Musical</p><h2 data-i18n="mauna_title">Portada Suave - Mauna</h2></div>
-        </div>
-        
-        <div class="media-item diseno" data-diseno-idx="3">
-            <div class="media-texture"></div>
-            <img src="vinilo_xbox.jpg" class="yt-thumbnail fallback-img" alt="Vinilo Xbox" loading="lazy" decoding="async" draggable="false">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_vinyl">Diseño de Vinilo</p><h2>Xbox: Gears of War</h2></div>
-        </div>
-
-        <div class="media-item diseno" data-diseno-idx="4">
-            <div class="media-texture"></div>
-            <img src="logo_navideno.jpeg" class="yt-thumbnail fallback-img" alt="Logo Navideño" loading="lazy" decoding="async" draggable="false">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_id">Identidad Estacional</p><h2 data-i18n="tit_navidad">Logo Navideño</h2></div>
-        </div>
-
-        <div class="media-item diseno" data-diseno-idx="5">
-            <div class="media-texture"></div>
-            <img src="Ilustracion%20vectorial%20Koala%20con%20gafas%20y%20pipa.png" class="yt-thumbnail fallback-img" alt="Ilustración Koala" loading="lazy" decoding="async" draggable="false">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_vector">Ilustración Vectorial</p><h2 data-i18n="tit_koala">Koala</h2></div>
-        </div>
-
-        <div class="media-item diseno" data-diseno-idx="6">
-            <div class="media-texture"></div>
-            <img src="Logo%20Another%20Reality%20VR.png" class="yt-thumbnail fallback-img" alt="Another Reality VR" loading="lazy" decoding="async" draggable="false">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Branding</p><h2>Another Reality VR</h2></div>
-        </div>
-
-        <div class="media-item diseno" data-diseno-idx="7">
-            <div class="media-texture"></div>
-            <img src="Logo%20Sulmajafra%20venta%20de%20productos%20de%20belleza.jpg" class="yt-thumbnail fallback-img" alt="Logo Sulmajafra" loading="lazy" decoding="async" draggable="false">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_corp">Branding Corporativo</p><h2>Sulmajafra</h2></div>
-        </div>
-
-        <div class="media-item diseno" data-diseno-idx="8">
-            <div class="media-texture"></div>
-            <img src="ruta.jpg" class="yt-thumbnail" alt="La Ruta del Sabor" loading="lazy" decoding="async" draggable="false">
+            <img src="ruta.jpg" class="masonry-img" alt="La Ruta del Sabor" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_edit">Diseño Editorial</p><h2 data-i18n="tit_ruta">La Ruta del Sabor</h2></div>
         </div>
 
-        <div class="media-item diseno" data-diseno-idx="9">
+        <div class="media-item diseno" data-diseno-idx="1">
             <div class="media-texture"></div>
-            <img src="mosaico.jpg" class="yt-thumbnail" alt="Mosaico Conmemorativo" loading="lazy" decoding="async" draggable="false">
+            <img src="mosaico.jpg" class="masonry-img" alt="Mosaico Conmemorativo" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_mosaic">Mosaico Digital</p><h2 data-i18n="tit_school">Colegio Parroquial</h2></div>
         </div>
 
-        <div class="media-item diseno" data-diseno-idx="10">
+        <div class="media-item diseno" data-diseno-idx="2">
             <div class="media-texture"></div>
-            <img src="Pieza%20Conversatorio%20Tuberculosis%20Hospital%20y%20Alcaldia%20de%20Yumbo.jpg" class="yt-thumbnail fallback-img" alt="Alcaldía de Yumbo" loading="lazy" decoding="async" draggable="false">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Social Media</p><h2 data-i18n="tit_yumbo">Alcaldía de Yumbo</h2></div>
-        </div>
-
-        <div class="media-item diseno" data-diseno-idx="11">
-            <div class="media-texture"></div>
-            <img src="Pieza%20de%20servicio%20de%20Tonificacion%20corporal%20para%20Agua%20Marina%20esthetic%20center.jpg" class="yt-thumbnail fallback-img" alt="Agua Marina Esthetic" loading="lazy" decoding="async" draggable="false">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p>Social Media</p><h2>Agua Marina Esthetic</h2></div>
-        </div>
-
-        <div class="media-item diseno" data-diseno-idx="12">
-            <div class="media-texture"></div>
-            <img src="Pieza%20invitacion%20de%20encuentro%20cultural%20para%20la%20alcaldia%20de%20Cali.jpg" class="yt-thumbnail fallback-img" alt="Alcaldía de Cali" loading="lazy" decoding="async" draggable="false">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_ad">Diseño Publicitario</p><h2 data-i18n="tit_cali">Alcaldía de Cali</h2></div>
-        </div>
-
-        <div class="media-item diseno" data-diseno-idx="13">
-            <div class="media-texture"></div>
-            <img src="Pieza%20promocional%20de%20capacitacion%20para%20programa%20de%20afiliados%20de%20Virtuosa%20venta%20de%20ropa%20para%20comunidades%20religiosas.jpg" class="yt-thumbnail fallback-img" alt="Virtuosa" loading="lazy" decoding="async" draggable="false">
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_promo">Diseño Promocional</p><h2>Virtuosa</h2></div>
-        </div>
-
-        <div class="media-item diseno" data-diseno-idx="14">
-            <div class="media-texture"></div>
-            <img src="noches.jpg" class="yt-thumbnail" alt="Noches D'Feria" loading="lazy" decoding="async" draggable="false">
+            <img src="noches.jpg" class="masonry-img" alt="Noches D'Feria" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_promo">Diseño Promocional</p><h2 data-i18n="tit_noches">Noches D'Feria</h2></div>
         </div>
 
-        <div class="media-item diseno" data-diseno-idx="15">
+        <div class="media-item diseno" data-diseno-idx="3">
             <div class="media-texture"></div>
-            <img src="vape.png" class="yt-thumbnail" alt="Vape Expo 2020" loading="lazy" decoding="async" draggable="false">
+            <img src="vape.png" class="masonry-img" alt="Vape Expo 2020" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_flyer">Diseño de Volante</p><h2 data-i18n="tit_vape">Vape Expo 2020</h2></div>
+        </div>
+
+        <div class="media-item diseno" data-diseno-idx="4">
+            <div class="media-texture"></div>
+            <img src="suave.png" class="masonry-img" alt="Portada Mauna" loading="lazy" decoding="async" draggable="false">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p data-i18n="cat_cover">Diseño de Portada Musical</p><h2 data-i18n="mauna_title">Portada Suave - Mauna</h2></div>
         </div>
 
         <div class="media-item audio" data-audio-src="https://static.wixstatic.com/mp3/14f4fb_cec3885e857446d5bb03641eed32c0d8.mp3">
@@ -1253,12 +1187,11 @@
                     } else {
                         grid.style.display = 'grid'; profileSection.style.display = 'none'; 
                         
+                        // Lógica de Masonry Puro sin scripts randomizadores
                         if (category === 'diseno') {
-                            grid.classList.add('tetris-mode');
-                            TetrisEngine.randomize(); 
+                            grid.classList.add('masonry-mode');
                         } else {
-                            grid.classList.remove('tetris-mode');
-                            document.querySelectorAll('.media-item.diseno').forEach(i => i.classList.remove('span-col-2', 'span-row-2'));
+                            grid.classList.remove('masonry-mode');
                         }
 
                         document.querySelectorAll('.media-item').forEach(item => {
@@ -1282,58 +1215,6 @@
                 document.querySelectorAll('.filter-btn').forEach(btn => {
                     btn.addEventListener('click', (e) => filter(e.target.dataset.filter, e.target));
                 });
-            })();
-
-            /* ====================================================
-               NUEVO MOTOR TETRIS INTELIGENTE (Smart Aspet Ratio)
-            ==================================================== */
-            const TetrisEngine = (() => {
-                const randomize = () => {
-                    const grid = document.getElementById('main-grid');
-                    const designItems = Array.from(grid.querySelectorAll('.media-item.diseno'));
-                    
-                    // Mezcla aleatoria inicial (Fisher-Yates)
-                    for (let i = designItems.length - 1; i > 0; i--) {
-                        const j = Math.floor(Math.random() * (i + 1));
-                        [designItems[i], designItems[j]] = [designItems[j], designItems[i]];
-                    }
-                    
-                    designItems.forEach(item => {
-                        item.classList.remove('span-col-2', 'span-row-2');
-                        const img = item.querySelector('img');
-                        
-                        // Función que evalúa la imagen para asignarle un tamaño en la grilla que la favorezca
-                        const applySpan = () => {
-                            const ratio = img.naturalWidth / img.naturalHeight;
-                            
-                            if (ratio > 1.2) { 
-                                // Paisaje (Landscape) - Tiende a ocupar 2 columnas
-                                if (Math.random() > 0.3) item.classList.add('span-col-2');
-                            } else if (ratio < 0.8) { 
-                                // Retrato (Portrait) - Tiende a ocupar 2 filas
-                                if (Math.random() > 0.3) item.classList.add('span-row-2');
-                            } else { 
-                                // Cuadrado - Probabilidad de hacerse gigante (2x2)
-                                const rand = Math.random();
-                                if (rand > 0.7) item.classList.add('span-col-2', 'span-row-2');
-                            }
-                        };
-
-                        // Si la imagen ya fue cacheada/cargada, aplica la lógica de inmediato
-                        if (img.complete && img.naturalHeight !== 0) {
-                            applySpan();
-                        } else {
-                            // Si no ha cargado, escucha al evento onload para reajustar su tamaño
-                            img.addEventListener('load', applySpan, { once: true });
-                            // Mientras tanto, hace una suposición aleatoria inofensiva
-                            const rand = Math.random();
-                            if (rand > 0.8) item.classList.add('span-col-2'); 
-                            else if (rand > 0.6) item.classList.add('span-row-2');
-                        }
-                        grid.appendChild(item); 
-                    });
-                };
-                return { randomize };
             })();
 
             const VideoManager = (() => {
@@ -1643,17 +1524,6 @@
             document.addEventListener('DOMContentLoaded', () => {
                 updateLanguage(currentLang); MarqueePhysics.init();
                 
-                document.querySelectorAll('.fallback-img').forEach(img => {
-                    img.addEventListener('error', function() {
-                        if (!this.dataset.retried) { 
-                            this.dataset.retried = "true"; 
-                            const exts = ['.jpg', '.JPG', '.jpeg', '.png', '.PNG']; 
-                            let curExt = exts.find(e => this.src.includes(e)); 
-                            if(curExt) this.src = this.src.replace(curExt, exts[(exts.indexOf(curExt) + 1) % exts.length]); 
-                        }
-                    }, { passive: true });
-                });
-
                 const backToTopBtn = document.getElementById('backToTopBtn');
                 window.addEventListener('scroll', () => {
                     if (window.scrollY > 400) backToTopBtn.classList.add('visible');

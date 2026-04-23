@@ -312,7 +312,7 @@
         }
 
         /* ====================================================
-           6. MOTOR DE GRILLA GENERAL
+           6. MOTOR DE GRILLA MULTIMEDIA
         ==================================================== */
         .portfolio-grid { 
             display: grid; 
@@ -335,33 +335,38 @@
         }
 
         /* ====================================================
-           7. MASONRY PURO (SOLO PARA DISEÑOS VISUALES)
-           Sin recortes, ajusta la relación de aspecto original (1:1, 16:9, 9:16)
+           7. MASONRY HIGH-DENSITY (SOLO DISEÑOS VISUALES)
+           Máxima densidad visual, cero recortes, dinámico.
         ==================================================== */
         .portfolio-grid.masonry-mode { 
             display: block; 
-            column-count: 3; 
-            column-gap: 25px; 
-            padding: 0 5% 100px;
+            column-count: 4; /* Máxima densidad en monitores ultra anchos */
+            column-gap: 15px; 
+            padding: 0 2% 80px;
+            max-width: 2200px; 
         }
 
-        @media (max-width: 1024px) { .portfolio-grid.masonry-mode { column-count: 2; column-gap: 20px; } }
-        @media (max-width: 767px) { .portfolio-grid.masonry-mode { column-count: 1; } }
+        @media (max-width: 1400px) { .portfolio-grid.masonry-mode { column-count: 3; column-gap: 15px; } }
+        @media (max-width: 900px) { .portfolio-grid.masonry-mode { column-count: 2; column-gap: 12px; padding: 0 3% 60px; } }
+        @media (max-width: 500px) { .portfolio-grid.masonry-mode { column-count: 2; column-gap: 8px; padding: 0 2% 40px; } } /* 2 cols en móviles para evitar scroll excesivo */
 
         .portfolio-grid.masonry-mode .media-item.diseno { 
             display: inline-block; 
             width: 100%;
-            margin-bottom: 25px; 
+            margin-bottom: 15px; /* Espacio vertical más apretado */
             aspect-ratio: unset; 
             height: auto; 
             break-inside: avoid;
+            border-radius: 12px; /* Radios más suaves para piezas pequeñas */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
         }
 
         /* Base para la imagen en vista "Todo" (Ajustada al 16:9) */
         .media-item.diseno img.masonry-img {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; 
-            filter: grayscale(20%) brightness(0.8);
+            filter: grayscale(15%) brightness(0.9);
             transition: all 0.4s ease;
         }
 
@@ -373,9 +378,15 @@
             display: block;
         }
 
+        /* Efecto Hover Dinámico High-Density */
+        .portfolio-grid.masonry-mode .media-item.diseno:not(.audio):hover {
+            transform: translateY(-8px) scale(1.02); /* Levitación dinámica notoria */
+            box-shadow: 0 15px 35px var(--electric-cyan-glow);
+            z-index: 20;
+        }
+
         .media-item.diseno:not(.audio):hover img.masonry-img {
             filter: grayscale(0%) brightness(1.05);
-            transform: scale(1.03);
         }
 
         /* Shared Overlays */
@@ -396,17 +407,22 @@
         .media-iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; border: none; background-color: var(--card-bg); filter: grayscale(10%) brightness(0.9); opacity: 0; transition: opacity var(--transition-speed) ease; }
 
         .media-item:not(.audio):hover { border-color: rgba(45, 212, 191, 0.4); box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 20px var(--electric-cyan-glow); transform: translateY(-5px) scale(1.01); z-index: 10; }
-        .portfolio-grid.masonry-mode .media-item.diseno:hover { transform: scale(1.02); z-index: 20; }
 
         .media-item:not(.audio):hover .hc-img, .media-item:not(.audio):hover .yt-thumbnail { filter: grayscale(0%) brightness(1.1); transform: scale(1.03); }
 
         .media-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 50px 30px 20px; background: linear-gradient(to top, rgba(2,6,23,0.98) 10%, transparent); z-index: 5; pointer-events: none; transition: padding 0.3s ease; }
         .media-item:hover .media-overlay { padding-bottom: 30px; }
         
-        .portfolio-grid.masonry-mode .media-item:hover .media-overlay { padding-bottom: 20px; }
+        /* Ajuste de Overlay para Alta Densidad */
+        .portfolio-grid.masonry-mode .media-overlay { padding: 25px 15px 15px; }
+        .portfolio-grid.masonry-mode .media-item:hover .media-overlay { padding-bottom: 15px; }
 
         .media-item h2 { font-size: clamp(1.4rem, 2vw, 2.2rem); text-transform: uppercase; margin-bottom: 5px; line-height: 1.1; text-shadow: 0 4px 10px rgba(0,0,0,0.8);}
         .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
+
+        /* Clamp especial para evitar que el texto desborde en columnas angostas */
+        .portfolio-grid.masonry-mode .media-item h2 { font-size: clamp(0.9rem, 1.2vw, 1.3rem); margin-bottom: 2px;}
+        .portfolio-grid.masonry-mode .media-item p { font-size: 0.65rem; letter-spacing: 1px;}
 
         /* ====================================================
            8. REPRODUCTOR DE AUDIO NATIVO
@@ -881,77 +897,77 @@
 
         <div class="media-item diseno" data-diseno-idx="0">
             <div class="media-texture"></div>
-            <img src="Banner%20web%20Jdmaray%20Cali%20SPA.jpg" class="masonry-img fallback-img" alt="Banner web Jdmaray Cali SPA" loading="lazy" decoding="async" draggable="false">
+            <img src="Banner%20web%20Jdmaray%20Cali%20SPA.jpg?v=2" class="masonry-img fallback-img" alt="Banner web Jdmaray Cali SPA" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_banner">Banner Web</p><h2>Jdmaray Cali SPA</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="1">
             <div class="media-texture"></div>
-            <img src="Banner%20web%20para%20Homecare%20Ebenezer.jpg" class="masonry-img fallback-img" alt="Banner Homecare Ebenezer" loading="lazy" decoding="async" draggable="false">
+            <img src="Banner%20web%20para%20Homecare%20Ebenezer.jpg?v=2" class="masonry-img fallback-img" alt="Banner Homecare Ebenezer" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_banner">Banner Web</p><h2>Homecare Ebenezer</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="2">
             <div class="media-texture"></div>
-            <img src="Ilustracion%20vectorial%20Koala%20con%20gafas%20y%20pipa.png" class="masonry-img fallback-img" alt="Ilustración Koala" loading="lazy" decoding="async" draggable="false">
+            <img src="Ilustracion%20vectorial%20Koala%20con%20gafas%20y%20pipa.png?v=2" class="masonry-img fallback-img" alt="Ilustración Koala" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_vector">Ilustración Vectorial</p><h2>Koala</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="3">
             <div class="media-texture"></div>
-            <img src="Logo%20Another%20Reality%20VR.png" class="masonry-img fallback-img" alt="Another Reality VR" loading="lazy" decoding="async" draggable="false">
+            <img src="Logo%20Another%20Reality%20VR.png?v=2" class="masonry-img fallback-img" alt="Another Reality VR" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Branding</p><h2>Another Reality VR</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="4">
             <div class="media-texture"></div>
-            <img src="Logo%20Sulmajafra%20venta%20de%20productos%20de%20belleza.jpg" class="masonry-img fallback-img" alt="Logo Sulmajafra" loading="lazy" decoding="async" draggable="false">
+            <img src="Logo%20Sulmajafra%20venta%20de%20productos%20de%20belleza.jpg?v=2" class="masonry-img fallback-img" alt="Logo Sulmajafra" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_corp">Branding Corporativo</p><h2>Sulmajafra</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="5">
             <div class="media-texture"></div>
-            <img src="Pieza%20Conversatorio%20Tuberculosis%20Hospital%20y%20Alcaldia%20de%20Yumbo.jpg" class="masonry-img fallback-img" alt="Alcaldía de Yumbo" loading="lazy" decoding="async" draggable="false">
+            <img src="Pieza%20Conversatorio%20Tuberculosis%20Hospital%20y%20Alcaldia%20de%20Yumbo.jpg?v=2" class="masonry-img fallback-img" alt="Alcaldía de Yumbo" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Social Media</p><h2>Alcaldía de Yumbo</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="6">
             <div class="media-texture"></div>
-            <img src="Pieza%20de%20servicio%20de%20Tonificacion%20corporal%20para%20Agua%20Marina%20esthetic%20center.jpg" class="masonry-img fallback-img" alt="Agua Marina Esthetic" loading="lazy" decoding="async" draggable="false">
+            <img src="Pieza%20de%20servicio%20de%20Tonificacion%20corporal%20para%20Agua%20Marina%20esthetic%20center.jpg?v=2" class="masonry-img fallback-img" alt="Agua Marina Esthetic" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p>Social Media</p><h2>Agua Marina Esthetic</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="7">
             <div class="media-texture"></div>
-            <img src="Pieza%20invitacion%20de%20encuentro%20cultural%20para%20la%20alcaldia%20de%20Cali.jpg" class="masonry-img fallback-img" alt="Alcaldía de Cali" loading="lazy" decoding="async" draggable="false">
+            <img src="Pieza%20invitacion%20de%20encuentro%20cultural%20para%20la%20alcaldia%20de%20Cali.jpg?v=2" class="masonry-img fallback-img" alt="Alcaldía de Cali" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_ad">Diseño Publicitario</p><h2>Alcaldía de Cali</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="8">
             <div class="media-texture"></div>
-            <img src="Pieza%20promocional%20de%20capacitacion%20para%20programa%20de%20afiliados%20de%20Virtuosa%20venta%20de%20ropa%20para%20comunidades%20religiosas.jpg" class="masonry-img fallback-img" alt="Virtuosa" loading="lazy" decoding="async" draggable="false">
+            <img src="Pieza%20promocional%20de%20capacitacion%20para%20programa%20de%20afiliados%20de%20Virtuosa%20venta%20de%20ropa%20para%20comunidades%20religiosas.jpg?v=2" class="masonry-img fallback-img" alt="Virtuosa" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_promo">Diseño Promocional</p><h2>Virtuosa</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="9">
             <div class="media-texture"></div>
-            <img src="logo_navideno.jpeg" class="masonry-img fallback-img" alt="Logo Navideño" loading="lazy" decoding="async" draggable="false">
+            <img src="logo_navideno.jpeg?v=2" class="masonry-img fallback-img" alt="Logo Navideño" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_id">Identidad Estacional</p><h2 data-i18n="tit_navidad">Logo Navideño</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="10">
             <div class="media-texture"></div>
-            <img src="vinilo_xbox.jpg" class="masonry-img fallback-img" alt="Vinilo Xbox" loading="lazy" decoding="async" draggable="false">
+            <img src="vinilo_xbox.jpg?v=2" class="masonry-img fallback-img" alt="Vinilo Xbox" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="cat_vinyl">Diseño de Vinilo</p><h2>Xbox: Gears of War</h2></div>
         </div>

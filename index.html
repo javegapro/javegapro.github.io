@@ -312,7 +312,7 @@
         }
 
         /* ====================================================
-           6. MOTOR DE GRILLA MULTIMEDIA
+           6. MOTOR DE GRILLA GENERAL
         ==================================================== */
         .portfolio-grid { 
             display: grid; 
@@ -339,7 +339,7 @@
            Sin recortes, ajusta la relación de aspecto original (1:1, 16:9, 9:16)
         ==================================================== */
         .portfolio-grid.masonry-mode { 
-            display: block; /* Anulamos Grid estricto */
+            display: block; 
             column-count: 3; 
             column-gap: 25px; 
             padding: 0 5% 100px;
@@ -349,10 +349,10 @@
         @media (max-width: 767px) { .portfolio-grid.masonry-mode { column-count: 1; } }
 
         .portfolio-grid.masonry-mode .media-item.diseno { 
-            display: inline-block; /* Crítico para no partirse entre columnas */
+            display: inline-block; 
             width: 100%;
             margin-bottom: 25px; 
-            aspect-ratio: unset; /* Anulamos 16:9 */
+            aspect-ratio: unset; 
             height: auto; 
             break-inside: avoid;
         }
@@ -367,9 +367,9 @@
 
         /* Comportamiento de la imagen en vista "Diseño" (Masonry puro) */
         .portfolio-grid.masonry-mode .media-item.diseno img.masonry-img {
-            position: relative; /* Permite que la imagen dicte el alto */
+            position: relative; 
             height: auto; 
-            object-fit: unset; /* Cero recortes */
+            object-fit: unset; 
             display: block;
         }
 
@@ -402,7 +402,9 @@
 
         .media-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 50px 30px 20px; background: linear-gradient(to top, rgba(2,6,23,0.98) 10%, transparent); z-index: 5; pointer-events: none; transition: padding 0.3s ease; }
         .media-item:hover .media-overlay { padding-bottom: 30px; }
-        .portfolio-grid.masonry-mode .media-item:hover .media-overlay { padding-bottom: 10px; }
+        
+        .portfolio-grid.masonry-mode .media-item:hover .media-overlay { padding-bottom: 20px; }
+
         .media-item h2 { font-size: clamp(1.4rem, 2vw, 2.2rem); text-transform: uppercase; margin-bottom: 5px; line-height: 1.1; text-shadow: 0 4px 10px rgba(0,0,0,0.8);}
         .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
 
@@ -879,37 +881,79 @@
 
         <div class="media-item diseno" data-diseno-idx="0">
             <div class="media-texture"></div>
-            <img src="./ruta.jpg?v=1" class="masonry-img" alt="La Ruta del Sabor" loading="lazy" decoding="async" draggable="false">
+            <img src="Banner%20web%20Jdmaray%20Cali%20SPA.jpg" class="masonry-img fallback-img" alt="Banner web Jdmaray Cali SPA" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_edit">Diseño Editorial</p><h2 data-i18n="tit_ruta">La Ruta del Sabor</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_banner">Banner Web</p><h2>Jdmaray Cali SPA</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="1">
             <div class="media-texture"></div>
-            <img src="./mosaico.jpg?v=1" class="masonry-img" alt="Mosaico Conmemorativo" loading="lazy" decoding="async" draggable="false">
+            <img src="Banner%20web%20para%20Homecare%20Ebenezer.jpg" class="masonry-img fallback-img" alt="Banner Homecare Ebenezer" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_mosaic">Mosaico Digital</p><h2 data-i18n="tit_school">Colegio Parroquial</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_banner">Banner Web</p><h2>Homecare Ebenezer</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="2">
             <div class="media-texture"></div>
-            <img src="./noches.jpg?v=1" class="masonry-img" alt="Noches D'Feria" loading="lazy" decoding="async" draggable="false">
+            <img src="Ilustracion%20vectorial%20Koala%20con%20gafas%20y%20pipa.png" class="masonry-img fallback-img" alt="Ilustración Koala" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_promo">Diseño Promocional</p><h2 data-i18n="tit_noches">Noches D'Feria</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_vector">Ilustración Vectorial</p><h2>Koala</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="3">
             <div class="media-texture"></div>
-            <img src="./vape.png?v=1" class="masonry-img" alt="Vape Expo 2020" loading="lazy" decoding="async" draggable="false">
+            <img src="Logo%20Another%20Reality%20VR.png" class="masonry-img fallback-img" alt="Another Reality VR" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_flyer">Diseño de Volante</p><h2 data-i18n="tit_vape">Vape Expo 2020</h2></div>
+            <div class="media-overlay"><p>Branding</p><h2>Another Reality VR</h2></div>
         </div>
 
         <div class="media-item diseno" data-diseno-idx="4">
             <div class="media-texture"></div>
-            <img src="./suave.png?v=1" class="masonry-img" alt="Portada Mauna" loading="lazy" decoding="async" draggable="false">
+            <img src="Logo%20Sulmajafra%20venta%20de%20productos%20de%20belleza.jpg" class="masonry-img fallback-img" alt="Logo Sulmajafra" loading="lazy" decoding="async" draggable="false">
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_cover">Diseño de Portada Musical</p><h2 data-i18n="mauna_title">Portada Suave - Mauna</h2></div>
+            <div class="media-overlay"><p data-i18n="cat_corp">Branding Corporativo</p><h2>Sulmajafra</h2></div>
+        </div>
+
+        <div class="media-item diseno" data-diseno-idx="5">
+            <div class="media-texture"></div>
+            <img src="Pieza%20Conversatorio%20Tuberculosis%20Hospital%20y%20Alcaldia%20de%20Yumbo.jpg" class="masonry-img fallback-img" alt="Alcaldía de Yumbo" loading="lazy" decoding="async" draggable="false">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Social Media</p><h2>Alcaldía de Yumbo</h2></div>
+        </div>
+
+        <div class="media-item diseno" data-diseno-idx="6">
+            <div class="media-texture"></div>
+            <img src="Pieza%20de%20servicio%20de%20Tonificacion%20corporal%20para%20Agua%20Marina%20esthetic%20center.jpg" class="masonry-img fallback-img" alt="Agua Marina Esthetic" loading="lazy" decoding="async" draggable="false">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Social Media</p><h2>Agua Marina Esthetic</h2></div>
+        </div>
+
+        <div class="media-item diseno" data-diseno-idx="7">
+            <div class="media-texture"></div>
+            <img src="Pieza%20invitacion%20de%20encuentro%20cultural%20para%20la%20alcaldia%20de%20Cali.jpg" class="masonry-img fallback-img" alt="Alcaldía de Cali" loading="lazy" decoding="async" draggable="false">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p data-i18n="cat_ad">Diseño Publicitario</p><h2>Alcaldía de Cali</h2></div>
+        </div>
+
+        <div class="media-item diseno" data-diseno-idx="8">
+            <div class="media-texture"></div>
+            <img src="Pieza%20promocional%20de%20capacitacion%20para%20programa%20de%20afiliados%20de%20Virtuosa%20venta%20de%20ropa%20para%20comunidades%20religiosas.jpg" class="masonry-img fallback-img" alt="Virtuosa" loading="lazy" decoding="async" draggable="false">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p data-i18n="cat_promo">Diseño Promocional</p><h2>Virtuosa</h2></div>
+        </div>
+
+        <div class="media-item diseno" data-diseno-idx="9">
+            <div class="media-texture"></div>
+            <img src="logo_navideno.jpeg" class="masonry-img fallback-img" alt="Logo Navideño" loading="lazy" decoding="async" draggable="false">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p data-i18n="cat_id">Identidad Estacional</p><h2 data-i18n="tit_navidad">Logo Navideño</h2></div>
+        </div>
+
+        <div class="media-item diseno" data-diseno-idx="10">
+            <div class="media-texture"></div>
+            <img src="vinilo_xbox.jpg" class="masonry-img fallback-img" alt="Vinilo Xbox" loading="lazy" decoding="async" draggable="false">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p data-i18n="cat_vinyl">Diseño de Vinilo</p><h2>Xbox: Gears of War</h2></div>
         </div>
 
         <div class="media-item audio" data-audio-src="https://static.wixstatic.com/mp3/14f4fb_cec3885e857446d5bb03641eed32c0d8.mp3">
@@ -989,7 +1033,7 @@
     <section class="ecosystem-section reveal-element">
         <h3 data-i18n="ecosystem_title">Ecosistema Creativo</h3>
         <a href="https://automatas.co" target="_blank" rel="noopener noreferrer" class="brand-btn-clean">
-            <img src="MARCA%20DE%20AGUA%20H%20COLOR.png" alt="Autómatas" class="brand-logo-img automatas-logo" loading="lazy" decoding="async" draggable="false">
+            <img src="MARCA%20DE%20AGUA%20H%20COLOR.png" alt="Autómatas" class="brand-logo-img automatas-logo fallback-img" loading="lazy" decoding="async" draggable="false">
         </a>
     </section>
 
@@ -997,23 +1041,23 @@
         <h3 data-i18n="clients_title">Empresas y Aliados</h3>
         <div class="marquee-container" id="marqueeContainer">
             <div class="marquee-track" id="marqueeTrack">
-                <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20derco.png" alt="Derco" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20espy.png" alt="Espy" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 
-                <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20derco.png" alt="Derco" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo%20espy.png" alt="Espy" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
             </div>
         </div>
     </section>
@@ -1082,10 +1126,10 @@
             <h3 style="color: var(--electric-cyan); margin-bottom: 5px; font-size: 1.8rem;" data-i18n="modal_req_title">Solicitud de Acceso</h3>
             <p class="modal-req-desc" data-i18n="modal_req_desc">Está a punto de solicitar acceso a la Bóveda protegida por NDA.</p>
             <div class="modal-logos-mini">
-                <img src="Logo%20Unilever.png" alt="Unilever" class="modal-logo-unilever" draggable="false">
-                <img src="Logo_Alqueria.png" alt="Alquería" draggable="false">
-                <img src="Logo%20derco.png" alt="Derco" draggable="false">
-                <img src="Logo%20comfandi.png" alt="Comfandi" draggable="false">
+                <img src="Logo%20Unilever.png" alt="Unilever" class="fallback-img modal-logo-unilever" draggable="false">
+                <img src="Logo_Alqueria.png" alt="Alquería" class="fallback-img" draggable="false">
+                <img src="Logo%20derco.png" alt="Derco" class="fallback-img" draggable="false">
+                <img src="Logo%20comfandi.png" alt="Comfandi" class="fallback-img" draggable="false">
             </div>
             
             <div id="vault-error" class="error-message"></div>
@@ -1176,7 +1220,6 @@
                     } else {
                         grid.style.display = 'grid'; profileSection.style.display = 'none'; 
                         
-                        // Lógica exclusiva de activación para Masonry
                         if (category === 'diseno') {
                             grid.classList.add('masonry-mode');
                         } else {
@@ -1298,7 +1341,6 @@
                     item.addEventListener('click', () => {
                         const allDisenoImgs = Array.from(document.querySelectorAll('.media-item.diseno img')).map(img => img.src);
                         galleryData.diseno_all = allDisenoImgs; 
-                        // Corregido: Obtenemos el src limipio para ubicarlo en el array sin importar los parámetros de versión
                         const idx = allDisenoImgs.findIndex(src => src.includes(item.querySelector('img').src.split('?')[0]));
                         openModal('diseno_all', idx > -1 ? idx : 0);
                     });
@@ -1514,6 +1556,17 @@
             document.addEventListener('DOMContentLoaded', () => {
                 updateLanguage(currentLang); MarqueePhysics.init();
                 
+                document.querySelectorAll('.fallback-img').forEach(img => {
+                    img.addEventListener('error', function() {
+                        if (!this.dataset.retried) { 
+                            this.dataset.retried = "true"; 
+                            const exts = ['.jpg', '.JPG', '.jpeg', '.png', '.PNG']; 
+                            let curExt = exts.find(e => this.src.includes(e)); 
+                            if(curExt) this.src = this.src.replace(curExt, exts[(exts.indexOf(curExt) + 1) % exts.length]); 
+                        }
+                    }, { passive: true });
+                });
+
                 const backToTopBtn = document.getElementById('backToTopBtn');
                 window.addEventListener('scroll', () => {
                     if (window.scrollY > 400) backToTopBtn.classList.add('visible');

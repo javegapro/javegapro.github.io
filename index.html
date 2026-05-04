@@ -1,25 +1,21 @@
 <!DOCTYPE html>
 <html lang="es" id="html-root">
 <head>
-    <!-- [MÓDULO 2] Codificación y Viewport adaptativo -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#020617">
     
-    <!-- SEO y Machine Experience (MX) -->
     <title data-i18n="head_title">Alejandro Vega | Product Owner & Innovación B2B</title>
     <meta name="description" content="Portafolio oficial de Alejandro Vega. Product Owner (PSPO I), Estrategia B2B, Identidad de Marca, Producción Audiovisual e IA Generativa.">
     <meta name="keywords" content="Alejandro Vega, Jhon Vega, javegapro, Product Owner, PSPO I, Identidad de Marca, E-learning, Producción Audiovisual, IA Generativa">
     <meta name="author" content="Jhon Alejandro Vega Ramírez">
     
-    <!-- Open Graph para compartir en redes -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Alejandro Vega | Product Owner & Innovación B2B">
     <meta property="og:description" content="Descubre el ecosistema tecnológico y creativo de Alejandro Vega: Marca, E-learning e IA Generativa.">
     <meta property="og:url" content="https://javegapro.github.io/">
     <meta property="og:site_name" content="JavegaPro">
     
-    <!-- Esquema JSON-LD para lectura algorítmica (Machine Experience) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -34,10 +30,8 @@
     }
     </script>
     
-    <!-- Favicon Dinámico en SVG -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text x='50' y='68' font-family='Arial, sans-serif' font-size='55' font-weight='bold' fill='%232dd4bf' text-anchor='middle'>AV</text></svg>" type="image/svg+xml">
     
-    <!-- [MÓDULO 1] Preconexión para métricas Core Web Vitals (LCP) -->
     <link rel="preconnect" href="https://www.youtube.com">
     <link rel="preconnect" href="https://static.wixstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,7 +39,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* [MÓDULO 2] Arquitectura CSS-First: Custom Properties Globales */
         :root {
             --dark-bg: #020617; 
             --electric-cyan: #2dd4bf; 
@@ -56,18 +49,13 @@
             --danger-red: #ef4444;
             --whatsapp-green: #25D366;
             --automatas-green: #7fff50; 
-            /* Curvas de interpolación avanzadas (Spring-based behavior simulado) */
             --transition-speed: 0.4s;
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-            /* Variables seguras para dispositivos móviles con "Notch" */
             --safe-bottom: env(safe-area-inset-bottom, 20px);
             --safe-right: env(safe-area-inset-right, 20px);
             --safe-left: env(safe-area-inset-left, 20px);
-            /* WCAG 2.2: Color de foco accesible */
-            --system-focus-color: #2dd4bf;
         }
 
-        /* Reseteo agresivo y mitigación de drag ghosting en imágenes */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-user-drag: none; }
         button, a, .media-item, .gallery-nav, .client-logo { user-select: none; -webkit-tap-highlight-color: transparent; }
         html, body { max-width: 100vw; overflow-x: hidden; }
@@ -77,17 +65,11 @@
             background-image: radial-gradient(circle at top right, rgba(45, 212, 191, 0.05), transparent 40%),
                               radial-gradient(circle at bottom left, rgba(2, 6, 23, 1), transparent 50%);
         }
-        /* Bloqueo del scroll durante el ciclo de carga inicial (Preloader) */
         body.is-loading { overflow: hidden; height: 100dvh; }
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
-        /* [MÓDULO 2] View Transitions API (Cross-document interpolations) */
         ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.6s; animation-timing-function: var(--ease-out-expo); }
 
-        /* Accesibilidad (WCAG 2.2): Foco de teclado evidente */
-        :focus-visible { outline: 3px solid var(--system-focus-color); outline-offset: 2px; scroll-margin-top: 100px; }
-
-        /* ==================== UI DE PRECARGA (SPLASH) ==================== */
         .splash-panel { position: fixed; left: 0; width: 100%; height: 50dvh; background-color: var(--dark-bg); z-index: 9998; transition: transform 0.8s var(--ease-out-expo); will-change: transform; }
         .splash-panel.top { top: 0; transform-origin: top; border-bottom: 2px solid var(--electric-cyan); box-shadow: 0 5px 30px var(--electric-cyan-glow);}
         .splash-panel.bottom { bottom: 0; transform-origin: bottom; border-top: 2px solid var(--electric-cyan); box-shadow: 0 -5px 30px var(--electric-cyan-glow);}
@@ -97,12 +79,10 @@
         body.is-loaded .splash-panel.top { transform: translate3d(0, -100%, 0); }
         body.is-loaded .splash-panel.bottom { transform: translate3d(0, 100%, 0); }
         body.is-loaded .splash-laser { opacity: 0; }
-        
         .reveal-element { opacity: 0; transition: opacity 0.8s ease; will-change: opacity; }
         body.is-loaded .reveal-element { opacity: 1; }
 
-        /* ==================== HEADER & GLITCH ==================== */
-        header { padding: max(30px, 4dvh) 5% 10px; text-align: center; position: relative; z-index: 10000; pointer-events: none;}
+        header { padding: max(30px, 4dvh) 5% 10px; text-align: center; position: relative; z-index: 100000; pointer-events: none;}
         #title-wrapper { display: inline-block; transform: translate3d(0, 0, 0) scale(1); transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1); will-change: transform;}
         body.is-loading #title-wrapper { transform: translate3d(0, 35dvh, 0) scale(1.1); }
         #main-title { font-size: clamp(1.8rem, 6vw, 5rem); text-transform: uppercase; letter-spacing: clamp(1px, 1.5vw, 8px); color: var(--text-main); }
@@ -120,7 +100,6 @@
         }
         header p.subtitle { color: var(--electric-cyan); font-weight: 600; text-transform: uppercase; font-size: clamp(0.75rem, 1.8vw, 1.1rem); letter-spacing: 2px; margin-top: 10px; line-height: 1.5;}
 
-        /* ==================== COMPONENTES FLOTANTES (GLASSMORPHISM) ==================== */
         .lang-toggle { position: fixed; bottom: max(20px, var(--safe-bottom)); left: max(20px, var(--safe-left)); background: rgba(2, 6, 23, 0.4); border: 1px solid rgba(45, 212, 191, 0.15); padding: 8px 12px; border-radius: 30px; cursor: pointer; z-index: 900; display: flex; gap: 8px; align-items: center; backdrop-filter: blur(20px) saturate(180%); box-shadow: inset 0 0 10px rgba(255,255,255,0.02), 0 10px 30px rgba(0,0,0,0.5);}
         .lang-option { opacity: 0.4; font-size: 1.2rem; transition: 0.3s; filter: grayscale(100%); }
         .lang-option.active { opacity: 1; filter: grayscale(0%); transform: scale(1.1); }
@@ -129,21 +108,19 @@
         .floating-connect:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.6); }
         .floating-connect .text { font-weight: 900; text-transform: uppercase; letter-spacing: 1px;}
 
-        /* Accesibilidad (WCAG 2.2): Aseguramos el tamaño de objetivo (Target Size > 24px) */
-        .back-to-top { position: fixed; bottom: calc(80px + var(--safe-bottom)); right: max(20px, var(--safe-right)); width: 45px; height: 45px; border-radius: 50%; background: rgba(2, 6, 23, 0.4); border: 1px solid var(--electric-cyan); color: var(--electric-cyan); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.4s ease; z-index: 901; cursor: pointer; backdrop-filter: blur(20px) saturate(180%); transform: translateY(20px); box-shadow: inset 0 0 10px rgba(255,255,255,0.02), 0 10px 30px rgba(0,0,0,0.5); min-width: 44px; min-height: 44px;}
+        .back-to-top { position: fixed; bottom: calc(80px + var(--safe-bottom)); right: max(20px, var(--safe-right)); width: 45px; height: 45px; border-radius: 50%; background: rgba(2, 6, 23, 0.4); border: 1px solid var(--electric-cyan); color: var(--electric-cyan); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.4s ease; z-index: 901; cursor: pointer; backdrop-filter: blur(20px) saturate(180%); transform: translateY(20px); box-shadow: inset 0 0 10px rgba(255,255,255,0.02), 0 10px 30px rgba(0,0,0,0.5);}
         .back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
         .back-to-top:hover { background: var(--electric-cyan); box-shadow: 0 0 20px var(--electric-cyan-glow); }
         .back-to-top:hover svg { stroke: var(--dark-bg); transform: translateY(-3px); }
         .back-to-top svg { width: 20px; height: 20px; fill: none; stroke: var(--electric-cyan); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; transition: all 0.3s; }
 
-        /* ==================== SISTEMA DE FILTRADO ==================== */
-        .filter-container { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; padding: 20px 5% 40px; position: relative; z-index: 10; pointer-events: auto;}
+        .filter-container { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; padding: 20px 5% 40px; position: relative; z-index: 10; }
         @media (max-width: 767px) {
             .filter-container { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; scroll-snap-type: x mandatory; padding-bottom: 20px; padding-left: max(5%, var(--safe-left)); padding-right: max(5%, var(--safe-right)); }
             .filter-container::-webkit-scrollbar { display: none; }
         }
 
-        .filter-btn { background: rgba(2, 6, 23, 0.3); border: 1px solid rgba(255,255,255,0.1); color: var(--text-main); padding: 10px 20px; border-radius: 50px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; backdrop-filter: blur(10px); min-height: 44px;}
+        .filter-btn { background: rgba(2, 6, 23, 0.3); border: 1px solid rgba(255,255,255,0.1); color: var(--text-main); padding: 10px 20px; border-radius: 50px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; backdrop-filter: blur(10px); }
         .filter-btn:hover, .filter-btn.active { background-color: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan); box-shadow: 0 5px 15px var(--electric-cyan-glow); }
         .filter-btn[data-filter="perfil"] { border-color: var(--electric-cyan); color: var(--electric-cyan); }
         .filter-btn[data-filter="perfil"]:hover, .filter-btn[data-filter="perfil"].active { background-color: var(--electric-cyan); color: var(--dark-bg); box-shadow: 0 5px 15px var(--electric-cyan-glow); }
@@ -153,14 +130,14 @@
 
         @media (max-width: 767px) { .filter-btn, .vault-filter-btn { flex: 0 0 auto; scroll-snap-align: start; white-space: nowrap; } }
 
-        /* ==================== PERFIL CSS (BENTO BOX) ==================== */
+        /* PERFIL CSS (BENTO BOX + ANIMACIONES CSS) */
         #profile-section { display: none; padding: 0 5% 100px; animation: fadeIn 0.5s ease; position: relative; z-index: 10; view-transition-name: profile-section; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .bento-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 1300px; margin: 0 auto; }
 
         .bento-card { background: rgba(2, 6, 23, 0.4); border: 1px solid rgba(45, 212, 191, 0.15); border-radius: 24px; padding: clamp(25px, 4vw, 40px); backdrop-filter: blur(24px) saturate(200%); box-shadow: inset 0 0 20px rgba(255,255,255,0.02), 0 20px 50px rgba(0,0,0,0.5); position: relative; display: flex; flex-direction: column; justify-content: flex-start; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); overflow: hidden; }
-        .bento-card:hover { border-color: var(--electric-cyan); box-shadow: 0 20px 40px rgba(13, 148, 136, 0.15), inset 0 0 0 1px rgba(13, 148, 136, 0.5); }
+        .bento-card:hover { transform: translateY(-8px) scale(1.01); border-color: var(--electric-cyan); box-shadow: 0 20px 40px rgba(13, 148, 136, 0.15), inset 0 0 0 1px rgba(13, 148, 136, 0.5); }
         .bento-card::before { content: ''; position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: var(--electric-cyan); border-radius: 50%; filter: blur(80px); opacity: 0.1; transition: opacity 0.4s; pointer-events: none; z-index: 0; }
         .bento-card:hover::before { opacity: 0.25; }
         
@@ -169,16 +146,22 @@
 
         .bento-content { position: relative; z-index: 2; }
         .bento-card h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); color: var(--electric-cyan); margin-bottom: 25px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 1px;}
-        .bento-bio p { font-size: clamp(1.05rem, 1.5vw, 1.15rem); line-height: 1.7; color: var(--text-main); margin-bottom: 25px; font-weight: 400;}
+        .bento-bio p { font-size: clamp(1.05rem, 1.5vw, 1.15rem); line-height: 1.7; color: var(--text-main); margin-bottom: 35px; font-weight: 400;}
         .bento-bio p strong { color: var(--electric-cyan); font-weight: 600; }
         
-        .bento-metrics { display: flex; gap: 30px; flex-wrap: wrap; justify-content: flex-start;}
+        .bento-metrics { display: flex; gap: 30px; flex-wrap: wrap; justify-content: flex-start; margin-top: auto;}
         .bento-metric { display: flex; flex-direction: column; }
         .bento-metric .num { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 900; color: var(--electric-cyan); line-height: 1;}
         .bento-metric .label { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-top: 8px; font-weight: 700;}
 
-        /* Elementos UI de la Bóveda y CV */
-        .cv-timeline-wrapper { max-height: 650px; overflow-y: auto; padding-right: 10px; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent; }
+        .pulse-ring { position: absolute; right: -20px; top: -20px; width: 150px; height: 150px; border-radius: 50%; border: 2px solid rgba(13, 148, 136, 0.3); animation: pulse 3s infinite ease-out; z-index: 0; pointer-events: none; }
+        .pulse-ring:nth-child(2) { animation-delay: 1s; }
+        .pulse-ring:nth-child(3) { animation-delay: 2s; }
+        @keyframes pulse { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
+
+        /* [MÓDULO 2] Arquitectura de Layout y Overflow dinámico */
+        /* Flex: 1 empuja al elemento a llenar el espacio sobrante disponible dictado por CSS Grid (min-height: 0 evita el desbordamiento de contenido en Flexbox) */
+        .cv-timeline-wrapper { flex: 1; min-height: 0; overflow-y: auto; padding-right: 10px; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent; }
         .cv-timeline-wrapper::-webkit-scrollbar { width: 4px; }
         .cv-timeline-wrapper::-webkit-scrollbar-thumb { background-color: var(--electric-cyan); border-radius: 10px; }
         
@@ -192,7 +175,6 @@
         .cv-item span.cv-role { color: var(--electric-cyan); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;}
         .cv-item h4 { color: var(--text-main); font-size: 1.15rem; margin-bottom: 0; font-weight: 700;}
 
-        /* Habilidades y Certificaciones */
         .skill-category { margin-bottom: 25px; }
         .skill-category:last-child { margin-bottom: 0; }
         .skill-category-title { font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; font-weight: 700; letter-spacing: 1px;}
@@ -200,16 +182,26 @@
         .tech-pill { background: rgba(255,255,255,0.05); color: var(--text-main); padding: 8px 18px; border-radius: 50px; font-size: 0.85rem; border: 1px solid rgba(45, 212, 191, 0.2); transition: all 0.3s ease; font-weight: 600; backdrop-filter: blur(5px);}
         .tech-pill:hover { background: rgba(45, 212, 191, 0.2); border-color: var(--electric-cyan); color: var(--electric-cyan); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(45,212,191,0.2);}
 
-        /* [MÓDULO 1] Grid Canónico (List-Detail Pattern fallback adaptativo) */
+        .cert-list { display: flex; flex-direction: column; gap: 15px; width: 100%;}
+        .cert-item { background: rgba(0,0,0,0.3); padding: 15px 20px; border-radius: 12px; border: 1px solid rgba(45, 212, 191, 0.1); display: flex; flex-direction: row; align-items: center; gap: 15px; transition: border 0.3s;}
+        .cert-item:hover { border-color: var(--electric-cyan); }
+        .cert-icon svg { width: 35px; height: 35px; fill: var(--electric-cyan); flex-shrink: 0;}
+        .cert-text { display: flex; flex-direction: column; }
+        .cert-text strong { color: var(--text-main); font-size: 1rem; margin-bottom: 3px;}
+        .cert-text span { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;}
+
         @media (min-width: 900px) {
             .bento-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(200px, auto); }
             .bento-bio { grid-column: span 2; grid-row: span 2; justify-content: flex-start;}
+            /* La tarjeta Experiencia ocupa 3 filas, que iguala perfectamente al alto combinado de Bio(2) y Skills(1) */
             .bento-exp { grid-column: span 1; grid-row: span 3; } 
             .bento-skills { grid-column: span 2; }
             .bento-certs { grid-column: span 3; }
+            .bento-certs .cert-list { flex-direction: row; justify-content: flex-start; gap: 20px;}
+            .bento-certs .cert-item { width: 32%; }
         }
 
-        /* ==================== MEDIA GRID & PORTFOLIO ==================== */
+        /* ---------- MEDIA GRID ---------- */
         .portfolio-grid { display: grid; grid-template-columns: 1fr; gap: clamp(20px, 3vw, 40px); padding: 0 5% 100px; width: 100%; max-width: 2500px; margin: 0 auto; position: relative; z-index: 5; view-transition-name: portfolio-grid; }
         @media (min-width: 768px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
         .media-item.hide { display: none !important; }
@@ -237,8 +229,13 @@
         .media-item:not(.audio):hover .hc-img, .media-item:not(.audio):hover .yt-thumbnail { filter: grayscale(0%) brightness(1.1); transform: scale(1.03); }
         .media-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 50px 30px 20px; background: linear-gradient(to top, rgba(2,6,23,0.98) 10%, transparent); z-index: 5; pointer-events: none; transition: padding 0.3s ease; }
         .media-item:hover .media-overlay { padding-bottom: 30px; }
-        
-        /* ==================== AUDIO PLAYER CUSTOM ==================== */
+        .portfolio-grid.masonry-mode .media-overlay { padding: 25px 15px 15px; }
+        .portfolio-grid.masonry-mode .media-item:hover .media-overlay { padding-bottom: 15px; }
+        .media-item h2 { font-size: clamp(1.4rem, 2vw, 2.2rem); text-transform: uppercase; margin-bottom: 5px; line-height: 1.1; text-shadow: 0 4px 10px rgba(0,0,0,0.8);}
+        .media-item p { color: var(--electric-cyan); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
+        .portfolio-grid.masonry-mode .media-item h2 { font-size: clamp(0.9rem, 1.2vw, 1.3rem); margin-bottom: 2px;}
+        .portfolio-grid.masonry-mode .media-item p { font-size: 0.65rem; letter-spacing: 1px;}
+
         .media-item.audio { border: none; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; cursor: default; transform: none !important; background-color: var(--dark-bg); }
         @keyframes rotateGlow { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
         .audio-glow-ring { position: absolute; top: 50%; left: 50%; width: 200%; height: 200%; background: conic-gradient(transparent, transparent, rgba(45, 212, 191, 0.1), var(--electric-cyan)); animation: rotateGlow 5s linear infinite; z-index: 1; opacity: 0.5; transition: opacity 0.5s ease; }
@@ -252,128 +249,372 @@
         .play-btn { background: var(--electric-cyan); border: none; color: var(--dark-bg); font-family: 'Inter', sans-serif; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; transition: transform 0.2s; box-shadow: 0 5px 15px rgba(45, 212, 191, 0.3);}
         .play-btn:hover { transform: scale(1.1); }
         .progress-wrapper { flex-grow: 1; height: 6px; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; cursor: pointer; position: relative; overflow: hidden; }
-        
-        /* [ERROR CORREGIDO] Aquí colapsaba el DOM. Se integra la clase y se cierran las etiquetas adecuadamente. */
         .progress-fill { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background-color: var(--electric-cyan); border-radius: 10px; box-shadow: 0 0 10px var(--electric-cyan); pointer-events: none; transition: width 0.1s linear;}
-        
-        /* ==================== FOOTER Y MARQUEE ==================== */
-        .ecosystem-section { padding: 40px 5%; text-align: center; }
-        .marquee-container { overflow: hidden; width: 100%; white-space: nowrap; cursor: grab; padding: 20px 0; }
-        .marquee-container:active { cursor: grabbing; }
-        .marquee-track { display: inline-flex; gap: 50px; align-items: center; will-change: transform; }
-        .client-logo { height: 40px; filter: grayscale(100%) opacity(0.6); transition: filter 0.3s ease; }
-        .client-logo:hover { filter: grayscale(0%) opacity(1); }
-        
-        /* Contacto */
-        .contact-section { padding: 80px 5%; text-align: center; background: linear-gradient(to top, #0f172a, #020617); border-top: 1px solid rgba(255,255,255,0.05); }
-        .contact-section h2 { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--electric-cyan); margin-bottom: 20px; }
-        .contact-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
-        .btn-primary, .btn-whatsapp { display: inline-flex; align-items: center; gap: 10px; padding: 12px 30px; border-radius: 50px; font-weight: 700; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
-        .btn-whatsapp { background: var(--whatsapp-green); color: #fff; }
-        .btn-primary { background: transparent; border: 2px solid var(--electric-cyan); color: var(--electric-cyan); }
-        .btn-whatsapp:hover, .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
-        
-        /* Modales */
-        .modal-fullscreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px); z-index: 100000; opacity: 0; pointer-events: none; transition: 0.4s ease; display: flex; justify-content: center; align-items: center; }
-        .modal-fullscreen.active-modal { opacity: 1; pointer-events: auto; }
-        .close-btn { position: absolute; top: 30px; right: 30px; background: transparent; border: 1px solid var(--electric-cyan); color: var(--electric-cyan); padding: 10px 20px; border-radius: 30px; cursor: pointer; z-index: 10; font-weight: 700; transition: 0.3s; }
-        .close-btn:hover { background: var(--electric-cyan); color: var(--dark-bg); }
-        .form-modal-box { background: var(--card-bg); padding: 40px; border-radius: 20px; border: 1px solid rgba(45, 212, 191, 0.3); max-width: 500px; width: 90%; position: relative; }
-        .form-modal-box input { width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: #fff; }
-        .legal-warning { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 20px; }
-        .error-message { color: var(--danger-red); margin-bottom: 15px; display: none; font-size: 0.9rem; }
-        .shake-error { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
-        @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
 
+        .ecosystem-section { padding: 80px 5%; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); background-color: var(--card-bg); }
+        .ecosystem-section h3 { font-size: 2rem; color: var(--text-main); margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;}
+        .brand-btn-clean { display: inline-flex; align-items: center; justify-content: center; background: transparent; border: none; padding: 15px; transition: transform 0.3s ease; cursor: pointer; }
+        .brand-btn-clean:hover { transform: translateY(-5px); }
+        .brand-logo-img.automatas-logo { height: 45px; width: auto; transition: transform 0.3s ease, filter 0.3s ease; }
+        .brand-btn-clean:hover .brand-logo-img.automatas-logo { transform: scale(1.05); filter: drop-shadow(0 0 15px var(--automatas-green)); }
+
+        .clients-section { padding: 80px 5%; text-align: center; background-color: var(--dark-bg); overflow: hidden; }
+        .clients-section h3 { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 50px; text-transform: uppercase; letter-spacing: 4px; font-weight: 600;}
+        .marquee-container { width: 100%; overflow: hidden; white-space: nowrap; position: relative; padding: 40px 0; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); cursor: grab; }
+        .marquee-container:active { cursor: grabbing; }
+        .marquee-track { display: inline-flex; align-items: center; gap: clamp(40px, 5vw, 80px); will-change: transform; }
+        .client-logo { height: clamp(40px, 4vw, 60px); width: auto; object-fit: contain; filter: brightness(0) invert(1) opacity(0.6); transition: filter 0.3s ease; cursor: pointer; }
+        .client-logo.hover-glow, .client-logo:hover { filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 15px var(--electric-cyan)); }
+        .client-logo-unilever { transform: scale(1.6); margin: 0 15px; } .client-logo-comfandi { transform: scale(1.3); }
+
+        .contact-section { padding: 80px 5% 100px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); background: var(--card-bg); }
+        .contact-section h2 { font-size: clamp(1.8rem, 8vw, 4rem); margin-bottom: 15px; text-transform: uppercase; letter-spacing: clamp(3px, 1.5vw, 12px); margin-right: calc(-1 * clamp(3px, 1.5vw, 12px)); }
+        .contact-section p { color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.1rem;}
+        .contact-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 50px;}
+        .btn-primary, .btn-secondary, .btn-whatsapp { padding: 16px 35px; font-weight: 700; border-radius: 8px; transition: all 0.3s; font-family: 'Inter', sans-serif; font-size: 1rem; text-decoration: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-primary { background-color: var(--electric-cyan); color: var(--dark-bg); }
+        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px var(--electric-cyan-glow); }
+        .btn-secondary { background-color: transparent; color: var(--text-main); border: 2px solid rgba(255,255,255,0.2); }
+        .btn-secondary:hover { border-color: var(--electric-cyan); color: var(--electric-cyan); }
+        .btn-whatsapp { background-color: var(--whatsapp-green); color: var(--dark-bg); }
+        .btn-whatsapp:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4); }
+        .social-links { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;}
+        .social-links a { color: var(--text-muted); text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s; display: flex; align-items: center; justify-content: center; }
+        .social-links a:hover { color: var(--electric-cyan); }
+        .social-links a svg { fill: transparent; stroke: currentColor; transition: all 0.3s ease; }
+        .social-links a:hover svg { fill: currentColor; stroke: transparent; }
+        .social-links a.yt-link:hover svg polygon { fill: var(--dark-bg); }
+        .social-links a.ig-link:hover svg path, .social-links a.ig-link:hover svg line { fill: transparent; stroke: var(--dark-bg); }
+
+        .vault-section { background: linear-gradient(180deg, var(--card-bg) 0%, var(--dark-bg) 100%); padding: 100px 5% 150px; text-align: center; position: relative; }
+        .vault-container { max-width: 800px; margin: 0 auto; position: relative; z-index: 2; padding: clamp(40px, 5vw, 60px) clamp(20px, 4vw, 40px); border: 1px solid rgba(45, 212, 191, 0.15); border-radius: 24px; background: rgba(2, 6, 23, 0.4); backdrop-filter: blur(24px) saturate(200%); box-shadow: inset 0 0 20px rgba(255,255,255,0.02), 0 20px 50px rgba(0,0,0,0.5); }
+        .vault-icon-glow { font-size: 4rem; margin-bottom: 20px; display: inline-block; filter: drop-shadow(0 0 15px var(--electric-cyan)); animation: float 3s ease-in-out infinite;}
+        .vault-container h3 { font-size: clamp(2rem, 3vw, 2.5rem); margin-bottom: 20px; color: var(--electric-cyan); letter-spacing: 2px;}
+        .vault-container p { color: var(--text-muted); margin-bottom: 40px; font-size: 1.1rem; line-height: 1.6;}
+        .vault-btn { background: var(--electric-cyan); color: var(--dark-bg); border: none; padding: 18px 40px; font-weight: 900; border-radius: 50px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px var(--electric-cyan-glow);}
+        .vault-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.6); }
+
+        .modal-fullscreen { position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh; background: rgba(2,6,23,0.98); z-index: 9999999; display: none; justify-content: center; align-items: center; padding: 2% 5%; backdrop-filter: blur(10px); opacity: 0; transition: opacity 0.2s ease;}
+        .modal-fullscreen.active-modal { display: flex; opacity: 1; }
+        .modal-content-wrapper { max-width: 100%; max-height: 90dvh; position: relative; width: 1600px; aspect-ratio: 16/9; display: flex; justify-content: center; align-items: center;}
+        .modal-fullscreen iframe { width: 100%; height: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.9); display: block; border: none; background-color: black; }
+        
+        .close-btn { position: fixed; top: max(20px, env(safe-area-inset-top, 20px)); right: max(20px, var(--safe-right)); color: var(--text-main); background-color: rgba(2, 6, 23, 0.4); border: 1px solid rgba(45, 212, 191, 0.15); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; z-index: 10000000; transition: all 0.3s; letter-spacing: 1px; backdrop-filter: blur(20px) saturate(180%); box-shadow: inset 0 0 10px rgba(255,255,255,0.02);}
+        .close-btn:hover { background-color: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan); transform: scale(1.05);}
+
+        #gallery-modal { padding: 0; }
+        #gallery-modal .modal-content-wrapper { width: 100%; height: 100%; aspect-ratio: auto; }
+        #gallery-image { max-width: 100vw; max-height: 100dvh; object-fit: contain; transition: opacity 0.2s ease; display: block; user-select: none; pointer-events: none;}
+        .gallery-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(2, 6, 23, 0.4); color: var(--text-main); border: 1px solid rgba(255,255,255,0.1); border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: all 0.3s; z-index: 1010; backdrop-filter: blur(20px) saturate(180%);}
+        .gallery-nav:hover { background: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan); transform: translateY(-50%) scale(1.1);}
+        .gallery-prev { left: max(20px, var(--safe-left)); } .gallery-next { right: max(20px, var(--safe-right)); }
+        .gallery-dots { position: absolute; bottom: max(30px, var(--safe-bottom)); left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 1010; background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 30px; backdrop-filter: blur(5px); max-width: 90vw; overflow-x: auto;}
+        .gallery-dot { width: 10px; height: 10px; flex-shrink: 0; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: 0.3s; }
+        .gallery-dot.active { background: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan); transform: scale(1.2);}
+
+        .form-modal-box { background: rgba(2, 6, 23, 0.4); padding: clamp(30px, 5vw, 50px); border-radius: 20px; max-width: 600px; width: 90%; border: 1px solid rgba(45, 212, 191, 0.15); text-align: left; position: relative; max-height: 90dvh; overflow-y: auto; backdrop-filter: blur(24px) saturate(200%); box-shadow: inset 0 0 20px rgba(255,255,255,0.02), 0 30px 60px rgba(0,0,0,0.8);}
+        .form-modal-box label { display: block; margin-bottom: 8px; font-size: 0.95rem; color: var(--text-muted); font-weight: 600;}
+        .form-modal-box input { width: 100%; padding: 15px; margin-bottom: 20px; background-color: rgba(2, 6, 23, 0.8); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1rem; transition: border 0.3s; }
+        .form-modal-box input:focus { outline: none; border-color: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan-glow);}
+        
+        .legal-warning { margin-bottom: 20px; padding: 15px; background: rgba(239, 68, 68, 0.05); border-left: 4px solid var(--danger-red); font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; border-radius: 0 8px 8px 0;}
+        .legal-warning strong { color: var(--danger-red); }
+        .error-message { color: var(--danger-red); font-size: 0.9rem; margin-bottom: 15px; display: none; font-weight: 600; padding: 12px; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3); line-height: 1.4;}
+        
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } }
+        .shake-error { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
+        .modal-req-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5; text-align: center;}
+        .modal-logos-mini { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; justify-content: center; align-items: center; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px;}
+        .modal-logos-mini img { height: 20px; width: auto; object-fit: contain; filter: brightness(0) invert(1) opacity(0.5); }
     </style>
 </head>
 <body class="is-loading">
 
-    <!-- [MÓDULO 1] Preloader Reconstruido -->
+    <script>
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        window.scrollTo(0, 0);
+    </script>
+
+    <div class="lang-toggle" id="langToggleBtn" aria-label="Cambiar idioma">
+        <span id="lang-es" class="lang-option active">🇪🇸</span>
+        <span id="lang-en" class="lang-option">🇬🇧</span>
+    </div>
+
+    <a href="#contacto" class="floating-connect" aria-label="Ir a sección de contacto">
+        <span class="icon">💬</span>
+        <span class="text" data-i18n="btn_connect">CONECTEMOS</span>
+    </a>
+
+    <button class="back-to-top" id="backToTopBtn" aria-label="Volver arriba">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+
     <div class="splash-panel top"></div>
     <div class="splash-panel bottom"></div>
     <div class="splash-laser"></div>
 
-    <!-- Header y Glitch de Título -->
-    <header class="reveal-element">
+    <header>
         <div id="title-wrapper">
-            <h1 id="main-title" data-i18n="head_title">Alejandro Vega</h1>
-            <p class="subtitle" data-i18n="subtitle">Product Owner | Innovación B2B</p>
+            <h1 id="main-title">Alejandro Vega</h1>
         </div>
+        <p class="subtitle reveal-element" data-i18n="subtitle">Product Owner | Innovación B2B</p>
     </header>
 
-    <!-- Botón de Idioma con A11y tabindex -->
-    <button class="lang-toggle" id="langToggleBtn" aria-label="Cambiar Idioma" tabindex="0">
-        <span class="lang-option active" id="lang-es">ES</span>
-        <span class="lang-option" id="lang-en">EN</span>
-    </button>
+    <div class="filter-container reveal-element">
+        <button class="filter-btn" data-filter="perfil" data-i18n="btn_profile">Perfil Profesional</button>
+        <button class="filter-btn active" data-filter="all" data-i18n="btn_all">Todo</button>
+        <button class="filter-btn" data-filter="audiovisual" data-i18n="btn_video">Producción Audiovisual</button>
+        <button class="filter-btn" data-filter="fotografia" data-i18n="btn_photo">Fotografía</button>
+        <button class="filter-btn" data-filter="diseno" data-i18n="btn_design">Diseño Visual</button>
+        <button class="filter-btn" data-filter="audio" data-i18n="btn_audio">Diseño Sonoro</button>
+        <button class="vault-filter-btn" id="openVaultBtnHeader" aria-label="Abrir bóveda"><span class="icon">🔒</span> <span data-i18n="btn_vault_header">Acceso Bóveda</span></button>
+    </div>
 
-    <!-- [ERROR CORREGIDO] Etiqueta MAIN aperturada para dar contenedor semántico a todo el contenido -->
-    <main>
-        
-        <!-- Filtros Dinámicos -->
-        <section class="filter-container reveal-element">
-            <button class="filter-btn active" data-filter="all" data-i18n="btn_all" tabindex="0">Todo</button>
-            <button class="filter-btn" data-filter="perfil" data-i18n="btn_profile" tabindex="0">Perfil Profesional</button>
-            <button class="filter-btn" data-filter="diseno" data-i18n="btn_design" tabindex="0">Diseño Visual</button>
-        </section>
-
-        <!-- Sección Bento Grid (Perfil Oculto por Defecto) -->
-        <section id="profile-section" class="bento-grid">
-            <div class="bento-card bento-bio">
-                <h3 data-i18n="prof_title">⚡ Orquestación & Estrategia</h3>
-                <div class="bento-content">
-                    <p data-i18n="profile_text">Como <strong>Product Owner (PSPO I)</strong> e Ingeniero Multimedia, actúo como el puente estratégico entre la visión ejecutiva, la creatividad visual y la ejecución de proyectos...</p>
+    <!-- SECCION PERFIL COMPLETA -->
+    <div id="profile-section">
+        <div class="bento-grid">
+            
+            <!-- Bio y Posicionamiento -->
+            <div class="bento-card bento-bio bento-content">
+                <h3 data-i18n="prof_title"><span style="font-size: 1.5rem; margin-right: 10px;">⚡</span> Orquestación & Estrategia</h3>
+                <p data-i18n="profile_text">Como <strong>Product Owner (PSPO I)</strong> e Ingeniero Multimedia, actúo como el puente estratégico entre la visión ejecutiva, la creatividad visual y la ejecución de proyectos. Lidero la conceptualización de marcas, la construcción de narrativas digitales y el diseño de ecosistemas E-learning B2B. Apoyado en herramientas de Inteligencia Artificial, estructuro y orquesto soluciones de alto impacto, garantizando una excelente experiencia de usuario y legibilidad algorítmica (UX/MX - Machine Experience), dirigiendo equipos especializados para materializar estrategias que conectan emocionalmente con los usuarios y optimizan el ROI corporativo.</p>
+                <div class="bento-metrics" style="position: relative; z-index: 2;">
+                    <div class="bento-metric"><span class="num">8+</span><span class="label" data-i18n="stat_years">Años Exp. B2B</span></div>
+                    <div class="bento-metric"><span class="num">100%</span><span class="label" data-i18n="stat_po">Adopción Ágil</span></div>
+                    <div class="bento-metric"><span class="num">360°</span><span class="label" data-i18n="stat_projects">Visión Creativa</span></div>
                 </div>
+                <div class="pulse-ring"></div><div class="pulse-ring"></div><div class="pulse-ring"></div>
             </div>
-            <div class="bento-card bento-exp">
+
+            <!-- Línea de Tiempo Completa con Scroll Independiente ajustado al Grid -->
+            <div class="bento-card bento-exp bento-content">
                 <h3 data-i18n="prof_rol">Experiencia Clave</h3>
                 <div class="cv-timeline-wrapper">
                     <div class="cv-timeline">
                         <div class="cv-item">
-                            <span class="cv-year">2023 - Presente</span>
-                            <span class="cv-role" data-i18n="rol_1_co">AUTÓMATAS</span>
-                            <h4 data-i18n="rol_1">Co-Fundador & Product Owner</h4>
+                            <span class="cv-year">2025 - PRESENTE</span>
+                            <span class="cv-role" data-i18n="rol_1">Co-Fundador & Product Owner</span>
+                            <h4 data-i18n="rol_1_co">AUTÓMATAS</h4>
+                            <p data-i18n="rol_1_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Estrategia B2B, diseño de UX/MX y construcción narrativa de ecosistemas de Inteligencia Artificial.</p>
+                        </div>
+                        <div class="cv-item">
+                            <span class="cv-year">MAY 2023 - PRESENTE</span>
+                            <span class="cv-role" data-i18n="rol_2">Ingeniero Multimedia & Proyectos Digitales</span>
+                            <h4 data-i18n="rol_2_co">ESPY S.A. E.S.P.</h4>
+                            <p data-i18n="rol_2_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Consultor in-house. Conceptualización y diseño de la nueva identidad corporativa, manual de marca y modernización digital/impresa continua.</p>
+                        </div>
+                        <div class="cv-item">
+                            <span class="cv-year">2024</span>
+                            <span class="cv-role" data-i18n="rol_8">Docente Especializado (Multimedia y Diseño)</span>
+                            <h4 data-i18n="rol_8_co">AVANT GARDE</h4>
+                            <p data-i18n="rol_8_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Formación de talentos en suite Adobe y producción audiovisual.</p>
+                        </div>
+                        <div class="cv-item">
+                            <span class="cv-year">ABR 2022 - JUL 2022</span>
+                            <span class="cv-role" data-i18n="rol_4">Diseñador Contenidos de Formación</span>
+                            <h4 data-i18n="rol_4_co">EFICACIA S.A.</h4>
+                        </div>
+                        <div class="cv-item">
+                            <span class="cv-year">AGO 2021 - DIC 2022</span>
+                            <span class="cv-role" data-i18n="rol_5">Profesional de Apoyo a la Gestión TIC</span>
+                            <h4 data-i18n="rol_5_co">ALCALDÍA DE YUMBO</h4>
+                            <p data-i18n="rol_5_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Fortalecimiento de canales de comunicación de la administración municipal.</p>
+                        </div>
+                        <div class="cv-item">
+                            <span class="cv-year">2020 - 2021</span>
+                            <span class="cv-role" data-i18n="rol_9">Director de Arte & Productor Visual</span>
+                            <h4 data-i18n="rol_9_co">CONCEPTO AGENCIA DE DISEÑO</h4>
+                            <p data-i18n="rol_9_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Identidad de marca desde cero y producción audiovisual B2B.</p>
+                        </div>
+                        <div class="cv-item">
+                            <span class="cv-year">OCT 2020 - DIC 2020</span>
+                            <span class="cv-role" data-i18n="rol_7">Profesional de Servicios (Cultura)</span>
+                            <h4 data-i18n="rol_7_co">ALCALDÍA DE CALI</h4>
+                        </div>
+                        <div class="cv-item">
+                            <span class="cv-year">2019 - 2020</span>
+                            <span class="cv-role" data-i18n="rol_10">Productor Audiovisual & Estratega Digital</span>
+                            <h4 data-i18n="rol_10_co">PRO-SCIENTIA</h4>
+                            <p data-i18n="rol_10_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Comunicación política y consultoría de redes sociales.</p>
+                        </div>
+                        <div class="cv-item">
+                            <span class="cv-year">2017 - 2018</span>
+                            <span class="cv-role" data-i18n="rol_11">Desarrollador VR & Dir. Audiovisual</span>
+                            <h4 data-i18n="rol_11_co">U. SAN BUENAVENTURA / COL. BAUTISTA</h4>
+                            <p data-i18n="rol_11_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Prototipado inmersivo VR y dirección de cortometrajes educativos.</p>
+                        </div>
+                        <div class="cv-item">
+                            <span class="cv-year">2016 - PRESENTE</span>
+                            <span class="cv-role" data-i18n="rol_3">Director Creativo & Productor</span>
+                            <h4 data-i18n="rol_3_co">JAVEGA</h4>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Grid Principal (Mampostería) -->
-        <section id="main-grid" class="portfolio-grid">
-            
-            <!-- Ejemplo de ítem reconstruido para validación visual -->
-            <div class="media-item diseno" data-gallery="diseno_all">
-                <div class="media-texture"></div>
-                <!-- Fetchpriority high (LCP) -->
-                <img src="https://static.wixstatic.com/media/14f4fb_bde31a4c87be49a1882327dacb0882e0~mv2.jpg" alt="Proyecto de Diseño" class="hc-img active masonry-img fallback-img" fetchpriority="high">
-                <div class="media-overlay">
-                    <h2>Proyecto Demo</h2>
-                    <p>Diseño Corporativo</p>
+            <!-- Competencias Clave (Pills limpios) -->
+            <div class="bento-card bento-skills bento-content">
+                <h3 data-i18n="prof_skills">Competencias Clave</h3>
+                <div class="skill-category">
+                    <div class="skill-category-title" data-i18n="skill_cat_2">Estrategia B2B & Gestión</div>
+                    <div class="tag-cloud">
+                        <span class="tech-pill">Product Ownership (Scrum/Agile)</span>
+                        <span class="tech-pill">Levantamiento de Requerimientos</span>
+                        <span class="tech-pill">Stakeholder Management</span>
+                        <span class="tech-pill">Value-Based Pricing</span>
+                    </div>
+                </div>
+                <div class="skill-category" style="margin-top: 25px;">
+                    <div class="skill-category-title" data-i18n="skill_cat_1">Diseño UX/MX & Multimedia</div>
+                    <div class="tag-cloud">
+                        <span class="tech-pill">Arquitectura de Marca</span>
+                        <span class="tech-pill">Ecosistemas E-learning (SCORM)</span>
+                        <span class="tech-pill">Narrativas Digitales e IA (Flow)</span>
+                        <span class="tech-pill">Dirección Audiovisual</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Ítem de Audio Player Custom -->
-            <div class="media-item audio" data-audio-src="audio_demo.mp3">
-                <div class="audio-glow-ring"></div>
-                <div class="audio-inner-card">
-                    <canvas class="audio-visualizer"></canvas>
-                    <div class="audio-text-content">
-                        <h2>Experiencia Sonora</h2>
-                        <p data-i18n="aud_alone">Acústico / Soul Cinematográfico</p>
+            <!-- Credenciales Actualizadas (3 Items) -->
+            <div class="bento-card bento-certs bento-content">
+                <h3 data-i18n="cert_title" style="margin-bottom: 20px;">Educación & Certificaciones</h3>
+                <div class="cert-list">
+                    <div class="cert-item">
+                        <div class="cert-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 3L1 9L12 15L21 10.09V17H23V9M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z"/></svg>
+                        </div>
+                        <div class="cert-text">
+                            <strong data-i18n="cert_1">Ingeniería Multimedia</strong>
+                            <span data-i18n="cert_1_org">U. San Buenaventura (ABET)</span>
+                        </div>
                     </div>
-                    <div class="custom-player">
-                        <button class="play-btn" aria-label="Reproducir Audio">▶</button>
-                        <div class="progress-wrapper">
-                            <div class="progress-fill"></div>
+                    <div class="cert-item">
+                        <div class="cert-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.98C19.47,12.66 19.5,12.34 19.5,12C19.5,11.66 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.97 19.05,5.05L16.56,6.05C16.04,5.65 15.48,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.52,5.32 7.96,5.65 7.44,6.05L4.95,5.05C4.73,4.97 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.66 4.5,12C4.5,12.34 4.53,12.66 4.57,12.98L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.95C7.96,18.35 8.52,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.48,18.68 16.04,18.35 16.56,17.95L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.98Z"/></svg>
+                        </div>
+                        <div class="cert-text">
+                            <strong data-i18n="cert_2">PSPO I Product Owner</strong>
+                            <span data-i18n="cert_2_org">Scrum.org</span>
+                        </div>
+                    </div>
+                    <!-- Nueva Certificación -->
+                    <div class="cert-item">
+                        <div class="cert-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                        </div>
+                        <div class="cert-text">
+                            <strong data-i18n="cert_3">Marketing Digital</strong>
+                            <span data-i18n="cert_3_org">Google Actívate</span>
                         </div>
                     </div>
                 </div>
             </div>
-            
-        </section>
+        </div>
+    </div>
+
+    <!-- MEDIOS PORTAFOLIO -->
+    <main class="portfolio-grid reveal-element" id="main-grid">
         
+        <div class="media-item audiovisual" data-yt-id="0ivRf3-IvGs">
+            <div class="media-texture"></div>
+            <img src="https://img.youtube.com/vi/0ivRf3-IvGs/maxresdefault.jpg" class="yt-thumbnail" alt="Clara" loading="lazy" decoding="async" draggable="false">
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/0ivRf3-IvGs?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=0ivRf3-IvGs" allow="autoplay; encrypted-media"></iframe>
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_clara">Estrategia Generativa IA</p><h2 data-i18n="vid_tit_clara">Proyecto Clara</h2></div>
+        </div>
+
+        <div class="media-item audiovisual" data-yt-id="ntMooW2DwVw">
+            <div class="media-texture"></div>
+            <img src="https://img.youtube.com/vi/ntMooW2DwVw/maxresdefault.jpg" class="yt-thumbnail" alt="Showreel" loading="lazy" decoding="async" draggable="false">
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/ntMooW2DwVw?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=ntMooW2DwVw" allow="autoplay; encrypted-media"></iframe>
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_showreel">Dirección Creativa B2B</p><h2 data-i18n="vid_tit_showreel">Showreel Corporativo</h2></div>
+        </div>
+
+        <div class="media-item audiovisual" data-yt-id="kZLIan0Hr-E">
+            <div class="media-texture"></div>
+            <img src="https://img.youtube.com/vi/kZLIan0Hr-E/hqdefault.jpg" class="yt-thumbnail" alt="Kapo Test" loading="lazy" decoding="async" draggable="false">
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/kZLIan0Hr-E?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=kZLIan0Hr-E" allow="autoplay; encrypted-media"></iframe>
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_kapo">Etalonaje</p><h2 data-i18n="vid_tit_kapo">Prueba de Color: KAPO</h2></div>
+        </div>
+
+        <div class="media-item audiovisual" data-yt-id="NUm0rt_XRkQ">
+            <div class="media-texture"></div>
+            <img src="https://img.youtube.com/vi/NUm0rt_XRkQ/maxresdefault.jpg" class="yt-thumbnail" alt="Vallecaucanos" loading="lazy" decoding="async" draggable="false">
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/NUm0rt_XRkQ?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=NUm0rt_XRkQ" allow="autoplay; encrypted-media"></iframe>
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_evento">Cobertura Institucional</p><h2 data-i18n="vid_tit_evento">Vallecaucanos</h2></div>
+        </div>
+
+        <div class="media-item audiovisual" data-yt-id="TLjHcX4UPHg">
+            <div class="media-texture"></div>
+            <img src="https://img.youtube.com/vi/TLjHcX4UPHg/maxresdefault.jpg" class="yt-thumbnail" alt="Unichef 1" loading="lazy" decoding="async" draggable="false">
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/TLjHcX4UPHg?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=TLjHcX4UPHg" allow="autoplay; encrypted-media"></iframe>
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Institucional Online</p><h2 data-i18n="vid_tit_chef1">UniChef: Cheesecake</h2></div>
+        </div>
+
+        <div class="media-item fotografia" data-gallery="modelos">
+            <div class="media-texture"></div>
+            <div class="hover-carousel">
+                <img src="https://static.wixstatic.com/media/14f4fb_963a7a6446284302a798edcf8457cffd~mv2_d_3471_3471_s_4_2.jpg" class="hc-img active focus-top" alt="Modelos 1" loading="lazy" decoding="async" draggable="false">
+                <img src="https://static.wixstatic.com/media/14f4fb_62c1344e52a441daaa100e3400a6cc19~mv2_d_3176_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Modelos 2">
+            </div>
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p data-i18n="cat_fashion">Fashion Book & Belleza</p><h2 data-i18n="tit_fashion">Book Modelos</h2></div>
+        </div>
+
+        <div class="media-item fotografia" data-gallery="producto">
+            <div class="media-texture"></div>
+            <div class="hover-carousel">
+                <img src="https://static.wixstatic.com/media/14f4fb_bde31a4c87be49a1882327dacb0882e0~mv2.jpg" class="hc-img active" alt="Producto 1" loading="lazy" decoding="async" draggable="false">
+                <img src="https://static.wixstatic.com/media/14f4fb_09129e6b1cc648ed8f0dd806ea46ac95~mv2.jpg" class="hc-img" loading="lazy" decoding="async" draggable="false" alt="Producto 2">
+            </div>
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p data-i18n="cat_product">Fotografía Comercial B2C/B2B</p><h2 data-i18n="title_product">Fotografía de Producto</h2></div>
+        </div>
+
+        <div class="media-item diseno" data-diseno-idx="0">
+            <div class="media-texture"></div>
+            <img src="Banner%20web%20Jdmaray%20Cali%20SPA.jpg?v=2" class="masonry-img fallback-img" alt="Banner web Jdmaray Cali SPA" loading="lazy" decoding="async" draggable="false">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p data-i18n="cat_banner">Banner Web</p><h2>Jdmaray Cali SPA</h2></div>
+        </div>
+
+        <div class="media-item diseno" data-diseno-idx="3">
+            <div class="media-texture"></div>
+            <img src="Logo%20Another%20Reality%20VR.png?v=2" class="masonry-img fallback-img" alt="Another Reality VR" loading="lazy" decoding="async" draggable="false">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Branding Tecnológico</p><h2>Another Reality VR</h2></div>
+        </div>
+
+        <div class="media-item diseno" data-diseno-idx="5">
+            <div class="media-texture"></div>
+            <img src="Pieza%20Conversatorio%20Tuberculosis%20Hospital%20y%20Alcaldia%20de%20Yumbo.jpg?v=2" class="masonry-img fallback-img" alt="Alcaldía de Yumbo" loading="lazy" decoding="async" draggable="false">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p>Campaña Institucional</p><h2>Alcaldía de Yumbo</h2></div>
+        </div>
+
+        <div class="media-item diseno" data-diseno-idx="7">
+            <div class="media-texture"></div>
+            <img src="Pieza%20invitacion%20de%20encuentro%20cultural%20para%20la%20alcaldia%20de%20Cali.jpg?v=2" class="masonry-img fallback-img" alt="Alcaldía de Cali" loading="lazy" decoding="async" draggable="false">
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p data-i18n="cat_ad">Diseño Institucional</p><h2>Alcaldía de Cali</h2></div>
+        </div>
+
+        <div class="media-item audio" data-audio-src="https://static.wixstatic.com/mp3/14f4fb_cec3885e857446d5bb03641eed32c0d8.mp3">
+            <div class="audio-glow-ring"></div>
+            <div class="audio-inner-card">
+                <canvas class="audio-visualizer"></canvas>
+                <div class="audio-text-content"><h2>Alone</h2><p data-i18n="aud_alone">Acústico / Soul Cinematográfico</p></div>
+                <div class="custom-player">
+                    <button class="play-btn" aria-label="Reproducir Audio">▶</button>
+                    <div class="progress-wrapper"><div class="progress-fill"></div></div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <!-- Sección: Marcas Impactadas (Social Proof) -->
@@ -383,7 +624,15 @@
         
         <div class="marquee-container" id="marqueeContainer">
             <div class="marquee-track" id="marqueeTrack">
-                <!-- Se agrega decoding="async" y loading="lazy" a imágenes secundarias para optimizar Main Thread -->
+                <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20comfandi.png" alt="Comfandi" class="client-logo client-logo-comfandi fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo%20espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
+                
                 <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo%20derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
@@ -398,15 +647,10 @@
 
     <section class="ecosystem-section reveal-element" style="padding-top: 50px;">
         <h3 data-i18n="ecosystem_title" style="font-size: 1.2rem; color: var(--text-muted);">Ecosistema Creativo Directo</h3>
-        <a href="https://automatas.co" target="_blank" rel="noopener noreferrer" class="brand-btn-clean" aria-label="Visitar Autómatas">
+        <a href="https://automatas.co" target="_blank" rel="noopener noreferrer" class="brand-btn-clean">
             <img src="MARCA%20DE%20AGUA%20H%20COLOR.png" alt="Autómatas" class="brand-logo-img automatas-logo fallback-img" loading="lazy" decoding="async" draggable="false">
         </a>
     </section>
-
-    <!-- Botón Volver Arriba -->
-    <button class="back-to-top" id="backToTopBtn" aria-label="Volver arriba">
-        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
-    </button>
 
     <section class="contact-section reveal-element" id="contacto">
         <h2 data-i18n="contact_title">Conectemos</h2>
@@ -423,24 +667,63 @@
                 <span data-i18n="btn_mail">Escríbeme un correo</span>
             </a>
         </div>
+        
+        <div class="social-links">
+            <a href="https://linkedin.com/in/javegapro" target="_blank" rel="noopener noreferrer" class="in-link" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="8" width="4" height="13"></rect><circle cx="4" cy="3" r="2"></circle></svg>
+            </a>
+            <a href="https://www.youtube.com/@javegapro" target="_blank" rel="noopener noreferrer" class="yt-link" aria-label="Canal de YouTube">
+                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+            </a>
+            <a href="https://instagram.com/javegapro" target="_blank" rel="noopener noreferrer" class="ig-link" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+        </div>
     </section>
 
-    <!-- Modal Formulario de Bóveda -->
-    <div class="modal-fullscreen" id="vault-modal" role="dialog" aria-modal="true" aria-labelledby="modal_req_title">
+    <section class="vault-section reveal-element">
+        <div class="vault-container">
+            <div class="vault-icon-glow">🔒</div>
+            <h3 data-i18n="vault_title">Bóveda Corporativa</h3>
+            <p data-i18n="vault_desc">Mis desarrollos de diseño instruccional y E-learning para <strong>Unilever, Alquería y Derco</strong> están sujetos a NDA.</p>
+            <button class="vault-btn" id="openVaultBtnFooter" data-i18n="vault_btn">Solicitar Acceso Seguro</button>
+        </div>
+    </section>
+
+    <div class="modal-fullscreen" id="youtube-modal">
+        <div class="modal-content-wrapper">
+            <button class="close-btn" id="closeYtBtn" data-i18n="btn_close">CERRAR [X]</button>
+            <iframe id="youtube-iframe" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="modal-fullscreen" id="gallery-modal">
+        <button class="close-btn" id="closeGalleryBtn" data-i18n="btn_close">CERRAR [X]</button>
+        <div class="gallery-nav gallery-prev" id="galleryPrevBtn" aria-label="Imagen anterior">&#10094;</div>
+        <img src="" id="gallery-image" alt="Galería Fotográfica" oncontextmenu="return false;" loading="lazy" decoding="async" draggable="false">
+        <div class="gallery-nav gallery-next" id="galleryNextBtn" aria-label="Siguiente imagen">&#10095;</div>
+        <div class="gallery-dots" id="gallery-dots"></div>
+    </div>
+
+    <div class="modal-fullscreen" id="vault-modal">
         <div class="form-modal-box">
             <button class="close-btn" id="closeVaultBtn" style="position: absolute; top: 15px; right: 15px; border: none; background: transparent; box-shadow: none; color: var(--text-muted);" aria-label="Cerrar modal">[X]</button>
-            <h3 id="modal_req_title" style="color: var(--electric-cyan); margin-bottom: 5px; font-size: 1.8rem;" data-i18n="modal_req_title">Solicitud de Acceso</h3>
+            <h3 style="color: var(--electric-cyan); margin-bottom: 5px; font-size: 1.8rem;" data-i18n="modal_req_title">Solicitud de Acceso</h3>
             <p class="modal-req-desc" data-i18n="modal_req_desc">Está a punto de solicitar acceso a la Bóveda protegida por NDA.</p>
+            <div class="modal-logos-mini">
+                <img src="Logo%20Unilever.png" alt="Unilever" class="fallback-img modal-logo-unilever" draggable="false">
+                <img src="Logo_Alqueria.png" alt="Alquería" class="fallback-img" draggable="false">
+                <img src="Logo%20derco.png" alt="Derco" class="fallback-img" draggable="false">
+                <img src="Logo%20comfandi.png" alt="Comfandi" class="fallback-img" draggable="false">
+            </div>
             
             <div id="vault-error" class="error-message"></div>
 
             <form id="vault-form" novalidate>
                 <label for="req-name" data-i18n="label_name">Su Nombre Completo:</label>
                 <input type="text" id="req-name" placeholder="Ej. Juan Pérez" required>
-                
                 <label for="req-company" data-i18n="label_company">Empresa o Agencia:</label>
                 <input type="text" id="req-company" placeholder="Ej. Google / Leo Burnett" required>
-                
                 <label for="req-email" data-i18n="label_email">Su Correo Corporativo:</label>
                 <input type="email" id="req-email" placeholder="ejemplo@empresa.com" required>
                 
@@ -453,63 +736,69 @@
         </div>
     </div>
 
-    <!-- Modales de Medios -->
-    <div class="modal-fullscreen" id="youtube-modal">
-        <div class="modal-content-wrapper" style="width: 80%; height: 80%; position: relative;">
-            <button class="close-btn" id="closeYtBtn" data-i18n="btn_close">CERRAR [X]</button>
-            <iframe id="youtube-iframe" allow="autoplay; fullscreen" allowfullscreen style="width: 100%; height: 100%; border: none;"></iframe>
-        </div>
-    </div>
-
-    <div class="modal-fullscreen" id="gallery-modal">
-        <button class="close-btn" id="closeGalleryBtn" data-i18n="btn_close">CERRAR [X]</button>
-        <div class="gallery-nav gallery-prev" id="galleryPrevBtn" aria-label="Imagen anterior" style="position: absolute; left: 20px; font-size: 3rem; color: white; cursor: pointer; z-index: 1001;">&#10094;</div>
-        <img src="" id="gallery-image" alt="Galería Fotográfica" oncontextmenu="return false;" loading="lazy" decoding="async" draggable="false" style="max-width: 90%; max-height: 90%; object-fit: contain; transition: opacity 0.3s ease;">
-        <div class="gallery-nav gallery-next" id="galleryNextBtn" aria-label="Siguiente imagen" style="position: absolute; right: 20px; font-size: 3rem; color: white; cursor: pointer; z-index: 1001;">&#10095;</div>
-        <div class="gallery-dots" id="gallery-dots" style="position: absolute; bottom: 20px; display: flex; gap: 10px;"></div>
-    </div>
-
     <script>
-        // Lógica encapsulada (IIFE) para no contaminar el Scope Global y prevenir Memory Leaks
         (() => {
             const translations = {
                 es: {
                     head_title: "Alejandro Vega | Product Owner & Innovación B2B", btn_profile: "Perfil Profesional",
-                    subtitle: "Product Owner | Innovación B2B",
-                    prof_title: "⚡ Orquestación & Estrategia", prof_rol: "Experiencia Clave",
-                    rol_1: "Co-Fundador & Product Owner", rol_1_co: "AUTÓMATAS",
-                    btn_all: "Todo", btn_design: "Diseño Visual", aud_alone: "Acústico / Soul Cinematográfico", 
-                    ecosystem_title: "Ecosistema Creativo Directo", impact_title: "Marcas Impactadas", impact_subtitle: "A través de Consultoría B2B e In-House", 
-                    contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la innovación tecnológica y visual de sus proyectos? Agendemos una sesión estratégica hoy mismo.", 
-                    btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", btn_close: "CERRAR [X]", 
-                    modal_req_title: "Solicitud de Acceso", modal_req_desc: "Está a punto de solicitar acceso a la Bóveda de NDA.", 
-                    label_name: "Su Nombre Completo:", label_company: "Empresa o Agencia:", label_email: "Su Correo Corporativo:", 
-                    nda_title: "ACUERDO DE CONFIDENCIALIDAD (NDA):", nda_text: "Al solicitar acceso a esta bóveda, acepta expresamente que el material es confidencial.", 
-                    btn_submit: "Enviar Solicitud y Aceptar"
+                    btn_vault_header: "Acceso Bóveda", subtitle: "Product Owner | Innovación B2B",
+                    prof_title: "⚡ Orquestación & Estrategia", prof_rol: "Experiencia Clave", prof_skills: "Competencias Clave",
+                    rol_1: "Co-Fundador & Product Owner", rol_1_co: "AUTÓMATAS", rol_1_desc: "Estrategia B2B, diseño UX/MX y construcción narrativa de ecosistemas de Inteligencia Artificial.",
+                    rol_2: "Ingeniero Multimedia & Proyectos Digitales", rol_2_co: "ESPY S.A. E.S.P.", rol_2_desc: "Consultor in-house. Conceptualización de nueva identidad corporativa, manual de marca y diseño continuo. Acompañamiento a transición Workspace.",
+                    rol_8: "Docente Especializado (Multimedia y Diseño)", rol_8_co: "AVANT GARDE", rol_8_desc: "Formación de talentos en suite Adobe y producción audiovisual.",
+                    rol_4: "Diseñador Contenidos de Formación", rol_4_co: "EFICACIA S.A.", 
+                    rol_5: "Profesional de Apoyo a la Gestión TIC", rol_5_co: "ALCALDÍA DE YUMBO", rol_5_desc: "Fortalecimiento de canales de comunicación institucional.",
+                    rol_9: "Director de Arte & Productor Visual", rol_9_co: "CONCEPTO AGENCIA DE DISEÑO", rol_9_desc: "Identidad de marca desde cero y producción audiovisual B2B.",
+                    rol_7: "Profesional de Servicios (Cultura)", rol_7_co: "ALCALDÍA DE CALI",
+                    rol_10: "Productor Audiovisual & Estratega Digital", rol_10_co: "PRO-SCIENTIA", rol_10_desc: "Comunicación política y consultoría de redes sociales.",
+                    rol_11: "Desarrollador VR & Dir. Audiovisual", rol_11_co: "U. SAN BUENAVENTURA / COL. BAUTISTA", rol_11_desc: "Prototipado inmersivo VR y dirección de cortometrajes educativos.",
+                    rol_3: "Director Creativo & Productor", rol_3_co: "JAVEGA", 
+                    skill_cat_1: "Diseño UX/MX & Multimedia", skill_cat_2: "Estrategia B2B & Gestión",
+                    cert_title: "Educación & Certificaciones", cert_1: "Ingeniería Multimedia", cert_1_org: "U. San Buenaventura (ABET)", cert_2: "PSPO I Product Owner", cert_2_org: "Scrum.org", cert_3: "Marketing Digital", cert_3_org: "Google Actívate",
+                    profile_text: 'Como <strong>Product Owner (PSPO I)</strong> e Ingeniero Multimedia, actúo como el puente estratégico entre la visión ejecutiva, la creatividad visual y la ejecución de proyectos. Lidero la conceptualización de marcas, la construcción de narrativas digitales y el diseño de ecosistemas E-learning B2B. Apoyado en herramientas de Inteligencia Artificial, estructuro y orquesto soluciones de alto impacto, garantizando una excelente experiencia de usuario y legibilidad algorítmica (UX/MX - Machine Experience), dirigiendo equipos especializados para materializar estrategias que conectan emocionalmente con los usuarios y optimizan el ROI corporativo.',
+                    stat_years: "Años Exp. B2B", stat_po: "Adopción Ágil", stat_projects: "Visión Creativa",
+                    btn_all: "Todo", btn_video: "Producción Audiovisual", btn_photo: "Fotografía", btn_design: "Diseño Visual", btn_audio: "Diseño Sonoro",
+                    vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara", vid_cat_showreel: "Dirección Creativa B2B", vid_tit_showreel: "Showreel Corporativo", vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO", vid_cat_evento: "Cobertura Institucional", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Programa Institucional Online", vid_tit_chef1: "UniChef: Cheesecake", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", cat_product: "Fotografía Comercial B2C/B2B", title_product: "Fotografía de Producto", cat_banner: "Banner Web", cat_corp: "Branding Institucional", cat_ad: "Diseño Institucional", aud_alone: "Acústico / Soul Cinematográfico", ecosystem_title: "Ecosistema Creativo Directo", impact_title: "Marcas Impactadas", impact_subtitle: "A través de Consultoría B2B e In-House", clients_title: "Empresas y Aliados", contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la innovación tecnológica y visual de sus proyectos? Agendemos una sesión estratégica hoy mismo.", btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", vault_title: "Bóveda Corporativa", vault_desc: "Mis desarrollos de diseño instruccional y E-learning para Unilever, Alquería y Derco están sujetos a NDA.", vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]", modal_req_title: "Solicitud de Acceso", modal_req_desc: "Está a punto de solicitar acceso a la Bóveda de NDA. Clientes protegidos:", label_name: "Su Nombre Completo:", label_company: "Empresa o Agencia:", label_email: "Su Correo Corporativo:", nda_title: "ACUERDO DE CONFIDENCIALIDAD (NDA):", nda_text: "Al solicitar acceso a esta bóveda, usted reconoce y acepta expresamente que el material contenido es confidencial.", btn_submit: "Enviar Solicitud y Aceptar", btn_connect: "CONECTEMOS"
                 },
                 en: {
                     head_title: "Alejandro Vega | Product Owner & B2B Innovation", btn_profile: "Professional Profile",
-                    subtitle: "Product Owner | B2B Innovation",
-                    prof_title: "⚡ Orchestration & Strategy", prof_rol: "Key Experience",
-                    rol_1: "Co-Founder & Product Owner", rol_1_co: "AUTÓMATAS",
-                    btn_all: "All", btn_design: "Visual Design", aud_alone: "Acoustic / Cinematic Soul", 
-                    ecosystem_title: "Direct Creative Ecosystem", impact_title: "Impacted Brands", impact_subtitle: "Through B2B & In-House Consulting", 
-                    contact_title: "LET'S CONNECT", contact_desc: "Ready to elevate the technological and visual innovation of your projects? Let's schedule a strategic session today.", 
-                    btn_wa: "Text me on WhatsApp", btn_mail: "Send me an email", btn_close: "CLOSE [X]", 
-                    modal_req_title: "Access Request", modal_req_desc: "You are requesting access to the NDA Protected Vault.", 
-                    label_name: "Your Full Name:", label_company: "Company or Agency:", label_email: "Your Corporate Email:", 
-                    nda_title: "NON-DISCLOSURE AGREEMENT (NDA):", nda_text: "By requesting access, you agree that the material is strictly confidential.", 
-                    btn_submit: "Submit Request"
+                    btn_vault_header: "Vault Access", subtitle: "Product Owner | B2B Innovation",
+                    prof_title: "⚡ Orchestration & Strategy", prof_rol: "Key Experience", prof_skills: "Core Competencies",
+                    rol_1: "Co-Founder & Product Owner", rol_1_co: "AUTÓMATAS", rol_1_desc: "B2B Strategy, AI agent profiling and construction of digital narratives.",
+                    rol_2: "Multimedia Engineer & Digital Projects", rol_2_co: "ESPY S.A. E.S.P.", rol_2_desc: "In-house consultant. Conceptualization of brand identity, manual and continuous digital/print design. Workspace transition support.",
+                    rol_8: "Technical Educator (Multimedia)", rol_8_co: "AVANT GARDE", rol_8_desc: "Training of new talents in Adobe suite and audiovisual production.",
+                    rol_4: "E-learning Content Designer", rol_4_co: "EFICACIA S.A.", 
+                    rol_5: "ICT Management Support Professional", rol_5_co: "YUMBO MAYOR'S OFFICE", rol_5_desc: "Strengthening of municipal administration communication channels.",
+                    rol_9: "Art Director & Visual Producer", rol_9_co: "CONCEPTO AGENCY", rol_9_desc: "Brand identity from scratch and B2B audiovisual production.",
+                    rol_7: "Services Professional (Culture)", rol_7_co: "CALI MAYOR'S OFFICE",
+                    rol_10: "Audiovisual Producer & Digital Strategist", rol_10_co: "PRO-SCIENTIA", rol_10_desc: "Political communication and social media PR consulting.",
+                    rol_11: "VR Developer & AV Director", rol_11_co: "U. SAN BUENAVENTURA / BAPTIST COLLEGE", rol_11_desc: "Immersive VR prototyping and educational short film direction.",
+                    rol_3: "Creative Director & Producer", rol_3_co: "JAVEGA", 
+                    skill_cat_1: "UX/MX Design & Multimedia", skill_cat_2: "B2B Strategy & Management",
+                    cert_title: "Education & Certifications", cert_1: "Multimedia Engineering", cert_1_org: "U. San Buenaventura (ABET)", cert_2: "PSPO I Product Owner", cert_2_org: "Scrum.org", cert_3: "Digital Marketing", cert_3_org: "Google Actívate",
+                    profile_text: 'As a <strong>Product Owner (PSPO I)</strong> and Multimedia Engineer, I act as the strategic bridge between executive vision, visual creativity, and project execution. I lead the conceptualization of brands, the construction of digital narratives, and the design of B2B E-learning ecosystems. Supported by AI tools, I structure and orchestrate high-impact solutions, guaranteeing an excellent user experience and algorithmic readability (UX/MX - Machine Experience), directing specialized teams to materialize strategies that connect emotionally with users and optimize corporate ROI.',
+                    stat_years: "Years B2B Exp.", stat_po: "Agile Adoption", stat_projects: "Creative Vision",
+                    btn_all: "All", btn_video: "Audiovisual Production", btn_photo: "Photography", btn_design: "Visual Design", btn_audio: "Sound Design",
+                    ecosystem_title: "Direct Creative Ecosystem", impact_title: "Impacted Brands", impact_subtitle: "Through B2B & In-House Consulting", clients_title: "Companies & Partners", contact_title: "LET'S CONNECT", contact_desc: "Ready to elevate the technological and visual innovation of your projects? Let's schedule a strategic session today.", btn_wa: "Text me on WhatsApp", btn_mail: "Send me an email", vault_title: "Corporate Vault", vault_desc: "My instructional design and B2B E-learning developments for Unilever, Alquería, and Derco are subject to NDA.", vault_btn: "Request Secure Access", btn_close: "CLOSE [X]", modal_req_title: "Access Request", modal_req_desc: "You are requesting access to the NDA Protected Vault.", label_name: "Your Full Name:", label_company: "Company or Agency:", label_email: "Your Corporate Email:", nda_title: "NON-DISCLOSURE AGREEMENT (NDA):", nda_text: "By requesting access, you agree that the material is strictly confidential.", btn_submit: "Submit Request", btn_connect: "LET'S CONNECT"
                 }
             };
             
             let currentLang = navigator.language.startsWith('en') ? 'en' : 'es';
             const updateLanguage = (lang) => {
                 document.documentElement.lang = lang;
-                document.title = translations[lang]['head_title'] || "Alejandro Vega";
+                document.title = translations[lang]['head_title'];
+                
+                // [MÓDULO 2] Renderizado Dinámico y Seguro de Traducciones (HTML y Texto)
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     const key = el.getAttribute('data-i18n');
-                    if (translations[lang][key]) el.textContent = translations[lang][key];
+                    if (translations[lang][key]) {
+                        // Evaluamos dinámicamente si la traducción incluye HTML (como tags <strong>) para inyectarlo sin escaparlo como texto plano.
+                        if (translations[lang][key].includes('<')) {
+                            el.innerHTML = translations[lang][key];
+                        } else {
+                            el.textContent = translations[lang][key];
+                        }
+                    }
                 });
                 document.getElementById('lang-es').classList.toggle('active', lang === 'es');
                 document.getElementById('lang-en').classList.toggle('active', lang === 'en');
@@ -520,7 +809,6 @@
                 updateLanguage(currentLang);
             });
 
-            // [MÓDULO 2] View Transitions API (Cross-fade)
             const FilterManager = (() => {
                 const grid = document.getElementById('main-grid');
                 const profileSection = document.getElementById('profile-section');
@@ -547,7 +835,6 @@
                 };
 
                 const filter = (category, btnTarget) => {
-                    // Si el navegador soporta View Transitions, lo usamos para animaciones fluidas
                     if (document.startViewTransition) document.startViewTransition(() => { applyFilterDOM(category, btnTarget); });
                     else applyFilterDOM(category, btnTarget);
                 };
@@ -557,30 +844,172 @@
                 });
             })();
 
-            // Audio API mitigando fugas de memoria
+            const VideoManager = (() => {
+                const ytModal = document.getElementById('youtube-modal');
+                const ytIframe = document.getElementById('youtube-iframe');
+                const sendCommand = (iframe, func) => { if (iframe && iframe.contentWindow && iframe.src) { iframe.contentWindow.postMessage(JSON.stringify({event: 'command', func: func, args: []}), '*'); } };
+
+                const initObserver = () => {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            const iframe = entry.target.querySelector('.media-iframe');
+                            const thumb = entry.target.querySelector('.yt-thumbnail');
+                            if (!iframe) return;
+
+                            if (entry.isIntersecting) {
+                                if (!iframe.src) { iframe.src = iframe.dataset.src; iframe.onload = () => { iframe.style.opacity = "1"; if (thumb) thumb.style.opacity = "0"; }; } 
+                                else { sendCommand(iframe, 'playVideo'); }
+                            } else { sendCommand(iframe, 'pauseVideo'); }
+                        });
+                    }, { threshold: 0.7 });
+                    document.querySelectorAll('.media-item.audiovisual').forEach(item => observer.observe(item));
+                };
+
+                const openModal = (id) => { AudioManager.pauseAll(); ytModal.classList.add('active-modal'); ytIframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`; };
+                const closeModal = () => { ytModal.classList.remove('active-modal'); ytIframe.src = ""; };
+
+                document.querySelectorAll('.media-item.audiovisual').forEach(item => item.addEventListener('click', () => openModal(item.dataset.ytId)));
+                document.getElementById('closeYtBtn').addEventListener('click', closeModal);
+                return { initObserver, closeModal };
+            })();
+
+            const GalleryManager = (() => {
+                const galleryData = {
+                    'modelos': ['https://static.wixstatic.com/media/14f4fb_963a7a6446284302a798edcf8457cffd~mv2_d_3471_3471_s_4_2.jpg', 'https://static.wixstatic.com/media/14f4fb_62c1344e52a441daaa100e3400a6cc19~mv2_d_3176_4000_s_4_2.jpg'],
+                    'producto': ['https://static.wixstatic.com/media/14f4fb_bde31a4c87be49a1882327dacb0882e0~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_09129e6b1cc648ed8f0dd806ea46ac95~mv2.jpg'],
+                    'diseno_all': [] 
+                };
+
+                const modal = document.getElementById('gallery-modal');
+                const imgEl = document.getElementById('gallery-image');
+                const dotsContainer = document.getElementById('gallery-dots');
+                let collection = []; let currentIdx = 0; let touchStartX = 0;
+
+                const preloadImage = (index) => {
+                    const nextImg = new Image();
+                    nextImg.src = collection[(index + 1) % collection.length];
+                };
+
+                const updateImage = () => {
+                    imgEl.style.opacity = '0';
+                    setTimeout(() => { 
+                        imgEl.src = collection[currentIdx]; 
+                        imgEl.style.opacity = '1'; 
+                        preloadImage(currentIdx); 
+                    }, 150);
+                    Array.from(dotsContainer.children).forEach((dot, i) => dot.classList.toggle('active', i === currentIdx));
+                };
+
+                const nextSlide = (e) => { if(e) e.stopPropagation(); currentIdx = (currentIdx + 1) % collection.length; updateImage(); };
+                const prevSlide = (e) => { if(e) e.stopPropagation(); currentIdx = (currentIdx - 1 + collection.length) % collection.length; updateImage(); };
+
+                const openModal = (id, startIndex = 0) => {
+                    AudioManager.pauseAll(); collection = galleryData[id] || []; if (!collection.length) return;
+                    currentIdx = startIndex; dotsContainer.innerHTML = '';
+                    collection.forEach((_, i) => {
+                        const dot = document.createElement('div'); dot.className = `gallery-dot ${i===currentIdx ? 'active' : ''}`;
+                        dot.addEventListener('click', (e) => { e.stopPropagation(); currentIdx = i; updateImage(); });
+                        dotsContainer.appendChild(dot);
+                    });
+                    document.querySelectorAll('.gallery-nav').forEach(n => n.style.display = collection.length > 1 ? 'flex' : 'none');
+                    updateImage(); modal.classList.add('active-modal');
+                };
+
+                const closeModal = () => { modal.classList.remove('active-modal'); setTimeout(() => { imgEl.src = ""; }, 300); };
+
+                imgEl.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, {passive: true});
+                imgEl.addEventListener('touchend', e => {
+                    const touchEndX = e.changedTouches[0].screenX;
+                    if (touchEndX < touchStartX - 50) nextSlide(); if (touchEndX > touchStartX + 50) prevSlide();
+                }, {passive: true});
+
+                document.querySelectorAll('.media-item.fotografia').forEach(item => item.addEventListener('click', () => openModal(item.dataset.gallery)));
+                
+                document.querySelectorAll('.media-item.diseno').forEach(item => {
+                    item.addEventListener('click', () => {
+                        const allDisenoImgs = Array.from(document.querySelectorAll('.media-item.diseno img')).map(img => img.src);
+                        galleryData.diseno_all = allDisenoImgs; 
+                        const idx = allDisenoImgs.findIndex(src => src.includes(item.querySelector('img').src.split('?')[0]));
+                        openModal('diseno_all', idx > -1 ? idx : 0);
+                    });
+                });
+
+                document.getElementById('galleryNextBtn').addEventListener('click', nextSlide);
+                document.getElementById('galleryPrevBtn').addEventListener('click', prevSlide);
+                document.getElementById('closeGalleryBtn').addEventListener('click', closeModal);
+
+                const hoverTimers = new Map();
+                document.querySelectorAll('.media-item.fotografia, .media-item.diseno').forEach(item => {
+                    const images = item.querySelectorAll('.hc-img');
+                    if(images.length <= 1) return;
+                    
+                    item.addEventListener('mouseenter', () => {
+                        let idx = 0;
+                        const timer = setInterval(() => { images[idx].classList.remove('active'); idx = (idx + 1) % images.length; images[idx].classList.add('active'); }, 600); 
+                        hoverTimers.set(item, timer);
+                    });
+                    item.addEventListener('mouseleave', () => {
+                        clearInterval(hoverTimers.get(item));
+                        images.forEach(img => img.classList.remove('active')); images[0].classList.add('active'); 
+                    });
+
+                    let cardStartX = 0;
+                    item.addEventListener('touchstart', e => cardStartX = e.changedTouches[0].screenX, {passive: true});
+                    item.addEventListener('touchend', e => {
+                        const diff = e.changedTouches[0].screenX - cardStartX;
+                        if (Math.abs(diff) > 40) {
+                            e.preventDefault(); e.stopPropagation(); 
+                            let activeIdx = Array.from(images).findIndex(img => img.classList.contains('active'));
+                            images[activeIdx].classList.remove('active');
+                            if (diff < 0) activeIdx = (activeIdx + 1) % images.length;
+                            else activeIdx = (activeIdx - 1 + images.length) % images.length;
+                            images[activeIdx].classList.add('active');
+                        }
+                    });
+                });
+                return { closeModal };
+            })();
+
             const AudioManager = (() => {
                 let audioCtx = null; const activeAudios = new Set(); 
                 const initContext = () => { if (!audioCtx) try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {} if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); };
                 const pauseAll = (exceptElement = null) => { activeAudios.forEach(item => { if (item.audio !== exceptElement) { item.audio.pause(); item.playBtn.innerHTML = '▶'; item.playerUi.classList.remove('playing'); item.isPlaying = false; }}); };
                 const setupAudios = () => {
                     document.querySelectorAll('.media-item.audio').forEach(item => {
-                        const src = item.dataset.audioSrc;
-                        if (!src) return; // Validación de seguridad
-                        const audio = new Audio(src); audio.crossOrigin = "anonymous";
+                        const audio = new Audio(item.dataset.audioSrc); audio.crossOrigin = "anonymous";
                         const playBtn = item.querySelector('.play-btn'); const playerUi = item.querySelector('.custom-player');
+                        const progressFill = item.querySelector('.progress-fill'); const progressWrapper = item.querySelector('.progress-wrapper');
+                        const canvas = item.querySelector('.audio-visualizer'); const ctx = canvas.getContext('2d');
+                        let analyser = null; let dataArray = null; let isApiReady = false;
                         const itemData = { audio, playBtn, playerUi, isPlaying: false }; activeAudios.add(itemData);
 
+                        const buildVisualizer = () => {
+                            if (isApiReady || !audioCtx) return; const source = audioCtx.createMediaElementSource(audio); analyser = audioCtx.createAnalyser(); analyser.fftSize = 128;
+                            source.connect(analyser); analyser.connect(audioCtx.destination); dataArray = new Uint8Array(analyser.frequencyBinCount); isApiReady = true;
+                        };
+                        const draw = () => {
+                            if (!itemData.isPlaying) return; requestAnimationFrame(draw); ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            if (isApiReady && analyser) {
+                                analyser.getByteFrequencyData(dataArray); const barWidth = (canvas.width / dataArray.length) * 1.5; let x = 0;
+                                for (let i = 0; i < dataArray.length; i++) {
+                                    const barHeight = (dataArray[i] / 255) * (canvas.height * 0.8); ctx.fillStyle = `rgba(45, 212, 191, ${dataArray[i]/255})`;
+                                    ctx.beginPath(); ctx.roundRect(x, canvas.height - barHeight, barWidth, barHeight, [4, 4, 0, 0]); ctx.fill(); x += barWidth + 2;
+                                }
+                            }
+                        };
                         playBtn.addEventListener('click', (e) => {
                             e.stopPropagation(); initContext();
-                            if (audio.paused) { pauseAll(audio); audio.play(); playBtn.innerHTML = '❚❚'; playerUi.classList.add('playing'); itemData.isPlaying = true; }
-                            else { audio.pause(); playBtn.innerHTML = '▶'; playerUi.classList.remove('playing'); itemData.isPlaying = false; }
+                            if (audio.paused) { pauseAll(audio); buildVisualizer(); audio.play(); playBtn.innerHTML = '❚❚'; playerUi.classList.add('playing'); itemData.isPlaying = true; canvas.width = item.offsetWidth; canvas.height = item.offsetHeight; draw();
+                            } else { audio.pause(); playBtn.innerHTML = '▶'; playerUi.classList.remove('playing'); itemData.isPlaying = false; }
                         });
+                        audio.addEventListener('timeupdate', () => { const percent = (audio.currentTime / audio.duration) * 100; if (progressFill) progressFill.style.width = `${percent || 0}%`; });
+                        progressWrapper.addEventListener('click', (e) => { e.stopPropagation(); const rect = progressWrapper.getBoundingClientRect(); audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration; });
+                        audio.addEventListener('ended', () => { playBtn.innerHTML = '▶'; playerUi.classList.remove('playing'); itemData.isPlaying = false; progressFill.style.width = '0%'; setTimeout(() => { if(![...activeAudios].some(a => a.isPlaying)) audioCtx.suspend(); }, 1000); });
                     });
                 };
                 return { setupAudios, pauseAll };
             })();
 
-            // [MÓDULO 2] Prevención de Layout Thrashing mediante requestAnimationFrame
             const MarqueePhysics = (() => {
                 const track = document.getElementById('marqueeTrack');
                 const container = document.getElementById('marqueeContainer');
@@ -588,7 +1017,6 @@
                 let dragDistance = 0;
 
                 const loop = () => {
-                    // El cálculo matemático y mutación CSS están limitados a RAF
                     if (!isDragging) { velocityX = velocityX * 0.95 + baseSpeed * 0.05; currentX += velocityX; }
                     if (currentX < -2000) currentX += 2000; if (currentX > 0) currentX -= 2000;
                     track.style.transform = `translate3d(${currentX}px, 0, 0)`;
@@ -604,14 +1032,19 @@
                 const move = (e) => {
                     if (!isDragging) return; e.preventDefault();
                     const x = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-                    const diff = x - lastDragX; dragDistance += Math.abs(diff);
+                    const diff = x - lastDragX;
+                    dragDistance += Math.abs(diff);
                     currentX += diff; velocityX = diff; lastDragX = x;
                 };
 
-                const up = (e) => { isDragging = false; container.style.cursor = 'grab'; };
+                const up = (e) => {
+                    isDragging = false; container.style.cursor = 'grab';
+                    if (dragDistance < 5 && e.target.classList.contains('vault-trigger')) {
+                        VaultManager.openModal();
+                    }
+                };
 
                 const init = () => {
-                    if(!container || !track) return;
                     container.addEventListener('mousedown', down); container.addEventListener('touchstart', down, {passive: false});
                     window.addEventListener('mousemove', move, {passive: false}); window.addEventListener('touchmove', move, {passive: false});
                     window.addEventListener('mouseup', up); window.addEventListener('touchend', up);
@@ -620,14 +1053,20 @@
                 return { init };
             })();
 
-            // Validación de Formulario y Sanitización XSS
             const VaultManager = (() => {
                 const modal = document.getElementById('vault-modal'); 
                 const form = document.getElementById('vault-form'); 
                 const errorDiv = document.getElementById('vault-error');
                 
+                const freeEmailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'aol.com', 'live.com'];
+
                 const openModal = () => modal.classList.add('active-modal');
-                const closeModal = () => { modal.classList.remove('active-modal'); form.reset(); errorDiv.style.display = 'none'; };
+                const closeModal = () => { 
+                    modal.classList.remove('active-modal'); 
+                    form.reset(); 
+                    errorDiv.style.display = 'none'; 
+                    form.classList.remove('shake-error');
+                };
 
                 const sanitizeHTML = (str) => {
                     return str.replace(/[&<>'"]/g, 
@@ -635,35 +1074,75 @@
                     );
                 };
 
+                const validateForm = (name, company, email) => {
+                    const errors = [];
+                    if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]{3,50}$/.test(name)) errors.push("❌ <strong>Nombre inválido:</strong> Use solo letras (3-50 caracteres).");
+                    if (!/^[A-Za-z0-9áéíóúÁÉÍÓÚñÑ\s\-\&]{2,50}$/.test(company)) errors.push("❌ <strong>Empresa inválida:</strong> Evite caracteres especiales extraños.");
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push("❌ <strong>Correo inválido:</strong> Verifique el formato.");
+                    else {
+                        const domain = email.split('@')[1].toLowerCase();
+                        if (freeEmailDomains.includes(domain)) errors.push("❌ <strong>Acceso B2B:</strong> Se requiere un correo corporativo, no se admiten cuentas gratuitas.");
+                    }
+                    return errors;
+                };
+
                 form.addEventListener('submit', (e) => {
                     e.preventDefault(); 
                     errorDiv.style.display = 'none';
+                    form.classList.remove('shake-error');
+
                     let name = sanitizeHTML(document.getElementById('req-name').value.trim()); 
                     let company = sanitizeHTML(document.getElementById('req-company').value.trim()); 
                     let email = sanitizeHTML(document.getElementById('req-email').value.trim());
                     
-                    if(name.length < 3 || company.length < 2 || !email.includes('@')) {
-                        errorDiv.innerHTML = "❌ Verifique los campos ingresados."; errorDiv.style.display = "block"; return;
+                    const validationErrors = validateForm(name, company, email);
+
+                    if (validationErrors.length > 0) {
+                        errorDiv.innerHTML = validationErrors.join('<br><br>');
+                        errorDiv.style.display = "block";
+                        setTimeout(() => form.classList.add('shake-error'), 10);
+                        return;
                     }
                     
-                    const bodyText = `Solicito acceso a Bóveda.\n\nNombre: ${name}\nEmpresa: ${company}\nEmail: ${email}`;
-                    window.location.href = `mailto:Alejandro.960822@gmail.com?subject=Acceso NDA - ${company}&body=${encodeURIComponent(bodyText)}`;
-                    setTimeout(closeModal, 1000);
+                    const btnSubmit = form.querySelector('button[type="submit"]');
+                    const btnOriginalText = btnSubmit.innerHTML;
+                    btnSubmit.disabled = true;
+                    btnSubmit.innerHTML = "Procesando...";
+
+                    const bodyText = `Estimado Alejandro,\n\nMi nombre es ${name}, representando a ${company}. Solicito acceso a su Bóveda Corporativa.\n\nDatos de contacto: ${email}\n\nAcepto el NDA.`;
+                    window.location.href = `mailto:Alejandro.960822@gmail.com?subject=${encodeURIComponent(`Acceso Bóveda Corporativa - ${company}`)}&body=${encodeURIComponent(bodyText)}`;
+                    
+                    setTimeout(() => {
+                        closeModal();
+                        btnSubmit.disabled = false;
+                        btnSubmit.innerHTML = btnOriginalText;
+                    }, 1000);
                 });
                 
+                document.getElementById('openVaultBtnHeader').addEventListener('click', openModal); 
+                document.getElementById('openVaultBtnFooter').addEventListener('click', openModal); 
                 document.getElementById('closeVaultBtn').addEventListener('click', closeModal);
+                
                 return { closeModal, openModal };
             })();
 
-            // Inicialización general
+            document.addEventListener('keydown', (e) => { 
+                if (e.key === "Escape") { VideoManager.closeModal(); GalleryManager.closeModal(); VaultManager.closeModal(); }
+                if (document.getElementById('gallery-modal').classList.contains('active-modal')) { if (e.key === "ArrowRight") document.getElementById('galleryNextBtn').click(); if (e.key === "ArrowLeft") document.getElementById('galleryPrevBtn').click(); }
+            });
+            
+            document.addEventListener('contextmenu', e => { if(e.target.tagName === 'IMG') e.preventDefault(); });
+
             document.addEventListener('DOMContentLoaded', () => {
                 updateLanguage(currentLang); MarqueePhysics.init();
                 
-                // Fallbacks de imágenes seguras
                 document.querySelectorAll('.fallback-img').forEach(img => {
                     img.addEventListener('error', function() {
                         if (!this.dataset.retried) { 
-                            this.dataset.retried = "true"; this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="%230f172a"/></svg>';
+                            this.dataset.retried = "true"; 
+                            const exts = ['.jpg', '.JPG', '.jpeg', '.png', '.PNG']; 
+                            let curExt = exts.find(e => this.src.includes(e)); 
+                            if(curExt) this.src = this.src.replace(curExt, exts[(exts.indexOf(curExt) + 1) % exts.length]); 
                         }
                     }, { passive: true });
                 });
@@ -679,7 +1158,7 @@
                     document.body.classList.remove('is-loading'); document.body.classList.add('is-loaded'); document.body.style.overflow = ''; 
                     const visualObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); }); }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
                     document.querySelectorAll('.reveal-element').forEach(el => visualObserver.observe(el));
-                    AudioManager.setupAudios();
+                    VideoManager.initObserver(); AudioManager.setupAudios();
                 }, 1000); 
             });
 

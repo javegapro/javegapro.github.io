@@ -130,7 +130,7 @@
 
         @media (max-width: 767px) { .filter-btn, .vault-filter-btn { flex: 0 0 auto; scroll-snap-align: start; white-space: nowrap; } }
 
-        /* ---------- CSS PERFIL BENTO BOX ---------- */
+        /* PERFIL CSS (BENTO BOX + ANIMACIONES CSS) */
         #profile-section { display: none; padding: 0 5% 100px; animation: fadeIn 0.5s ease; position: relative; z-index: 10; view-transition-name: profile-section; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -367,9 +367,11 @@
         <button class="vault-filter-btn" id="openVaultBtnHeader" aria-label="Abrir bóveda"><span class="icon">🔒</span> <span data-i18n="btn_vault_header">Acceso Bóveda</span></button>
     </div>
 
+    <!-- SECCION PERFIL COMPLETA -->
     <div id="profile-section">
         <div class="bento-grid">
             
+            <!-- Bio y Posicionamiento -->
             <div class="bento-card bento-bio bento-content">
                 <h3 data-i18n="prof_title"><span style="font-size: 1.5rem; margin-right: 10px;">⚡</span> Orquestación & Estrategia</h3>
                 <p data-i18n="profile_text">Como <strong>Product Owner Técnico (PSPO I)</strong> e Ingeniero Multimedia, actúo como el puente definitivo entre la visión ejecutiva, la experiencia del usuario (MX/UX) y la arquitectura de software. Especializado en el sector B2B, lidero las fases de <em>Discovery</em> y estructuración de requerimientos para desarrollos de alto impacto. Diseño el ecosistema de marca y la narrativa funcional, entregando directrices milimétricas (guiones técnicos de animación y sincronización de voz, lógica UX) para que los equipos de ingeniería backend conecten las APIs y desplieguen soluciones que optimizan el ROI corporativo.</p>
@@ -381,18 +383,19 @@
                 <div class="pulse-ring"></div><div class="pulse-ring"></div><div class="pulse-ring"></div>
             </div>
 
+            <!-- Línea de Tiempo Completa (10 Items Actualizados) -->
             <div class="bento-card bento-exp bento-content">
                 <h3 data-i18n="prof_rol">Experiencia Clave</h3>
                 <div class="cv-timeline-wrapper">
                     <div class="cv-timeline">
                         <div class="cv-item">
-                            <span class="cv-year">2023 - PRESENTE</span>
+                            <span class="cv-year">2025 - PRESENTE</span>
                             <span class="cv-role" data-i18n="rol_1">Co-Fundador & Product Owner Técnico</span>
                             <h4 data-i18n="rol_1_co">AUTÓMATAS</h4>
                             <p data-i18n="rol_1_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Dirección de ecosistemas de IA, perfilado psicológico y estrategia B2B.</p>
                         </div>
                         <div class="cv-item">
-                            <span class="cv-year">MAY 2023 - DIC 2025</span>
+                            <span class="cv-year">MAY 2023 - PRESENTE</span>
                             <span class="cv-role" data-i18n="rol_2">Ingeniero Multimedia & Proyectos Digitales</span>
                             <h4 data-i18n="rol_2_co">ESPY S.A. E.S.P.</h4>
                             <p data-i18n="rol_2_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Desarrollo digital corporativo y modernización institucional.</p>
@@ -445,6 +448,7 @@
                 </div>
             </div>
 
+            <!-- Skills Dinámicos Limpios (Sin Barras) -->
             <div class="bento-card bento-skills bento-content">
                 <h3 data-i18n="prof_skills">Competencias Clave</h3>
                 <div class="skill-category">
@@ -456,7 +460,7 @@
                         <span class="tech-pill">Value-Based Pricing</span>
                     </div>
                 </div>
-                <div class="skill-category" style="margin-top: 15px;">
+                <div class="skill-category" style="margin-top: 25px;">
                     <div class="skill-category-title" data-i18n="skill_cat_1">Diseño MX/UX & Multimedia</div>
                     <div class="tag-cloud">
                         <span class="tech-pill">Arquitectura de Marca</span>
@@ -467,6 +471,7 @@
                 </div>
             </div>
 
+            <!-- Credenciales -->
             <div class="bento-card bento-certs bento-content">
                 <h3 data-i18n="cert_title" style="margin-bottom: 20px;">Educación & Certificaciones</h3>
                 <div class="cert-list">
@@ -493,6 +498,7 @@
         </div>
     </div>
 
+    <!-- MEDIOS PORTAFOLIO -->
     <main class="portfolio-grid reveal-element" id="main-grid">
         
         <div class="media-item audiovisual" data-yt-id="0ivRf3-IvGs">

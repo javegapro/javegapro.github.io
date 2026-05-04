@@ -326,10 +326,11 @@
         .gallery-dot { width: 10px; height: 10px; flex-shrink: 0; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: 0.3s; }
         .gallery-dot.active { background: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan); transform: scale(1.2);}
 
-        /* [MODIFICADO] Modal del NDA de la Bóveda con marco jurídico legal colombiano */
+        /* ========================================================================= */
+        /* [SOLUCIÓN NÚCLEO] ARQUITECTURA DE CHECKBOX Y FORMULARIO NDA               */
+        /* ========================================================================= */
         .form-modal-box { background: rgba(2, 6, 23, 0.85); padding: clamp(25px, 4vw, 40px); border-radius: 16px; max-width: 800px; width: 95%; border: 1px solid rgba(45, 212, 191, 0.3); text-align: left; position: relative; max-height: 90dvh; display: flex; flex-direction: column; overflow: hidden; backdrop-filter: blur(24px) saturate(200%); box-shadow: 0 30px 60px rgba(0,0,0,0.9);}
         
-        /* Contenedor escroleable para el texto legal (Fricción Positiva UX) */
         .nda-document-scroll { overflow-y: auto; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 20px; margin-bottom: 25px; flex-shrink: 1; max-height: 30dvh; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent;}
         .nda-document-scroll::-webkit-scrollbar { width: 6px; }
         .nda-document-scroll::-webkit-scrollbar-thumb { background-color: var(--electric-cyan); border-radius: 10px; }
@@ -337,7 +338,6 @@
         .nda-document-scroll h4 { color: var(--text-main); font-size: 0.95rem; margin-bottom: 8px; text-transform: uppercase; font-weight: 700; margin-top: 20px;}
         .nda-document-scroll h4:first-child { margin-top: 0; }
 
-        /* Contenedor del formulario fijo abajo */
         .nda-form-wrapper { flex-shrink: 0; overflow-y: auto; padding-right: 5px; scrollbar-width: none;}
         .nda-form-wrapper::-webkit-scrollbar { display: none; }
         
@@ -348,16 +348,21 @@
         .form-modal-box input[type="text"], .form-modal-box input[type="email"], .form-modal-box input[type="number"] { width: 100%; padding: 12px; background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.95rem; transition: border 0.3s; }
         .form-modal-box input:focus { outline: none; border-color: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan-glow);}
         
-        /* Custom Checkbox (Aceptación explícita) */
-        .checkbox-container { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 25px; cursor: pointer; user-select: none; }
-        .checkbox-container input { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; }
-        .checkmark { position: relative; top: 2px; height: 20px; width: 20px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; transition: all 0.2s; flex-shrink: 0; }
-        .checkbox-container:hover input ~ .checkmark { background-color: rgba(255,255,255,0.1); }
-        .checkbox-container input:checked ~ .checkmark { background-color: var(--electric-cyan); border-color: var(--electric-cyan); }
-        .checkmark:after { content: ""; position: absolute; display: none; left: 6px; top: 2px; width: 5px; height: 10px; border: solid var(--dark-bg); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+        /* Aseguramos que el custom checkbox tenga geometría estricta mediante Flexbox */
+        .checkbox-container { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px; cursor: pointer; user-select: none; position: relative; }
+        .checkbox-container input { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; z-index: -1; }
+        
+        /* Al ser display:flex y flex-shrink:0, el navegador respeta el 24x24px sin importar el viewport */
+        .checkmark { position: relative; display: flex; justify-content: center; align-items: center; width: 24px; height: 24px; min-width: 24px; min-height: 24px; background-color: rgba(0, 0, 0, 0.4); border: 2px solid var(--text-muted); border-radius: 6px; transition: all 0.3s var(--ease-out-expo); flex-shrink: 0; margin-top: 2px; }
+        
+        .checkbox-container:hover .checkmark { border-color: var(--electric-cyan); background-color: rgba(45, 212, 191, 0.1); box-shadow: 0 0 10px var(--electric-cyan-glow); }
+        .checkbox-container input:checked ~ .checkmark { background-color: var(--electric-cyan); border-color: var(--electric-cyan); box-shadow: 0 0 15px var(--electric-cyan-glow); }
+        
+        .checkmark:after { content: ""; position: absolute; display: none; width: 6px; height: 12px; border: solid var(--dark-bg); border-width: 0 3px 3px 0; transform: rotate(45deg); margin-top: -2px;}
         .checkbox-container input:checked ~ .checkmark:after { display: block; }
-        .checkbox-text { color: var(--text-main); font-size: 0.85rem; line-height: 1.4; font-weight: 600;}
-        .checkbox-text span { color: var(--danger-red); }
+        
+        .checkbox-text { color: var(--text-main); font-size: 0.9rem; line-height: 1.5; font-weight: 400;}
+        .checkbox-text span { color: var(--electric-cyan); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
 
         .error-message { color: var(--danger-red); font-size: 0.85rem; margin-bottom: 15px; display: none; font-weight: 600; padding: 10px; background: rgba(239, 68, 68, 0.1); border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.3); line-height: 1.4;}
         
@@ -697,19 +702,16 @@
         <p data-i18n="contact_desc">¿Listo para elevar la innovación tecnológica y visual de sus proyectos? Agendemos una sesión estratégica hoy mismo.</p>
         
         <div class="contact-actions">
-            <!-- Botón WhatsApp -->
             <a href="https://wa.me/573001404327?text=Hola%20Alejandro,%20estoy%20viendo%20tu%20perfil%20y%20deseo%20agendar%20una%20sesi%C3%B3n%20estrat%C3%A9gica%20para%20mi%20empresa." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
                 <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                 <span data-i18n="btn_wa">Escríbeme por WhatsApp</span>
             </a>
             
-            <!-- Botón Correo -->
             <a href="mailto:Alejandro.960822@gmail.com" class="btn-primary">
                 <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                 <span data-i18n="btn_mail">Escríbeme un correo</span>
             </a>
             
-            <!-- NUEVO BOTÓN CV: Integrado en el clúster de contacto -->
             <a href="ALEJANDRO VEGA HV 2026.pdf" download="ALEJANDRO VEGA HV 2026.pdf" class="btn-secondary" aria-label="Descargar hoja de vida en PDF">
                 <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                 <span data-i18n="btn_download_cv">DESCARGAR HOJA DE VIDA</span>
@@ -754,7 +756,7 @@
         <div class="gallery-dots" id="gallery-dots"></div>
     </div>
 
-    <!-- [MODIFICADO] FORMULARIO NDA BÓVEDA -->
+    <!-- FORMULARIO NDA BÓVEDA -->
     <div class="modal-fullscreen" id="vault-modal">
         <div class="form-modal-box">
             <button class="close-btn" id="closeVaultBtn" style="position: absolute; top: 15px; right: 15px; border: none; background: transparent; box-shadow: none; color: var(--text-muted);" aria-label="Cerrar modal">[X]</button>
@@ -763,14 +765,12 @@
             
             <div id="vault-error" class="error-message"></div>
 
-            <!-- Contenedor del documento legal escroleable -->
             <div class="nda-document-scroll">
                 <div id="nda-text-content">
                     <!-- Se inyecta dinámicamente desde el JS para soportar idiomas -->
                 </div>
             </div>
 
-            <!-- Formulario de firma inferior -->
             <div class="nda-form-wrapper">
                 <form id="vault-form" novalidate>
                     <div class="form-row">
@@ -795,7 +795,6 @@
                         </div>
                     </div>
                     
-                    <!-- Checkbox personalizado de aceptación legal explícita -->
                     <label class="checkbox-container">
                         <input type="checkbox" id="req-agree" required>
                         <span class="checkmark"></span>
@@ -810,7 +809,6 @@
 
     <script>
         (() => {
-            // [MODIFICADO] DICCIONARIO: Integración estricta de las traducciones del NDA (Inspirado en el marco legal Colombiano 2026).
             const translations = {
                 es: {
                     head_title: "Alejandro Vega | Product Owner & Innovación B2B", btn_profile: "Perfil Profesional",
@@ -878,7 +876,6 @@
                     }
                 });
                 
-                // Actualización explícita del bloque de texto del NDA basado en el idioma
                 const ndaContainer = document.getElementById('nda-text-content');
                 if(ndaContainer) ndaContainer.innerHTML = translations[lang]['nda_full_text'];
 
@@ -891,7 +888,6 @@
                 updateLanguage(currentLang);
             });
 
-            // Lógica de Grid y Filtrado View Transitions
             const FilterManager = (() => {
                 const grid = document.getElementById('main-grid');
                 const profileSection = document.getElementById('profile-section');
@@ -1140,7 +1136,7 @@
                 const modal = document.getElementById('vault-modal'); 
                 const form = document.getElementById('vault-form'); 
                 const errorDiv = document.getElementById('vault-error');
-                const checkbox = document.getElementById('req-agree'); // Enlace al checkbox
+                const checkbox = document.getElementById('req-agree');
                 
                 const freeEmailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'aol.com', 'live.com'];
 
@@ -1158,7 +1154,6 @@
                     );
                 };
 
-                // [MODIFICADO] Lógica de validación estricta (Incluye Documento de Identidad y Checkbox vinculante)
                 const validateForm = (name, docId, company, email, isAgreed) => {
                     const errors = [];
                     if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]{3,50}$/.test(name)) errors.push("❌ <strong>Firma inválida:</strong> Ingrese su nombre real completo.");
@@ -1199,8 +1194,7 @@
                     btnSubmit.disabled = true;
                     btnSubmit.innerHTML = "Firmando digitalmente...";
 
-                    // Compilación del cuerpo del mensaje incluyendo la declaración legal y la "Firma" como Log probatorio
-                    const bodyText = `FIRMA DIGITAL DE COMPROMISO NDA\n\nYo, ${name}, identificado con el documento/NIT ${docId}, actuando en nombre propio o como representante de ${company} (Contacto corporativo: ${email}), DECLARO formalmente bajo la gravedad de juramento que HE LEÍDO Y ACEPTO IRREVOCABLEMENTE los términos de confidencialidad y la cláusula penal (USD $50.000) expuestos en la bóveda de Jhon Alejandro Vega Ramírez respecto al material protegido de terceros.\n\nSolicito formalmente la clave de acceso a la Bóveda Privada.`;
+                    const bodyText = `FIRMA DIGITAL DE COMPROMISO NDA\n\nYo, ${name}, identificado con el documento/NIT ${docId}, actuando en nombre propio o como representante de ${company} (Contacto corporativo: ${email}), DECLARO formalmente bajo la gravedad de juramento que HE LEÍDO Y ACEPTO IRREVOCABLEMENTE los términos de confidencialidad, la ley de secretos empresariales (Ley 256 de 1996) y la cláusula penal (USD $50.000) expuestos en la bóveda de Jhon Alejandro Vega Ramírez respecto al material protegido de terceros.\n\nSolicito formalmente la clave de acceso a la Bóveda Privada.`;
                     
                     window.location.href = `mailto:Alejandro.960822@gmail.com?subject=${encodeURIComponent(`Firma NDA y Acceso Bóveda - ${company}`)}&body=${encodeURIComponent(bodyText)}`;
                     

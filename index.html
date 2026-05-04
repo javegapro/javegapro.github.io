@@ -94,6 +94,43 @@
         /* API nativa de View Transitions: Aceleración por hardware entre cambios de vista o filtros */
         ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.6s; animation-timing-function: var(--ease-out-expo); }
 
+        /* ==================== SISTEMA DE CURSOR AVANZADO (SOLO DESKTOP) ==================== */
+        /* Se inyecta condicionalmente solo para pantallas que operan con un mouse físico de precisión */
+        @media (pointer: fine) {
+            /* Ocultamos el cursor nativo brutalmente en elementos interactivos para no romper la inmersión */
+            body, a, button, .media-item, .filter-btn, .client-logo, .gallery-nav { cursor: none !important; }
+            
+            /* Punto principal: Responde inmediatamente al movimiento 1:1 */
+            .custom-cursor { 
+                position: fixed; top: 0; left: 0; width: 6px; height: 6px; 
+                background: var(--electric-cyan); border-radius: 50%; 
+                pointer-events: none; z-index: 99999999; 
+                transform: translate(-50%, -50%); 
+                transition: width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo), background 0.3s; 
+                will-change: transform; mix-blend-mode: screen; 
+            }
+            
+            /* Anillo seguidor: Utiliza LERP en JS para perseguir al punto principal creando inercia */
+            .cursor-follower { 
+                position: fixed; top: 0; left: 0; width: 40px; height: 40px; 
+                border: 1px solid rgba(45, 212, 191, 0.4); border-radius: 50%; 
+                pointer-events: none; z-index: 99999998; 
+                transform: translate(-50%, -50%); 
+                transition: width 0.4s var(--ease-out-expo), height 0.4s var(--ease-out-expo), border-color 0.4s, background 0.4s; 
+                will-change: transform; 
+            }
+            
+            /* Estados Hover: El punto desaparece y el anillo absorbe el elemento */
+            .custom-cursor.hover { width: 0; height: 0; opacity: 0; }
+            .cursor-follower.hover { 
+                width: 70px; height: 70px; 
+                background: rgba(45, 212, 191, 0.08); 
+                border-color: var(--electric-cyan); 
+                backdrop-filter: blur(2px); /* Pequeño cristalizado al hacer hover */
+                box-shadow: 0 0 20px rgba(45, 212, 191, 0.2);
+            }
+        }
+
         /* ==================== UI PRELOADER ==================== */
         /* Paneles de carga: Utilizan 'will-change' para advertir al motor de renderizado sobre animaciones inminentes */
         .splash-panel { position: fixed; left: 0; width: 100%; height: 50dvh; background-color: var(--dark-bg); z-index: 9998; transition: transform 0.8s var(--ease-out-expo); will-change: transform; }
@@ -138,7 +175,8 @@
         .lang-option { opacity: 0.4; font-size: 1.2rem; transition: 0.3s; filter: grayscale(100%); }
         .lang-option.active { opacity: 1; filter: grayscale(0%); transform: scale(1.1); }
 
-        .floating-connect { position: fixed; bottom: max(20px, var(--safe-bottom)); right: max(20px, var(--safe-right)); border-radius: 50px; padding: 12px clamp(15px, 3vw, 25px); background: linear-gradient(135deg, var(--electric-cyan), #14b8a6); color: var(--dark-bg); display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 10px 25px var(--electric-cyan-glow); transition: all 0.3s ease; z-index: 900; text-decoration: none;}
+        /* Conectemos magnético. Se aplicará lógica de offset JS */
+        .floating-connect { position: fixed; bottom: max(20px, var(--safe-bottom)); right: max(20px, var(--safe-right)); border-radius: 50px; padding: 12px clamp(15px, 3vw, 25px); background: linear-gradient(135deg, var(--electric-cyan), #14b8a6); color: var(--dark-bg); display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 10px 25px var(--electric-cyan-glow); transition: transform 0.3s ease, box-shadow 0.3s ease; z-index: 900; text-decoration: none;}
         .floating-connect:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.6); }
         .floating-connect .text { font-weight: 900; text-transform: uppercase; letter-spacing: 1px;}
 
@@ -166,7 +204,7 @@
 
         @media (max-width: 767px) { .filter-btn, .vault-filter-btn { flex: 0 0 auto; scroll-snap-align: start; white-space: nowrap; } }
 
-        /* ==================== SECCIÓN DE PERFIL BENTO (AUMENTADA Y AUDITADA) ==================== */
+        /* ==================== SECCIÓN DE PERFIL BENTO ==================== */
         #profile-section { display: none; padding: 0 5% 100px; animation: fadeIn 0.5s ease; position: relative; z-index: 10; view-transition-name: profile-section; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -248,9 +286,8 @@
         .cv-item span.cv-role { color: var(--electric-cyan); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;}
         .cv-item h4 { color: var(--text-main); font-size: 1.15rem; margin-bottom: 0; font-weight: 700;}
 
-        /* Habilidades (Competencias): Refactorizado sin encabezados divisibles para mayor limpieza profesional */
+        /* Habilidades (Competencias) */
         .skill-ecosystem { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: flex-start; }
-        /* Implementación de tags orgánicos y micro-animaciones continuas */
         .tech-pill { 
             background: rgba(255,255,255,0.03); 
             color: var(--text-main); 
@@ -262,11 +299,9 @@
             font-weight: 600; 
             backdrop-filter: blur(5px);
             cursor: default;
-            /* Se añade un brillo sutil interno para volumen */
             box-shadow: inset 0 0 10px rgba(255,255,255,0.01);
             animation: floatPill 6s ease-in-out infinite alternate;
         }
-        /* Desincronización del floating para un efecto orgánico */
         .tech-pill:nth-child(even) { animation-delay: 1.5s; animation-duration: 7s; }
         .tech-pill:nth-child(3n) { animation-delay: 3s; animation-duration: 5s; }
         @keyframes floatPill { 0% { transform: translateY(0); } 100% { transform: translateY(-4px); } }
@@ -275,7 +310,6 @@
             background: rgba(45, 212, 191, 0.15); 
             border-color: var(--electric-cyan); 
             color: var(--electric-cyan); 
-            /* Se detiene el float al interactuar y se agranda */
             transform: translateY(-5px) scale(1.05) !important; 
             box-shadow: 0 8px 20px rgba(45,212,191,0.3), inset 0 0 15px rgba(45,212,191,0.2);
             z-index: 5;
@@ -353,7 +387,7 @@
         .progress-fill { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background-color: var(--electric-cyan); border-radius: 10px; box-shadow: 0 0 10px var(--electric-cyan); pointer-events: none; transition: width 0.1s linear;}
 
         /* ==================== ECOSISTEMA B2B Y CLIENTES ==================== */
-        .ecosystem-section { padding: 80px 5%; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); background-color: var(--card-bg); }
+        .ecosystem-section { padding: 80px 5%; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); background-color: var(--card-bg); position: relative;}
         .ecosystem-section h3 { font-size: 2rem; color: var(--text-main); margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;}
         .brand-btn-clean { display: inline-flex; align-items: center; justify-content: center; background: transparent; border: none; padding: 15px; transition: transform 0.3s ease; cursor: pointer; }
         .brand-btn-clean:hover { transform: translateY(-5px); }
@@ -364,26 +398,30 @@
         .clients-section h3 { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 50px; text-transform: uppercase; letter-spacing: 4px; font-weight: 600;}
         .marquee-container { width: 100%; overflow: hidden; white-space: nowrap; position: relative; padding: 40px 0; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); cursor: grab; }
         .marquee-container:active { cursor: grabbing; }
+        /* Animación fluida asistida por CSS hardware pero orquestada por JS */
         .marquee-track { display: inline-flex; align-items: center; gap: clamp(40px, 5vw, 80px); will-change: transform; }
-        .client-logo { height: clamp(40px, 4vw, 60px); width: auto; object-fit: contain; filter: brightness(0) invert(1) opacity(0.6); transition: filter 0.3s ease; cursor: pointer; }
-        .client-logo.hover-glow, .client-logo:hover { filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 15px var(--electric-cyan)); }
-        .client-logo-unilever { transform: scale(1.6); margin: 0 15px; } .client-logo-comfandi { transform: scale(1.3); }
+        .client-logo { height: clamp(40px, 4vw, 60px); width: auto; object-fit: contain; filter: brightness(0) invert(1) opacity(0.6); transition: filter 0.3s ease, transform 0.3s ease; cursor: pointer; }
+        .client-logo.hover-glow, .client-logo:hover { filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 15px var(--electric-cyan)); transform: scale(1.1);}
+        .client-logo-unilever { transform: scale(1.6); margin: 0 15px; } .client-logo-unilever:hover { transform: scale(1.75); }
+        .client-logo-comfandi { transform: scale(1.3); } .client-logo-comfandi:hover { transform: scale(1.45); }
 
         /* ==================== CONTACTO Y REDES SOCIALES ==================== */
         .contact-section { padding: 80px 5% 100px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); background: var(--card-bg); }
         .contact-section h2 { font-size: clamp(1.8rem, 8vw, 4rem); margin-bottom: 15px; text-transform: uppercase; letter-spacing: clamp(3px, 1.5vw, 12px); margin-right: calc(-1 * clamp(3px, 1.5vw, 12px)); }
         .contact-section p { color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.1rem;}
         .contact-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 50px;}
-        .btn-primary, .btn-secondary, .btn-whatsapp { padding: 16px 35px; font-weight: 700; border-radius: 8px; transition: all 0.3s; font-family: 'Inter', sans-serif; font-size: 1rem; text-decoration: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        /* Estilos base de botones con transiciones preparadas para la inyección de magnétismo JS */
+        .btn-primary, .btn-secondary, .btn-whatsapp { padding: 16px 35px; font-weight: 700; border-radius: 8px; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s, background 0.3s, border-color 0.3s; font-family: 'Inter', sans-serif; font-size: 1rem; text-decoration: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; will-change: transform;}
         .btn-primary { background-color: var(--electric-cyan); color: var(--dark-bg); }
-        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px var(--electric-cyan-glow); }
+        .btn-primary:hover { box-shadow: 0 15px 30px var(--electric-cyan-glow); }
         .btn-secondary { background-color: transparent; color: var(--text-main); border: 2px solid rgba(255,255,255,0.2); }
-        .btn-secondary:hover { border-color: var(--electric-cyan); color: var(--electric-cyan); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+        .btn-secondary:hover { border-color: var(--electric-cyan); color: var(--electric-cyan); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
         .btn-whatsapp { background-color: var(--whatsapp-green); color: var(--dark-bg); }
-        .btn-whatsapp:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4); }
+        .btn-whatsapp:hover { box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4); }
+        
         .social-links { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;}
-        .social-links a { color: var(--text-muted); text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s; display: flex; align-items: center; justify-content: center; }
-        .social-links a:hover { color: var(--electric-cyan); }
+        .social-links a { color: var(--text-muted); text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s, transform 0.3s; display: flex; align-items: center; justify-content: center; }
+        .social-links a:hover { color: var(--electric-cyan); transform: translateY(-5px); }
         .social-links a svg { fill: transparent; stroke: currentColor; transition: all 0.3s ease; }
         .social-links a:hover svg { fill: currentColor; stroke: transparent; }
         .social-links a.yt-link:hover svg polygon { fill: var(--dark-bg); }
@@ -395,8 +433,8 @@
         .vault-icon-glow { font-size: 4rem; margin-bottom: 20px; display: inline-block; filter: drop-shadow(0 0 15px var(--electric-cyan)); animation: float 3s ease-in-out infinite;}
         .vault-container h3 { font-size: clamp(2rem, 3vw, 2.5rem); margin-bottom: 20px; color: var(--electric-cyan); letter-spacing: 2px;}
         .vault-container p { color: var(--text-muted); margin-bottom: 40px; font-size: 1.1rem; line-height: 1.6;}
-        .vault-btn { background: var(--electric-cyan); color: var(--dark-bg); border: none; padding: 18px 40px; font-weight: 900; border-radius: 50px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px var(--electric-cyan-glow);}
-        .vault-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.6); }
+        .vault-btn { background: var(--electric-cyan); color: var(--dark-bg); border: none; padding: 18px 40px; font-weight: 900; border-radius: 50px; cursor: pointer; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px var(--electric-cyan-glow); will-change: transform;}
+        .vault-btn:hover { box-shadow: 0 15px 35px rgba(45, 212, 191, 0.6); }
 
         /* ==================== SISTEMA DE MODALES ==================== */
         .modal-fullscreen { position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh; background: rgba(2,6,23,0.98); z-index: 9999999; display: none; justify-content: center; align-items: center; padding: 2% 5%; backdrop-filter: blur(10px); opacity: 0; transition: opacity 0.2s ease;}
@@ -461,6 +499,10 @@
 </head>
 <body class="is-loading">
 
+    <!-- Cursor Personalizado (Solo renderizado mediante inyección JS en Desktop) -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-follower"></div>
+
     <!-- Restauración manual del scroll para evitar saltos indeseados en la recarga -->
     <script>
         if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -504,7 +546,7 @@
         <button class="vault-filter-btn" id="openVaultBtnHeader" aria-label="Abrir bóveda"><span class="icon">🔒</span> <span data-i18n="btn_vault_header">Acceso Bóveda</span></button>
     </div>
 
-    <!-- [MODIFICADO] SECCIÓN PERFIL PROFESIONAL BENTO (Rediseño 3D e Interactividad Orgánica) -->
+    <!-- SECCIÓN PERFIL PROFESIONAL BENTO -->
     <div id="profile-section">
         <div class="bento-grid">
             
@@ -520,7 +562,7 @@
                 </div>
             </div>
 
-            <!-- CONTENEDOR DE EXPERIENCIA (Relativo absoluto al Grid) -->
+            <!-- CONTENEDOR DE EXPERIENCIA -->
             <div class="bento-card bento-exp bento-content">
                 <h3 data-i18n="prof_rol">Experiencia Clave</h3>
                 <div class="cv-timeline-container">
@@ -588,7 +630,7 @@
                 </div>
             </div>
 
-            <!-- Competencias Clave: Optimizadas sin headers intermedios para mayor limpieza visual -->
+            <!-- Competencias Clave -->
             <div class="bento-card bento-skills bento-content">
                 <h3 data-i18n="prof_skills">Ecosistema Tecnológico</h3>
                 <div class="skill-ecosystem">
@@ -970,6 +1012,73 @@
                 updateLanguage(currentLang);
             });
 
+            // ==================== MÓDULO 1: SISTEMA DE CURSOR PERSONALIZADO ====================
+            // Genera un cursor dual altamente inmersivo basado en interpolación matemática (LERP)
+            const CursorManager = (() => {
+                const init = () => {
+                    // Previene la ejecución en pantallas táctiles (Mobile-First)
+                    if (window.matchMedia("(pointer: coarse)").matches) return;
+                    
+                    const cursor = document.querySelector('.custom-cursor');
+                    const follower = document.querySelector('.cursor-follower');
+                    let mouseX = 0, mouseY = 0;
+                    let followerX = 0, followerY = 0;
+                    
+                    // Rastreo pasivo del mouse nativo
+                    window.addEventListener('mousemove', e => {
+                        mouseX = e.clientX; mouseY = e.clientY;
+                        cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+                    });
+                    
+                    // Bucle de renderizado a 60fps usando inercia matemática para el anillo seguidor
+                    const loop = () => {
+                        followerX += (mouseX - followerX) * 0.15;
+                        followerY += (mouseY - followerY) * 0.15;
+                        follower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0)`;
+                        requestAnimationFrame(loop);
+                    };
+                    loop();
+                    
+                    // Inyecta el estado visual activo en enlaces y elementos de UI
+                    const hoverables = document.querySelectorAll('a, button, .media-item, .client-logo, .gallery-nav, .filter-btn');
+                    hoverables.forEach(el => {
+                        el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); follower.classList.add('hover'); });
+                        el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); follower.classList.remove('hover'); });
+                    });
+                };
+                return { init };
+            })();
+
+            // ==================== MÓDULO 2: BOTONES MAGNÉTICOS ====================
+            // Los botones principales "tiran" suavemente hacia la posición del mouse
+            const MagneticButtons = (() => {
+                const init = () => {
+                    if (window.matchMedia("(pointer: coarse)").matches) return; 
+                    
+                    const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .btn-whatsapp, .vault-btn, .floating-connect');
+                    buttons.forEach(btn => {
+                        btn.addEventListener('mousemove', (e) => {
+                            const rect = btn.getBoundingClientRect();
+                            // Calcula el offset relativo al centro del botón
+                            const x = e.clientX - rect.left - rect.width / 2;
+                            const y = e.clientY - rect.top - rect.height / 2;
+                            
+                            // Removemos la transición nativa para que siga el cursor sin lag
+                            btn.style.transition = 'none';
+                            // Limitamos la fuerza multiplicando por 0.3 (fricción)
+                            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                        });
+                        
+                        btn.addEventListener('mouseleave', () => {
+                            // Restauramos la transición rebotante y reseteamos coordenadas
+                            btn.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                            btn.style.transform = `translate(0px, 0px)`;
+                        });
+                    });
+                };
+                return { init };
+            })();
+
             // ==================== BENTO GRID 3D TILT EFFECT ====================
             // Implementación de seguimiento del cursor para manipular Custom Properties CSS
             const initBentoTilt = () => {
@@ -1205,15 +1314,34 @@
                 return { setupAudios, pauseAll };
             })();
 
+            // ==================== FÍSICA Y ACELERACIÓN DEL MARQUEE ====================
             const MarqueePhysics = (() => {
                 const track = document.getElementById('marqueeTrack');
                 const container = document.getElementById('marqueeContainer');
-                let currentX = 0; let isDragging = false; let velocityX = 0; const baseSpeed = -1; let lastDragX = 0; let animationId = null;
+                
+                // Variables de control físico
+                let currentX = 0; 
+                let isDragging = false; 
+                let velocityX = 0; 
+                let targetSpeed = -1;     // Velocidad objetivo (puede cambiar)
+                let currentSpeed = -1;    // Velocidad actual interpolada
+                let lastDragX = 0; 
+                let animationId = null;
                 let dragDistance = 0;
 
                 const loop = () => {
-                    if (!isDragging) { velocityX = velocityX * 0.95 + baseSpeed * 0.05; currentX += velocityX; }
-                    if (currentX < -2000) currentX += 2000; if (currentX > 0) currentX -= 2000;
+                    if (!isDragging) { 
+                        // LERP: Transición suave entre la velocidad base y la velocidad objetivo (Aceleración)
+                        currentSpeed += (targetSpeed - currentSpeed) * 0.1; 
+                        
+                        // Fricción y aplicación de la velocidad dinámica
+                        velocityX = velocityX * 0.95 + currentSpeed * 0.05; 
+                        currentX += velocityX; 
+                    }
+                    // Bucle infinito
+                    if (currentX < -2000) currentX += 2000; 
+                    if (currentX > 0) currentX -= 2000;
+                    
                     track.style.transform = `translate3d(${currentX}px, 0, 0)`;
                     animationId = requestAnimationFrame(loop);
                 };
@@ -1243,6 +1371,13 @@
                     container.addEventListener('mousedown', down); container.addEventListener('touchstart', down, {passive: false});
                     window.addEventListener('mousemove', move, {passive: false}); window.addEventListener('touchmove', move, {passive: false});
                     window.addEventListener('mouseup', up); window.addEventListener('touchend', up);
+                    
+                    // Lógica de Aceleración al pasar el mouse por encima
+                    if (!window.matchMedia("(pointer: coarse)").matches) {
+                        container.addEventListener('mouseenter', () => { targetSpeed = -3.5; }); // Aumenta la velocidad negativa hacia la izquierda
+                        container.addEventListener('mouseleave', () => { targetSpeed = -1; });   // Regresa a la velocidad crucero
+                    }
+                    
                     animationId = requestAnimationFrame(loop);
                 };
                 return { init };
@@ -1341,6 +1476,8 @@
             document.addEventListener('DOMContentLoaded', () => {
                 updateLanguage(currentLang); MarqueePhysics.init();
                 initBentoTilt(); // Inyección de las lógicas físicas para el Perfil
+                CursorManager.init(); // Inyección del cursor Dual
+                MagneticButtons.init(); // Inyección de gravedad a los botones
                 
                 // Fallback automático para imágenes rotas
                 document.querySelectorAll('.fallback-img').forEach(img => {

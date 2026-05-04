@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#020617">
     
-    <title data-i18n="head_title">Alejandro Vega | Líder de Innovación Creativa (JavegaPro)</title>
-    <meta name="description" content="Portafolio oficial de Alejandro Vega. Líder de Innovación Creativa, Product Owner (PSPO I), Identidad de Marca, Producción Audiovisual y E-learning.">
-    <meta name="keywords" content="Alejandro Vega, Jhon Vega, javegapro, Líder de Innovación Creativa, Product Owner, PSPO I, Identidad de Marca, E-learning, Producción Audiovisual, IA Generativa">
+    <title data-i18n="head_title">Alejandro Vega | Product Owner Técnico</title>
+    <meta name="description" content="Portafolio oficial de Alejandro Vega. Product Owner Técnico (PSPO I), Estrategia B2B, Identidad de Marca, Producción Audiovisual e IA Generativa.">
+    <meta name="keywords" content="Alejandro Vega, Jhon Vega, javegapro, Product Owner Técnico, PSPO I, Identidad de Marca, E-learning, Producción Audiovisual, IA Generativa">
     <meta name="author" content="Jhon Alejandro Vega Ramírez">
     
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Alejandro Vega | Innovación Creativa & Product Owner">
+    <meta property="og:title" content="Alejandro Vega | Product Owner Técnico & B2B">
     <meta property="og:description" content="Descubre el ecosistema tecnológico y creativo de Alejandro Vega: Marca, E-learning e IA Generativa.">
     <meta property="og:url" content="https://javegapro.com/">
     <meta property="og:site_name" content="JavegaPro">
@@ -21,12 +21,12 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Jhon Alejandro Vega Ramírez",
-      "jobTitle": "Líder de Innovación Creativa & Product Owner",
+      "jobTitle": "Product Owner Técnico & Estratega",
       "url": "https://javegapro.com/",
       "sameAs": [
         "https://linkedin.com/in/javegapro"
       ],
-      "knowsAbout": ["Identidad de Marca", "Product Owner", "PSPO I", "Inteligencia Artificial Generativa", "Ingeniería Multimedia", "Diseño Instruccional"]
+      "knowsAbout": ["Identidad de Marca", "Product Owner Técnico", "PSPO I", "Inteligencia Artificial Generativa", "Ingeniería Multimedia", "Diseño Instruccional"]
     }
     </script>
     
@@ -130,23 +130,40 @@
 
         @media (max-width: 767px) { .filter-btn, .vault-filter-btn { flex: 0 0 auto; scroll-snap-align: start; white-space: nowrap; } }
 
+        /* ---------- INICIO CSS PERFIL (BENTO BOX + ANIMACIONES) ---------- */
         #profile-section { display: none; padding: 0 5% 100px; animation: fadeIn 0.5s ease; position: relative; z-index: 10; view-transition-name: profile-section; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .bento-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 1300px; margin: 0 auto; }
 
-        .bento-card { background: rgba(2, 6, 23, 0.4); border: 1px solid rgba(45, 212, 191, 0.15); border-radius: 24px; padding: clamp(25px, 4vw, 40px); backdrop-filter: blur(24px) saturate(200%); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: inset 0 0 20px rgba(255,255,255,0.02), 0 20px 50px rgba(0,0,0,0.5); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-start; }
-        .bento-card:hover { transform: translateY(-5px); border-color: var(--electric-cyan); box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 25px rgba(45, 212, 191, 0.4); }
+        .bento-card { background: rgba(2, 6, 23, 0.4); border: 1px solid rgba(45, 212, 191, 0.15); border-radius: 24px; padding: clamp(25px, 4vw, 40px); backdrop-filter: blur(24px) saturate(200%); box-shadow: inset 0 0 20px rgba(255,255,255,0.02), 0 20px 50px rgba(0,0,0,0.5); position: relative; display: flex; flex-direction: column; justify-content: flex-start; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); overflow: hidden; }
+        .bento-card:hover { transform: translateY(-8px) scale(1.01); border-color: var(--electric-cyan); box-shadow: 0 20px 40px rgba(13, 148, 136, 0.15), inset 0 0 0 1px rgba(13, 148, 136, 0.5); }
         .bento-card::before { content: ''; position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: var(--electric-cyan); border-radius: 50%; filter: blur(80px); opacity: 0.1; transition: opacity 0.4s; pointer-events: none; z-index: 0; }
         .bento-card:hover::before { opacity: 0.25; }
         
+        .bento-bio::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(to bottom, rgba(13, 148, 136, 0) 0%, rgba(13, 148, 136, 0.05) 50%, rgba(13, 148, 136, 0) 100%); transform: translateY(-100%); animation: scan 6s infinite linear; pointer-events: none; z-index: 1;}
+        @keyframes scan { 0% { transform: translateY(-100%) rotate(15deg); } 100% { transform: translateY(100%) rotate(15deg); } }
+
         .bento-content { position: relative; z-index: 2; }
         .bento-card h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); color: var(--electric-cyan); margin-bottom: 25px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 1px;}
-        .bento-bio p { font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.7; color: var(--text-main); margin-bottom: 35px; font-weight: 400;}
+        .bento-bio p { font-size: clamp(1.05rem, 1.5vw, 1.15rem); line-height: 1.7; color: var(--text-main); margin-bottom: 35px; font-weight: 400;}
+        .bento-bio p strong { color: var(--electric-cyan); font-weight: 600; }
+        
         .bento-metrics { display: flex; gap: 30px; flex-wrap: wrap; justify-content: flex-start; margin-top: auto;}
         .bento-metric { display: flex; flex-direction: column; }
         .bento-metric .num { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 900; color: var(--electric-cyan); line-height: 1;}
         .bento-metric .label { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-top: 8px; font-weight: 700;}
+
+        .pulse-ring { position: absolute; right: -20px; top: -20px; width: 150px; height: 150px; border-radius: 50%; border: 2px solid rgba(13, 148, 136, 0.3); animation: pulse 3s infinite ease-out; z-index: 0; pointer-events: none; }
+        .pulse-ring:nth-child(2) { animation-delay: 1s; }
+        .pulse-ring:nth-child(3) { animation-delay: 2s; }
+        @keyframes pulse { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
+
+        .skill-bar-container { width: 100%; background: rgba(255,255,255,0.05); border-radius: 50px; height: 8px; margin-top: 8px; overflow: hidden; border: 1px solid rgba(13, 148, 136, 0.2); }
+        .skill-bar-fill { height: 100%; background: var(--electric-cyan); border-radius: 50px; box-shadow: 0 0 10px var(--electric-cyan); transform-origin: left; animation: fillBar 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; transform: scaleX(0); }
+        @keyframes fillBar { to { transform: scaleX(1); } }
+        .skill-item { margin-bottom: 15px; }
+        .skill-info { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-main); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
         .cv-timeline-wrapper { max-height: 400px; overflow-y: auto; padding-right: 10px; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent; }
         .cv-timeline-wrapper::-webkit-scrollbar { width: 4px; }
@@ -162,10 +179,7 @@
         .cv-item span.cv-role { color: var(--electric-cyan); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;}
         .cv-item h4 { color: var(--text-main); font-size: 1.15rem; margin-bottom: 0; font-weight: 700;}
 
-        .skill-category { margin-bottom: 25px; }
-        .skill-category:last-child { margin-bottom: 0; }
-        .skill-category-title { font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; font-weight: 700; letter-spacing: 1px;}
-        .tag-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag-cloud { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px;}
         .tech-pill { background: rgba(255,255,255,0.05); color: var(--text-main); padding: 8px 18px; border-radius: 50px; font-size: 0.85rem; border: 1px solid rgba(45, 212, 191, 0.2); transition: all 0.3s ease; font-weight: 600; backdrop-filter: blur(5px);}
         .tech-pill:hover { background: rgba(45, 212, 191, 0.2); border-color: var(--electric-cyan); color: var(--electric-cyan); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(45,212,191,0.2);}
 
@@ -186,6 +200,7 @@
             .bento-certs .cert-list { flex-direction: row; justify-content: flex-start; gap: 30px;}
             .bento-certs .cert-item { width: 32%; }
         }
+        /* ---------- FIN CSS PERFIL ---------- */
 
         .portfolio-grid { display: grid; grid-template-columns: 1fr; gap: clamp(20px, 3vw, 40px); padding: 0 5% 100px; width: 100%; max-width: 2500px; margin: 0 auto; position: relative; z-index: 5; view-transition-name: portfolio-grid; }
         @media (min-width: 768px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -342,7 +357,7 @@
         <div id="title-wrapper">
             <h1 id="main-title">Alejandro Vega</h1>
         </div>
-        <p class="subtitle reveal-element" data-i18n="subtitle">Líder de Innovación Creativa | Product Owner | Identidad & Audiovisual</p>
+        <p class="subtitle reveal-element" data-i18n="subtitle">Product Owner Técnico | Innovación B2B</p>
     </header>
 
     <div class="filter-container reveal-element">
@@ -359,70 +374,72 @@
         <div class="bento-grid">
             
             <div class="bento-card bento-bio bento-content">
-                <h3 data-i18n="prof_title">Innovación & Estrategia</h3>
-                <p data-i18n="profile_text">Como Ingeniero Multimedia (ABET) y Product Owner (PSPO I), opero en la intersección exacta entre la creatividad visual y la eficiencia tecnológica. En los últimos 8 años, he participado como aliado estratégico y consultor para el sector público y privado, aportando valor desde la conceptualización de la idea hasta su ejecución. Mi diferencial es la Innovación Creativa: diseño identidades de marca, dirijo producciones integrales (ej. 'Unichef') y propongo mejoras de negocio respaldadas por tecnología (IA y E-learning SCORM). Garantizo productos digitales que conecten emocionalmente con el usuario y resuelvan problemas reales.</p>
-                <div class="bento-metrics">
-                    <div class="bento-metric"><span class="num">8+</span><span class="label" data-i18n="stat_years">Años Exp.</span></div>
-                    <div class="bento-metric"><span class="num">PO</span><span class="label" data-i18n="stat_po">Product Owner</span></div>
-                    <div class="bento-metric"><span class="num">360°</span><span class="label" data-i18n="stat_projects">Visión Creativa</span></div>
+                <h3 data-i18n="prof_title"><span style="font-size: 1.5rem; margin-right: 10px;">⚡</span> Orquestación & Estrategia</h3>
+                <p data-i18n="profile_text">Como <strong>Product Owner Técnico (PSPO I)</strong> e Ingeniero Multimedia, actúo como el puente definitivo entre la visión ejecutiva, la experiencia del usuario (MX/UX) y la arquitectura de software. Especializado en el sector B2B, lidero las fases de <em>Discovery</em> y estructuración de requerimientos para desarrollos de alto impacto. Diseño el ecosistema de marca y la narrativa funcional, entregando directrices milimétricas (guiones técnicos, sincronización de voz, lógica UX) para que los equipos de ingeniería backend conecten las APIs y desplieguen soluciones que optimizan el ROI corporativo.</p>
+                <div class="bento-metrics" style="position: relative; z-index: 2;">
+                    <div class="bento-metric"><span class="num">8+</span><span class="label" data-i18n="stat_years">Años Exp. B2B</span></div>
+                    <div class="bento-metric"><span class="num">100%</span><span class="label" data-i18n="stat_po">Adopción Ágil</span></div>
+                    <div class="bento-metric"><span class="num">360°</span><span class="label" data-i18n="stat_projects">Visión Producto</span></div>
                 </div>
+                <div class="pulse-ring"></div><div class="pulse-ring"></div><div class="pulse-ring"></div>
             </div>
 
             <div class="bento-card bento-exp bento-content">
-                <h3 data-i18n="prof_rol">Experiencia TOP</h3>
+                <h3 data-i18n="prof_rol">Experiencia Clave</h3>
                 <div class="cv-timeline-wrapper">
                     <div class="cv-timeline">
                         <div class="cv-item">
                             <span class="cv-year">2023 - PRESENTE</span>
-                            <span class="cv-role" data-i18n="rol_1">Co-Fundador & Líder de Marca/Producto</span>
+                            <span class="cv-role" data-i18n="rol_1">Co-Fundador & Product Owner Técnico</span>
                             <h4 data-i18n="rol_1_co">AUTÓMATAS</h4>
+                            <p data-i18n="rol_1_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Dirección de ecosistemas de IA, perfilado psicológico de agentes y estructuración comercial.</p>
                         </div>
                         <div class="cv-item">
-                            <span class="cv-year">2022 - 2025</span>
-                            <span class="cv-role" data-i18n="rol_2">Consultor Digital & Identidad Corporativa</span>
-                            <h4 data-i18n="rol_2_co">ESPY S.A. E.S.P.</h4>
+                            <span class="cv-year">2022 - PRESENTE</span>
+                            <span class="cv-role" data-i18n="rol_2">Líder Proyectos de Tecnología</span>
+                            <h4 data-i18n="rol_2_co">ESPY S.A. E.S.P. / Alcaldía de Yumbo</h4>
+                            <p data-i18n="rol_2_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Modernización institucional (ITA) y transición a ecosistemas Cloud.</p>
                         </div>
                         <div class="cv-item">
-                            <span class="cv-year">2022 (ABR - JUL)</span>
-                            <span class="cv-role" data-i18n="rol_4">Desarrollador E-learning e Instruccional</span>
+                            <span class="cv-year">2022</span>
+                            <span class="cv-role" data-i18n="rol_4">Gestor de Proyectos E-learning</span>
                             <h4 data-i18n="rol_4_co">EFICACIA S.A.</h4>
                         </div>
                         <div class="cv-item">
-                            <span class="cv-year">2021 - 2022</span>
-                            <span class="cv-role" data-i18n="rol_5">Profesional Especializado TIC</span>
-                            <h4 data-i18n="rol_5_co">ALCALDÍA DE YUMBO</h4>
-                        </div>
-                        <div class="cv-item">
                             <span class="cv-year">2016 - PRESENTE</span>
-                            <span class="cv-role" data-i18n="rol_3">Director Creativo Audiovisual B2B</span>
+                            <span class="cv-role" data-i18n="rol_3">Director Creativo & Productor</span>
                             <h4 data-i18n="rol_3_co">JAVEGA</h4>
-                        </div>
-                        <div class="cv-item">
-                            <span class="cv-year">2017 - 2021</span>
-                            <span class="cv-role" data-i18n="rol_6">Director de Arte & Producción</span>
-                            <h4 data-i18n="rol_6_co">AGENCIAS Y EDUCACIÓN</h4>
+                            <p data-i18n="rol_3_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Proyectos end-to-end B2B, diseño audiovisual y plataformas E-learning.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="bento-card bento-skills bento-content">
-                <h3 data-i18n="prof_skills">Core Skills</h3>
-                <div class="skill-category">
-                    <div class="skill-category-title" data-i18n="skill_cat_1">Creatividad & Marca</div>
-                    <div class="tag-cloud">
-                        <span class="tech-pill">Arquitectura de Marca Corporativa</span>
-                        <span class="tech-pill">Dirección Audiovisual (End-to-End)</span>
-                        <span class="tech-pill">Diseño Instruccional (SCORM)</span>
-                    </div>
+                <h3 data-i18n="prof_skills">Capacidad Operativa</h3>
+                
+                <div class="skill-item">
+                    <div class="skill-info"><span data-i18n="sk_1">Product Ownership (Scrum / Agile)</span><span>95%</span></div>
+                    <div class="skill-bar-container"><div class="skill-bar-fill" style="width: 95%;"></div></div>
                 </div>
-                <div class="skill-category">
-                    <div class="skill-category-title" data-i18n="skill_cat_2">Tecnología & Gestión</div>
-                    <div class="tag-cloud">
-                        <span class="tech-pill">Product Ownership (Scrum)</span>
-                        <span class="tech-pill">Inteligencia Artificial Generativa</span>
-                        <span class="tech-pill">Innovación de Modelos de Negocio</span>
-                    </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span data-i18n="sk_2">Estructuración Requerimientos B2B</span><span>90%</span></div>
+                    <div class="skill-bar-container"><div class="skill-bar-fill" style="width: 90%; animation-delay: 0.2s;"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span data-i18n="sk_3">Diseño UX/MX & Identidad de Marca</span><span>95%</span></div>
+                    <div class="skill-bar-container"><div class="skill-bar-fill" style="width: 95%; animation-delay: 0.4s;"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span data-i18n="sk_4">Dirección Audiovisual & E-Learning</span><span>100%</span></div>
+                    <div class="skill-bar-container"><div class="skill-bar-fill" style="width: 100%; animation-delay: 0.6s;"></div></div>
+                </div>
+                
+                <div class="tag-cloud" style="margin-top: 20px;">
+                    <span class="tech-pill">IA Generativa (Flow)</span>
+                    <span class="tech-pill">SCORM</span>
+                    <span class="tech-pill">Adobe CC / DaVinci</span>
+                    <span class="tech-pill">Stakeholder Mgmt</span>
                 </div>
             </div>
 
@@ -676,36 +693,32 @@
         (() => {
             const translations = {
                 es: {
-                    head_title: "Alejandro Vega | Líder de Innovación Creativa", btn_profile: "Perfil Profesional",
-                    btn_vault_header: "Acceso Bóveda", subtitle: "Líder de Innovación Creativa | Product Owner | Identidad & Audiovisual",
-                    prof_title: "Innovación & Estrategia", prof_rol: "Experiencia TOP", prof_skills: "Core Skills",
-                    rol_1: "Co-Fundador & Líder de Marca/Producto", rol_1_co: "AUTÓMATAS",
-                    rol_2: "Consultor Digital & Identidad Corporativa", rol_2_co: "ESPY S.A. E.S.P.",
-                    rol_4: "Desarrollador E-learning e Instruccional", rol_4_co: "EFICACIA S.A.", 
-                    rol_5: "Profesional Especializado TIC", rol_5_co: "ALCALDÍAS (YUMBO/CALI)",
-                    rol_3: "Director Creativo Audiovisual B2B", rol_3_co: "JAVEGA",
-                    rol_6: "Director de Arte & Producción", rol_6_co: "AGENCIAS Y EDUCACIÓN",
-                    skill_cat_1: "Creatividad & Marca", skill_cat_2: "Tecnología & Gestión",
+                    head_title: "Alejandro Vega | Product Owner Técnico", btn_profile: "Perfil Profesional",
+                    btn_vault_header: "Acceso Bóveda", subtitle: "Product Owner Técnico | Innovación B2B",
+                    prof_title: "⚡ Orquestación & Estrategia", prof_rol: "Experiencia Clave", prof_skills: "Capacidad Operativa",
+                    rol_1: "Co-Fundador & Product Owner Técnico", rol_1_co: "AUTÓMATAS", rol_1_desc: "Dirección de ecosistemas de IA, perfilado psicológico de agentes y estructuración comercial.",
+                    rol_2: "Líder Proyectos de Tecnología", rol_2_co: "ESPY S.A. E.S.P. / Alcaldía de Yumbo", rol_2_desc: "Modernización institucional (ITA) y transición a ecosistemas Cloud.",
+                    rol_4: "Gestor de Proyectos E-learning", rol_4_co: "EFICACIA S.A.", 
+                    rol_3: "Director Creativo & Productor", rol_3_co: "JAVEGA", rol_3_desc: "Proyectos end-to-end B2B, diseño audiovisual y plataformas E-learning.",
+                    sk_1: "Product Ownership (Scrum / Agile)", sk_2: "Estructuración Requerimientos B2B", sk_3: "Diseño UX/MX & Identidad de Marca", sk_4: "Dirección Audiovisual & E-Learning",
                     cert_title: "Educación & Certificaciones", cert_1: "Ingeniería Multimedia", cert_1_org: "U. San Buenaventura (ABET)", cert_2: "PSPO I Product Owner", cert_2_org: "Scrum.org",
-                    profile_text: 'Como Ingeniero Multimedia (ABET) y Product Owner (PSPO I), opero en la intersección exacta entre la creatividad visual y la eficiencia tecnológica. En los últimos 8 años, he participado como aliado estratégico y consultor para el sector público y privado, aportando valor desde la conceptualización de la idea hasta su ejecución. Mi diferencial es la Innovación Creativa: diseño identidades de marca, dirijo producciones integrales (ej. Unichef) y propongo mejoras de negocio respaldadas por tecnología (IA y E-learning SCORM). Garantizo productos digitales que conecten emocionalmente con el usuario y resuelvan problemas reales.',
-                    stat_years: "Años Exp.", stat_po: "Product Owner", stat_projects: "Visión Creativa",
+                    profile_text: 'Como <strong>Product Owner Técnico (PSPO I)</strong> e Ingeniero Multimedia, actúo como el puente definitivo entre la visión ejecutiva, la experiencia del usuario (MX/UX) y la arquitectura de software. Especializado en el sector B2B, lidero las fases de Discovery y estructuración de requerimientos para desarrollos de alto impacto. Diseño el ecosistema de marca y la narrativa funcional, entregando directrices milimétricas (guiones técnicos, sincronización de voz, lógica UX) para que los equipos de ingeniería backend conecten las APIs y desplieguen soluciones que optimizan el ROI corporativo.',
+                    stat_years: "Años Exp. B2B", stat_po: "Adopción Ágil", stat_projects: "Visión Producto",
                     btn_all: "Todo", btn_video: "Producción Audiovisual", btn_photo: "Fotografía", btn_design: "Diseño Visual", btn_audio: "Diseño Sonoro",
-                    vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara", vid_cat_showreel: "Dirección Creativa B2B", vid_tit_showreel: "Showreel Corporativo", vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO", vid_cat_evento: "Cobertura Institucional", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Programa Institucional Online", vid_tit_chef1: "UniChef: Cheesecake", cat_post: "Postproducción", vid_tit_mauna: "Mauna (Detrás de Cámaras)", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", cat_product: "Fotografía Comercial B2C/B2B", title_product: "Fotografía de Producto", cat_banner: "Banner Web", cat_corp: "Branding Institucional", cat_ad: "Diseño Institucional", aud_alone: "Acústico / Soul Cinematográfico", ecosystem_title: "Ecosistema Creativo", clients_title: "Empresas y Aliados", contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la innovación tecnológica y visual de sus proyectos? Agendemos una sesión estratégica hoy mismo.", btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", vault_title: "Bóveda Corporativa", vault_desc: "Mis desarrollos de diseño instruccional y E-learning para Unilever, Alquería y Derco están sujetos a NDA.", vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]", modal_req_title: "Solicitud de Acceso", modal_req_desc: "Está a punto de solicitar acceso a la Bóveda de NDA. Clientes protegidos:", label_name: "Su Nombre Completo:", label_company: "Empresa o Agencia:", label_email: "Su Correo Corporativo:", nda_title: "ACUERDO DE CONFIDENCIALIDAD (NDA):", nda_text: "Al solicitar acceso a esta bóveda, usted reconoce y acepta expresamente que el material contenido es confidencial.", btn_submit: "Enviar Solicitud y Aceptar", btn_connect: "CONECTEMOS"
+                    vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara", vid_cat_showreel: "Dirección Creativa B2B", vid_tit_showreel: "Showreel Corporativo", vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO", vid_cat_evento: "Cobertura Institucional", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Programa Institucional Online", vid_tit_chef1: "UniChef: Cheesecake", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", cat_product: "Fotografía Comercial B2C/B2B", title_product: "Fotografía de Producto", cat_banner: "Banner Web", cat_corp: "Branding Institucional", cat_ad: "Diseño Institucional", aud_alone: "Acústico / Soul Cinematográfico", ecosystem_title: "Ecosistema Creativo", clients_title: "Empresas y Aliados", contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la innovación tecnológica y visual de sus proyectos? Agendemos una sesión estratégica hoy mismo.", btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", vault_title: "Bóveda Corporativa", vault_desc: "Mis desarrollos de diseño instruccional y E-learning para Unilever, Alquería y Derco están sujetos a NDA.", vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]", modal_req_title: "Solicitud de Acceso", modal_req_desc: "Está a punto de solicitar acceso a la Bóveda de NDA. Clientes protegidos:", label_name: "Su Nombre Completo:", label_company: "Empresa o Agencia:", label_email: "Su Correo Corporativo:", nda_title: "ACUERDO DE CONFIDENCIALIDAD (NDA):", nda_text: "Al solicitar acceso a esta bóveda, usted reconoce y acepta expresamente que el material contenido es confidencial.", btn_submit: "Enviar Solicitud y Aceptar", btn_connect: "CONECTEMOS"
                 },
                 en: {
-                    head_title: "Alejandro Vega | Creative Innovation Leader", btn_profile: "Professional Profile",
-                    btn_vault_header: "Vault Access", subtitle: "Creative Innovation Leader | Product Owner | Identity & Audiovisual",
-                    prof_title: "Innovation & Strategy", prof_rol: "Top Experience", prof_skills: "Core Skills",
-                    rol_1: "Co-Founder & Brand/Product Lead", rol_1_co: "AUTÓMATAS",
-                    rol_2: "Digital & Brand Identity Consultant", rol_2_co: "ESPY S.A. E.S.P.",
-                    rol_4: "E-learning & Instructional Developer", rol_4_co: "EFICACIA S.A.", 
-                    rol_5: "ICT Specialized Professional", rol_5_co: "GOVERNMENT SECTOR", 
-                    rol_3: "Creative Director & B2B Producer", rol_3_co: "JAVEGA",
-                    rol_6: "Art Director & Production", rol_6_co: "AGENCIES & EDUCATION",
-                    skill_cat_1: "Creativity & Brand", skill_cat_2: "Technology & Management",
+                    head_title: "Alejandro Vega | Technical Product Owner", btn_profile: "Professional Profile",
+                    btn_vault_header: "Vault Access", subtitle: "Technical Product Owner | B2B Innovation",
+                    prof_title: "⚡ Orchestration & Strategy", prof_rol: "Key Experience", prof_skills: "Operational Capacity",
+                    rol_1: "Co-Founder & Technical Product Owner", rol_1_co: "AUTÓMATAS", rol_1_desc: "Direction of AI ecosystems, psychological profiling of agents, and commercial structuring.",
+                    rol_2: "Technology Projects Lead", rol_2_co: "ESPY S.A. E.S.P. / Yumbo Mayor's Office", rol_2_desc: "Institutional modernization (ITA) and transition to Cloud ecosystems.",
+                    rol_4: "E-learning Project Manager", rol_4_co: "EFICACIA S.A.", 
+                    rol_3: "Creative Director & Producer", rol_3_co: "JAVEGA", rol_3_desc: "B2B end-to-end projects, audiovisual design, and E-learning platforms.",
+                    sk_1: "Product Ownership (Scrum / Agile)", sk_2: "B2B Requirements Structuring", sk_3: "UX/MX Design & Brand Identity", sk_4: "Audiovisual Direction & E-Learning",
                     cert_title: "Education & Certifications", cert_1: "Multimedia Engineering", cert_1_org: "U. San Buenaventura (ABET)", cert_2: "PSPO I Product Owner", cert_2_org: "Scrum.org",
-                    profile_text: 'As a Multimedia Engineer (ABET) and Product Owner (PSPO I), I operate at the exact intersection between visual creativity and technological efficiency. Over the past 8 years, I have acted as a strategic ally and consultant for the public and private sectors, adding value from idea conceptualization to execution. My differentiator is Creative Innovation: designing brand identities, directing end-to-end productions (e.g., Unichef), and proposing business improvements backed by technology (AI and SCORM E-learning). I guarantee digital products that emotionally connect with users and solve real-world problems.',
-                    stat_years: "Years Exp.", stat_po: "Product Owner", stat_projects: "Creative Vision",
+                    profile_text: 'As a <strong>Technical Product Owner (PSPO I)</strong> and Multimedia Engineer, I act as the definitive bridge between executive vision, user experience (MX/UX), and software architecture. Specialized in the B2B sector, I lead Discovery phases and requirement structuring for high-impact developments. I design the brand ecosystem and functional narrative, delivering precise guidelines (technical scripts, voice synchronization, UX logic) so backend engineering teams can connect APIs and deploy solutions that optimize corporate ROI.',
+                    stat_years: "Years B2B Exp.", stat_po: "Agile Adoption", stat_projects: "Product Vision",
                     btn_all: "All", btn_video: "Audiovisual Production", btn_photo: "Photography", btn_design: "Visual Design", btn_audio: "Sound Design",
                     ecosystem_title: "Creative Ecosystem", clients_title: "Companies & Partners", contact_title: "LET'S CONNECT", contact_desc: "Ready to elevate the technological and visual innovation of your projects? Let's schedule a strategic session today.", btn_wa: "Text me on WhatsApp", btn_mail: "Send me an email", vault_title: "Corporate Vault", vault_desc: "My instructional design and B2B E-learning developments for Unilever, Alquería, and Derco are subject to NDA.", vault_btn: "Request Secure Access", btn_close: "CLOSE [X]", modal_req_title: "Access Request", modal_req_desc: "You are requesting access to the NDA Protected Vault.", label_name: "Your Full Name:", label_company: "Company or Agency:", label_email: "Your Corporate Email:", nda_title: "NON-DISCLOSURE AGREEMENT (NDA):", nda_text: "By requesting access, you agree that the material is strictly confidential.", btn_submit: "Submit Request", btn_connect: "LET'S CONNECT"
                 }
@@ -718,6 +731,9 @@
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     const key = el.getAttribute('data-i18n');
                     if (translations[lang][key]) el.textContent = translations[lang][key];
+                    else if (el.innerHTML.includes('<strong>')) {
+                         el.innerHTML = translations[lang][key] || el.innerHTML;
+                    }
                 });
                 document.getElementById('lang-es').classList.toggle('active', lang === 'es');
                 document.getElementById('lang-en').classList.toggle('active', lang === 'en');

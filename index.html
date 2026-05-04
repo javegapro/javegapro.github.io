@@ -166,43 +166,16 @@
         .bento-metric .num { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 900; color: var(--electric-cyan); line-height: 1;}
         .bento-metric .label { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-top: 8px; font-weight: 700;}
 
-        /* Botones y UI interactiva en la tarjeta Bio */
-        .btn-secondary { padding: 12px 25px; font-weight: 700; border-radius: 8px; transition: all 0.3s; font-family: 'Inter', sans-serif; font-size: 0.9rem; text-decoration: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; background-color: transparent; color: var(--text-main); border: 2px solid rgba(255,255,255,0.2); }
-        .btn-secondary:hover { border-color: var(--electric-cyan); color: var(--electric-cyan); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
-
         .pulse-ring { position: absolute; right: -20px; top: -20px; width: 150px; height: 150px; border-radius: 50%; border: 2px solid rgba(13, 148, 136, 0.3); animation: pulse 3s infinite ease-out; z-index: 0; pointer-events: none; }
         .pulse-ring:nth-child(2) { animation-delay: 1s; }
         .pulse-ring:nth-child(3) { animation-delay: 2s; }
         @keyframes pulse { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
 
-        /* ========================================================================= */
-        /* [SOLUCIÓN NÚCLEO] ARQUITECTURA DE TIMELINE Y COMPORTAMIENTO DE GRID       */
-        /* ========================================================================= */
-        /* Convertimos el contenedor de la experiencia en un bloque Flexbox fluido */
-        .cv-timeline-container {
-            display: flex;
-            flex-direction: column;
-            flex: 1; /* Permite que este div llene toda la tarjeta padre */
-            position: relative; /* Clave: sirve como ancla para el wrapper con scroll */
-            min-height: 350px; /* Caída segura para móviles antes del desborde */
-        }
-        
-        /* El wrapper real de la línea de tiempo recibe un 'position: absolute'. 
-           Esto hace que su contenido (muy largo) no dicte la altura de la fila del Grid.
-           Obligando a que la columna izquierda (Bio + Skills) dictamine el alto final. */
-        .cv-timeline-wrapper { 
-            position: absolute; 
-            top: 0; left: 0; right: 0; bottom: 0; 
-            overflow-y: auto; 
-            padding-right: 15px; 
-            scrollbar-width: thin; 
-            scrollbar-color: var(--electric-cyan) transparent; 
-        }
-        
-        /* Pseudocontroladores visuales de Scroll (Webkit) */
+        /* Arquitectura de Layout y Overflow dinámico de Experiencia (Desacople de Grid) */
+        .cv-timeline-container { display: flex; flex-direction: column; flex: 1; position: relative; min-height: 350px; }
+        .cv-timeline-wrapper { position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow-y: auto; padding-right: 15px; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent; }
         .cv-timeline-wrapper::-webkit-scrollbar { width: 6px; }
         .cv-timeline-wrapper::-webkit-scrollbar-thumb { background-color: var(--electric-cyan); border-radius: 10px; }
-        /* ========================================================================= */
         
         .cv-timeline { position: relative; padding-left: 20px; display: flex; flex-direction: column; gap: 20px; margin-top: 5px; }
         .cv-timeline::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 2px; background: rgba(45, 212, 191, 0.2); }
@@ -232,7 +205,6 @@
         @media (min-width: 900px) {
             .bento-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(200px, auto); }
             .bento-bio { grid-column: span 2; grid-row: span 2; justify-content: flex-start;}
-            /* Mantenemos el span de filas asimétrico. Bio es 2, Skills es 1. Experiencia abarca esas 3. */
             .bento-exp { grid-column: span 1; grid-row: span 3; } 
             .bento-skills { grid-column: span 2; }
             .bento-certs { grid-column: span 3; }
@@ -307,13 +279,16 @@
         .client-logo.hover-glow, .client-logo:hover { filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 15px var(--electric-cyan)); }
         .client-logo-unilever { transform: scale(1.6); margin: 0 15px; } .client-logo-comfandi { transform: scale(1.3); }
 
+        /* CONTACTO Y BOTONES */
         .contact-section { padding: 80px 5% 100px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); background: var(--card-bg); }
         .contact-section h2 { font-size: clamp(1.8rem, 8vw, 4rem); margin-bottom: 15px; text-transform: uppercase; letter-spacing: clamp(3px, 1.5vw, 12px); margin-right: calc(-1 * clamp(3px, 1.5vw, 12px)); }
         .contact-section p { color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.1rem;}
         .contact-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 50px;}
-        .btn-primary, .btn-whatsapp { padding: 16px 35px; font-weight: 700; border-radius: 8px; transition: all 0.3s; font-family: 'Inter', sans-serif; font-size: 1rem; text-decoration: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-primary, .btn-secondary, .btn-whatsapp { padding: 16px 35px; font-weight: 700; border-radius: 8px; transition: all 0.3s; font-family: 'Inter', sans-serif; font-size: 1rem; text-decoration: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .btn-primary { background-color: var(--electric-cyan); color: var(--dark-bg); }
         .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px var(--electric-cyan-glow); }
+        .btn-secondary { background-color: transparent; color: var(--text-main); border: 2px solid rgba(255,255,255,0.2); }
+        .btn-secondary:hover { border-color: var(--electric-cyan); color: var(--electric-cyan); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
         .btn-whatsapp { background-color: var(--whatsapp-green); color: var(--dark-bg); }
         .btn-whatsapp:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4); }
         .social-links { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;}
@@ -332,7 +307,7 @@
         .vault-btn { background: var(--electric-cyan); color: var(--dark-bg); border: none; padding: 18px 40px; font-weight: 900; border-radius: 50px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px var(--electric-cyan-glow);}
         .vault-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.6); }
 
-        /* Modales */
+        /* MODALES Y BÓVEDA (NDA) */
         .modal-fullscreen { position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh; background: rgba(2,6,23,0.98); z-index: 9999999; display: none; justify-content: center; align-items: center; padding: 2% 5%; backdrop-filter: blur(10px); opacity: 0; transition: opacity 0.2s ease;}
         .modal-fullscreen.active-modal { display: flex; opacity: 1; }
         .modal-content-wrapper { max-width: 100%; max-height: 90dvh; position: relative; width: 1600px; aspect-ratio: 16/9; display: flex; justify-content: center; align-items: center;}
@@ -351,26 +326,49 @@
         .gallery-dot { width: 10px; height: 10px; flex-shrink: 0; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: 0.3s; }
         .gallery-dot.active { background: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan); transform: scale(1.2);}
 
-        .form-modal-box { background: rgba(2, 6, 23, 0.4); padding: clamp(30px, 5vw, 50px); border-radius: 20px; max-width: 600px; width: 90%; border: 1px solid rgba(45, 212, 191, 0.15); text-align: left; position: relative; max-height: 90dvh; overflow-y: auto; backdrop-filter: blur(24px) saturate(200%); box-shadow: inset 0 0 20px rgba(255,255,255,0.02), 0 30px 60px rgba(0,0,0,0.8);}
-        .form-modal-box label { display: block; margin-bottom: 8px; font-size: 0.95rem; color: var(--text-muted); font-weight: 600;}
-        .form-modal-box input { width: 100%; padding: 15px; margin-bottom: 20px; background-color: rgba(2, 6, 23, 0.8); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1rem; transition: border 0.3s; }
+        /* [MODIFICADO] Modal del NDA de la Bóveda con marco jurídico legal colombiano */
+        .form-modal-box { background: rgba(2, 6, 23, 0.85); padding: clamp(25px, 4vw, 40px); border-radius: 16px; max-width: 800px; width: 95%; border: 1px solid rgba(45, 212, 191, 0.3); text-align: left; position: relative; max-height: 90dvh; display: flex; flex-direction: column; overflow: hidden; backdrop-filter: blur(24px) saturate(200%); box-shadow: 0 30px 60px rgba(0,0,0,0.9);}
+        
+        /* Contenedor escroleable para el texto legal (Fricción Positiva UX) */
+        .nda-document-scroll { overflow-y: auto; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 20px; margin-bottom: 25px; flex-shrink: 1; max-height: 30dvh; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent;}
+        .nda-document-scroll::-webkit-scrollbar { width: 6px; }
+        .nda-document-scroll::-webkit-scrollbar-thumb { background-color: var(--electric-cyan); border-radius: 10px; }
+        .nda-document-scroll p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 12px; font-family: 'Inter', sans-serif;}
+        .nda-document-scroll h4 { color: var(--text-main); font-size: 0.95rem; margin-bottom: 8px; text-transform: uppercase; font-weight: 700; margin-top: 20px;}
+        .nda-document-scroll h4:first-child { margin-top: 0; }
+
+        /* Contenedor del formulario fijo abajo */
+        .nda-form-wrapper { flex-shrink: 0; overflow-y: auto; padding-right: 5px; scrollbar-width: none;}
+        .nda-form-wrapper::-webkit-scrollbar { display: none; }
+        
+        .form-row { display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 15px; }
+        @media (min-width: 600px) { .form-row { grid-template-columns: 1fr 1fr; } }
+        
+        .form-modal-box label { display: block; margin-bottom: 6px; font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;}
+        .form-modal-box input[type="text"], .form-modal-box input[type="email"], .form-modal-box input[type="number"] { width: 100%; padding: 12px; background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.95rem; transition: border 0.3s; }
         .form-modal-box input:focus { outline: none; border-color: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan-glow);}
         
-        .legal-warning { margin-bottom: 20px; padding: 15px; background: rgba(239, 68, 68, 0.05); border-left: 4px solid var(--danger-red); font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; border-radius: 0 8px 8px 0;}
-        .legal-warning strong { color: var(--danger-red); }
-        .error-message { color: var(--danger-red); font-size: 0.9rem; margin-bottom: 15px; display: none; font-weight: 600; padding: 12px; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3); line-height: 1.4;}
+        /* Custom Checkbox (Aceptación explícita) */
+        .checkbox-container { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 25px; cursor: pointer; user-select: none; }
+        .checkbox-container input { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; }
+        .checkmark { position: relative; top: 2px; height: 20px; width: 20px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; transition: all 0.2s; flex-shrink: 0; }
+        .checkbox-container:hover input ~ .checkmark { background-color: rgba(255,255,255,0.1); }
+        .checkbox-container input:checked ~ .checkmark { background-color: var(--electric-cyan); border-color: var(--electric-cyan); }
+        .checkmark:after { content: ""; position: absolute; display: none; left: 6px; top: 2px; width: 5px; height: 10px; border: solid var(--dark-bg); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+        .checkbox-container input:checked ~ .checkmark:after { display: block; }
+        .checkbox-text { color: var(--text-main); font-size: 0.85rem; line-height: 1.4; font-weight: 600;}
+        .checkbox-text span { color: var(--danger-red); }
+
+        .error-message { color: var(--danger-red); font-size: 0.85rem; margin-bottom: 15px; display: none; font-weight: 600; padding: 10px; background: rgba(239, 68, 68, 0.1); border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.3); line-height: 1.4;}
         
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } }
         .shake-error { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
-        .modal-req-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5; text-align: center;}
-        .modal-logos-mini { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; justify-content: center; align-items: center; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px;}
-        .modal-logos-mini img { height: 20px; width: auto; object-fit: contain; filter: brightness(0) invert(1) opacity(0.5); }
+        .modal-req-desc { color: var(--electric-cyan); font-size: 0.9rem; margin-bottom: 15px; line-height: 1.5; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
     </style>
 </head>
 <body class="is-loading">
 
     <script>
-        // Prevención de flash layout: Evitamos que el navegador haga scroll a elementos anclados antes de que la app inicialice.
         if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
         window.scrollTo(0, 0);
     </script>
@@ -410,9 +408,7 @@
         <button class="vault-filter-btn" id="openVaultBtnHeader" aria-label="Abrir bóveda"><span class="icon">🔒</span> <span data-i18n="btn_vault_header">Acceso Bóveda</span></button>
     </div>
 
-    <!-- ============================================== -->
-    <!-- SECCIÓN PERFIL PROFESIONAL BENTO               -->
-    <!-- ============================================== -->
+    <!-- SECCIÓN PERFIL PROFESIONAL BENTO -->
     <div id="profile-section">
         <div class="bento-grid">
             
@@ -421,12 +417,6 @@
                 <h3 data-i18n="prof_title"><span style="font-size: 1.5rem; margin-right: 10px;">⚡</span> Orquestación & Estrategia</h3>
                 <p data-i18n="profile_text">Como <strong>Product Owner (PSPO I)</strong> e Ingeniero Multimedia, actúo como el puente estratégico entre la visión ejecutiva, la creatividad visual y la ejecución de proyectos. Lidero la conceptualización de marcas, la construcción de narrativas digitales y el diseño de ecosistemas E-learning B2B. Apoyado en herramientas de Inteligencia Artificial, estructuro y orquesto soluciones de alto impacto, garantizando una excelente experiencia de usuario y legibilidad algorítmica (UX/MX - Machine Experience), dirigiendo equipos especializados para materializar estrategias que conectan emocionalmente con los usuarios y optimizan el ROI corporativo.</p>
                 
-                <!-- NUEVO BOTÓN: Se utiliza la variable del diccionario 'btn_download_cv' y atributo 'download' -->
-                <a href="ALEJANDRO VEGA HV 2026.pdf" download="ALEJANDRO VEGA HV 2026.pdf" class="btn-secondary" style="margin-bottom: 40px; align-self: flex-start; position: relative; z-index: 2;" aria-label="Descargar hoja de vida en PDF">
-                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                    <span data-i18n="btn_download_cv">DESCARGAR HOJA DE VIDA</span>
-                </a>
-
                 <div class="bento-metrics" style="position: relative; z-index: 2;">
                     <div class="bento-metric"><span class="num">8+</span><span class="label" data-i18n="stat_years">Años Exp. B2B</span></div>
                     <div class="bento-metric"><span class="num">100%</span><span class="label" data-i18n="stat_po">Adopción Ágil</span></div>
@@ -435,11 +425,9 @@
                 <div class="pulse-ring"></div><div class="pulse-ring"></div><div class="pulse-ring"></div>
             </div>
 
-            <!-- CONTENEDOR DE EXPERIENCIA (Con Scroll independiente del Grid Padre) -->
+            <!-- CONTENEDOR DE EXPERIENCIA (Relativo absoluto al Grid) -->
             <div class="bento-card bento-exp bento-content">
                 <h3 data-i18n="prof_rol">Experiencia Clave</h3>
-                
-                <!-- El container sirve de bloque relativo para atrapar la altura absoluta del wrapper interno -->
                 <div class="cv-timeline-container">
                     <div class="cv-timeline-wrapper">
                         <div class="cv-timeline">
@@ -669,7 +657,6 @@
 
     </main>
 
-    <!-- Marcas Impactadas -->
     <section class="ecosystem-section reveal-element" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
         <h3 data-i18n="impact_title" style="margin-bottom: 10px; font-size: 1.5rem;">Marcas Impactadas</h3>
         <p style="color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 40px;" data-i18n="impact_subtitle">A través de Consultoría B2B e In-House</p>
@@ -697,7 +684,6 @@
         </div>
     </section>
 
-    <!-- Ecosistema Creativo Directo -->
     <section class="ecosystem-section reveal-element" style="padding-top: 50px;">
         <h3 data-i18n="ecosystem_title" style="font-size: 1.2rem; color: var(--text-muted);">Ecosistema Creativo Directo</h3>
         <a href="https://automatas.co" target="_blank" rel="noopener noreferrer" class="brand-btn-clean">
@@ -705,20 +691,28 @@
         </a>
     </section>
 
-    <!-- Conectemos -->
+    <!-- [MODIFICADO] SECCIÓN CONECTEMOS CON BOTÓN CV -->
     <section class="contact-section reveal-element" id="contacto">
         <h2 data-i18n="contact_title">Conectemos</h2>
         <p data-i18n="contact_desc">¿Listo para elevar la innovación tecnológica y visual de sus proyectos? Agendemos una sesión estratégica hoy mismo.</p>
         
         <div class="contact-actions">
+            <!-- Botón WhatsApp -->
             <a href="https://wa.me/573001404327?text=Hola%20Alejandro,%20estoy%20viendo%20tu%20perfil%20y%20deseo%20agendar%20una%20sesi%C3%B3n%20estrat%C3%A9gica%20para%20mi%20empresa." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
                 <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                 <span data-i18n="btn_wa">Escríbeme por WhatsApp</span>
             </a>
             
+            <!-- Botón Correo -->
             <a href="mailto:Alejandro.960822@gmail.com" class="btn-primary">
                 <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                 <span data-i18n="btn_mail">Escríbeme un correo</span>
+            </a>
+            
+            <!-- NUEVO BOTÓN CV: Integrado en el clúster de contacto -->
+            <a href="ALEJANDRO VEGA HV 2026.pdf" download="ALEJANDRO VEGA HV 2026.pdf" class="btn-secondary" aria-label="Descargar hoja de vida en PDF">
+                <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span data-i18n="btn_download_cv">DESCARGAR HOJA DE VIDA</span>
             </a>
         </div>
         
@@ -745,7 +739,6 @@
         </div>
     </section>
 
-    <!-- MODALES OCULTOS -->
     <div class="modal-fullscreen" id="youtube-modal">
         <div class="modal-content-wrapper">
             <button class="close-btn" id="closeYtBtn" data-i18n="btn_close">CERRAR [X]</button>
@@ -761,40 +754,63 @@
         <div class="gallery-dots" id="gallery-dots"></div>
     </div>
 
+    <!-- [MODIFICADO] FORMULARIO NDA BÓVEDA -->
     <div class="modal-fullscreen" id="vault-modal">
         <div class="form-modal-box">
             <button class="close-btn" id="closeVaultBtn" style="position: absolute; top: 15px; right: 15px; border: none; background: transparent; box-shadow: none; color: var(--text-muted);" aria-label="Cerrar modal">[X]</button>
-            <h3 style="color: var(--electric-cyan); margin-bottom: 5px; font-size: 1.8rem;" data-i18n="modal_req_title">Solicitud de Acceso</h3>
-            <p class="modal-req-desc" data-i18n="modal_req_desc">Está a punto de solicitar acceso a la Bóveda protegida por NDA.</p>
-            <div class="modal-logos-mini">
-                <img src="Logo%20Unilever.png" alt="Unilever" class="fallback-img modal-logo-unilever" draggable="false">
-                <img src="Logo_Alqueria.png" alt="Alquería" class="fallback-img" draggable="false">
-                <img src="Logo%20derco.png" alt="Derco" class="fallback-img" draggable="false">
-                <img src="Logo%20comfandi.png" alt="Comfandi" class="fallback-img" draggable="false">
-            </div>
+            <h3 style="color: var(--electric-cyan); margin-bottom: 5px; font-size: 1.5rem; text-transform: uppercase;" data-i18n="modal_req_title">Firma de NDA</h3>
+            <p class="modal-req-desc" data-i18n="modal_req_desc">Compromiso Irrevocable de Confidencialidad</p>
             
             <div id="vault-error" class="error-message"></div>
 
-            <form id="vault-form" novalidate>
-                <label for="req-name" data-i18n="label_name">Su Nombre Completo:</label>
-                <input type="text" id="req-name" placeholder="Ej. Juan Pérez" required>
-                <label for="req-company" data-i18n="label_company">Empresa o Agencia:</label>
-                <input type="text" id="req-company" placeholder="Ej. Google / Leo Burnett" required>
-                <label for="req-email" data-i18n="label_email">Su Correo Corporativo:</label>
-                <input type="email" id="req-email" placeholder="ejemplo@empresa.com" required>
-                
-                <div class="legal-warning">
-                    <strong data-i18n="nda_title">ACUERDO DE CONFIDENCIALIDAD (NDA):</strong> <span data-i18n="nda_text">Al solicitar acceso, usted acepta que el material es confidencial.</span>
+            <!-- Contenedor del documento legal escroleable -->
+            <div class="nda-document-scroll">
+                <div id="nda-text-content">
+                    <!-- Se inyecta dinámicamente desde el JS para soportar idiomas -->
                 </div>
-                
-                <button type="submit" class="btn-primary" style="width: 100%;" data-i18n="btn_submit">Enviar Solicitud</button>
-            </form>
+            </div>
+
+            <!-- Formulario de firma inferior -->
+            <div class="nda-form-wrapper">
+                <form id="vault-form" novalidate>
+                    <div class="form-row">
+                        <div>
+                            <label for="req-name" data-i18n="label_name">Nombre Completo:</label>
+                            <input type="text" id="req-name" placeholder="Firma digital (Su nombre)" required>
+                        </div>
+                        <div>
+                            <label for="req-id" data-i18n="label_id">Documento / NIT:</label>
+                            <input type="number" id="req-id" placeholder="Ej. 1107..." required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div>
+                            <label for="req-company" data-i18n="label_company">Empresa / Agencia:</label>
+                            <input type="text" id="req-company" placeholder="Ej. Google" required>
+                        </div>
+                        <div>
+                            <label for="req-email" data-i18n="label_email">Correo Corporativo:</label>
+                            <input type="email" id="req-email" placeholder="ejemplo@empresa.com" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Checkbox personalizado de aceptación legal explícita -->
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="req-agree" required>
+                        <span class="checkmark"></span>
+                        <div class="checkbox-text" data-i18n="nda_agree">Declaro que actúo como representante legal o persona autorizada y <span>ACEPTO IRREVOCABLEMENTE</span> las cláusulas de confidencialidad y penalidad económica.</div>
+                    </label>
+                    
+                    <button type="submit" class="btn-primary" style="width: 100%; font-size: 1.1rem; padding: 18px;" data-i18n="btn_submit">Firmar y Solicitar Acceso</button>
+                </form>
+            </div>
         </div>
     </div>
 
     <script>
         (() => {
-            // DICCIONARIO DE TRADUCCIONES: Se agregó la variable btn_download_cv
+            // [MODIFICADO] DICCIONARIO: Integración estricta de las traducciones del NDA (Inspirado en el marco legal Colombiano 2026).
             const translations = {
                 es: {
                     head_title: "Alejandro Vega | Product Owner & Innovación B2B", btn_profile: "Perfil Profesional",
@@ -815,8 +831,10 @@
                     profile_text: 'Como <strong>Product Owner (PSPO I)</strong> e Ingeniero Multimedia, actúo como el puente estratégico entre la visión ejecutiva, la creatividad visual y la ejecución de proyectos. Lidero la conceptualización de marcas, la construcción de narrativas digitales y el diseño de ecosistemas E-learning B2B. Apoyado en herramientas de Inteligencia Artificial, estructuro y orquesto soluciones de alto impacto, garantizando una excelente experiencia de usuario y legibilidad algorítmica (UX/MX - Machine Experience), dirigiendo equipos especializados para materializar estrategias que conectan emocionalmente con los usuarios y optimizan el ROI corporativo.',
                     stat_years: "Años Exp. B2B", stat_po: "Adopción Ágil", stat_projects: "Visión Creativa",
                     btn_all: "Todo", btn_video: "Producción Audiovisual", btn_photo: "Fotografía", btn_design: "Diseño Visual", btn_audio: "Diseño Sonoro",
-                    vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara", vid_cat_showreel: "Dirección Creativa B2B", vid_tit_showreel: "Showreel Corporativo", vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO", vid_cat_evento: "Cobertura Institucional", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Programa Institucional Online", vid_tit_chef1: "UniChef: Cheesecake", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", cat_product: "Fotografía Comercial B2C/B2B", title_product: "Fotografía de Producto", cat_banner: "Banner Web", cat_corp: "Branding Institucional", cat_ad: "Diseño Institucional", aud_alone: "Acústico / Soul Cinematográfico", ecosystem_title: "Ecosistema Creativo Directo", impact_title: "Marcas Impactadas", impact_subtitle: "A través de Consultoría B2B e In-House", clients_title: "Empresas y Aliados", contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la innovación tecnológica y visual de sus proyectos? Agendemos una sesión estratégica hoy mismo.", btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", vault_title: "Bóveda Corporativa", vault_desc: "Mis desarrollos de diseño instruccional y E-learning para Unilever, Alquería y Derco están sujetos a NDA.", vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]", modal_req_title: "Solicitud de Acceso", modal_req_desc: "Está a punto de solicitar acceso a la Bóveda de NDA. Clientes protegidos:", label_name: "Su Nombre Completo:", label_company: "Empresa o Agencia:", label_email: "Su Correo Corporativo:", nda_title: "ACUERDO DE CONFIDENCIALIDAD (NDA):", nda_text: "Al solicitar acceso a esta bóveda, usted reconoce y acepta expresamente que el material contenido es confidencial.", btn_submit: "Enviar Solicitud y Aceptar", btn_connect: "CONECTEMOS",
-                    btn_download_cv: "DESCARGAR HOJA DE VIDA"
+                    vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara", vid_cat_showreel: "Dirección Creativa B2B", vid_tit_showreel: "Showreel Corporativo", vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO", vid_cat_evento: "Cobertura Institucional", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Programa Institucional Online", vid_tit_chef1: "UniChef: Cheesecake", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", cat_product: "Fotografía Comercial B2C/B2B", title_product: "Fotografía de Producto", cat_banner: "Banner Web", cat_corp: "Branding Institucional", cat_ad: "Diseño Institucional", aud_alone: "Acústico / Soul Cinematográfico", ecosystem_title: "Ecosistema Creativo Directo", impact_title: "Marcas Impactadas", impact_subtitle: "A través de Consultoría B2B e In-House", clients_title: "Empresas y Aliados", contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la innovación tecnológica y visual de sus proyectos? Agendemos una sesión estratégica hoy mismo.", btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", vault_title: "Bóveda Corporativa", vault_desc: "Mis desarrollos de diseño instruccional y E-learning para Unilever, Alquería y Derco están sujetos a NDA.", vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]", modal_req_title: "Firma de NDA", modal_req_desc: "Compromiso Irrevocable de Confidencialidad", label_name: "Nombre Completo:", label_id: "Documento / NIT:", label_company: "Empresa / Agencia:", label_email: "Correo Corporativo:", btn_submit: "Firmar y Solicitar Acceso", btn_connect: "CONECTEMOS",
+                    btn_download_cv: "DESCARGAR HOJA DE VIDA",
+                    nda_agree: "Declaro que actúo como representante legal o persona autorizada y <span>ACEPTO IRREVOCABLEMENTE</span> las cláusulas de confidencialidad y penalidad económica.",
+                    nda_full_text: "<h4>1. Marco Legal y Objeto de Protección</h4><p>Con fundamento en el <strong>Artículo 15 de la Constitución Política de Colombia</strong>, la <strong>Ley 1581 de 2012</strong> (Protección de Datos) y la <strong>Ley 256 de 1996</strong> (Secretos Empresariales), el presente acuerdo protege la propiedad intelectual, comercial, técnica y de diseño alojada en esta Bóveda Corporativa. Este material incluye información privilegiada amparada por acuerdos previos de confidencialidad con marcas como Eficacia, Unilever, Alquería y Derco, bajo la custodia legal de Jhon Alejandro Vega Ramírez ('La Parte Reveladora').</p><h4>2. Obligación Irrevocable de Reserva</h4><p>La persona natural o jurídica que accede ('La Parte Receptora') se compromete a mantener estricta reserva y confidencialidad. Queda terminantemente prohibida la reproducción total o parcial, transmisión, ingeniería inversa, captura de pantalla o almacenamiento por cualquier medio físico o digital. El acceso se otorga exclusiva y limitadamente para fines de evaluación profesional y comercial directa.</p><h4>3. Cláusula Penal y Perjuicios</h4><p>El incumplimiento comprobado de la obligación de reserva y no divulgación facultará a La Parte Reveladora para exigir inmediatamente, a título de pena, el pago de una suma equivalente a <strong>cincuenta mil dólares estadounidenses (USD $50.000)</strong> o su equivalente en Pesos Colombianos (COP), exigible por vía ejecutiva sin requerir constitución en mora, e independiente del cobro por indemnización de perjuicios adicionales o acciones penales pertinentes.</p><h4>4. Jurisdicción y Resolución de Controversias</h4><p>Cualquier disputa derivada de este acceso será resuelta en derecho mediante Tribunal de Arbitramento adscrito al Centro de Conciliación y Arbitraje de la <strong>Cámara de Comercio de Cali</strong>.</p>"
                 },
                 en: {
                     head_title: "Alejandro Vega | Product Owner & B2B Innovation", btn_profile: "Professional Profile",
@@ -837,8 +855,10 @@
                     profile_text: 'As a <strong>Product Owner (PSPO I)</strong> and Multimedia Engineer, I act as the strategic bridge between executive vision, visual creativity, and project execution. I lead the conceptualization of brands, the construction of digital narratives, and the design of B2B E-learning ecosystems. Supported by AI tools, I structure and orchestrate high-impact solutions, guaranteeing an excellent user experience and algorithmic readability (UX/MX - Machine Experience), directing specialized teams to materialize strategies that connect emotionally with users and optimize corporate ROI.',
                     stat_years: "Years B2B Exp.", stat_po: "Agile Adoption", stat_projects: "Creative Vision",
                     btn_all: "All", btn_video: "Audiovisual Production", btn_photo: "Photography", btn_design: "Visual Design", btn_audio: "Sound Design",
-                    ecosystem_title: "Direct Creative Ecosystem", impact_title: "Impacted Brands", impact_subtitle: "Through B2B & In-House Consulting", clients_title: "Companies & Partners", contact_title: "LET'S CONNECT", contact_desc: "Ready to elevate the technological and visual innovation of your projects? Let's schedule a strategic session today.", btn_wa: "Text me on WhatsApp", btn_mail: "Send me an email", vault_title: "Corporate Vault", vault_desc: "My instructional design and B2B E-learning developments for Unilever, Alquería, and Derco are subject to NDA.", vault_btn: "Request Secure Access", btn_close: "CLOSE [X]", modal_req_title: "Access Request", modal_req_desc: "You are requesting access to the NDA Protected Vault.", label_name: "Your Full Name:", label_company: "Company or Agency:", label_email: "Your Corporate Email:", nda_title: "NON-DISCLOSURE AGREEMENT (NDA):", nda_text: "By requesting access, you agree that the material is strictly confidential.", btn_submit: "Submit Request", btn_connect: "LET'S CONNECT",
-                    btn_download_cv: "DOWNLOAD RESUME"
+                    ecosystem_title: "Direct Creative Ecosystem", impact_title: "Impacted Brands", impact_subtitle: "Through B2B & In-House Consulting", clients_title: "Companies & Partners", contact_title: "LET'S CONNECT", contact_desc: "Ready to elevate the technological and visual innovation of your projects? Let's schedule a strategic session today.", btn_wa: "Text me on WhatsApp", btn_mail: "Send me an email", vault_title: "Corporate Vault", vault_desc: "My instructional design and B2B E-learning developments for Unilever, Alquería, and Derco are subject to NDA.", vault_btn: "Request Secure Access", btn_close: "CLOSE [X]", modal_req_title: "NDA Signature", modal_req_desc: "Irrevocable Confidentiality Agreement", label_name: "Full Name:", label_id: "Gov ID / Tax ID:", label_company: "Company or Agency:", label_email: "Corporate Email:", btn_submit: "Sign and Request Access", btn_connect: "LET'S CONNECT",
+                    btn_download_cv: "DOWNLOAD RESUME",
+                    nda_agree: "I declare that I act as a legal representative or authorized person and <span>IRREVOCABLY ACCEPT</span> the confidentiality clauses and economic penalties.",
+                    nda_full_text: "<h4>1. Legal Framework and Object of Protection</h4><p>Based on <strong>Article 15 of the Colombian Political Constitution</strong>, <strong>Law 1581 of 2012</strong> (Data Protection), and <strong>Law 256 of 1996</strong> (Trade Secrets), this agreement protects the intellectual, commercial, technical, and design property hosted in this Corporate Vault. This material includes privileged information covered by previous non-disclosure agreements with brands such as Eficacia, Unilever, Alquería, and Derco, under the legal custody of Jhon Alejandro Vega Ramírez ('The Disclosing Party').</p><h4>2. Irrevocable Obligation of Confidentiality</h4><p>The natural or legal person accessing the vault ('The Receiving Party') commits to maintaining strict confidentiality. Total or partial reproduction, transmission, reverse engineering, screen capturing, or storage by any physical or digital means is strictly prohibited. Access is granted exclusively and limitedly for professional evaluation purposes.</p><h4>3. Penalty Clause and Damages</h4><p>Proven breach of the non-disclosure obligation will empower The Disclosing Party to immediately demand a penalty payment equivalent to <strong>fifty thousand US dollars (USD $50,000)</strong> or its equivalent in COP, enforceable through executive action without requiring prior notice of default, and independent of any claims for additional damages or relevant criminal actions.</p><h4>4. Jurisdiction and Dispute Resolution</h4><p>Any dispute arising from this access will be resolved in law through an Arbitration Tribunal attached to the Conciliation and Arbitration Center of the <strong>Cali Chamber of Commerce</strong>.</p>"
                 }
             };
             
@@ -847,11 +867,9 @@
                 document.documentElement.lang = lang;
                 document.title = translations[lang]['head_title'];
                 
-                // Módulo renderizador de idioma
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     const key = el.getAttribute('data-i18n');
                     if (translations[lang][key]) {
-                        // Inyección segura: si el string posee HTML lo usamos, de otra forma usamos textContent.
                         if (translations[lang][key].includes('<')) {
                             el.innerHTML = translations[lang][key];
                         } else {
@@ -859,6 +877,11 @@
                         }
                     }
                 });
+                
+                // Actualización explícita del bloque de texto del NDA basado en el idioma
+                const ndaContainer = document.getElementById('nda-text-content');
+                if(ndaContainer) ndaContainer.innerHTML = translations[lang]['nda_full_text'];
+
                 document.getElementById('lang-es').classList.toggle('active', lang === 'es');
                 document.getElementById('lang-en').classList.toggle('active', lang === 'en');
             };
@@ -868,7 +891,7 @@
                 updateLanguage(currentLang);
             });
 
-            // Lógica de Grid y Filtrado
+            // Lógica de Grid y Filtrado View Transitions
             const FilterManager = (() => {
                 const grid = document.getElementById('main-grid');
                 const profileSection = document.getElementById('profile-section');
@@ -1117,6 +1140,7 @@
                 const modal = document.getElementById('vault-modal'); 
                 const form = document.getElementById('vault-form'); 
                 const errorDiv = document.getElementById('vault-error');
+                const checkbox = document.getElementById('req-agree'); // Enlace al checkbox
                 
                 const freeEmailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'aol.com', 'live.com'];
 
@@ -1134,15 +1158,19 @@
                     );
                 };
 
-                const validateForm = (name, company, email) => {
+                // [MODIFICADO] Lógica de validación estricta (Incluye Documento de Identidad y Checkbox vinculante)
+                const validateForm = (name, docId, company, email, isAgreed) => {
                     const errors = [];
-                    if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]{3,50}$/.test(name)) errors.push("❌ <strong>Nombre inválido:</strong> Use solo letras (3-50 caracteres).");
-                    if (!/^[A-Za-z0-9áéíóúÁÉÍÓÚñÑ\s\-\&]{2,50}$/.test(company)) errors.push("❌ <strong>Empresa inválida:</strong> Evite caracteres especiales extraños.");
+                    if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]{3,50}$/.test(name)) errors.push("❌ <strong>Firma inválida:</strong> Ingrese su nombre real completo.");
+                    if (docId.length < 5) errors.push("❌ <strong>Documento inválido:</strong> Ingrese una identificación gubernamental o tributaria válida.");
+                    if (!/^[A-Za-z0-9áéíóúÁÉÍÓÚñÑ\s\-\&]{2,50}$/.test(company)) errors.push("❌ <strong>Empresa inválida:</strong> Verifique el nombre comercial de la agencia/empresa.");
                     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push("❌ <strong>Correo inválido:</strong> Verifique el formato.");
                     else {
                         const domain = email.split('@')[1].toLowerCase();
-                        if (freeEmailDomains.includes(domain)) errors.push("❌ <strong>Acceso B2B:</strong> Se requiere un correo corporativo, no se admiten cuentas gratuitas.");
+                        if (freeEmailDomains.includes(domain)) errors.push("❌ <strong>Acceso B2B:</strong> Se requiere correo corporativo para vinculación de NDA.");
                     }
+                    if (!isAgreed) errors.push("❌ <strong>Consentimiento legal:</strong> Debe marcar la casilla aceptando explícitamente los términos del contrato NDA.");
+                    
                     return errors;
                 };
 
@@ -1152,13 +1180,15 @@
                     form.classList.remove('shake-error');
 
                     let name = sanitizeHTML(document.getElementById('req-name').value.trim()); 
+                    let docId = sanitizeHTML(document.getElementById('req-id').value.trim()); 
                     let company = sanitizeHTML(document.getElementById('req-company').value.trim()); 
                     let email = sanitizeHTML(document.getElementById('req-email').value.trim());
+                    let isAgreed = checkbox.checked;
                     
-                    const validationErrors = validateForm(name, company, email);
+                    const validationErrors = validateForm(name, docId, company, email, isAgreed);
 
                     if (validationErrors.length > 0) {
-                        errorDiv.innerHTML = validationErrors.join('<br><br>');
+                        errorDiv.innerHTML = validationErrors.join('<br>');
                         errorDiv.style.display = "block";
                         setTimeout(() => form.classList.add('shake-error'), 10);
                         return;
@@ -1167,16 +1197,18 @@
                     const btnSubmit = form.querySelector('button[type="submit"]');
                     const btnOriginalText = btnSubmit.innerHTML;
                     btnSubmit.disabled = true;
-                    btnSubmit.innerHTML = "Procesando...";
+                    btnSubmit.innerHTML = "Firmando digitalmente...";
 
-                    const bodyText = `Estimado Alejandro,\n\nMi nombre es ${name}, representando a ${company}. Solicito acceso a su Bóveda Corporativa.\n\nDatos de contacto: ${email}\n\nAcepto el NDA.`;
-                    window.location.href = `mailto:Alejandro.960822@gmail.com?subject=${encodeURIComponent(`Acceso Bóveda Corporativa - ${company}`)}&body=${encodeURIComponent(bodyText)}`;
+                    // Compilación del cuerpo del mensaje incluyendo la declaración legal y la "Firma" como Log probatorio
+                    const bodyText = `FIRMA DIGITAL DE COMPROMISO NDA\n\nYo, ${name}, identificado con el documento/NIT ${docId}, actuando en nombre propio o como representante de ${company} (Contacto corporativo: ${email}), DECLARO formalmente bajo la gravedad de juramento que HE LEÍDO Y ACEPTO IRREVOCABLEMENTE los términos de confidencialidad y la cláusula penal (USD $50.000) expuestos en la bóveda de Jhon Alejandro Vega Ramírez respecto al material protegido de terceros.\n\nSolicito formalmente la clave de acceso a la Bóveda Privada.`;
+                    
+                    window.location.href = `mailto:Alejandro.960822@gmail.com?subject=${encodeURIComponent(`Firma NDA y Acceso Bóveda - ${company}`)}&body=${encodeURIComponent(bodyText)}`;
                     
                     setTimeout(() => {
                         closeModal();
                         btnSubmit.disabled = false;
                         btnSubmit.innerHTML = btnOriginalText;
-                    }, 1000);
+                    }, 1500);
                 });
                 
                 document.getElementById('openVaultBtnHeader').addEventListener('click', openModal); 

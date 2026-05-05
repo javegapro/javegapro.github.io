@@ -1,34 +1,40 @@
 <!DOCTYPE html>
+<!-- Etiqueta raíz. Se define español por defecto, modificable vía JS -->
 <html lang="es" id="html-root">
 <head>
-    <!-- [MÓDULO 1] Codificación, Viewport y Seguridad de Renderizado -->
-    <!-- Define la codificación universal para soportar caracteres especiales sin fricción -->
+    <!-- ==========================================
+         [MÓDULO 1] META, VIEWPORT Y SEGURIDAD
+         ========================================== -->
+    <!-- Establece la codificación de caracteres a UTF-8 para soportar tildes y caracteres internacionales -->
     <meta charset="UTF-8">
-    <!-- Viewport adaptativo: 'cover' permite usar áreas seguras (notch) en iOS/Android manteniendo un diseño edge-to-edge -->
+    <!-- Define el viewport adaptativo. 'viewport-fit=cover' permite que la web ocupe las áreas seguras (notches) en móviles -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <!-- Tema de color que mimetiza la barra del navegador del dispositivo móvil con el fondo de la web -->
+    <!-- Pinta la barra superior del navegador nativo móvil (Android/iOS) con el color de fondo primario -->
     <meta name="theme-color" content="#020617">
     
-    <!-- Meta-etiquetas SEO y Open Graph -->
+    <!-- Meta-etiquetas SEO. 'data-i18n' permite al JS encontrar el nodo para inyectar traducciones -->
     <title data-i18n="head_title">Jhon Alejandro Vega Ramírez | Especialista Tecnológico (JavegaPro)</title>
     <meta name="description" content="Portafolio oficial de Jhon Alejandro Vega Ramírez (Jhon Vega / JavegaPro). Estratega multidisciplinario, Especialista Creativo Tecnológico, Diseñador UI/UX y Producción Audiovisual.">
     <meta name="keywords" content="Jhon Alejandro Vega Ramírez, Jhon Vega, JHON ALEJANDRO VEGA RAMIREZ, jhon alejandro vega ramirez, john, alejandro vega, javega, javegapro, Desarrollo Web, Diseño UI/UX, Producción Audiovisual, Líder de Innovación Creativa, IA Generativa">
+    <!-- Autoría de la propiedad intelectual -->
     <meta name="author" content="Jhon Alejandro Vega Ramírez">
     
-    <!-- Etiquetas para previsualización enriquecida en redes sociales (LinkedIn, WhatsApp) -->
+    <!-- Open Graph (OG) para previsualizaciones ricas en LinkedIn, WhatsApp, Facebook, etc. -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Jhon Alejandro Vega Ramírez | Portafolio Profesional">
     <meta property="og:description" content="Descubre el ecosistema creativo de Jhon Vega (JavegaPro): Diseño, Desarrollo Web y Producción Audiovisual.">
     <meta property="og:url" content="https://javegapro.com/">
     <meta property="og:site_name" content="JavegaPro">
+    <!-- Imagen destacada (Miniatura) al compartir el link -->
     <meta property="og:image" content="https://static.wixstatic.com/media/14f4fb_62c1344e52a441daaa100e3400a6cc19~mv2_d_3176_4000_s_4_2.jpg">
     
+    <!-- Twitter Cards (Similar a Open Graph pero específico para el ecosistema X/Twitter) -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Jhon Alejandro Vega Ramírez | JavegaPro">
     <meta name="twitter:description" content="Estratega multidisciplinario y Especialista Creativo Tecnológico.">
     <meta name="twitter:image" content="https://static.wixstatic.com/media/14f4fb_62c1344e52a441daaa100e3400a6cc19~mv2_d_3176_4000_s_4_2.jpg">
 
-    <!-- JSON-LD: Entidad de Grafo de Conocimiento de Google -->
+    <!-- JSON-LD: Schema.org. Diccionario de datos estructurados para indexación de Google Knowledge Graph -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -64,77 +70,113 @@
     }
     </script>
     
-    <!-- Favicon SVG dinámico inyectado en base64 para evitar peticiones HTTP adicionales al servidor -->
+    <!-- Favicon SVG dinámico (Base64). Optimiza el LCP al no requerir una petición HTTP extra al servidor -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text x='50' y='68' font-family='Arial, sans-serif' font-size='55' font-weight='bold' fill='%232dd4bf' text-anchor='middle'>AV</text></svg>" type="image/svg+xml">
+    <!-- Icono específico para marcadores en dispositivos Apple (iOS) -->
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a'/><text x='50' y='68' font-family='Arial, sans-serif' font-size='55' font-weight='bold' fill='%232dd4bf' text-anchor='middle'>AV</text></svg>">
     
-    <!-- Resolución anticipada de DNS para dominios externos críticos (Rendimiento Core Web Vitals) -->
+    <!-- Preconexión DNS. Acelera la resolución de dominios críticos antes de que se lean los iframes o estilos -->
     <link rel="preconnect" href="https://www.youtube.com">
     <link rel="preconnect" href="https://static.wixstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- crossorigin es necesario para fuentes alojadas en dominios distintos por políticas CORS -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Carga de fuentes. 'display=swap' garantiza que el texto se muestre con fuente del sistema hasta que Google Fonts cargue (Previene texto invisible) -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* ==================== 1. VARIABLES GLOBALES Y RESETEO BASE ==================== */
+        /* ==========================================
+           [MÓDULO 2] ARQUITECTURA CSS-FIRST
+           ========================================== */
+        
+        /* Declaración de Custom Properties (Variables CSS) en la raíz del documento para tematización global */
         :root {
-            --dark-bg: #020617; 
-            --electric-cyan: #2dd4bf; 
-            --electric-cyan-glow: rgba(45, 212, 191, 0.4);
-            --card-bg: #0f172a;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --danger-red: #ef4444;
-            --whatsapp-green: #25D366;
-            --automatas-green: #7fff50; 
-            --transition-speed: 0.4s;
-            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --dark-bg: #020617; /* Fondo azul/negro ultra oscuro */
+            --electric-cyan: #2dd4bf; /* Color de acento corporativo tecnológico */
+            --electric-cyan-glow: rgba(45, 212, 191, 0.4); /* Variante translúcida para sombras y luces */
+            --card-bg: #0f172a; /* Fondo de tarjetas Bento */
+            --text-main: #f8fafc; /* Texto primario alto contraste */
+            --text-muted: #94a3b8; /* Texto secundario baja jerarquía */
+            --danger-red: #ef4444; /* Alertas y validaciones de errores */
+            --whatsapp-green: #25D366; /* Identidad de marca de WhatsApp */
+            --automatas-green: #7fff50; /* Acento específico de la agencia */
             
-            /* Variables CSS adaptativas para entornos iOS/Android con "notches" o bordes curvos */
+            --transition-speed: 0.4s; /* Velocidad base global para interactividad */
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1); /* Curva de aceleración orgánica (tipo resorte suave) */
+            
+            /* Variables seguras (Notch) inyectadas por el SO. Fallback a 20px si no existen */
             --safe-bottom: env(safe-area-inset-bottom, 20px);
             --safe-right: env(safe-area-inset-right, 20px);
             --safe-left: env(safe-area-inset-left, 20px);
         }
 
-        /* Reseteo agresivo. Bloquea el arrastre de elementos para una sensación de App nativa en móviles */
+        /* Reseteo agresivo. El border-box asegura que los paddings no sumen ancho total. -webkit-user-drag evita que el usuario arrastre imágenes fantasma */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-user-drag: none; }
+        
+        /* Elimina el resaltado azul por defecto al tocar botones/links en móviles iOS/Android */
         button, a, .media-item, .gallery-nav, .client-logo { user-select: none; -webkit-tap-highlight-color: transparent; }
+        
+        /* Previene el desbordamiento horizontal global causado por animaciones o muescas */
         html, body { max-width: 100vw; overflow-x: hidden; }
 
-        /* Fondo atmosférico corporativo: Gradientes radiales para inyectar profundidad */
+        /* Estilo base del body. Incorpora gradientes radiales fijos para añadir volumen al fondo plano */
         body { 
-            background-color: var(--dark-bg); color: var(--text-main); font-family: 'Inter', sans-serif; scroll-behavior: smooth;
+            background-color: var(--dark-bg); 
+            color: var(--text-main); 
+            font-family: 'Inter', sans-serif; 
+            scroll-behavior: smooth; /* Desplazamiento nativo suave al hacer click en anclas internas */
             background-image: radial-gradient(circle at top right, rgba(45, 212, 191, 0.05), transparent 40%),
                               radial-gradient(circle at bottom left, rgba(2, 6, 23, 1), transparent 50%);
         }
+        
+        /* Clase utilitaria inyectada por JS para bloquear el scroll mientras el Preloader está activo */
         body.is-loading { overflow: hidden; height: 100dvh; }
+        
+        /* Tipografía específica (Montserrat) para la jerarquía de títulos */
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
-        /* ==================== 2. UI PRELOADER ==================== */
-        /* Paneles con 'will-change' instruyen a la GPU para pre-reservar memoria de animación */
+        /* ==========================================
+           [MÓDULO 3] PRELOADER Y ANIMACIONES INICIALES
+           ========================================== */
+        
+        /* Capas sólidas que ocultan la web al entrar. 'will-change' le dice a la GPU que prepare cálculos de transformación */
         .splash-panel { position: fixed; left: 0; width: 100%; height: 50dvh; background-color: var(--dark-bg); z-index: 9998; transition: transform 0.8s var(--ease-out-expo); will-change: transform; }
         .splash-panel.top { top: 0; transform-origin: top; border-bottom: 2px solid var(--electric-cyan); box-shadow: 0 5px 30px var(--electric-cyan-glow);}
         .splash-panel.bottom { bottom: 0; transform-origin: bottom; border-top: 2px solid var(--electric-cyan); box-shadow: 0 -5px 30px var(--electric-cyan-glow);}
+        
+        /* Línea láser central. Escala desde 0 hasta el 100% de la pantalla */
         .splash-laser { position: fixed; top: 50%; left: 0; width: 100%; height: 4px; background: #fff; box-shadow: 0 0 20px 8px var(--electric-cyan); z-index: 9999; transform: translate3d(0, -50%, 0) scaleX(0); transition: opacity 0.3s ease; will-change: transform, opacity;}
         
+        /* Secuencia de animación de entrada del preloader */
         body.is-loading .splash-laser { animation: laserShoot 0.4s var(--ease-out-expo) forwards 1s; }
         @keyframes laserShoot { 0% { transform: translate3d(0, -50%, 0) scaleX(0); } 100% { transform: translate3d(0, -50%, 0) scaleX(1); } }
-        body.is-loaded .splash-panel.top { transform: translate3d(0, -100%, 0); }
-        body.is-loaded .splash-panel.bottom { transform: translate3d(0, 100%, 0); }
+        
+        /* Clases desencadenadas cuando JS termina de cargar la ventana */
+        body.is-loaded .splash-panel.top { transform: translate3d(0, -100%, 0); } /* Retira el panel superior hacia arriba */
+        body.is-loaded .splash-panel.bottom { transform: translate3d(0, 100%, 0); } /* Retira el panel inferior hacia abajo */
         body.is-loaded .splash-laser { opacity: 0; }
+        
+        /* Clase utilitaria ligada al IntersectionObserver. Elementos con esto nacen invisibles y aparecen fluidamente al hacer scroll */
         .reveal-element { opacity: 0; transition: opacity 0.8s ease; will-change: opacity; }
         body.is-loaded .reveal-element { opacity: 1; }
 
-        /* ==================== 3. CABECERA Y ANIMACIONES ==================== */
+        /* ==========================================
+           [MÓDULO 4] CABECERA PRINCIPAL Y GLITCH
+           ========================================== */
         header { padding: max(30px, 4dvh) 5% 10px; text-align: center; position: relative; z-index: 10000; pointer-events: none;}
+        
+        /* Contenedor del título con físicas de transformación. Mientras carga, está desplazado hacia abajo y ligeramente más grande */
         #title-wrapper { display: inline-block; transform: translate3d(0, 0, 0) scale(1); transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1); will-change: transform;}
         body.is-loading #title-wrapper { transform: translate3d(0, 35dvh, 0) scale(1.1); }
+        
+        /* Fluid typography usando clamp() para escalar dinámicamente entre móvil y monitores ultra wide */
         #main-title { font-size: clamp(1.8rem, 6vw, 5rem); text-transform: uppercase; letter-spacing: clamp(1px, 1.5vw, 8px); color: var(--text-main); }
+        
+        /* El efecto Glitch aplica solo durante la carga. Reemplaza el color sólido por un borde blanco y sombras neón */
         body.is-loading #main-title { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); animation: textGlitch 1.2s var(--ease-out-expo) forwards 0.2s; }
-
         @media (min-width: 768px) { body.is-loading #title-wrapper { transform: translate3d(0, 35dvh, 0) scale(1.5); } }
 
-        /* Glitch Effect para el título principal. Optimizado mediante text-shadow para evitar redibujados (reflows) costosos */
+        /* Animación sin manipulación de layout (solo text-shadow y transform). Altamente optimizada. */
         @keyframes textGlitch {
             0% { text-shadow: 4px 0 0 var(--electric-cyan), -4px 0 0 var(--danger-red); opacity: 0; filter: blur(4px);}
             20% { text-shadow: -3px 0 0 var(--electric-cyan), 3px 0 0 var(--danger-red); opacity: 1; filter: blur(0);}
@@ -143,49 +185,65 @@
             80% { transform: translate(0, 0); text-shadow: 3px 0 0 var(--electric-cyan); color: transparent; }
             100% { color: var(--text-main); text-shadow: 0 0 20px var(--electric-cyan-glow); -webkit-text-stroke: 0;}
         }
+        
+        /* Subtítulo posicional */
         header p.subtitle { color: var(--electric-cyan); font-weight: 600; text-transform: uppercase; font-size: clamp(0.75rem, 1.8vw, 1.1rem); letter-spacing: 2px; margin-top: 10px; line-height: 1.5;}
 
-        /* ==================== 4. FLOTANTES UI ==================== */
+        /* ==========================================
+           [MÓDULO 5] FLOTANTES DE UI (UI UX)
+           ========================================== */
+        
+        /* Switcher de Idiomas. Usa backdrop-filter para emular cristales nativos de iOS/macOS */
         .lang-toggle { position: fixed; bottom: max(20px, var(--safe-bottom)); left: max(20px, var(--safe-left)); background: rgba(2, 6, 23, 0.4); border: 1px solid rgba(45, 212, 191, 0.15); padding: 8px 12px; border-radius: 30px; cursor: pointer; z-index: 900; display: flex; gap: 8px; align-items: center; backdrop-filter: blur(20px) saturate(180%); box-shadow: inset 0 0 10px rgba(255,255,255,0.02), 0 10px 30px rgba(0,0,0,0.5);}
         .lang-option { opacity: 0.4; font-size: 1.2rem; transition: 0.3s; filter: grayscale(100%); }
         .lang-option.active { opacity: 1; filter: grayscale(0%); transform: scale(1.1); }
 
+        /* Botón primario de WhatsApp flotante (Call to Action fijo) */
         .floating-connect { position: fixed; bottom: max(20px, var(--safe-bottom)); right: max(20px, var(--safe-right)); border-radius: 50px; padding: 12px clamp(15px, 3vw, 25px); background: linear-gradient(135deg, var(--electric-cyan), #14b8a6); color: var(--dark-bg); display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 10px 25px var(--electric-cyan-glow); transition: transform 0.4s var(--ease-out-expo), box-shadow 0.3s ease; z-index: 900; text-decoration: none;}
         .floating-connect:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.6); }
         .floating-connect .text { font-weight: 900; text-transform: uppercase; letter-spacing: 1px;}
 
+        /* Botón de regreso al top. Aparece solo al hacer scroll down gestionado por JS */
         .back-to-top { position: fixed; bottom: calc(80px + var(--safe-bottom)); right: max(20px, var(--safe-right)); width: 45px; height: 45px; border-radius: 50%; background: rgba(2, 6, 23, 0.4); border: 1px solid var(--electric-cyan); color: var(--electric-cyan); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.4s ease; z-index: 901; cursor: pointer; backdrop-filter: blur(20px) saturate(180%); transform: translateY(20px); box-shadow: inset 0 0 10px rgba(255,255,255,0.02), 0 10px 30px rgba(0,0,0,0.5);}
         .back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
         .back-to-top:hover { background: var(--electric-cyan); box-shadow: 0 0 20px var(--electric-cyan-glow); }
         .back-to-top:hover svg { stroke: var(--dark-bg); transform: translateY(-3px); }
         .back-to-top svg { width: 20px; height: 20px; fill: none; stroke: var(--electric-cyan); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; transition: all 0.3s; }
 
-        /* ==================== 5. SISTEMA DE FILTRADO Y TRANSICIONES ==================== */
+        /* ==========================================
+           [MÓDULO 6] SISTEMA DE FILTRADO NAVEGACIONAL
+           ========================================== */
         .filter-container { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; padding: 20px 5% 40px; position: relative; z-index: 10; }
         
-        /* Snap Scroll para filtros en móviles: previene clicks accidentales y mejora la navegación horizontal */
+        /* Snap Scroll Mandatorio en Móviles. Permite deslizar los botones lateralmente sin requerir botones de flecha extra */
         @media (max-width: 767px) {
             .filter-container { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; scroll-snap-type: x mandatory; padding-bottom: 20px; padding-left: max(5%, var(--safe-left)); padding-right: max(5%, var(--safe-right)); }
             .filter-container::-webkit-scrollbar { display: none; }
         }
 
+        /* Estilo base de los botones de filtro estilo "Pill" */
         .filter-btn { background: rgba(2, 6, 23, 0.3); border: 1px solid rgba(255,255,255,0.1); color: var(--text-main); padding: 10px 20px; border-radius: 50px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; backdrop-filter: blur(10px); }
         .filter-btn:hover, .filter-btn.active { background-color: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan); box-shadow: 0 5px 15px var(--electric-cyan-glow); }
+        
+        /* Botones de acción especial (Perfil y Bóveda) se diferencian por color en su estado de reposo */
         .filter-btn[data-filter="perfil"] { border-color: var(--electric-cyan); color: var(--electric-cyan); }
         .filter-btn[data-filter="perfil"]:hover, .filter-btn[data-filter="perfil"].active { background-color: var(--electric-cyan); color: var(--dark-bg); box-shadow: 0 5px 15px var(--electric-cyan-glow); }
-
         .vault-filter-btn { background: rgba(45, 212, 191, 0.05); border: 1px solid var(--electric-cyan); color: var(--electric-cyan); padding: 10px 20px; border-radius: 50px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;}
         .vault-filter-btn:hover { background-color: var(--electric-cyan); color: var(--dark-bg); box-shadow: 0 5px 15px var(--electric-cyan-glow); }
 
         @media (max-width: 767px) { .filter-btn, .vault-filter-btn { flex: 0 0 auto; scroll-snap-align: start; white-space: nowrap; } }
 
-        /* ==================== 6. SECCIÓN DE PERFIL BENTO 3D ==================== */
-        /* Se añade 'transition: opacity' para asegurar desvanecimientos fluidos gestionados por JS y no por View Transitions */
+        /* ==========================================
+           [MÓDULO 7] PERFIL PROFESIONAL (BENTO GRID 3D)
+           ========================================== */
+        /* Contenedor que alterna visibilidad con la galería. Posee transición de opacidad atada al JS para un swap fluido */
         #profile-section { display: none; padding: 0 5% 100px; position: relative; z-index: 10; opacity: 1; transition: opacity 0.3s ease; }
 
+        /* Define la estructura principal en rejilla adaptable */
         .bento-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 1300px; margin: 0 auto; }
 
-        /* Tarjetas Bento: Lógica de perspectiva para 3D Tilt */
+        /* Físicas de material Glassmorphism y Tilt 3D. 
+           Las variables --rx y --ry se calculan en JS, el motor CSS renderiza con aceleración GPU (perspective) */
         .bento-card { 
             background: rgba(2, 6, 23, 0.4); border: 1px solid rgba(45, 212, 191, 0.15); 
             border-radius: 24px; padding: clamp(25px, 4vw, 40px); 
@@ -198,7 +256,7 @@
         }
         .bento-card:hover { border-color: var(--electric-cyan); box-shadow: 0 30px 60px rgba(13, 148, 136, 0.2), inset 0 0 0 1px rgba(13, 148, 136, 0.5); z-index: 10; }
 
-        /* Iluminación reactiva ("Glow Tracking") vinculada al cursor vía variables locales CSS */
+        /* Tracker Glow (Iluminación interactiva direccional) basada en gradiente radial dictado por coordenadas de ratón */
         .bento-card::before { 
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
             background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(45, 212, 191, 0.1) 0%, transparent 60%);
@@ -206,16 +264,19 @@
         }
         .bento-card:hover::before { opacity: 1; }
         
+        /* Contenido interior desplazado en el eje Z para un efecto parallax nativo sobre la tarjeta 3D */
         .bento-content { position: relative; z-index: 2; transform: translateZ(20px); }
         .bento-card h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); color: var(--electric-cyan); margin-bottom: 25px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 1px;}
         .bento-bio p { font-size: clamp(1.05rem, 1.5vw, 1.15rem); line-height: 1.7; color: var(--text-main); margin-bottom: 35px; font-weight: 400;}
         .bento-bio p strong { color: var(--electric-cyan); font-weight: 600; }
+        
+        /* Contadores analíticos */
         .bento-metrics { display: flex; gap: 30px; flex-wrap: wrap; justify-content: flex-start; margin-top: auto;}
         .bento-metric { display: flex; flex-direction: column; }
         .bento-metric .num { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 900; color: var(--electric-cyan); line-height: 1;}
         .bento-metric .label { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-top: 8px; font-weight: 700;}
 
-        /* Contenedor de Scroll de Experiencia (Evita colapso vertical en móviles) */
+        /* Historial de Experiencia con Timeline lateral simulada. Incluye scroll interno para evitar que el Bento crezca al infinito verticalmente */
         .cv-timeline-wrapper { max-height: 400px; overflow-y: auto; padding-right: 10px; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent; }
         .cv-timeline-wrapper::-webkit-scrollbar { width: 4px; }
         .cv-timeline-wrapper::-webkit-scrollbar-thumb { background-color: var(--electric-cyan); border-radius: 10px; }
@@ -224,13 +285,16 @@
         .cv-timeline::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 2px; background: rgba(45, 212, 191, 0.2); }
         .cv-item { position: relative; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.02); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s; }
         .cv-item:hover { transform: translateX(8px); border-color: rgba(45, 212, 191, 0.3); }
+        
+        /* Nodo visual del timeline (círculo) */
         .cv-item::after { content: ''; position: absolute; left: -26px; top: 22px; width: 12px; height: 12px; background: var(--dark-bg); border: 2px solid var(--electric-cyan); border-radius: 50%; transition: all 0.3s;}
         .cv-item:hover::after { background: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan); transform: scale(1.2);}
+        
         .cv-year { color: var(--text-muted); font-size: 0.75rem; letter-spacing: 1.5px; margin-bottom: 5px; display: block; font-weight: 600; }
         .cv-item span.cv-role { color: var(--electric-cyan); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;}
         .cv-item h4 { color: var(--text-main); font-size: 1.15rem; margin-bottom: 0; font-weight: 700;}
 
-        /* Ecosistema de Skills: Flotabilidad asincrónica vía CSS Puro (@keyframes) */
+        /* Ecosistema de Habilidades: Pastillas dinámicas orgánicas animadas matemáticamente sin consumo excesivo */
         .skill-ecosystem { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: flex-start; }
         .tech-pill { 
             background: rgba(255,255,255,0.03); color: var(--text-main); padding: 10px 22px; 
@@ -238,18 +302,21 @@
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); font-weight: 600; 
             backdrop-filter: blur(5px); cursor: default;
             box-shadow: inset 0 0 10px rgba(255,255,255,0.01);
+            /* Animación flotante desincronizada mediante nth-child en CSS nativo (Mejora Rendimiento vs JS loop) */
             animation: floatPill 6s ease-in-out infinite alternate;
         }
         .tech-pill:nth-child(even) { animation-delay: 1.5s; animation-duration: 7s; }
         .tech-pill:nth-child(3n) { animation-delay: 3s; animation-duration: 5s; }
         @keyframes floatPill { 0% { transform: translateY(0); } 100% { transform: translateY(-4px); } }
         
+        /* Al interactuar se detiene el levitado, sobresale jerárquicamente en eje Z y se ilumina el contenedor */
         .tech-pill:hover { 
             background: rgba(45, 212, 191, 0.15); border-color: var(--electric-cyan); color: var(--electric-cyan); 
             transform: translateY(-5px) scale(1.05) !important; 
             box-shadow: 0 8px 20px rgba(45,212,191,0.3), inset 0 0 15px rgba(45,212,191,0.2); z-index: 5;
         }
 
+        /* Lista visual de certificaciones de alta gama */
         .cert-list { display: flex; flex-direction: column; gap: 15px; width: 100%;}
         .cert-item { background: rgba(0,0,0,0.3); padding: 15px 20px; border-radius: 12px; border: 1px solid rgba(45, 212, 191, 0.1); display: flex; flex-direction: row; align-items: center; gap: 15px; transition: border 0.3s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
         .cert-item:hover { border-color: var(--electric-cyan); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
@@ -258,7 +325,7 @@
         .cert-text strong { color: var(--text-main); font-size: 1rem; margin-bottom: 3px;}
         .cert-text span { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;}
 
-        /* Emulación de CSS Subgrid para organizar las tarjetas Bento en Desktop */
+        /* Rejilla de subgrid estructurada explícitamente para asegurar un acomodo impecable a partir de 900px */
         @media (min-width: 900px) {
             .bento-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(200px, auto); }
             .bento-bio { grid-column: span 2; grid-row: span 2; justify-content: flex-start;}
@@ -269,15 +336,19 @@
             .bento-certs .cert-item { width: 32%; }
         }
 
-        /* ==================== 7. MOTOR DE GRILLA MULTIMEDIA ==================== */
-        /* Se añade transición de opacidad para cambios de filtro inmediatos y ultra fluidos (60fps) */
+        /* ==========================================
+           [MÓDULO 8] GALERÍA MULTIMEDIA Y MASONRY
+           ========================================== */
+        
+        /* Contenedor central. Usa transición de opacidad que sincroniza perfectamente con el JS para evitar bloqueos del Main Thread */
         .portfolio-grid { display: grid; grid-template-columns: 1fr; gap: clamp(20px, 3vw, 40px); padding: 0 5% 100px; width: 100%; max-width: 2500px; margin: 0 auto; position: relative; z-index: 5; opacity: 1; transition: opacity 0.3s ease; }
         @media (min-width: 768px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
         
         .media-item.hide { display: none !important; }
+        /* Elemento multimedia base: Mantiene proporción 16:9 y aplica perspectiva Z (translateZ) obligando al navegador a mover el elemento a su propia capa de composición GPU */
         .media-item { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.05); background-color: var(--card-bg); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transform: translateZ(0); }
 
-        /* Algoritmo Masonry Puro usando Column-Count (Cero JS extra, renderizado inmediato) */
+        /* Masonry Grid nativo para piezas de diseño (Posters/Banners). CSS Columns provee renderizado asimétrico eficiente */
         .portfolio-grid.masonry-mode { display: block; column-count: 4; column-gap: 15px; padding: 0 2% 80px; max-width: 2200px; }
         @media (max-width: 1400px) { .portfolio-grid.masonry-mode { column-count: 3; column-gap: 15px; } }
         @media (max-width: 900px) { .portfolio-grid.masonry-mode { column-count: 2; column-gap: 12px; padding: 0 3% 60px; } }
@@ -285,21 +356,27 @@
 
         .portfolio-grid.masonry-mode .media-item.diseno { display: inline-block; width: 100%; margin-bottom: 15px; aspect-ratio: unset; height: auto; break-inside: avoid; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.4); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; }
         .media-item.diseno img.masonry-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(15%) brightness(0.9); transition: all 0.4s ease; }
+        
+        /* Desacopla la relación de aspecto forzada 16:9 en modo Masonry */
         .portfolio-grid.masonry-mode .media-item.diseno img.masonry-img { position: relative; height: auto; object-fit: unset; display: block; }
         .portfolio-grid.masonry-mode .media-item.diseno:not(.audio):hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 35px var(--electric-cyan-glow); z-index: 20; }
         .media-item.diseno:not(.audio):hover img.masonry-img { filter: grayscale(0%) brightness(1.05); }
 
-        /* Capas de protección de UI y texturización 35mm (anti-banding) */
+        /* Filtros ópticos para simular grano de celuloide clásico 35mm (Previene banding en monitores SDR) */
         .media-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.15; pointer-events: none; z-index: 4; mix-blend-mode: overlay;}
         .protect-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 6; pointer-events: none; }
         .hover-carousel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        
+        /* Imágenes de miniatura reducidas en color/luz al inicio para priorizar la tipografía y resaltar fuertemente al hover */
         .hc-img, .yt-thumbnail { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: grayscale(40%) brightness(0.7); transition: opacity 0.3s ease, filter var(--transition-speed) ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
         .hc-img { opacity: 0; } .hc-img.active { opacity: 1; z-index: 2; } .focus-top { object-position: top center !important; }
+        
         .media-iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; border: none; background-color: var(--card-bg); filter: grayscale(10%) brightness(0.9); opacity: 0; transition: opacity var(--transition-speed) ease; }
         
         .media-item:not(.audio):hover { border-color: rgba(45, 212, 191, 0.4); box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 20px var(--electric-cyan-glow); transform: translateY(-5px) scale(1.02); z-index: 10; }
         .media-item:not(.audio):hover .hc-img, .media-item:not(.audio):hover .yt-thumbnail { filter: grayscale(0%) brightness(1.1); transform: scale(1.05); }
         
+        /* Gradiente protector sobre el texto superpuesto */
         .media-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 50px 30px 20px; background: linear-gradient(to top, rgba(2,6,23,0.98) 10%, transparent); z-index: 5; pointer-events: none; transition: padding 0.3s ease; }
         .media-item:hover .media-overlay { padding-bottom: 30px; }
         .portfolio-grid.masonry-mode .media-overlay { padding: 25px 15px 15px; }
@@ -309,48 +386,58 @@
         .portfolio-grid.masonry-mode .media-item h2 { font-size: clamp(0.9rem, 1.2vw, 1.3rem); margin-bottom: 2px;}
         .portfolio-grid.masonry-mode .media-item p { font-size: 0.65rem; letter-spacing: 1px;}
 
-        /* ==================== 8. REPRODUCTORES AUDIO Y VISUALIZADORES ==================== */
+        /* ==========================================
+           [MÓDULO 9] REPRODUCTOR DE AUDIO AVANZADO
+           ========================================== */
         .media-item.audio { border: none; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; cursor: default; transform: none !important; background-color: var(--dark-bg); }
         
-        /* Animación del anillo de latido. Añadimos un estado pulsante cuando está reproduciendo */
+        /* Disco brillante giratorio en segundo plano. Simula vinilos/discos físicos interactuando con el sonido */
         @keyframes rotateGlow { 0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); } 50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.05); } 100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); } }
         .audio-glow-ring { position: absolute; top: 50%; left: 50%; width: 200%; height: 200%; background: conic-gradient(transparent, transparent, rgba(45, 212, 191, 0.1), var(--electric-cyan)); animation: rotateGlow 6s linear infinite; z-index: 1; opacity: 0.3; transition: opacity 0.5s ease; }
-        .audio-glow-ring.playing-pulse { opacity: 0.7; animation-duration: 3s; } /* Latido rápido cuando suena la música */
+        /* Aumenta intensidad de luz/rotación al reproducir (agregada por JS) */
+        .audio-glow-ring.playing-pulse { opacity: 0.7; animation-duration: 3s; } 
         
+        /* Tarjeta esmerilada que contiene los textos e interfaz sobre el disco */
         .audio-inner-card { position: absolute; inset: 2px; background-color: rgba(15, 23, 42, 0.9); border-radius: 14px; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; overflow: hidden; backdrop-filter: blur(10px); transition: background-color 0.4s;}
-        .audio-inner-card.playing-lift { background-color: rgba(15, 23, 42, 0.7); } /* Transparencia para ver el glow al reproducir */
+        .audio-inner-card.playing-lift { background-color: rgba(15, 23, 42, 0.7); } /* Permite ver el disco iluminado en modo play */
         
+        /* Lienzo estricto para el visualizador del ecualizador canvas */
         .audio-visualizer { position: absolute; bottom: 0; left: 0; width: 100%; height: 60%; z-index: 4; pointer-events: none; opacity: 0.8;}
+        
         .audio-text-content { z-index: 5; margin-bottom: 25px; pointer-events: none; transition: transform 0.4s; }
-        .audio-inner-card.playing-lift .audio-text-content { transform: translateY(-5px); }
+        .audio-inner-card.playing-lift .audio-text-content { transform: translateY(-5px); } /* Parallax leve */
         .audio-text-content h2 { font-size: clamp(2rem, 3vw, 3rem); text-transform: uppercase; margin-bottom: 5px; text-shadow: 0 5px 15px rgba(0,0,0,0.8);}
         .audio-text-content p { color: var(--electric-cyan); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 4px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
         
-        /* Contenedor Flex refinado para el control de audio */
+        /* Componente principal de control (Barra flotante interna) */
         .custom-player { position: relative; z-index: 10; display: flex; align-items: center; justify-content: space-between; width: 95%; max-width: 500px; padding: 10px 20px; gap: 12px; background: rgba(2, 6, 23, 0.6); border: 1px solid rgba(45, 212, 191, 0.3); border-radius: 50px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); transition: all 0.3s ease; backdrop-filter: blur(5px);}
         .custom-player.playing { box-shadow: 0 10px 30px var(--electric-cyan-glow); border-color: var(--electric-cyan); background: rgba(45, 212, 191, 0.08);}
         
-        /* Botón de Play perfectamente centrado mediante flexbox. Padding dinámico inyectado en JS según el ícono */
+        /* Botón multifunción (Play/Pause). En JS se inyecta padding para corrección geométrica del triángulo SVG (3px left) */
         .play-btn { background: var(--electric-cyan); border: none; color: var(--dark-bg); font-family: 'Inter', sans-serif; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; transition: transform 0.2s; box-shadow: 0 5px 15px rgba(45, 212, 191, 0.3); flex-shrink: 0;}
         .play-btn:hover { transform: scale(1.1); }
         
         .progress-wrapper { flex-grow: 1; height: 6px; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; cursor: pointer; position: relative; overflow: hidden; }
         .progress-fill { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background-color: var(--electric-cyan); border-radius: 10px; box-shadow: 0 0 10px var(--electric-cyan); pointer-events: none; transition: width 0.1s linear;}
         
-        /* Lógica visual de Control de Tiempo y Volumen */
+        /* Display de tiempo. Usa font-variant-numeric: tabular-nums para evitar parpadeos visuales entre números delgados (1) y gruesos (0) */
         .time-display { font-size: 0.75rem; color: var(--electric-cyan); font-weight: 700; min-width: 42px; text-align: right; font-variant-numeric: tabular-nums; flex-shrink: 0; letter-spacing: 0.5px;}
+        
+        /* Control de Volumen. Se oculta por defecto y aparece mediante Flexbox Width transition en :hover */
         .volume-container { display: flex; align-items: center; position: relative; cursor: pointer; }
         .volume-icon { fill: var(--text-muted); width: 20px; height: 20px; transition: fill 0.3s; flex-shrink: 0;}
         .volume-container:hover .volume-icon { fill: var(--electric-cyan); }
         .volume-slider-wrapper { width: 0; overflow: hidden; transition: width 0.4s var(--ease-out-expo), margin-left 0.4s; display: flex; align-items: center; margin-left: 0; }
         .volume-container:hover .volume-slider-wrapper { width: 60px; margin-left: 8px; }
         
-        /* Custom Range Slider Webkit/Moz */
+        /* Normalización cruzada del estilo Input Range (Slider) para Chromium y Gecko (Firefox) */
         .volume-slider { width: 100%; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px; outline: none; }
         .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: var(--electric-cyan); cursor: pointer; box-shadow: 0 0 5px var(--electric-cyan);}
         .volume-slider::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--electric-cyan); cursor: pointer; border: none; box-shadow: 0 0 5px var(--electric-cyan);}
 
-        /* ==================== 9. SECCIONES FINALES Y CONTACTO ==================== */
+        /* ==========================================
+           [MÓDULO 10] CINTA (MARQUEE) DE CLIENTES
+           ========================================== */
         .ecosystem-section { padding: 80px 5%; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); background-color: var(--card-bg); position: relative;}
         .ecosystem-section h3 { font-size: 2rem; color: var(--text-main); margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;}
         .brand-btn-clean { display: inline-flex; align-items: center; justify-content: center; background: transparent; border: none; padding: 15px; transition: transform 0.3s ease; cursor: pointer; }
@@ -361,20 +448,26 @@
         .clients-section { padding: 80px 5%; text-align: center; background-color: var(--dark-bg); overflow: hidden; }
         .clients-section h3 { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 50px; text-transform: uppercase; letter-spacing: 4px; font-weight: 600;}
         
+        /* Contenedor del Carrusel. mask-image enmascara los bordes izquierdo y derecho (difuminado en negro) */
         .marquee-container { width: 100%; overflow: hidden; white-space: nowrap; position: relative; padding: 40px 0; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); cursor: grab; }
         .marquee-container:active { cursor: grabbing; }
+        
+        /* Renderiza los ítems forzando GPU vía transform 3d. Su ciclo lo gestiona JS, no CSS keyframes */
         .marquee-track { display: inline-flex; align-items: center; gap: clamp(40px, 5vw, 80px); will-change: transform; }
         .client-logo { height: clamp(40px, 4vw, 60px); width: auto; object-fit: contain; filter: brightness(0) invert(1) opacity(0.6); transition: filter 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
         .client-logo.hover-glow, .client-logo:hover { filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 15px var(--electric-cyan)); transform: scale(1.15);}
         .client-logo-unilever { transform: scale(1.6); margin: 0 15px; } .client-logo-unilever:hover { transform: scale(1.85); }
         .client-logo-comfandi { transform: scale(1.3); } .client-logo-comfandi:hover { transform: scale(1.5); }
 
+        /* ==========================================
+           [MÓDULO 11] FOOTER CONTACTO Y BÓVEDA
+           ========================================== */
         .contact-section { padding: 80px 5% 100px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); background: var(--card-bg); }
         .contact-section h2 { font-size: clamp(1.8rem, 8vw, 4rem); margin-bottom: 15px; text-transform: uppercase; letter-spacing: clamp(3px, 1.5vw, 12px); margin-right: calc(-1 * clamp(3px, 1.5vw, 12px)); }
         .contact-section p { color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.1rem;}
         
         .contact-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 50px;}
-        /* Transiciones fluidas, el hover levanta levemente sin JS magnético */
+        /* Estilos limpios y estables para CTA's. Usan translateY sutil para retroalimentación táctil de desktop */
         .btn-primary, .btn-secondary, .btn-whatsapp { padding: 16px 35px; font-weight: 700; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1rem; text-decoration: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s, background 0.3s, border-color 0.3s; will-change: transform;}
         .btn-primary { background-color: var(--electric-cyan); color: var(--dark-bg); }
         .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px var(--electric-cyan-glow); }
@@ -391,7 +484,6 @@
         .social-links a.yt-link:hover svg polygon { fill: var(--dark-bg); }
         .social-links a.ig-link:hover svg path, .social-links a.ig-link:hover svg line { fill: transparent; stroke: var(--dark-bg); }
 
-        /* ==================== 10. BÓVEDA NDA Y MODALES ==================== */
         .vault-section { background: linear-gradient(180deg, var(--card-bg) 0%, var(--dark-bg) 100%); padding: 100px 5% 150px; text-align: center; position: relative; }
         .vault-container { max-width: 800px; margin: 0 auto; position: relative; z-index: 2; padding: clamp(40px, 5vw, 60px) clamp(20px, 4vw, 40px); border: 1px solid rgba(45, 212, 191, 0.15); border-radius: 24px; background: rgba(2, 6, 23, 0.4); backdrop-filter: blur(24px) saturate(200%); box-shadow: inset 0 0 20px rgba(255,255,255,0.02), 0 20px 50px rgba(0,0,0,0.5); }
         .vault-icon-glow { font-size: 4rem; margin-bottom: 20px; display: inline-block; filter: drop-shadow(0 0 15px var(--electric-cyan)); animation: float 3s ease-in-out infinite;}
@@ -400,16 +492,25 @@
         .vault-btn { background: var(--electric-cyan); color: var(--dark-bg); border: none; padding: 18px 40px; font-weight: 900; border-radius: 50px; cursor: pointer; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px var(--electric-cyan-glow); will-change: transform;}
         .vault-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.6); }
 
+        /* ==========================================
+           [MÓDULO 12] CAPA DE MODALES (GALLERY / NDA)
+           ========================================== */
+        
+        /* Modal General de pantalla completa. El background es el 98% de la opacidad con ligero blur (Capa opaca de atención) */
         .modal-fullscreen { position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh; background: rgba(2,6,23,0.98); z-index: 9999999; display: none; justify-content: center; align-items: center; padding: 2% 5%; backdrop-filter: blur(10px); opacity: 0; transition: opacity 0.2s ease;}
         .modal-fullscreen.active-modal { display: flex; opacity: 1; }
+        
         .modal-content-wrapper { max-width: 100%; max-height: 90dvh; position: relative; width: 1600px; aspect-ratio: 16/9; display: flex; justify-content: center; align-items: center;}
         .modal-fullscreen iframe { width: 100%; height: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.9); display: block; border: none; background-color: black; }
         
+        /* Botón maestro para cerrar UI superpuesta */
         .close-btn { position: fixed; top: max(20px, env(safe-area-inset-top, 20px)); right: max(20px, var(--safe-right)); color: var(--text-main); background: rgba(2, 6, 23, 0.4); border: 1px solid rgba(45, 212, 191, 0.15); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; z-index: 10000000; transition: all 0.3s; letter-spacing: 1px; backdrop-filter: blur(20px) saturate(180%); box-shadow: inset 0 0 10px rgba(255,255,255,0.02);}
         .close-btn:hover { background-color: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan); transform: scale(1.05);}
 
+        /* Lightbox Fotografía */
         #gallery-modal { padding: 0; }
         #gallery-modal .modal-content-wrapper { width: 100%; height: 100%; aspect-ratio: auto; }
+        /* La imagen nunca debe ser deformada, object-fit contain y disable drag es obligatorio */
         #gallery-image { max-width: 100vw; max-height: 100dvh; object-fit: contain; transition: opacity 0.2s ease; display: block; user-select: none; pointer-events: none;}
         .gallery-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(2, 6, 23, 0.4); color: var(--text-main); border: 1px solid rgba(255,255,255,0.1); border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: all 0.3s; z-index: 1010; backdrop-filter: blur(20px) saturate(180%);}
         .gallery-nav:hover { background: var(--electric-cyan); color: var(--dark-bg); border-color: var(--electric-cyan); transform: translateY(-50%) scale(1.1);}
@@ -418,7 +519,7 @@
         .gallery-dot { width: 10px; height: 10px; flex-shrink: 0; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: 0.3s; }
         .gallery-dot.active { background: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan); transform: scale(1.2);}
 
-        /* Formulario NDA Dinámico */
+        /* Formulario Seguro NDA Bóveda */
         .form-modal-box { background: rgba(2, 6, 23, 0.85); padding: clamp(25px, 4vw, 40px); border-radius: 16px; max-width: 800px; width: 95%; border: 1px solid rgba(45, 212, 191, 0.3); text-align: left; position: relative; max-height: 90dvh; display: flex; flex-direction: column; overflow: hidden; backdrop-filter: blur(24px) saturate(200%); box-shadow: 0 30px 60px rgba(0,0,0,0.9);}
         
         .nda-document-scroll { overflow-y: auto; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 20px; margin-bottom: 25px; flex-shrink: 1; max-height: 30dvh; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent;}
@@ -438,6 +539,7 @@
         .form-modal-box input[type="text"], .form-modal-box input[type="email"], .form-modal-box input[type="number"] { width: 100%; padding: 12px; background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.95rem; transition: border 0.3s; }
         .form-modal-box input:focus { outline: none; border-color: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan-glow);}
         
+        /* Checkbox Custom mediante Flexbox para geometría predecible e inquebrantable */
         .checkbox-container { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px; cursor: pointer; user-select: none; position: relative; }
         .checkbox-container input { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; z-index: -1; }
         .checkmark { position: relative; display: flex; justify-content: center; align-items: center; width: 24px; height: 24px; min-width: 24px; min-height: 24px; background-color: rgba(0, 0, 0, 0.4); border: 2px solid var(--text-muted); border-radius: 6px; transition: all 0.3s var(--ease-out-expo); flex-shrink: 0; margin-top: 2px; }
@@ -448,6 +550,7 @@
         .checkbox-text { color: var(--text-main); font-size: 0.9rem; line-height: 1.5; font-weight: 400;}
         .checkbox-text span { color: var(--electric-cyan); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
 
+        /* Contenedor de Error para validaciones JS */
         .error-message { color: var(--danger-red); font-size: 0.85rem; margin-bottom: 15px; display: none; font-weight: 600; padding: 10px; background: rgba(239, 68, 68, 0.1); border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.3); line-height: 1.4;}
         
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } }
@@ -458,14 +561,16 @@
         .modal-logos-mini img { height: 18px; width: auto; object-fit: contain; filter: brightness(0) invert(1) opacity(0.5); }
     </style>
 </head>
+<!-- Estado "is-loading" inyectado al inicio bloquea interacciones y activa shaders -->
 <body class="is-loading">
 
-    <!-- Previene saltos bruscos nativos del historial al recargar la página -->
+    <!-- Script en el tope para prever que el scroll nativo se restaure mal tras una recarga (Bug de Chrome nativo) -->
     <script>
         if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
         window.scrollTo(0, 0);
     </script>
 
+    <!-- UI FLOTANTE GLOBAL -->
     <div class="lang-toggle" id="langToggleBtn" aria-label="Cambiar idioma">
         <span id="lang-es" class="lang-option active">🇪🇸</span>
         <span id="lang-en" class="lang-option">🇬🇧</span>
@@ -480,6 +585,7 @@
         <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
     </button>
 
+    <!-- DOM DEL PRELOADER FÍSICO -->
     <div class="splash-panel top"></div>
     <div class="splash-panel bottom"></div>
     <div class="splash-laser"></div>
@@ -488,9 +594,10 @@
         <div id="title-wrapper">
             <h1 id="main-title">Alejandro Vega</h1>
         </div>
-        <p class="subtitle reveal-element" data-i18n="subtitle">Líder de Innovación Creativa | Identidad Visual & E-learning</p>
+        <p class="subtitle reveal-element" data-i18n="subtitle">Product Owner | Innovación B2B</p>
     </header>
 
+    <!-- NAVEGACIÓN Y FILTROS -->
     <div class="filter-container reveal-element">
         <button class="filter-btn" data-filter="perfil" data-i18n="btn_profile">Perfil Profesional</button>
         <button class="filter-btn active" data-filter="all" data-i18n="btn_all">Todo</button>
@@ -501,71 +608,102 @@
         <button class="vault-filter-btn" id="openVaultBtnHeader" aria-label="Abrir bóveda"><span class="icon">🔒</span> <span data-i18n="btn_vault_header">Acceso Bóveda</span></button>
     </div>
 
-    <!-- SECCIÓN PERFIL PROFESIONAL BENTO GRID -->
+    <!-- ========================================================= -->
+    <!-- SECCIÓN PERFIL PROFESIONAL BENTO GRID (Con perspectiva 3D) -->
+    <!-- ========================================================= -->
     <div id="profile-section">
         <div class="bento-grid">
             
             <div class="bento-card bento-bio bento-content">
-                <h3 data-i18n="prof_title">Impacto Estratégico</h3>
-                <p data-i18n="profile_text">Estratega multidisciplinario y Especialista Creativo Tecnológico. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente estratégico entre la visión de negocio, la estética visual de vanguardia y la adopción tecnológica (Product Owner) en empresas top.</p>
+                <h3 data-i18n="prof_title"><span style="font-size: 1.5rem; margin-right: 10px;">⚡</span> Orquestación & Estrategia</h3>
+                <p data-i18n="profile_text">Como <strong>Product Owner (PSPO I)</strong> e Ingeniero Multimedia, actúo como el puente estratégico entre la visión ejecutiva, la creatividad visual y la ejecución de proyectos. Lidero la conceptualización de marcas, la construcción de narrativas digitales y el diseño de ecosistemas E-learning B2B. Apoyado en herramientas de Inteligencia Artificial, estructuro y orquesto soluciones de alto impacto, garantizando una excelente experiencia de usuario y legibilidad algorítmica (UX/MX - Machine Experience), dirigiendo equipos especializados para materializar estrategias que conectan emocionalmente con los usuarios y optimizan el ROI corporativo.</p>
                 
                 <div class="bento-metrics" style="position: relative; z-index: 2;">
-                    <div class="bento-metric"><span class="num">8+</span><span class="label" data-i18n="stat_years">Años de Exp.</span></div>
-                    <div class="bento-metric"><span class="num">PO</span><span class="label" data-i18n="stat_po">Product Owner</span></div>
-                    <div class="bento-metric"><span class="num">+30</span><span class="label" data-i18n="stat_projects">Proyectos B2B</span></div>
+                    <div class="bento-metric"><span class="num">8+</span><span class="label" data-i18n="stat_years">Años Exp. B2B</span></div>
+                    <div class="bento-metric"><span class="num">100%</span><span class="label" data-i18n="stat_po">Adopción Ágil</span></div>
+                    <div class="bento-metric"><span class="num">360°</span><span class="label" data-i18n="stat_projects">Visión Creativa</span></div>
                 </div>
             </div>
 
             <div class="bento-card bento-exp bento-content">
-                <h3 data-i18n="prof_rol">Experiencia TOP</h3>
+                <h3 data-i18n="prof_rol">Experiencia Clave</h3>
                 <div class="cv-timeline-container">
                     <div class="cv-timeline-wrapper">
                         <div class="cv-timeline">
                             <div class="cv-item">
-                                <span class="cv-year">2023 - PRESENTE</span>
-                                <span class="cv-role" data-i18n="rol_1">Co-Fundador & Líder de Producto</span>
+                                <span class="cv-year">2025 - PRESENTE</span>
+                                <span class="cv-role" data-i18n="rol_1">Co-Fundador & Product Owner</span>
                                 <h4 data-i18n="rol_1_co">AUTÓMATAS</h4>
+                                <p data-i18n="rol_1_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Estrategia B2B, diseño de UX/MX y construcción narrativa de ecosistemas de Inteligencia Artificial.</p>
                             </div>
                             <div class="cv-item">
-                                <span class="cv-year">2021 - PRESENTE</span>
-                                <span class="cv-role" data-i18n="rol_2">Desarrollador Digital y Gestión del Cambio</span>
+                                <span class="cv-year">MAY 2023 - PRESENTE</span>
+                                <span class="cv-role" data-i18n="rol_2">Ingeniero Multimedia & Proyectos Digitales</span>
                                 <h4 data-i18n="rol_2_co">ESPY S.A. E.S.P.</h4>
+                                <p data-i18n="rol_2_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Consultor in-house. Conceptualización y diseño de la nueva identidad corporativa, manual de marca y modernización digital/impresa continua.</p>
                             </div>
                             <div class="cv-item">
-                                <span class="cv-year">2016 - PRESENTE</span>
-                                <span class="cv-role" data-i18n="rol_3">Director General & Productor Ejecutivo</span>
-                                <h4 data-i18n="rol_3_co">JAVEGA (Marca Personal)</h4>
+                                <span class="cv-year">2024</span>
+                                <span class="cv-role" data-i18n="rol_8">Docente Especializado (Multimedia y Diseño)</span>
+                                <h4 data-i18n="rol_8_co">AVANT GARDE</h4>
+                                <p data-i18n="rol_8_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Formación de talentos en suite Adobe y producción audiovisual.</p>
                             </div>
                             <div class="cv-item">
-                                <span class="cv-year">2022</span>
-                                <span class="cv-role" data-i18n="rol_4">Líder de Prod. Multimedia y E-learning</span>
+                                <span class="cv-year">ABR 2022 - JUL 2022</span>
+                                <span class="cv-role" data-i18n="rol_4">Diseñador Contenidos de Formación</span>
                                 <h4 data-i18n="rol_4_co">EFICACIA S.A.</h4>
                             </div>
                             <div class="cv-item">
-                                <span class="cv-year">2020 - 2021</span>
-                                <span class="cv-role" data-i18n="rol_5">Director de Arte & Productor Visual</span>
-                                <h4 data-i18n="rol_5_co">CONCEPTO AGENCIA</h4>
+                                <span class="cv-year">AGO 2021 - DIC 2022</span>
+                                <span class="cv-role" data-i18n="rol_5">Profesional de Apoyo a la Gestión TIC</span>
+                                <h4 data-i18n="rol_5_co">ALCALDÍA DE YUMBO</h4>
+                                <p data-i18n="rol_5_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Fortalecimiento de canales de comunicación institucional.</p>
                             </div>
                             <div class="cv-item">
-                                <span class="cv-year">2017 - 2021</span>
-                                <span class="cv-role" data-i18n="rol_6">Director de Arte & Producción</span>
-                                <h4 data-i18n="rol_6_co">AGENCIAS Y EDUCACIÓN</h4>
+                                <span class="cv-year">2020 - 2021</span>
+                                <span class="cv-role" data-i18n="rol_9">Director de Arte & Productor Visual</span>
+                                <h4 data-i18n="rol_9_co">CONCEPTO AGENCIA DE DISEÑO</h4>
+                                <p data-i18n="rol_9_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Identidad de marca desde cero y producción audiovisual B2B.</p>
+                            </div>
+                            <div class="cv-item">
+                                <span class="cv-year">OCT 2020 - DIC 2020</span>
+                                <span class="cv-role" data-i18n="rol_7">Profesional de Servicios (Cultura)</span>
+                                <h4 data-i18n="rol_7_co">ALCALDÍA DE CALI</h4>
+                            </div>
+                            <div class="cv-item">
+                                <span class="cv-year">2019 - 2020</span>
+                                <span class="cv-role" data-i18n="rol_10">Productor Audiovisual & Estratega Digital</span>
+                                <h4 data-i18n="rol_10_co">PRO-SCIENTIA</h4>
+                                <p data-i18n="rol_10_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Comunicación política y consultoría de redes sociales.</p>
+                            </div>
+                            <div class="cv-item">
+                                <span class="cv-year">2017 - 2018</span>
+                                <span class="cv-role" data-i18n="rol_11">Desarrollador VR & Dir. Audiovisual</span>
+                                <h4 data-i18n="rol_11_co">U. SAN BUENAVENTURA / COL. BAUTISTA</h4>
+                                <p data-i18n="rol_11_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Prototipado inmersivo VR y dirección de cortometrajes educativos.</p>
+                            </div>
+                            <div class="cv-item">
+                                <span class="cv-year">2016 - PRESENTE</span>
+                                <span class="cv-role" data-i18n="rol_3">Director Creativo & Productor</span>
+                                <h4 data-i18n="rol_3_co">JAVEGA</h4>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Tags Semánticos flotantes de Skills -->
             <div class="bento-card bento-skills bento-content">
                 <h3 data-i18n="prof_skills">Ecosistema Tecnológico</h3>
                 <div class="skill-ecosystem">
-                    <span class="tech-pill">Product Ownership</span>
-                    <span class="tech-pill">Estrategia de Marca</span>
-                    <span class="tech-pill">Diseño Instruccional</span>
-                    <span class="tech-pill">IA Generativa (Flow)</span>
+                    <span class="tech-pill">Product Ownership (Scrum/Agile)</span>
+                    <span class="tech-pill">Levantamiento de Requerimientos</span>
+                    <span class="tech-pill">Stakeholder Management</span>
+                    <span class="tech-pill">Value-Based Pricing</span>
+                    <span class="tech-pill">Arquitectura de Marca</span>
+                    <span class="tech-pill">Ecosistemas E-learning (SCORM)</span>
+                    <span class="tech-pill">Narrativas Digitales e IA (Flow)</span>
                     <span class="tech-pill">Dirección Audiovisual</span>
-                    <span class="tech-pill">E-learning</span>
-                    <span class="tech-pill">Adobe CC / Final Cut</span>
                 </div>
             </div>
 
@@ -592,10 +730,10 @@
                     </div>
                     <div class="cert-item">
                         <div class="cert-icon">
-                            <svg viewBox="0 0 24 24"><path d="M16,11.78L20.24,4.45L21.97,5.45L16.74,14.5L10.23,10.75L5.46,19H22V21H2V3H4V17.54L9.5,8L16,11.78Z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
                         </div>
                         <div class="cert-text">
-                            <strong data-i18n="cert_3">Fundamentos Marketing</strong>
+                            <strong data-i18n="cert_3">Marketing Digital</strong>
                             <span data-i18n="cert_3_org">Google Actívate</span>
                         </div>
                     </div>
@@ -604,10 +742,12 @@
         </div>
     </div>
 
-    <!-- MEDIOS PORTAFOLIO RECUPERADOS MASIVAMENTE -->
+    <!-- ========================================================= -->
+    <!-- GRILLA MULTIMEDIA MASONRY (Base de datos completa inyectada) -->
+    <!-- ========================================================= -->
     <main class="portfolio-grid reveal-element" id="main-grid">
         
-        <!-- AUDIOVISUAL (9 Elementos) -->
+        <!-- AUDIOVISUAL (9 Elementos, Data attributes alimentan modal) -->
         <div class="media-item audiovisual" data-yt-id="0ivRf3-IvGs">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/0ivRf3-IvGs/maxresdefault.jpg" class="yt-thumbnail" alt="Clara" loading="lazy" decoding="async" draggable="false">
@@ -621,7 +761,7 @@
             <img src="https://img.youtube.com/vi/ntMooW2DwVw/maxresdefault.jpg" class="yt-thumbnail" alt="Showreel" loading="lazy" decoding="async" draggable="false">
             <iframe class="media-iframe" data-src="https://www.youtube.com/embed/ntMooW2DwVw?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=ntMooW2DwVw" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="vid_cat_showreel">Dirección Creativa</p><h2 data-i18n="vid_tit_showreel">Showreel</h2></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_showreel">Dirección Creativa B2B</p><h2 data-i18n="vid_tit_showreel">Showreel Corporativo</h2></div>
         </div>
 
         <div class="media-item audiovisual" data-yt-id="kZLIan0Hr-E">
@@ -637,7 +777,7 @@
             <img src="https://img.youtube.com/vi/NUm0rt_XRkQ/maxresdefault.jpg" class="yt-thumbnail" alt="Vallecaucanos" loading="lazy" decoding="async" draggable="false">
             <iframe class="media-iframe" data-src="https://www.youtube.com/embed/NUm0rt_XRkQ?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=NUm0rt_XRkQ" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="vid_cat_evento">Cobertura de Evento</p><h2 data-i18n="vid_tit_evento">Vallecaucanos</h2></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_evento">Cobertura Institucional</p><h2 data-i18n="vid_tit_evento">Vallecaucanos</h2></div>
         </div>
 
         <div class="media-item audiovisual" data-yt-id="3GLjAoBXZV8">
@@ -680,10 +820,11 @@
             <div class="media-overlay"><p data-i18n="vid_cat_lyric">Tipografía & Motion Graphics</p><h2 data-i18n="vid_tit_lyric">Video Lyrical</h2></div>
         </div>
 
-        <!-- FOTOGRAFÍA (8 Galerías) -->
+        <!-- FOTOGRAFÍA (8 Galerías, delegación vía dataset gallery-id) -->
         <div class="media-item fotografia" data-gallery="food">
             <div class="media-texture"></div>
             <div class="hover-carousel">
+                <!-- Se inyectan loading lazy para evitar ahogar el LCP -->
                 <img src="https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg" class="hc-img active" alt="Food 1" loading="lazy" decoding="async" draggable="false">
                 <img src="https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg" class="hc-img" loading="lazy" decoding="async" draggable="false" alt="Food 2">
                 <img src="https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png" class="hc-img" loading="lazy" decoding="async" draggable="false" alt="Food 3">
@@ -721,7 +862,7 @@
                 <img src="https://static.wixstatic.com/media/14f4fb_4f61d7e9e3cd4da6ad6e6f649d2d9d05~mv2_d_4000_4000_s_4_2.jpg" class="hc-img active focus-top" alt="Retratos 1" loading="lazy" decoding="async" draggable="false">
                 <img src="https://static.wixstatic.com/media/14f4fb_6fb679a244ef48de9ea749cbeb6e7824~mv2_d_4000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Retratos 2">
                 <img src="https://static.wixstatic.com/media/14f4fb_d66070ef8db64e62a7b7abffa3099d80~mv2_d_4000_5547_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Retratos 3">
-                <img src="https://static.wixstatic.com/media/14f4fb_5fb74448bec44efebd9d63489a942e4d~mv2.jpg" class="hc-img focus-top" loading="lazy decoding="async" draggable="false" alt="Retratos 4">
+                <img src="https://static.wixstatic.com/media/14f4fb_5fb74448bec44efebd9d63489a942e4d~mv2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Retratos 4">
                 <img src="https://static.wixstatic.com/media/14f4fb_a60c3996c5c443b6be56e08c91807dc9~mv2.png" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Retratos 5">
             </div>
             <div class="protect-layer"></div>
@@ -790,7 +931,7 @@
             <div class="media-overlay"><p data-i18n="cat_land">Paisaje y Bellas Artes</p><h2 data-i18n="title_nature">Naturaleza</h2></div>
         </div>
 
-        <!-- DISEÑO VISUAL (11 Elementos) -->
+        <!-- DISEÑO VISUAL (11 Elementos estáticos renderizados nativamente por el navegador) -->
         <div class="media-item diseno" data-diseno-idx="0">
             <div class="media-texture"></div>
             <img src="Banner%20web%20Jdmaray%20Cali%20SPA.jpg?v=2" class="masonry-img fallback-img" alt="Banner web Jdmaray Cali SPA" loading="lazy" decoding="async" draggable="false">
@@ -868,7 +1009,7 @@
             <div class="media-overlay"><p data-i18n="cat_vinyl">Diseño de Vinilo</p><h2>Xbox: Gears of War</h2></div>
         </div>
 
-        <!-- AUDIO SONORO B2B (6 Pistas Optimizadas) -->
+        <!-- AUDIO SONORO B2B (6 Pistas controladas por el AudioManager API) -->
         <div class="media-item audio" data-audio-src="https://static.wixstatic.com/mp3/14f4fb_cec3885e857446d5bb03641eed32c0d8.mp3">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
@@ -973,7 +1114,7 @@
 
     </main>
 
-    <!-- FOOTER Y CONTACTO -->
+    <!-- FOOTER: REDES, CONTACTO Y BÓVEDA -->
     <section class="ecosystem-section reveal-element">
         <h3 data-i18n="ecosystem_title">Ecosistema Creativo</h3>
         <a href="https://automatas.co" target="_blank" rel="noopener noreferrer" class="brand-btn-clean">
@@ -981,6 +1122,7 @@
         </a>
     </section>
 
+    <!-- Carrusel Infinito de Marcas B2B impactadas -->
     <section class="clients-section reveal-element">
         <h3 data-i18n="clients_title">Empresas y Aliados</h3>
         <div class="marquee-container" id="marqueeContainer">
@@ -994,7 +1136,7 @@
                 <img src="Logo%20espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 
-                <!-- Nodos espejo para la ilusión de un bucle infinito continuo -->
+                <!-- Nodos duplicados en el HTML garantizan la ilusión óptica de un carrusel sin fin -->
                 <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo%20derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
@@ -1007,11 +1149,13 @@
         </div>
     </section>
 
+    <!-- Action Section -->
     <section class="contact-section reveal-element" id="contacto">
         <h2 data-i18n="contact_title">Conectemos</h2>
         <p data-i18n="contact_desc">¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.</p>
         
         <div class="contact-actions">
+            <!-- La estructura target="_blank" siempre acompaña de rel="noopener noreferrer" previene ataques Tabnabbing -->
             <a href="https://wa.me/573001404327?text=Hola%20Alejandro,%20estoy%20viendo%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20escribirte." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
                 <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                 <span data-i18n="btn_wa">Escríbeme por WhatsApp</span>
@@ -1022,6 +1166,7 @@
                 <span data-i18n="btn_mail">Escríbeme un correo</span>
             </a>
             
+            <!-- Descarga de CV seguro -->
             <a href="ALEJANDRO%20VEGA%20HV%202026.pdf" download="ALEJANDRO VEGA HV 2026.pdf" class="btn-secondary">
                 <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                 <span data-i18n="btn_cv">Descargar CV (PDF)</span>
@@ -1041,7 +1186,7 @@
         </div>
     </section>
 
-    <!-- Bóveda NDA (Securizada) -->
+    <!-- Bóveda NDA Estática de Fondo -->
     <section class="vault-section reveal-element">
         <div class="vault-container">
             <div class="vault-icon-glow">🔒</div>
@@ -1051,7 +1196,11 @@
         </div>
     </section>
 
-    <!-- Modales Globales -->
+    <!-- ========================================================= -->
+    <!-- CAPA GLOBAL DE MODALES (Z-Index Extremo) -->
+    <!-- ========================================================= -->
+    
+    <!-- Youtube Modal Container -->
     <div class="modal-fullscreen" id="youtube-modal">
         <div class="modal-content-wrapper">
             <button class="close-btn" id="closeYtBtn" data-i18n="btn_close">CERRAR [X]</button>
@@ -1059,9 +1208,11 @@
         </div>
     </div>
 
+    <!-- Image Gallery Modal -->
     <div class="modal-fullscreen" id="gallery-modal">
         <button class="close-btn" id="closeGalleryBtn" data-i18n="btn_close">CERRAR [X]</button>
         <div class="gallery-nav gallery-prev" id="galleryPrevBtn" aria-label="Imagen anterior">&#10094;</div>
+        <!-- Desactivamos el menu contextual en la imagen para prevenir descargas casuales -->
         <img src="" id="gallery-image" alt="Galería Fotográfica" oncontextmenu="return false;" loading="lazy" decoding="async" draggable="false">
         <div class="gallery-nav gallery-next" id="galleryNextBtn" aria-label="Siguiente imagen">&#10095;</div>
         <div class="gallery-dots" id="gallery-dots"></div>
@@ -1085,10 +1236,11 @@
 
             <div class="nda-document-scroll">
                 <div id="nda-text-content">
-                    <!-- Textos dinámicos NDA con 4 Cláusulas de Seguridad -->
+                    <!-- Textos legales dinámicos inyectados vía JS (i18n) -->
                 </div>
             </div>
 
+            <!-- Formulario semántico validado (novalidate se usa para delegar las alertas nativas a JS) -->
             <div class="nda-form-wrapper">
                 <form id="vault-form" novalidate>
                     <div class="form-row">
@@ -1125,10 +1277,12 @@
         </div>
     </div>
 
-    <!-- Módulo de Lógica JavaScript Optimizado -->
+    <!-- ========================================================= -->
+    <!-- MOTOR JAVASCRIPT VANILLA MULTIMODULAR -->
+    <!-- ========================================================= -->
     <script>
         (() => {
-            // Diccionario masivo. Contiene todas las traducciones.
+            // MÓDULO: DICCIONARIO DE TRADUCCIONES (i18n)
             const translations = {
                 es: {
                     head_title: "Jhon Alejandro Vega Ramírez | Especialista Tecnológico (JavegaPro)", btn_profile: "Perfil Profesional",
@@ -1168,11 +1322,13 @@
                 }
             };
             
+            // Selector inicial de idioma evaluando la preferencia de navegador
             let currentLang = navigator.language.startsWith('en') ? 'en' : 'es';
 
             const updateLanguage = (lang) => {
                 document.documentElement.lang = lang;
                 document.title = translations[lang]['head_title'];
+                // Mapeo exhaustivo sobre el DOM
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     const key = el.getAttribute('data-i18n');
                     if (translations[lang][key]) {
@@ -1184,9 +1340,11 @@
                     }
                 });
                 
+                // Inyección dinámica de textos ricos del Legal NDA
                 const ndaContainer = document.getElementById('nda-text-content');
                 if(ndaContainer) ndaContainer.innerHTML = translations[lang]['nda_full_text'];
 
+                // Feedback visual en UI del switcher
                 document.getElementById('lang-es').classList.toggle('active', lang === 'es');
                 document.getElementById('lang-en').classList.toggle('active', lang === 'en');
             };
@@ -1196,7 +1354,8 @@
                 updateLanguage(currentLang);
             });
 
-            // ==================== BENTO GRID 3D TILT EFFECT ====================
+            // MÓDULO: MOTOR BENTO 3D (TILT)
+            // Utiliza un EventListener en mousemove para reajustar los ejes vectoriales de CSS
             const initBentoTilt = () => {
                 const bentoCards = document.querySelectorAll('.bento-card');
                 bentoCards.forEach(card => {
@@ -1210,6 +1369,7 @@
                         
                         const centerX = rect.width / 2;
                         const centerY = rect.height / 2;
+                        // Limitante matemático a 5 grados rotacionales
                         const rotateX = ((y - centerY) / centerY) * -5;
                         const rotateY = ((x - centerX) / centerX) * 5;
                         
@@ -1223,8 +1383,7 @@
                 });
             };
 
-            // ==================== SISTEMA DE FILTRADO OPTIMIZADO (Sin lag) ====================
-            // Reemplaza View Transitions API para grandes swaps del DOM con animaciones de opacidad (GPU)
+            // MÓDULO: GESTOR DE FILTRADO CON MÁQUINA DE ESTADO DE OPACIDAD (Alta Fluidez)
             const FilterManager = (() => {
                 const grid = document.getElementById('main-grid');
                 const profileSection = document.getElementById('profile-section');
@@ -1234,11 +1393,11 @@
                     btnTarget.classList.add('active');
                     AudioManager.pauseAll(); 
 
-                    // 1. Oculta visualmente primero (Fast fade out)
+                    // Fase 1: Desvanecimiento acelerado por GPU sin detener el Main Thread
                     grid.style.opacity = '0';
                     profileSection.style.opacity = '0';
 
-                    // 2. Ejecuta el swap del DOM (Display none/block) después de que la opacidad esté en 0
+                    // Fase 2: Timer calibrado a la latencia del CSS (300ms) para manipular el DOM
                     setTimeout(() => {
                         if (category === 'perfil') {
                             grid.style.display = 'none'; 
@@ -1247,43 +1406,42 @@
                             grid.style.display = 'grid'; 
                             profileSection.style.display = 'none'; 
                             
+                            // Masonry Dinámico: Rompe el Grid base y asigna Columns-Count
                             if (category === 'diseno') {
                                 grid.classList.add('masonry-mode');
                             } else {
                                 grid.classList.remove('masonry-mode');
                             }
 
+                            // Filtro de etiquetas (Categorías ocultas/visibles)
                             document.querySelectorAll('.media-item').forEach(item => {
                                 if (category === 'all' || item.classList.contains(category)) item.classList.remove('hide');
                                 else item.classList.add('hide');
                             });
                         }
                         
-                        // 3. Regresa la opacidad a 1 (Fast fade in) sincronizado con el monitor (requestAnimationFrame)
+                        // Fase 3: requestAnimationFrame asegura que el repintado ocurra sincronizado al monitor (evita lagazos visuales)
                         requestAnimationFrame(() => {
                             grid.style.opacity = '1';
                             profileSection.style.opacity = '1';
-                            
-                            // Navega suavemente al inicio del contenedor
                             const filterSection = document.querySelector('.filter-container');
                             filterSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         });
-                    }, 300); // 300ms coincide exactamente con nuestra --transition-speed en CSS
+                    }, 300);
                 };
 
-                // Punto de entrada del click del botón
-                const filter = (category, btnTarget) => {
-                    applyFilterDOM(category, btnTarget);
-                };
+                const filter = (category, btnTarget) => applyFilterDOM(category, btnTarget);
 
                 document.querySelectorAll('.filter-btn').forEach(btn => {
                     btn.addEventListener('click', (e) => filter(e.target.dataset.filter, e.target));
                 });
             })();
 
+            // MÓDULO: CARGA PEREZOSA (LAZY LOAD) DE YOUTUBE IFRAMES
             const VideoManager = (() => {
                 const ytModal = document.getElementById('youtube-modal');
                 const ytIframe = document.getElementById('youtube-iframe');
+                // Mensaje en cadena al API nativo de YouTube
                 const sendCommand = (iframe, func) => { if (iframe && iframe.contentWindow && iframe.src) { iframe.contentWindow.postMessage(JSON.stringify({event: 'command', func: func, args: []}), '*'); } };
 
                 const initObserver = () => {
@@ -1294,6 +1452,7 @@
                             if (!iframe) return;
 
                             if (entry.isIntersecting) {
+                                // Instanciación tardía: solo le otorga fuente (src) cuando el usuario baja en el scroll
                                 if (!iframe.src) { iframe.src = iframe.dataset.src; iframe.onload = () => { iframe.style.opacity = "1"; if (thumb) thumb.style.opacity = "0"; }; } 
                                 else { sendCommand(iframe, 'playVideo'); }
                             } else { sendCommand(iframe, 'pauseVideo'); }
@@ -1310,6 +1469,7 @@
                 return { initObserver, closeModal };
             })();
 
+            // MÓDULO: MOTOR DE GALERÍA Y LIGHTBOX NATIVO
             const GalleryManager = (() => {
                 const galleryData = {
                     'food': ['https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png'],
@@ -1361,6 +1521,7 @@
 
                 const closeModal = () => { modal.classList.remove('active-modal'); setTimeout(() => { imgEl.src = ""; }, 300); };
 
+                // Gestos Táctiles (Swipe)
                 imgEl.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, {passive: true});
                 imgEl.addEventListener('touchend', e => {
                     const touchEndX = e.changedTouches[0].screenX;
@@ -1414,13 +1575,13 @@
                 return { closeModal };
             })();
 
-            // ==================== AUDIO MANAGER OPTIMIZADO ====================
+            // MÓDULO: REPRODUCTOR DE AUDIO Y VISUALIZACIÓN CANVAS
             const AudioManager = (() => {
                 let audioCtx = null; const activeAudios = new Set(); 
                 
                 // Formateador de tiempo puro (minutos:segundos)
                 const formatTime = (time) => {
-                    if (isNaN(time)) return "0:00";
+                    if (isNaN(time) || !isFinite(time)) return "0:00";
                     const mins = Math.floor(time / 60);
                     const secs = Math.floor(time % 60);
                     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
@@ -1428,16 +1589,16 @@
 
                 const initContext = () => { if (!audioCtx) try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {} if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); };
                 
+                // Detiene todos los reproductores. Restaura el padding asimétrico de los iconos nativos de play
                 const pauseAll = (exceptElement = null) => { 
                     activeAudios.forEach(item => { 
                         if (item.audio !== exceptElement) { 
                             item.audio.pause(); 
                             item.playBtn.innerHTML = '▶'; 
-                            item.playBtn.style.paddingLeft = '3px'; // Restablece offset para centrado visual del triángulo
+                            item.playBtn.style.paddingLeft = '3px'; 
                             item.playerUi.classList.remove('playing'); 
                             item.isPlaying = false;
                             
-                            // Detiene pulsaciones visuales del disco
                             const innerCard = item.playerUi.closest('.audio-inner-card');
                             if(innerCard){
                                 innerCard.classList.remove('playing-lift');
@@ -1445,7 +1606,6 @@
                                 if(ring && ring.classList.contains('audio-glow-ring')) ring.classList.remove('playing-pulse');
                             }
                             
-                            // Restablece el contador al tiempo total
                             if (item.timeDisplay) item.timeDisplay.textContent = formatTime(item.audio.duration);
                         }
                     }); 
@@ -1467,7 +1627,7 @@
                         let analyser = null; let dataArray = null; let isApiReady = false;
                         const itemData = { audio, playBtn, playerUi, timeDisplay, isPlaying: false }; activeAudios.add(itemData);
 
-                        // Carga asíncrona de metadatos para inyectar la duración del track sin reproducirlo
+                        // Extracción limpia de metadatos para optimizar ciclos de CPU y renderizar duración correcta
                         audio.addEventListener('loadedmetadata', () => {
                             timeDisplay.textContent = formatTime(audio.duration);
                         });
@@ -1493,44 +1653,41 @@
                             if (audio.paused) { 
                                 pauseAll(audio); buildVisualizer(); audio.play(); 
                                 playBtn.innerHTML = '❚❚'; 
-                                playBtn.style.paddingLeft = '0'; // Centrado matemático para pausas rectas
+                                playBtn.style.paddingLeft = '0'; // Rectifica el centro geométrico para la pausa (II)
                                 playerUi.classList.add('playing'); 
-                                innerCard.classList.add('playing-lift'); // Eleva la tarjeta visualmente
-                                ring.classList.add('playing-pulse'); // Latido del neón
+                                innerCard.classList.add('playing-lift'); 
+                                ring.classList.add('playing-pulse'); 
                                 itemData.isPlaying = true; 
                                 canvas.width = item.offsetWidth; canvas.height = item.offsetHeight; draw();
                             } else { 
                                 audio.pause(); 
                                 playBtn.innerHTML = '▶'; 
-                                playBtn.style.paddingLeft = '3px'; // Compensación visual para el triángulo (Play)
+                                playBtn.style.paddingLeft = '3px'; // Restablece compesanción asimétrica del Play (>)
                                 playerUi.classList.remove('playing'); 
                                 innerCard.classList.remove('playing-lift');
                                 ring.classList.remove('playing-pulse');
                                 itemData.isPlaying = false; 
-                                timeDisplay.textContent = formatTime(audio.duration); // Vuelve a mostrar total
+                                timeDisplay.textContent = formatTime(audio.duration);
                             }
                         });
 
-                        // Evento clave de actualización de tiempo fluido
                         audio.addEventListener('timeupdate', () => { 
                             const percent = (audio.currentTime / audio.duration) * 100; 
                             if (progressFill) progressFill.style.width = `${percent || 0}%`; 
                             
-                            // Lógica de contador restante
+                            // Lógica de cronómetro invertido para mostrar tiempo restante
                             if (itemData.isPlaying) {
                                 timeDisplay.textContent = "-" + formatTime(audio.duration - audio.currentTime);
                             }
                         });
 
-                        // Búsqueda en la barra de progreso
                         progressWrapper.addEventListener('click', (e) => { 
                             e.stopPropagation(); const rect = progressWrapper.getBoundingClientRect(); 
                             audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration; 
                         });
 
-                        // Controlador de Volumen nativo seguro
+                        // Manejador del Slider de Volumen sanitizado
                         if (volumeSlider) {
-                            // Previene que tocar el slider dispare otros clicks en la tarjeta
                             volumeSlider.addEventListener('click', e => e.stopPropagation());
                             volumeSlider.addEventListener('input', (e) => {
                                 e.stopPropagation();
@@ -1551,6 +1708,7 @@
                 return { setupAudios, pauseAll };
             })();
 
+            // MÓDULO: FÍSICA AVANZADA DEL MARQUEE (Aceleración Condicional)
             const MarqueePhysics = (() => {
                 const track = document.getElementById('marqueeTrack');
                 const container = document.getElementById('marqueeContainer');
@@ -1558,17 +1716,26 @@
                 let currentX = 0; let isDragging = false; let velocityX = 0; 
                 let targetSpeed = -1; let currentSpeed = -1; 
                 let lastDragX = 0; let animationId = null; let dragDistance = 0;
+                let isVisible = true; // Control de estado para optimización
+
+                // Inyección de un observador que apaga la física (ahorrando batería) si la cinta no está en pantalla
+                const observer = new IntersectionObserver((entries) => {
+                    isVisible = entries[0].isIntersecting;
+                }, { threshold: 0 });
 
                 const loop = () => {
-                    if (!isDragging) { 
-                        currentSpeed += (targetSpeed - currentSpeed) * 0.1; 
-                        velocityX = velocityX * 0.95 + currentSpeed * 0.05; 
-                        currentX += velocityX; 
+                    if (isVisible) {
+                        if (!isDragging) { 
+                            // LERP: Acelera gradualmente sin saltos matemáticos bruscos
+                            currentSpeed += (targetSpeed - currentSpeed) * 0.1; 
+                            velocityX = velocityX * 0.95 + currentSpeed * 0.05; 
+                            currentX += velocityX; 
+                        }
+                        if (currentX < -2000) currentX += 2000; 
+                        if (currentX > 0) currentX -= 2000;
+                        
+                        track.style.transform = `translate3d(${currentX}px, 0, 0)`;
                     }
-                    if (currentX < -2000) currentX += 2000; 
-                    if (currentX > 0) currentX -= 2000;
-                    
-                    track.style.transform = `translate3d(${currentX}px, 0, 0)`;
                     animationId = requestAnimationFrame(loop);
                 };
 
@@ -1594,6 +1761,7 @@
                 };
 
                 const init = () => {
+                    observer.observe(container); // Inicia vigilancia de performance
                     container.addEventListener('mousedown', down); container.addEventListener('touchstart', down, {passive: false});
                     window.addEventListener('mousemove', move, {passive: false}); window.addEventListener('touchmove', move, {passive: false});
                     window.addEventListener('mouseup', up); window.addEventListener('touchend', up);
@@ -1607,6 +1775,7 @@
                 return { init };
             })();
 
+            // MÓDULO: FORMULARIO SEGURO PARA NDA
             const VaultManager = (() => {
                 const modal = document.getElementById('vault-modal'); 
                 const form = document.getElementById('vault-form'); 
@@ -1622,6 +1791,7 @@
                     form.classList.remove('shake-error');
                 };
 
+                // Función crucial para evitar ataques de Inyección Cross-Site Scripting (XSS) en variables locales
                 const sanitizeHTML = (str) => {
                     return str.replace(/[&<>'"]/g, 
                         tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
@@ -1686,18 +1856,22 @@
                 return { closeModal, openModal };
             })();
 
+            // Delegador global de atajos de teclado accesibles
             document.addEventListener('keydown', (e) => { 
                 if (e.key === "Escape") { VideoManager.closeModal(); GalleryManager.closeModal(); VaultManager.closeModal(); }
                 if (document.getElementById('gallery-modal').classList.contains('active-modal')) { if (e.key === "ArrowRight") document.getElementById('galleryNextBtn').click(); if (e.key === "ArrowLeft") document.getElementById('galleryPrevBtn').click(); }
             });
             
+            // Prohibición táctica de menú contextual en imágenes
             document.addEventListener('contextmenu', e => { if(e.target.tagName === 'IMG') e.preventDefault(); });
 
+            // Inicialización de la Aplicación
             document.addEventListener('DOMContentLoaded', () => {
                 updateLanguage(currentLang); 
                 MarqueePhysics.init(); 
                 initBentoTilt(); 
                 
+                // Purga de enlaces rotos silenciosa
                 document.querySelectorAll('.fallback-img').forEach(img => {
                     img.addEventListener('error', function() {
                         if (!this.dataset.retried) { 
@@ -1716,6 +1890,7 @@
                 }, { passive: true });
                 backToTopBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
+                // Levanta el estado de carga y registra observadores periféricos
                 setTimeout(() => {
                     document.body.classList.remove('is-loading'); document.body.classList.add('is-loaded'); document.body.style.overflow = ''; 
                     const visualObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); }); }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });

@@ -1,47 +1,74 @@
 <!DOCTYPE html>
 <html lang="es" id="html-root">
 <head>
-    <!-- [MÓDULO 2] Codificación, Viewport y Seguridad de Renderizado -->
-    <!-- Define la codificación universal de caracteres -->
+    <!-- [MÓDULO 1] Codificación, Viewport y Seguridad de Renderizado -->
+    <!-- Define la codificación universal para soportar caracteres especiales sin fricción -->
     <meta charset="UTF-8">
-    <!-- Viewport adaptativo para Mobile-First, 'cover' permite usar áreas seguras (notch) en iOS/Android -->
+    <!-- Viewport adaptativo: 'cover' permite usar áreas seguras (notch) en iOS/Android manteniendo un diseño edge-to-edge -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <!-- Define el color de la barra de estado del navegador en móviles -->
+    <!-- Tema de color que mimetiza la barra del navegador del dispositivo móvil con el fondo de la web -->
     <meta name="theme-color" content="#020617">
     
     <!-- Meta-etiquetas SEO y Open Graph -->
-    <title data-i18n="head_title">Alejandro Vega | Product Owner & Innovación B2B</title>
-    <meta name="description" content="Portafolio oficial de Alejandro Vega. Product Owner (PSPO I), Estrategia B2B, Identidad de Marca, Producción Audiovisual e IA Generativa.">
-    <meta name="keywords" content="Alejandro Vega, Jhon Vega, javegapro, Product Owner, PSPO I, Identidad de Marca, E-learning, Producción Audiovisual, IA Generativa">
+    <title data-i18n="head_title">Jhon Alejandro Vega Ramírez | Especialista Tecnológico (JavegaPro)</title>
+    <meta name="description" content="Portafolio oficial de Jhon Alejandro Vega Ramírez (Jhon Vega / JavegaPro). Estratega multidisciplinario, Especialista Creativo Tecnológico, Diseñador UI/UX y Producción Audiovisual.">
+    <meta name="keywords" content="Jhon Alejandro Vega Ramírez, Jhon Vega, JHON ALEJANDRO VEGA RAMIREZ, jhon alejandro vega ramirez, john, alejandro vega, javega, javegapro, Desarrollo Web, Diseño UI/UX, Producción Audiovisual, Líder de Innovación Creativa, IA Generativa">
     <meta name="author" content="Jhon Alejandro Vega Ramírez">
     
-    <!-- Etiquetas para previsualización en redes sociales (LinkedIn, WhatsApp, etc.) -->
+    <!-- Etiquetas para previsualización enriquecida en redes sociales (LinkedIn, WhatsApp) -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Alejandro Vega | Product Owner & Innovación B2B">
-    <meta property="og:description" content="Descubre el ecosistema tecnológico y creativo de Alejandro Vega: Marca, E-learning e IA Generativa.">
-    <meta property="og:url" content="https://javegapro.github.io/">
+    <meta property="og:title" content="Jhon Alejandro Vega Ramírez | Portafolio Profesional">
+    <meta property="og:description" content="Descubre el ecosistema creativo de Jhon Vega (JavegaPro): Diseño, Desarrollo Web y Producción Audiovisual.">
+    <meta property="og:url" content="https://javegapro.com/">
     <meta property="og:site_name" content="JavegaPro">
     <meta property="og:image" content="https://static.wixstatic.com/media/14f4fb_62c1344e52a441daaa100e3400a6cc19~mv2_d_3176_4000_s_4_2.jpg">
     
-    <!-- JSON-LD: Datos estructurados para el Knowledge Graph de Google -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jhon Alejandro Vega Ramírez | JavegaPro">
+    <meta name="twitter:description" content="Estratega multidisciplinario y Especialista Creativo Tecnológico.">
+    <meta name="twitter:image" content="https://static.wixstatic.com/media/14f4fb_62c1344e52a441daaa100e3400a6cc19~mv2_d_3176_4000_s_4_2.jpg">
+
+    <!-- JSON-LD: Entidad de Grafo de Conocimiento de Google -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Jhon Alejandro Vega Ramírez",
-      "jobTitle": "Product Owner & Estratega",
-      "url": "https://javegapro.github.io/",
-      "sameAs": [
-        "https://linkedin.com/in/javegapro"
+      "givenName": "Jhon Alejandro",
+      "familyName": "Vega Ramírez",
+      "additionalName": "Jhon Vega",
+      "alternateName": [
+        "JHON ALEJANDRO VEGA RAMIREZ",
+        "jhon alejandro vega ramirez",
+        "John Alejandro Vega",
+        "alejandro vega",
+        "javega",
+        "javegapro"
       ],
-      "knowsAbout": ["Identidad de Marca", "Product Owner", "PSPO I", "Inteligencia Artificial Generativa", "Ingeniería Multimedia", "Diseño Instruccional"]
+      "jobTitle": "Líder de Innovación Creativa & Especialista Tecnológico",
+      "url": "https://javegapro.com/",
+      "sameAs": [
+        "https://linkedin.com/in/javegapro",
+        "https://www.youtube.com/@javegapro",
+        "https://instagram.com/javegapro"
+      ],
+      "knowsAbout": [
+        "Desarrollo Web Full-Stack",
+        "Diseño UI/UX",
+        "Producción Audiovisual",
+        "Inteligencia Artificial Generativa",
+        "Ingeniería Multimedia",
+        "E-learning",
+        "Product Owner"
+      ]
     }
     </script>
     
-    <!-- Favicon SVG dinámico inyectado en base64 para evitar peticiones HTTP adicionales -->
+    <!-- Favicon SVG dinámico inyectado en base64 para evitar peticiones HTTP adicionales al servidor -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text x='50' y='68' font-family='Arial, sans-serif' font-size='55' font-weight='bold' fill='%232dd4bf' text-anchor='middle'>AV</text></svg>" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a'/><text x='50' y='68' font-family='Arial, sans-serif' font-size='55' font-weight='bold' fill='%232dd4bf' text-anchor='middle'>AV</text></svg>">
     
-    <!-- Resolución anticipada de DNS para dominios externos críticos (Rendimiento) -->
+    <!-- Resolución anticipada de DNS para dominios externos críticos (Rendimiento Core Web Vitals) -->
     <link rel="preconnect" href="https://www.youtube.com">
     <link rel="preconnect" href="https://static.wixstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,7 +76,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* ==================== VARIABLES GLOBALES Y SISTEMA DE DISEÑO ==================== */
+        /* ==================== 1. VARIABLES GLOBALES Y RESETEO BASE ==================== */
         :root {
             --dark-bg: #020617; 
             --electric-cyan: #2dd4bf; 
@@ -63,18 +90,18 @@
             --transition-speed: 0.4s;
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
             
-            /* Variables CSS adaptativas para entornos iOS/Android con "notches" */
+            /* Variables CSS adaptativas para entornos iOS/Android con "notches" o bordes curvos */
             --safe-bottom: env(safe-area-inset-bottom, 20px);
             --safe-right: env(safe-area-inset-right, 20px);
             --safe-left: env(safe-area-inset-left, 20px);
         }
 
-        /* Reseteo agresivo. Bloquea el arrastre de elementos para una sensación de App nativa */
+        /* Reseteo agresivo. Bloquea el arrastre de elementos para una sensación de App nativa en móviles */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-user-drag: none; }
         button, a, .media-item, .gallery-nav, .client-logo { user-select: none; -webkit-tap-highlight-color: transparent; }
         html, body { max-width: 100vw; overflow-x: hidden; }
 
-        /* Fondo atmosférico corporativo */
+        /* Fondo atmosférico corporativo: Gradientes radiales para inyectar profundidad */
         body { 
             background-color: var(--dark-bg); color: var(--text-main); font-family: 'Inter', sans-serif; scroll-behavior: smooth;
             background-image: radial-gradient(circle at top right, rgba(45, 212, 191, 0.05), transparent 40%),
@@ -83,10 +110,8 @@
         body.is-loading { overflow: hidden; height: 100dvh; }
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
-        /* View Transitions API: Aceleración GPU nativa para transiciones de vista */
-        ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.6s; animation-timing-function: var(--ease-out-expo); }
-
-        /* ==================== UI PRELOADER ==================== */
+        /* ==================== 2. UI PRELOADER ==================== */
+        /* Paneles con 'will-change' instruyen a la GPU para pre-reservar memoria de animación */
         .splash-panel { position: fixed; left: 0; width: 100%; height: 50dvh; background-color: var(--dark-bg); z-index: 9998; transition: transform 0.8s var(--ease-out-expo); will-change: transform; }
         .splash-panel.top { top: 0; transform-origin: top; border-bottom: 2px solid var(--electric-cyan); box-shadow: 0 5px 30px var(--electric-cyan-glow);}
         .splash-panel.bottom { bottom: 0; transform-origin: bottom; border-top: 2px solid var(--electric-cyan); box-shadow: 0 -5px 30px var(--electric-cyan-glow);}
@@ -100,8 +125,8 @@
         .reveal-element { opacity: 0; transition: opacity 0.8s ease; will-change: opacity; }
         body.is-loaded .reveal-element { opacity: 1; }
 
-        /* ==================== CABECERA Y ANIMACIONES ==================== */
-        header { padding: max(30px, 4dvh) 5% 10px; text-align: center; position: relative; z-index: 100000; pointer-events: none;}
+        /* ==================== 3. CABECERA Y ANIMACIONES ==================== */
+        header { padding: max(30px, 4dvh) 5% 10px; text-align: center; position: relative; z-index: 10000; pointer-events: none;}
         #title-wrapper { display: inline-block; transform: translate3d(0, 0, 0) scale(1); transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1); will-change: transform;}
         body.is-loading #title-wrapper { transform: translate3d(0, 35dvh, 0) scale(1.1); }
         #main-title { font-size: clamp(1.8rem, 6vw, 5rem); text-transform: uppercase; letter-spacing: clamp(1px, 1.5vw, 8px); color: var(--text-main); }
@@ -120,7 +145,7 @@
         }
         header p.subtitle { color: var(--electric-cyan); font-weight: 600; text-transform: uppercase; font-size: clamp(0.75rem, 1.8vw, 1.1rem); letter-spacing: 2px; margin-top: 10px; line-height: 1.5;}
 
-        /* ==================== FLOTANTES UI ==================== */
+        /* ==================== 4. FLOTANTES UI ==================== */
         .lang-toggle { position: fixed; bottom: max(20px, var(--safe-bottom)); left: max(20px, var(--safe-left)); background: rgba(2, 6, 23, 0.4); border: 1px solid rgba(45, 212, 191, 0.15); padding: 8px 12px; border-radius: 30px; cursor: pointer; z-index: 900; display: flex; gap: 8px; align-items: center; backdrop-filter: blur(20px) saturate(180%); box-shadow: inset 0 0 10px rgba(255,255,255,0.02), 0 10px 30px rgba(0,0,0,0.5);}
         .lang-option { opacity: 0.4; font-size: 1.2rem; transition: 0.3s; filter: grayscale(100%); }
         .lang-option.active { opacity: 1; filter: grayscale(0%); transform: scale(1.1); }
@@ -135,10 +160,10 @@
         .back-to-top:hover svg { stroke: var(--dark-bg); transform: translateY(-3px); }
         .back-to-top svg { width: 20px; height: 20px; fill: none; stroke: var(--electric-cyan); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; transition: all 0.3s; }
 
-        /* ==================== SISTEMA DE FILTRADO ==================== */
+        /* ==================== 5. SISTEMA DE FILTRADO Y TRANSICIONES ==================== */
         .filter-container { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; padding: 20px 5% 40px; position: relative; z-index: 10; }
         
-        /* Layout condicional para scroll en móviles (Snap Scroll) */
+        /* Snap Scroll para filtros en móviles: previene clicks accidentales y mejora la navegación horizontal */
         @media (max-width: 767px) {
             .filter-container { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; scroll-snap-type: x mandatory; padding-bottom: 20px; padding-left: max(5%, var(--safe-left)); padding-right: max(5%, var(--safe-right)); }
             .filter-container::-webkit-scrollbar { display: none; }
@@ -154,28 +179,26 @@
 
         @media (max-width: 767px) { .filter-btn, .vault-filter-btn { flex: 0 0 auto; scroll-snap-align: start; white-space: nowrap; } }
 
-        /* ==================== SECCIÓN DE PERFIL BENTO 3D ==================== */
-        #profile-section { display: none; padding: 0 5% 100px; animation: fadeIn 0.5s ease; position: relative; z-index: 10; view-transition-name: profile-section; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* ==================== 6. SECCIÓN DE PERFIL BENTO 3D ==================== */
+        /* Se añade 'transition: opacity' para asegurar desvanecimientos fluidos gestionados por JS y no por View Transitions */
+        #profile-section { display: none; padding: 0 5% 100px; position: relative; z-index: 10; opacity: 1; transition: opacity 0.3s ease; }
 
         .bento-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 1300px; margin: 0 auto; }
 
-        /* Tarjetas Bento con CSS Variables para el Efecto Tilt 3D Inyectado vía JS */
+        /* Tarjetas Bento: Lógica de perspectiva para 3D Tilt */
         .bento-card { 
             background: rgba(2, 6, 23, 0.4); border: 1px solid rgba(45, 212, 191, 0.15); 
             border-radius: 24px; padding: clamp(25px, 4vw, 40px); 
             backdrop-filter: blur(24px) saturate(200%); 
             position: relative; display: flex; flex-direction: column; justify-content: flex-start; 
-            /* Habilita el renderizado en un plano 3D */
             transform-style: preserve-3d;
-            /* Las variables --rx y --ry son calculadas por JavaScript basándose en la posición del ratón */
             transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(1);
             transition: transform 0.15s ease-out, border-color 0.3s, box-shadow 0.3s;
             box-shadow: inset 0 0 20px rgba(255,255,255,0.02), 0 20px 50px rgba(0,0,0,0.5); 
         }
         .bento-card:hover { border-color: var(--electric-cyan); box-shadow: 0 30px 60px rgba(13, 148, 136, 0.2), inset 0 0 0 1px rgba(13, 148, 136, 0.5); z-index: 10; }
 
-        /* Efecto de Iluminación interna ("Glow Tracking") atado al puntero del mouse */
+        /* Iluminación reactiva ("Glow Tracking") vinculada al cursor vía variables locales CSS */
         .bento-card::before { 
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
             background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(45, 212, 191, 0.1) 0%, transparent 60%);
@@ -183,7 +206,6 @@
         }
         .bento-card:hover::before { opacity: 1; }
         
-        /* Se traslada el contenido hacia adelante en el eje Z para crear profundidad (Parallax interno) */
         .bento-content { position: relative; z-index: 2; transform: translateZ(20px); }
         .bento-card h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); color: var(--electric-cyan); margin-bottom: 25px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 1px;}
         .bento-bio p { font-size: clamp(1.05rem, 1.5vw, 1.15rem); line-height: 1.7; color: var(--text-main); margin-bottom: 35px; font-weight: 400;}
@@ -193,7 +215,7 @@
         .bento-metric .num { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 900; color: var(--electric-cyan); line-height: 1;}
         .bento-metric .label { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-top: 8px; font-weight: 700;}
 
-        /* Scroll Interno para el Historial de Experiencia (Previene ruptura del Grid vertical) */
+        /* Contenedor de Scroll de Experiencia (Evita colapso vertical en móviles) */
         .cv-timeline-wrapper { max-height: 400px; overflow-y: auto; padding-right: 10px; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent; }
         .cv-timeline-wrapper::-webkit-scrollbar { width: 4px; }
         .cv-timeline-wrapper::-webkit-scrollbar-thumb { background-color: var(--electric-cyan); border-radius: 10px; }
@@ -208,7 +230,7 @@
         .cv-item span.cv-role { color: var(--electric-cyan); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;}
         .cv-item h4 { color: var(--text-main); font-size: 1.15rem; margin-bottom: 0; font-weight: 700;}
 
-        /* Ecosistema de Habilidades: Pastillas dinámicas orgánicas */
+        /* Ecosistema de Skills: Flotabilidad asincrónica vía CSS Puro (@keyframes) */
         .skill-ecosystem { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: flex-start; }
         .tech-pill { 
             background: rgba(255,255,255,0.03); color: var(--text-main); padding: 10px 22px; 
@@ -216,7 +238,6 @@
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); font-weight: 600; 
             backdrop-filter: blur(5px); cursor: default;
             box-shadow: inset 0 0 10px rgba(255,255,255,0.01);
-            /* Animación flotante desincronizada para dar vida a los elementos sin JS */
             animation: floatPill 6s ease-in-out infinite alternate;
         }
         .tech-pill:nth-child(even) { animation-delay: 1.5s; animation-duration: 7s; }
@@ -237,7 +258,7 @@
         .cert-text strong { color: var(--text-main); font-size: 1rem; margin-bottom: 3px;}
         .cert-text span { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;}
 
-        /* Lógica del Grid Bento (CSS Subgrid emulation mediante Grid Tracks explícitos) */
+        /* Emulación de CSS Subgrid para organizar las tarjetas Bento en Desktop */
         @media (min-width: 900px) {
             .bento-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(200px, auto); }
             .bento-bio { grid-column: span 2; grid-row: span 2; justify-content: flex-start;}
@@ -248,14 +269,15 @@
             .bento-certs .cert-item { width: 32%; }
         }
 
-        /* ==================== MOTOR DE GRILLA MULTIMEDIA ==================== */
-        .portfolio-grid { display: grid; grid-template-columns: 1fr; gap: clamp(20px, 3vw, 40px); padding: 0 5% 100px; width: 100%; max-width: 2500px; margin: 0 auto; position: relative; z-index: 5; view-transition-name: portfolio-grid; }
+        /* ==================== 7. MOTOR DE GRILLA MULTIMEDIA ==================== */
+        /* Se añade transición de opacidad para cambios de filtro inmediatos y ultra fluidos (60fps) */
+        .portfolio-grid { display: grid; grid-template-columns: 1fr; gap: clamp(20px, 3vw, 40px); padding: 0 5% 100px; width: 100%; max-width: 2500px; margin: 0 auto; position: relative; z-index: 5; opacity: 1; transition: opacity 0.3s ease; }
         @media (min-width: 768px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
         
         .media-item.hide { display: none !important; }
         .media-item { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.05); background-color: var(--card-bg); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transform: translateZ(0); }
 
-        /* Arquitectura Masonry pura (CSS Column Count) para alto rendimiento visual en galerías de diseño */
+        /* Algoritmo Masonry Puro usando Column-Count (Cero JS extra, renderizado inmediato) */
         .portfolio-grid.masonry-mode { display: block; column-count: 4; column-gap: 15px; padding: 0 2% 80px; max-width: 2200px; }
         @media (max-width: 1400px) { .portfolio-grid.masonry-mode { column-count: 3; column-gap: 15px; } }
         @media (max-width: 900px) { .portfolio-grid.masonry-mode { column-count: 2; column-gap: 12px; padding: 0 3% 60px; } }
@@ -267,6 +289,7 @@
         .portfolio-grid.masonry-mode .media-item.diseno:not(.audio):hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 35px var(--electric-cyan-glow); z-index: 20; }
         .media-item.diseno:not(.audio):hover img.masonry-img { filter: grayscale(0%) brightness(1.05); }
 
+        /* Capas de protección de UI y texturización 35mm (anti-banding) */
         .media-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.15; pointer-events: none; z-index: 4; mix-blend-mode: overlay;}
         .protect-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 6; pointer-events: none; }
         .hover-carousel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
@@ -286,23 +309,48 @@
         .portfolio-grid.masonry-mode .media-item h2 { font-size: clamp(0.9rem, 1.2vw, 1.3rem); margin-bottom: 2px;}
         .portfolio-grid.masonry-mode .media-item p { font-size: 0.65rem; letter-spacing: 1px;}
 
-        /* ==================== REPRODUCTORES AUDIO/VISUALIZADORES ==================== */
+        /* ==================== 8. REPRODUCTORES AUDIO Y VISUALIZADORES ==================== */
         .media-item.audio { border: none; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; cursor: default; transform: none !important; background-color: var(--dark-bg); }
-        @keyframes rotateGlow { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
-        .audio-glow-ring { position: absolute; top: 50%; left: 50%; width: 200%; height: 200%; background: conic-gradient(transparent, transparent, rgba(45, 212, 191, 0.1), var(--electric-cyan)); animation: rotateGlow 5s linear infinite; z-index: 1; opacity: 0.5; transition: opacity 0.5s ease; }
-        .audio-inner-card { position: absolute; inset: 2px; background-color: rgba(15, 23, 42, 0.9); border-radius: 14px; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; overflow: hidden; backdrop-filter: blur(10px);}
+        
+        /* Animación del anillo de latido. Añadimos un estado pulsante cuando está reproduciendo */
+        @keyframes rotateGlow { 0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); } 50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.05); } 100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); } }
+        .audio-glow-ring { position: absolute; top: 50%; left: 50%; width: 200%; height: 200%; background: conic-gradient(transparent, transparent, rgba(45, 212, 191, 0.1), var(--electric-cyan)); animation: rotateGlow 6s linear infinite; z-index: 1; opacity: 0.3; transition: opacity 0.5s ease; }
+        .audio-glow-ring.playing-pulse { opacity: 0.7; animation-duration: 3s; } /* Latido rápido cuando suena la música */
+        
+        .audio-inner-card { position: absolute; inset: 2px; background-color: rgba(15, 23, 42, 0.9); border-radius: 14px; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; overflow: hidden; backdrop-filter: blur(10px); transition: background-color 0.4s;}
+        .audio-inner-card.playing-lift { background-color: rgba(15, 23, 42, 0.7); } /* Transparencia para ver el glow al reproducir */
+        
         .audio-visualizer { position: absolute; bottom: 0; left: 0; width: 100%; height: 60%; z-index: 4; pointer-events: none; opacity: 0.8;}
-        .audio-text-content { z-index: 5; margin-bottom: 30px; pointer-events: none; }
+        .audio-text-content { z-index: 5; margin-bottom: 25px; pointer-events: none; transition: transform 0.4s; }
+        .audio-inner-card.playing-lift .audio-text-content { transform: translateY(-5px); }
         .audio-text-content h2 { font-size: clamp(2rem, 3vw, 3rem); text-transform: uppercase; margin-bottom: 5px; text-shadow: 0 5px 15px rgba(0,0,0,0.8);}
         .audio-text-content p { color: var(--electric-cyan); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 4px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
-        .custom-player { position: relative; z-index: 10; display: flex; align-items: center; justify-content: space-between; width: 90%; max-width: 450px; padding: 12px 25px; gap: 15px; background: rgba(2, 6, 23, 0.5); border: 1px solid rgba(45, 212, 191, 0.3); border-radius: 50px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); transition: all 0.3s ease; backdrop-filter: blur(5px);}
-        .custom-player.playing { box-shadow: 0 10px 30px var(--electric-cyan-glow); border-color: var(--electric-cyan); background: rgba(45, 212, 191, 0.05);}
-        .play-btn { background: var(--electric-cyan); border: none; color: var(--dark-bg); font-family: 'Inter', sans-serif; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; transition: transform 0.2s; box-shadow: 0 5px 15px rgba(45, 212, 191, 0.3);}
+        
+        /* Contenedor Flex refinado para el control de audio */
+        .custom-player { position: relative; z-index: 10; display: flex; align-items: center; justify-content: space-between; width: 95%; max-width: 500px; padding: 10px 20px; gap: 12px; background: rgba(2, 6, 23, 0.6); border: 1px solid rgba(45, 212, 191, 0.3); border-radius: 50px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); transition: all 0.3s ease; backdrop-filter: blur(5px);}
+        .custom-player.playing { box-shadow: 0 10px 30px var(--electric-cyan-glow); border-color: var(--electric-cyan); background: rgba(45, 212, 191, 0.08);}
+        
+        /* Botón de Play perfectamente centrado mediante flexbox. Padding dinámico inyectado en JS según el ícono */
+        .play-btn { background: var(--electric-cyan); border: none; color: var(--dark-bg); font-family: 'Inter', sans-serif; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; transition: transform 0.2s; box-shadow: 0 5px 15px rgba(45, 212, 191, 0.3); flex-shrink: 0;}
         .play-btn:hover { transform: scale(1.1); }
+        
         .progress-wrapper { flex-grow: 1; height: 6px; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; cursor: pointer; position: relative; overflow: hidden; }
         .progress-fill { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background-color: var(--electric-cyan); border-radius: 10px; box-shadow: 0 0 10px var(--electric-cyan); pointer-events: none; transition: width 0.1s linear;}
+        
+        /* Lógica visual de Control de Tiempo y Volumen */
+        .time-display { font-size: 0.75rem; color: var(--electric-cyan); font-weight: 700; min-width: 42px; text-align: right; font-variant-numeric: tabular-nums; flex-shrink: 0; letter-spacing: 0.5px;}
+        .volume-container { display: flex; align-items: center; position: relative; cursor: pointer; }
+        .volume-icon { fill: var(--text-muted); width: 20px; height: 20px; transition: fill 0.3s; flex-shrink: 0;}
+        .volume-container:hover .volume-icon { fill: var(--electric-cyan); }
+        .volume-slider-wrapper { width: 0; overflow: hidden; transition: width 0.4s var(--ease-out-expo), margin-left 0.4s; display: flex; align-items: center; margin-left: 0; }
+        .volume-container:hover .volume-slider-wrapper { width: 60px; margin-left: 8px; }
+        
+        /* Custom Range Slider Webkit/Moz */
+        .volume-slider { width: 100%; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px; outline: none; }
+        .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: var(--electric-cyan); cursor: pointer; box-shadow: 0 0 5px var(--electric-cyan);}
+        .volume-slider::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--electric-cyan); cursor: pointer; border: none; box-shadow: 0 0 5px var(--electric-cyan);}
 
-        /* ==================== SECCIONES FINALES Y CONTACTO ==================== */
+        /* ==================== 9. SECCIONES FINALES Y CONTACTO ==================== */
         .ecosystem-section { padding: 80px 5%; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); background-color: var(--card-bg); position: relative;}
         .ecosystem-section h3 { font-size: 2rem; color: var(--text-main); margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;}
         .brand-btn-clean { display: inline-flex; align-items: center; justify-content: center; background: transparent; border: none; padding: 15px; transition: transform 0.3s ease; cursor: pointer; }
@@ -326,7 +374,7 @@
         .contact-section p { color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.1rem;}
         
         .contact-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 50px;}
-        /* Transiciones limpias y estándar. Magnetismo eliminado para mejorar usabilidad */
+        /* Transiciones fluidas, el hover levanta levemente sin JS magnético */
         .btn-primary, .btn-secondary, .btn-whatsapp { padding: 16px 35px; font-weight: 700; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1rem; text-decoration: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s, background 0.3s, border-color 0.3s; will-change: transform;}
         .btn-primary { background-color: var(--electric-cyan); color: var(--dark-bg); }
         .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px var(--electric-cyan-glow); }
@@ -343,7 +391,7 @@
         .social-links a.yt-link:hover svg polygon { fill: var(--dark-bg); }
         .social-links a.ig-link:hover svg path, .social-links a.ig-link:hover svg line { fill: transparent; stroke: var(--dark-bg); }
 
-        /* ==================== BÓVEDA NDA (CAPA DE SEGURIDAD ESTÁTICA) ==================== */
+        /* ==================== 10. BÓVEDA NDA Y MODALES ==================== */
         .vault-section { background: linear-gradient(180deg, var(--card-bg) 0%, var(--dark-bg) 100%); padding: 100px 5% 150px; text-align: center; position: relative; }
         .vault-container { max-width: 800px; margin: 0 auto; position: relative; z-index: 2; padding: clamp(40px, 5vw, 60px) clamp(20px, 4vw, 40px); border: 1px solid rgba(45, 212, 191, 0.15); border-radius: 24px; background: rgba(2, 6, 23, 0.4); backdrop-filter: blur(24px) saturate(200%); box-shadow: inset 0 0 20px rgba(255,255,255,0.02), 0 20px 50px rgba(0,0,0,0.5); }
         .vault-icon-glow { font-size: 4rem; margin-bottom: 20px; display: inline-block; filter: drop-shadow(0 0 15px var(--electric-cyan)); animation: float 3s ease-in-out infinite;}
@@ -352,7 +400,6 @@
         .vault-btn { background: var(--electric-cyan); color: var(--dark-bg); border: none; padding: 18px 40px; font-weight: 900; border-radius: 50px; cursor: pointer; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px var(--electric-cyan-glow); will-change: transform;}
         .vault-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.6); }
 
-        /* ==================== SISTEMA DE MODALES ==================== */
         .modal-fullscreen { position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh; background: rgba(2,6,23,0.98); z-index: 9999999; display: none; justify-content: center; align-items: center; padding: 2% 5%; backdrop-filter: blur(10px); opacity: 0; transition: opacity 0.2s ease;}
         .modal-fullscreen.active-modal { display: flex; opacity: 1; }
         .modal-content-wrapper { max-width: 100%; max-height: 90dvh; position: relative; width: 1600px; aspect-ratio: 16/9; display: flex; justify-content: center; align-items: center;}
@@ -374,7 +421,6 @@
         /* Formulario NDA Dinámico */
         .form-modal-box { background: rgba(2, 6, 23, 0.85); padding: clamp(25px, 4vw, 40px); border-radius: 16px; max-width: 800px; width: 95%; border: 1px solid rgba(45, 212, 191, 0.3); text-align: left; position: relative; max-height: 90dvh; display: flex; flex-direction: column; overflow: hidden; backdrop-filter: blur(24px) saturate(200%); box-shadow: 0 30px 60px rgba(0,0,0,0.9);}
         
-        /* Contenedor de Scroll Interno para textos legales extensos */
         .nda-document-scroll { overflow-y: auto; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 20px; margin-bottom: 25px; flex-shrink: 1; max-height: 30dvh; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent;}
         .nda-document-scroll::-webkit-scrollbar { width: 6px; }
         .nda-document-scroll::-webkit-scrollbar-thumb { background-color: var(--electric-cyan); border-radius: 10px; }
@@ -392,7 +438,6 @@
         .form-modal-box input[type="text"], .form-modal-box input[type="email"], .form-modal-box input[type="number"] { width: 100%; padding: 12px; background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.95rem; transition: border 0.3s; }
         .form-modal-box input:focus { outline: none; border-color: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan-glow);}
         
-        /* Checkbox Custom mediante Flexbox para geometría predecible e inquebrantable */
         .checkbox-container { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px; cursor: pointer; user-select: none; position: relative; }
         .checkbox-container input { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; z-index: -1; }
         .checkmark { position: relative; display: flex; justify-content: center; align-items: center; width: 24px; height: 24px; min-width: 24px; min-height: 24px; background-color: rgba(0, 0, 0, 0.4); border: 2px solid var(--text-muted); border-radius: 6px; transition: all 0.3s var(--ease-out-expo); flex-shrink: 0; margin-top: 2px; }
@@ -415,7 +460,7 @@
 </head>
 <body class="is-loading">
 
-    <!-- Previene saltos bruscos en el recargo de la página -->
+    <!-- Previene saltos bruscos nativos del historial al recargar la página -->
     <script>
         if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
         window.scrollTo(0, 0);
@@ -443,7 +488,7 @@
         <div id="title-wrapper">
             <h1 id="main-title">Alejandro Vega</h1>
         </div>
-        <p class="subtitle reveal-element" data-i18n="subtitle">Product Owner | Innovación B2B</p>
+        <p class="subtitle reveal-element" data-i18n="subtitle">Líder de Innovación Creativa | Identidad Visual & E-learning</p>
     </header>
 
     <div class="filter-container reveal-element">
@@ -456,100 +501,71 @@
         <button class="vault-filter-btn" id="openVaultBtnHeader" aria-label="Abrir bóveda"><span class="icon">🔒</span> <span data-i18n="btn_vault_header">Acceso Bóveda</span></button>
     </div>
 
-    <!-- SECCIÓN PERFIL PROFESIONAL BENTO GRID (Recuperado con 3D Tilt) -->
+    <!-- SECCIÓN PERFIL PROFESIONAL BENTO GRID -->
     <div id="profile-section">
         <div class="bento-grid">
             
             <div class="bento-card bento-bio bento-content">
-                <h3 data-i18n="prof_title"><span style="font-size: 1.5rem; margin-right: 10px;">⚡</span> Orquestación & Estrategia</h3>
-                <p data-i18n="profile_text">Como <strong>Product Owner (PSPO I)</strong> e Ingeniero Multimedia, actúo como el puente estratégico entre la visión ejecutiva, la creatividad visual y la ejecución de proyectos. Lidero la conceptualización de marcas, la construcción de narrativas digitales y el diseño de ecosistemas E-learning B2B. Apoyado en herramientas de Inteligencia Artificial, estructuro y orquesto soluciones de alto impacto, garantizando una excelente experiencia de usuario y legibilidad algorítmica (UX/MX - Machine Experience), dirigiendo equipos especializados para materializar estrategias que conectan emocionalmente con los usuarios y optimizan el ROI corporativo.</p>
+                <h3 data-i18n="prof_title">Impacto Estratégico</h3>
+                <p data-i18n="profile_text">Estratega multidisciplinario y Especialista Creativo Tecnológico. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente estratégico entre la visión de negocio, la estética visual de vanguardia y la adopción tecnológica (Product Owner) en empresas top.</p>
                 
                 <div class="bento-metrics" style="position: relative; z-index: 2;">
-                    <div class="bento-metric"><span class="num">8+</span><span class="label" data-i18n="stat_years">Años Exp. B2B</span></div>
-                    <div class="bento-metric"><span class="num">100%</span><span class="label" data-i18n="stat_po">Adopción Ágil</span></div>
-                    <div class="bento-metric"><span class="num">360°</span><span class="label" data-i18n="stat_projects">Visión Creativa</span></div>
+                    <div class="bento-metric"><span class="num">8+</span><span class="label" data-i18n="stat_years">Años de Exp.</span></div>
+                    <div class="bento-metric"><span class="num">PO</span><span class="label" data-i18n="stat_po">Product Owner</span></div>
+                    <div class="bento-metric"><span class="num">+30</span><span class="label" data-i18n="stat_projects">Proyectos B2B</span></div>
                 </div>
             </div>
 
             <div class="bento-card bento-exp bento-content">
-                <h3 data-i18n="prof_rol">Experiencia Clave</h3>
+                <h3 data-i18n="prof_rol">Experiencia TOP</h3>
                 <div class="cv-timeline-container">
                     <div class="cv-timeline-wrapper">
                         <div class="cv-timeline">
                             <div class="cv-item">
-                                <span class="cv-year">2025 - PRESENTE</span>
-                                <span class="cv-role" data-i18n="rol_1">Co-Fundador & Product Owner</span>
+                                <span class="cv-year">2023 - PRESENTE</span>
+                                <span class="cv-role" data-i18n="rol_1">Co-Fundador & Líder de Producto</span>
                                 <h4 data-i18n="rol_1_co">AUTÓMATAS</h4>
-                                <p data-i18n="rol_1_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Estrategia B2B, diseño de UX/MX y construcción narrativa de ecosistemas de Inteligencia Artificial.</p>
                             </div>
                             <div class="cv-item">
-                                <span class="cv-year">MAY 2023 - PRESENTE</span>
-                                <span class="cv-role" data-i18n="rol_2">Ingeniero Multimedia & Proyectos Digitales</span>
+                                <span class="cv-year">2021 - PRESENTE</span>
+                                <span class="cv-role" data-i18n="rol_2">Desarrollador Digital y Gestión del Cambio</span>
                                 <h4 data-i18n="rol_2_co">ESPY S.A. E.S.P.</h4>
-                                <p data-i18n="rol_2_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Consultor in-house. Conceptualización y diseño de la nueva identidad corporativa, manual de marca y modernización digital/impresa continua.</p>
-                            </div>
-                            <div class="cv-item">
-                                <span class="cv-year">2024</span>
-                                <span class="cv-role" data-i18n="rol_8">Docente Especializado (Multimedia y Diseño)</span>
-                                <h4 data-i18n="rol_8_co">AVANT GARDE</h4>
-                                <p data-i18n="rol_8_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Formación de talentos en suite Adobe y producción audiovisual.</p>
-                            </div>
-                            <div class="cv-item">
-                                <span class="cv-year">ABR 2022 - JUL 2022</span>
-                                <span class="cv-role" data-i18n="rol_4">Diseñador Contenidos de Formación</span>
-                                <h4 data-i18n="rol_4_co">EFICACIA S.A.</h4>
-                            </div>
-                            <div class="cv-item">
-                                <span class="cv-year">AGO 2021 - DIC 2022</span>
-                                <span class="cv-role" data-i18n="rol_5">Profesional de Apoyo a la Gestión TIC</span>
-                                <h4 data-i18n="rol_5_co">ALCALDÍA DE YUMBO</h4>
-                                <p data-i18n="rol_5_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Fortalecimiento de canales de comunicación institucional.</p>
-                            </div>
-                            <div class="cv-item">
-                                <span class="cv-year">2020 - 2021</span>
-                                <span class="cv-role" data-i18n="rol_9">Director de Arte & Productor Visual</span>
-                                <h4 data-i18n="rol_9_co">CONCEPTO AGENCIA DE DISEÑO</h4>
-                                <p data-i18n="rol_9_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Identidad de marca desde cero y producción audiovisual B2B.</p>
-                            </div>
-                            <div class="cv-item">
-                                <span class="cv-year">OCT 2020 - DIC 2020</span>
-                                <span class="cv-role" data-i18n="rol_7">Profesional de Servicios (Cultura)</span>
-                                <h4 data-i18n="rol_7_co">ALCALDÍA DE CALI</h4>
-                            </div>
-                            <div class="cv-item">
-                                <span class="cv-year">2019 - 2020</span>
-                                <span class="cv-role" data-i18n="rol_10">Productor Audiovisual & Estratega Digital</span>
-                                <h4 data-i18n="rol_10_co">PRO-SCIENTIA</h4>
-                                <p data-i18n="rol_10_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Comunicación política y consultoría de redes sociales.</p>
-                            </div>
-                            <div class="cv-item">
-                                <span class="cv-year">2017 - 2018</span>
-                                <span class="cv-role" data-i18n="rol_11">Desarrollador VR & Dir. Audiovisual</span>
-                                <h4 data-i18n="rol_11_co">U. SAN BUENAVENTURA / COL. BAUTISTA</h4>
-                                <p data-i18n="rol_11_desc" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Prototipado inmersivo VR y dirección de cortometrajes educativos.</p>
                             </div>
                             <div class="cv-item">
                                 <span class="cv-year">2016 - PRESENTE</span>
-                                <span class="cv-role" data-i18n="rol_3">Director Creativo & Productor</span>
-                                <h4 data-i18n="rol_3_co">JAVEGA</h4>
+                                <span class="cv-role" data-i18n="rol_3">Director General & Productor Ejecutivo</span>
+                                <h4 data-i18n="rol_3_co">JAVEGA (Marca Personal)</h4>
+                            </div>
+                            <div class="cv-item">
+                                <span class="cv-year">2022</span>
+                                <span class="cv-role" data-i18n="rol_4">Líder de Prod. Multimedia y E-learning</span>
+                                <h4 data-i18n="rol_4_co">EFICACIA S.A.</h4>
+                            </div>
+                            <div class="cv-item">
+                                <span class="cv-year">2020 - 2021</span>
+                                <span class="cv-role" data-i18n="rol_5">Director de Arte & Productor Visual</span>
+                                <h4 data-i18n="rol_5_co">CONCEPTO AGENCIA</h4>
+                            </div>
+                            <div class="cv-item">
+                                <span class="cv-year">2017 - 2021</span>
+                                <span class="cv-role" data-i18n="rol_6">Director de Arte & Producción</span>
+                                <h4 data-i18n="rol_6_co">AGENCIAS Y EDUCACIÓN</h4>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Ecosistema de Skills Flotantes -->
             <div class="bento-card bento-skills bento-content">
                 <h3 data-i18n="prof_skills">Ecosistema Tecnológico</h3>
                 <div class="skill-ecosystem">
-                    <span class="tech-pill">Product Ownership (Scrum/Agile)</span>
-                    <span class="tech-pill">Levantamiento de Requerimientos</span>
-                    <span class="tech-pill">Stakeholder Management</span>
-                    <span class="tech-pill">Value-Based Pricing</span>
-                    <span class="tech-pill">Arquitectura de Marca</span>
-                    <span class="tech-pill">Ecosistemas E-learning (SCORM)</span>
-                    <span class="tech-pill">Narrativas Digitales e IA (Flow)</span>
+                    <span class="tech-pill">Product Ownership</span>
+                    <span class="tech-pill">Estrategia de Marca</span>
+                    <span class="tech-pill">Diseño Instruccional</span>
+                    <span class="tech-pill">IA Generativa (Flow)</span>
                     <span class="tech-pill">Dirección Audiovisual</span>
+                    <span class="tech-pill">E-learning</span>
+                    <span class="tech-pill">Adobe CC / Final Cut</span>
                 </div>
             </div>
 
@@ -576,10 +592,10 @@
                     </div>
                     <div class="cert-item">
                         <div class="cert-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M16,11.78L20.24,4.45L21.97,5.45L16.74,14.5L10.23,10.75L5.46,19H22V21H2V3H4V17.54L9.5,8L16,11.78Z"/></svg>
                         </div>
                         <div class="cert-text">
-                            <strong data-i18n="cert_3">Marketing Digital</strong>
+                            <strong data-i18n="cert_3">Fundamentos Marketing</strong>
                             <span data-i18n="cert_3_org">Google Actívate</span>
                         </div>
                     </div>
@@ -705,7 +721,7 @@
                 <img src="https://static.wixstatic.com/media/14f4fb_4f61d7e9e3cd4da6ad6e6f649d2d9d05~mv2_d_4000_4000_s_4_2.jpg" class="hc-img active focus-top" alt="Retratos 1" loading="lazy" decoding="async" draggable="false">
                 <img src="https://static.wixstatic.com/media/14f4fb_6fb679a244ef48de9ea749cbeb6e7824~mv2_d_4000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Retratos 2">
                 <img src="https://static.wixstatic.com/media/14f4fb_d66070ef8db64e62a7b7abffa3099d80~mv2_d_4000_5547_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Retratos 3">
-                <img src="https://static.wixstatic.com/media/14f4fb_5fb74448bec44efebd9d63489a942e4d~mv2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Retratos 4">
+                <img src="https://static.wixstatic.com/media/14f4fb_5fb74448bec44efebd9d63489a942e4d~mv2.jpg" class="hc-img focus-top" loading="lazy decoding="async" draggable="false" alt="Retratos 4">
                 <img src="https://static.wixstatic.com/media/14f4fb_a60c3996c5c443b6be56e08c91807dc9~mv2.png" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Retratos 5">
             </div>
             <div class="protect-layer"></div>
@@ -852,15 +868,20 @@
             <div class="media-overlay"><p data-i18n="cat_vinyl">Diseño de Vinilo</p><h2>Xbox: Gears of War</h2></div>
         </div>
 
-        <!-- AUDIO (6 Pistas) -->
+        <!-- AUDIO SONORO B2B (6 Pistas Optimizadas) -->
         <div class="media-item audio" data-audio-src="https://static.wixstatic.com/mp3/14f4fb_cec3885e857446d5bb03641eed32c0d8.mp3">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
                 <canvas class="audio-visualizer"></canvas>
                 <div class="audio-text-content"><h2>Alone</h2><p data-i18n="aud_alone">Acústico / Soul Cinematográfico</p></div>
                 <div class="custom-player">
-                    <button class="play-btn" aria-label="Reproducir Audio">▶</button>
+                    <button class="play-btn" aria-label="Reproducir Audio" style="padding-left: 3px;">▶</button>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
+                    <span class="time-display">0:00</span>
+                    <div class="volume-container">
+                        <svg class="volume-icon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                        <div class="volume-slider-wrapper"><input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Volumen"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -871,8 +892,13 @@
                 <canvas class="audio-visualizer"></canvas>
                 <div class="audio-text-content"><h2>Trapped</h2><p data-i18n="aud_trapped">Tensión / Percusión de Acción</p></div>
                 <div class="custom-player">
-                    <button class="play-btn" aria-label="Reproducir Audio">▶</button>
+                    <button class="play-btn" aria-label="Reproducir Audio" style="padding-left: 3px;">▶</button>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
+                    <span class="time-display">0:00</span>
+                    <div class="volume-container">
+                        <svg class="volume-icon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                        <div class="volume-slider-wrapper"><input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Volumen"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -883,8 +909,13 @@
                 <canvas class="audio-visualizer"></canvas>
                 <div class="audio-text-content"><h2>Rock Your Reel</h2><p data-i18n="aud_rock">Rock Alternativo / Alta Energía</p></div>
                 <div class="custom-player">
-                    <button class="play-btn" aria-label="Reproducir Audio">▶</button>
+                    <button class="play-btn" aria-label="Reproducir Audio" style="padding-left: 3px;">▶</button>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
+                    <span class="time-display">0:00</span>
+                    <div class="volume-container">
+                        <svg class="volume-icon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                        <div class="volume-slider-wrapper"><input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Volumen"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -895,8 +926,13 @@
                 <canvas class="audio-visualizer"></canvas>
                 <div class="audio-text-content"><h2>Rain</h2><p data-i18n="aud_rain">Ambient / Synthwave Inspirador</p></div>
                 <div class="custom-player">
-                    <button class="play-btn" aria-label="Reproducir Audio">▶</button>
+                    <button class="play-btn" aria-label="Reproducir Audio" style="padding-left: 3px;">▶</button>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
+                    <span class="time-display">0:00</span>
+                    <div class="volume-container">
+                        <svg class="volume-icon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                        <div class="volume-slider-wrapper"><input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Volumen"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -907,8 +943,13 @@
                 <canvas class="audio-visualizer"></canvas>
                 <div class="audio-text-content"><h2>Hades</h2><p data-i18n="aud_hades">Darkwave / Synth Industrial</p></div>
                 <div class="custom-player">
-                    <button class="play-btn" aria-label="Reproducir Audio">▶</button>
+                    <button class="play-btn" aria-label="Reproducir Audio" style="padding-left: 3px;">▶</button>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
+                    <span class="time-display">0:00</span>
+                    <div class="volume-container">
+                        <svg class="volume-icon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                        <div class="volume-slider-wrapper"><input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Volumen"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -919,8 +960,13 @@
                 <canvas class="audio-visualizer"></canvas>
                 <div class="audio-text-content"><h2>Sauvage</h2><p data-i18n="aud_sauvage">Beat Global / Fusión Urbana</p></div>
                 <div class="custom-player">
-                    <button class="play-btn" aria-label="Reproducir Audio">▶</button>
+                    <button class="play-btn" aria-label="Reproducir Audio" style="padding-left: 3px;">▶</button>
                     <div class="progress-wrapper"><div class="progress-fill"></div></div>
+                    <span class="time-display">0:00</span>
+                    <div class="volume-container">
+                        <svg class="volume-icon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                        <div class="volume-slider-wrapper"><input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Volumen"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -948,7 +994,7 @@
                 <img src="Logo%20espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 
-                <!-- Duplicados para efecto loop infinito continuo -->
+                <!-- Nodos espejo para la ilusión de un bucle infinito continuo -->
                 <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo%20derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
@@ -976,7 +1022,6 @@
                 <span data-i18n="btn_mail">Escríbeme un correo</span>
             </a>
             
-            <!-- Enlace del CV reparado utilizando codificación URL estándar (%20) -->
             <a href="ALEJANDRO%20VEGA%20HV%202026.pdf" download="ALEJANDRO VEGA HV 2026.pdf" class="btn-secondary">
                 <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                 <span data-i18n="btn_cv">Descargar CV (PDF)</span>
@@ -1083,51 +1128,41 @@
     <!-- Módulo de Lógica JavaScript Optimizado -->
     <script>
         (() => {
-            // Diccionario masivo recuperado. Contiene todas las llaves de seguridad y perfil profesional restauradas.
+            // Diccionario masivo. Contiene todas las traducciones.
             const translations = {
                 es: {
                     head_title: "Jhon Alejandro Vega Ramírez | Especialista Tecnológico (JavegaPro)", btn_profile: "Perfil Profesional",
-                    btn_vault_header: "Acceso Bóveda", subtitle: "Product Owner | Innovación B2B",
-                    prof_title: "⚡ Orquestación & Estrategia", prof_rol: "Experiencia Clave", prof_skills: "Ecosistema Tecnológico",
-                    rol_1: "Co-Fundador & Product Owner", rol_1_co: "AUTÓMATAS", rol_1_desc: "Estrategia B2B, diseño de UX/MX y construcción narrativa de ecosistemas de Inteligencia Artificial.",
-                    rol_2: "Ingeniero Multimedia & Proyectos Digitales", rol_2_co: "ESPY S.A. E.S.P.", rol_2_desc: "Consultor in-house. Conceptualización y diseño de la nueva identidad corporativa, manual de marca y modernización digital/impresa continua.",
-                    rol_3: "Director Creativo & Productor", rol_3_co: "JAVEGA",
-                    rol_4: "Diseñador Contenidos de Formación", rol_4_co: "EFICACIA S.A.", 
-                    rol_5: "Profesional de Apoyo a la Gestión TIC", rol_5_co: "ALCALDÍA DE YUMBO", rol_5_desc: "Fortalecimiento de canales de comunicación institucional.",
+                    btn_vault_header: "Acceso Bóveda", subtitle: "Líder de Innovación Creativa | Identidad Visual & E-learning",
+                    prof_title: "Impacto Estratégico", prof_rol: "Experiencia TOP", prof_skills: "Ecosistema Tecnológico",
+                    rol_1: "Co-Fundador & Líder de Producto", rol_1_co: "AUTÓMATAS",
+                    rol_2: "Desarrollador Digital y Gestión del Cambio", rol_2_co: "ESPY S.A. E.S.P.",
+                    rol_3: "Director General & Productor Ejecutivo", rol_3_co: "JAVEGA (Marca Personal)",
+                    rol_4: "Líder de Producción Multimedia y E-learning", rol_4_co: "EFICACIA S.A.", 
+                    rol_5: "Director de Arte & Productor Visual", rol_5_co: "CONCEPTO AGENCIA",
                     rol_6: "Director de Arte & Producción", rol_6_co: "AGENCIAS Y EDUCACIÓN",
-                    rol_7: "Profesional de Servicios (Cultura)", rol_7_co: "ALCALDÍA DE CALI",
-                    rol_8: "Docente Especializado (Multimedia y Diseño)", rol_8_co: "AVANT GARDE", rol_8_desc: "Formación de talentos en suite Adobe y producción audiovisual.",
-                    rol_9: "Director de Arte & Productor Visual", rol_9_co: "CONCEPTO AGENCIA DE DISEÑO", rol_9_desc: "Identidad de marca desde cero y producción audiovisual B2B.",
-                    rol_10: "Productor Audiovisual & Estratega Digital", rol_10_co: "PRO-SCIENTIA", rol_10_desc: "Comunicación política y consultoría de redes sociales.",
-                    rol_11: "Desarrollador VR & Dir. Audiovisual", rol_11_co: "U. SAN BUENAVENTURA / COL. BAUTISTA", rol_11_desc: "Prototipado inmersivo VR y dirección de cortometrajes educativos.",
-                    cert_title: "Educación & Certificaciones", cert_1: "Ingeniería Multimedia", cert_1_org: "U. San Buenaventura (ABET)", cert_2: "PSPO I Product Owner", cert_2_org: "Scrum.org", cert_3: "Marketing Digital", cert_3_org: "Google Actívate",
-                    profile_text: 'Como <strong>Product Owner (PSPO I)</strong> e Ingeniero Multimedia, actúo como el puente estratégico entre la visión ejecutiva, la creatividad visual y la ejecución de proyectos. Lidero la conceptualización de marcas, la construcción de narrativas digitales y el diseño de ecosistemas E-learning B2B. Apoyado en herramientas de Inteligencia Artificial, estructuro y orquesto soluciones de alto impacto, garantizando una excelente experiencia de usuario y legibilidad algorítmica (UX/MX - Machine Experience), dirigiendo equipos especializados para materializar estrategias que conectan emocionalmente con los usuarios y optimizan el ROI corporativo.',
-                    stat_years: "Años Exp. B2B", stat_po: "Adopción Ágil", stat_projects: "Visión Creativa",
+                    cert_title: "Educación & Certificaciones", cert_1: "Ingeniería Multimedia", cert_1_org: "U. San Buenaventura (ABET)", cert_2: "PSPO I Product Owner", cert_2_org: "Scrum.org", cert_3: "Fundamentos Marketing", cert_3_org: "Google Actívate",
+                    profile_text: 'Estratega multidisciplinario y Especialista Creativo Tecnológico. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente estratégico entre la visión de negocio, la estética visual de vanguardia y la adopción tecnológica (Product Owner) en empresas top.',
+                    stat_years: "Años de Exp.", stat_po: "Product Owner", stat_projects: "Proyectos B2B",
                     btn_all: "Todo", btn_video: "Producción Audiovisual", btn_photo: "Fotografía", btn_design: "Diseño Visual", btn_audio: "Diseño Sonoro",
-                    vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara", vid_cat_showreel: "Dirección Creativa B2B", vid_tit_showreel: "Showreel Corporativo", vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO", vid_cat_evento: "Cobertura de Evento", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Programa Gastronómico Online", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Postre", vid_cat_lyric: "Tipografía & Motion Graphics", vid_tit_lyric: "Video Lyrical", cat_post: "Postproducción", vid_tit_mauna: "Mauna (Detrás de Cámaras)", cat_artdir: "Dirección de Arte Comercial", tit_food: "Food Styling", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", cat_product: "Fotografía Comercial B2C", title_product: "Fotografía de Producto", cat_lighting: "Iluminación & Técnica", title_portraits: "Retratos de Estudio", cat_editorial: "Fotografía Editorial", tit_sabrina: "Actriz: Sabrina", cat_press: "Retrato Promocional (Prensa)", tit_kapo: "Artista: KAPO", cat_casting: "Casting Visual", title_emerging: "Artistas Emergentes", cat_exp: "Exploración de Luz", tit_exp: "Experimental", cat_land: "Paisaje y Bellas Artes", title_nature: "Naturaleza", cat_banner: "Banner Web", cat_cover: "Diseño de Portada Musical", mauna_title: "Portada Suave - Mauna", cat_vinyl: "Diseño de Vinilo", cat_id: "Identidad Estacional", tit_navidad: "Logo Navideño", cat_vector: "Ilustración Vectorial", tit_koala: "Koala", cat_corp: "Branding Corporativo", cat_edit: "Diseño Editorial", tit_ruta: "La Ruta del Sabor", cat_mosaic: "Mosaico Digital", tit_school: "Colegio Parroquial", tit_yumbo: "Alcaldía de Yumbo", cat_ad: "Diseño Publicitario", tit_cali: "Alcaldía de Cali", cat_promo: "Diseño Promocional", tit_noches: "Noches D'Feria", cat_flyer: "Diseño de Volante", tit_vape: "Vape Expo 2020", aud_alone: "Acústico / Soul Cinematográfico", aud_trapped: "Tensión / Percusión de Acción", aud_rock: "Rock Alternativo / Alta Energía", aud_rain: "Ambient / Synthwave Inspirador", aud_hades: "Darkwave / Synth Industrial", aud_sauvage: "Beat Global / Fusión Urbana", ecosystem_title: "Ecosistema Creativo", clients_title: "Empresas y Aliados", contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.", btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", btn_cv: "Descargar CV (PDF)", link_yt: "Canal de YouTube", vault_title: "Bóveda Corporativa", vault_desc: "Mis diseños de E-learning e infografías para Unilever, Alquería y Derco están sujetos a NDA.", vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]", modal_req_title: "Firma de NDA", modal_req_desc: "Compromiso Irrevocable de Confidencialidad", label_name: "Nombre Completo:", label_id: "Documento / NIT:", label_company: "Empresa o Agencia:", label_email: "Correo Corporativo:", btn_submit: "Firmar y Solicitar Acceso", btn_connect: "CONECTEMOS",
+                    vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara", vid_cat_showreel: "Dirección Creativa", vid_tit_showreel: "Showreel", vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO", vid_cat_evento: "Cobertura de Evento", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Programa Gastronómico Online", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Postre", vid_cat_lyric: "Tipografía & Motion Graphics", vid_tit_lyric: "Video Lyrical", cat_post: "Postproducción", vid_tit_mauna: "Mauna (Detrás de Cámaras)", cat_artdir: "Dirección de Arte Comercial", tit_food: "Food Styling", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", cat_product: "Fotografía Comercial B2C", title_product: "Fotografía de Producto", cat_lighting: "Iluminación & Técnica", title_portraits: "Retratos de Estudio", cat_editorial: "Fotografía Editorial", tit_sabrina: "Actriz: Sabrina", cat_press: "Retrato Promocional (Prensa)", tit_kapo: "Artista: KAPO", cat_casting: "Casting Visual", title_emerging: "Artistas Emergentes", cat_exp: "Exploración de Luz", tit_exp: "Experimental", cat_land: "Paisaje y Bellas Artes", title_nature: "Naturaleza", cat_banner: "Banner Web", cat_cover: "Diseño de Portada Musical", mauna_title: "Portada Suave - Mauna", cat_vinyl: "Diseño de Vinilo", cat_id: "Identidad Estacional", tit_navidad: "Logo Navideño", cat_vector: "Ilustración Vectorial", tit_koala: "Koala", cat_corp: "Branding Corporativo", cat_edit: "Diseño Editorial", tit_ruta: "La Ruta del Sabor", cat_mosaic: "Mosaico Digital", tit_school: "Colegio Parroquial", tit_yumbo: "Alcaldía de Yumbo", cat_ad: "Diseño Publicitario", tit_cali: "Alcaldía de Cali", cat_promo: "Diseño Promocional", tit_noches: "Noches D'Feria", cat_flyer: "Diseño de Volante", tit_vape: "Vape Expo 2020", aud_alone: "Acústico / Soul Cinematográfico", aud_trapped: "Tensión / Percusión de Acción", aud_rock: "Rock Alternativo / Alta Energía", aud_rain: "Ambient / Synthwave Inspirador", aud_hades: "Darkwave / Synth Industrial", aud_sauvage: "Beat Global / Fusión Urbana", ecosystem_title: "Ecosistema Creativo", clients_title: "Empresas y Aliados", contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.", btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", btn_cv: "Descargar CV (PDF)", link_yt: "Canal de YouTube", vault_title: "Bóveda Corporativa", vault_desc: "Mis diseños de E-learning e infografías para Unilever, Alquería y Derco están sujetos a NDA.", vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]", modal_req_title: "Solicitud de Acceso", modal_req_desc: "Está a punto de solicitar acceso a la Bóveda de NDA. Clientes protegidos:", label_name: "Su Nombre Completo:", label_id: "Documento / NIT:", label_company: "Empresa o Agencia:", label_email: "Su Correo Corporativo:", btn_submit: "Enviar Solicitud y Aceptar", btn_connect: "CONECTEMOS",
                     nda_agree: "Declaro que actúo como representante legal o persona autorizada y <span>ACEPTO IRREVOCABLEMENTE</span> las cláusulas de confidencialidad y penalidad económica.",
                     nda_full_text: "<h4>1. Marco Legal y Objeto de Protección</h4><p>Con fundamento en el <strong>Artículo 15 de la Constitución Política de Colombia</strong>, la <strong>Ley 1581 de 2012</strong> (Protección de Datos) y la <strong>Ley 256 de 1996</strong> (Secretos Empresariales), el presente acuerdo protege la propiedad intelectual, comercial, técnica y de diseño alojada en esta Bóveda Corporativa. Este material incluye información privilegiada amparada por acuerdos previos de confidencialidad con marcas como Eficacia, Unilever, Alquería y Derco, bajo la custodia legal de Jhon Alejandro Vega Ramírez ('La Parte Reveladora').</p><h4>2. Obligación Irrevocable de Reserva</h4><p>La persona natural o jurídica que accede ('La Parte Receptora') se compromete a mantener estricta reserva y confidencialidad. Queda terminantemente prohibida la reproducción total o parcial, transmisión, ingeniería inversa, captura de pantalla o almacenamiento por cualquier medio físico o digital. El acceso se otorga exclusiva y limitadamente para fines de evaluación profesional y comercial directa.</p><h4>3. Cláusula Penal y Perjuicios</h4><p>El incumplimiento comprobado de la obligación de reserva y no divulgación facultará a La Parte Reveladora para exigir inmediatamente, a título de pena, el pago de una suma equivalente a <strong>cincuenta mil dólares estadounidenses (USD $50.000)</strong> o su equivalente en Pesos Colombianos (COP), exigible por vía ejecutiva sin requerir constitución en mora, e independiente del cobro por indemnización de perjuicios adicionales o acciones penales pertinentes.</p><h4>4. Jurisdicción y Resolución de Controversias</h4><p>Cualquier disputa derivada de este acceso será resuelta en derecho mediante Tribunal de Arbitramento adscrito al Centro de Conciliación y Arbitraje de la <strong>Cámara de Comercio de Cali</strong>.</p>"
                 },
                 en: {
                     head_title: "Jhon Alejandro Vega Ramírez | Tech Specialist (JavegaPro)", btn_profile: "Professional Profile",
-                    btn_vault_header: "Vault Access", subtitle: "Product Owner | B2B Innovation",
-                    prof_title: "⚡ Orchestration & Strategy", prof_rol: "Key Experience", prof_skills: "Technology Ecosystem",
-                    rol_1: "Co-Founder & Product Owner", rol_1_co: "AUTÓMATAS", rol_1_desc: "B2B Strategy, AI agent profiling and construction of digital narratives.",
-                    rol_2: "Multimedia Engineer & Digital Projects", rol_2_co: "ESPY S.A. E.S.P.", rol_2_desc: "In-house consultant. Conceptualization of brand identity, manual and continuous digital/print design. Workspace transition support.",
-                    rol_3: "Creative Director & Producer", rol_3_co: "JAVEGA",
-                    rol_4: "E-learning Content Designer", rol_4_co: "EFICACIA S.A.", 
-                    rol_5: "ICT Management Support Professional", rol_5_co: "YUMBO MAYOR'S OFFICE", rol_5_desc: "Strengthening of municipal administration communication channels.", 
+                    btn_vault_header: "Vault Access", subtitle: "Creative Innovation Leader | Visual Identity & E-learning",
+                    prof_title: "Strategic Impact", prof_rol: "Top Experience", prof_skills: "Technology Ecosystem",
+                    rol_1: "Co-Founder & Product Lead", rol_1_co: "AUTÓMATAS",
+                    rol_2: "Digital Developer & Change Management", rol_2_co: "ESPY S.A. E.S.P.",
+                    rol_3: "General Director & Executive Producer", rol_3_co: "JAVEGA (Personal Brand)",
+                    rol_4: "Multimedia Production & E-learning Lead", rol_4_co: "EFICACIA S.A.", 
+                    rol_5: "Art Director & Visual Producer", rol_5_co: "CONCEPTO AGENCIA", 
                     rol_6: "Art Director & Production", rol_6_co: "AGENCIES & EDUCATION",
-                    rol_7: "Services Professional (Culture)", rol_7_co: "CALI MAYOR'S OFFICE",
-                    rol_8: "Technical Educator (Multimedia)", rol_8_co: "AVANT GARDE", rol_8_desc: "Training of new talents in Adobe suite and audiovisual production.",
-                    rol_9: "Art Director & Visual Producer", rol_9_co: "CONCEPTO AGENCY", rol_9_desc: "Brand identity from scratch and B2B audiovisual production.",
-                    rol_10: "Audiovisual Producer & Digital Strategist", rol_10_co: "PRO-SCIENTIA", rol_10_desc: "Political communication and social media PR consulting.",
-                    rol_11: "VR Developer & AV Director", rol_11_co: "U. SAN BUENAVENTURA / BAPTIST COLLEGE", rol_11_desc: "Immersive VR prototyping and educational short film direction.",
-                    cert_title: "Education & Certifications", cert_1: "Multimedia Engineering", cert_1_org: "U. San Buenaventura (ABET)", cert_2: "PSPO I Product Owner", cert_2_org: "Scrum.org", cert_3: "Digital Marketing", cert_3_org: "Google Actívate",
-                    profile_text: 'As a <strong>Product Owner (PSPO I)</strong> and Multimedia Engineer, I act as the strategic bridge between executive vision, visual creativity, and project execution. I lead the conceptualization of brands, the construction of digital narratives, and the design of B2B E-learning ecosystems. Supported by AI tools, I structure and orchestrate high-impact solutions, guaranteeing an excellent user experience and algorithmic readability (UX/MX - Machine Experience), directing specialized teams to materialize strategies that connect emotionally with users and optimize corporate ROI.',
-                    stat_years: "Years B2B Exp.", stat_po: "Agile Adoption", stat_projects: "Creative Vision",
+                    cert_title: "Education & Certifications", cert_1: "Multimedia Engineering", cert_1_org: "U. San Buenaventura (ABET)", cert_2: "PSPO I Product Owner", cert_2_org: "Scrum.org", cert_3: "Marketing Fundamentals", cert_3_org: "Google Actívate",
+                    profile_text: 'Multidisciplinary Strategist and Creative Technology Specialist. I specialize in building solid brand identities and high-impact E-learning ecosystems. I act as the strategic bridge between business vision, cutting-edge aesthetics, and tech adoption (Product Owner) in top companies.',
+                    stat_years: "Years Exp.", stat_po: "Product Owner", stat_projects: "B2B Projects",
                     btn_all: "All", btn_video: "Audiovisual Production", btn_photo: "Photography", btn_design: "Visual Design", btn_audio: "Sound Design",
-                    vid_cat_clara: "AI Generative Strategy", vid_tit_clara: "Clara Project", vid_cat_showreel: "Creative Direction B2B", vid_tit_showreel: "Showreel", vid_cat_kapo: "Color Grading", vid_tit_kapo: "Color Test: KAPO", vid_cat_evento: "Event Coverage", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Online Culinary Show", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Dessert", vid_cat_lyric: "Typography & Motion Graphics", vid_tit_lyric: "Lyric Video", cat_post: "Post-production", vid_tit_mauna: "Mauna (Behind The Scenes)", cat_artdir: "Commercial Art Direction", tit_food: "Food Styling", cat_fashion: "Fashion Book & Beauty", tit_fashion: "Model Book", cat_product: "B2C Commercial Photography", title_product: "Product Photography", cat_lighting: "Lighting & Technique", title_portraits: "Studio Portraits", cat_editorial: "Editorial Photography", tit_sabrina: "Actress: Sabrina", cat_press: "Promotional Portrait (Press)", tit_kapo: "Artist: KAPO", cat_casting: "Visual Casting", title_emerging: "Emerging Artists", cat_exp: "Light Exploration", tit_exp: "Experimental", cat_land: "Landscape & Fine Art", title_nature: "Nature", cat_banner: "Web Banner", cat_cover: "Music Cover Design", mauna_title: "Cover for 'Suave' by Mauna", cat_vinyl: "Vinyl Wrap Design", cat_id: "Seasonal Identity", tit_navidad: "Christmas Logo", cat_vector: "Vector Illustration", tit_koala: "Koala", cat_corp: "Corporate Branding", cat_edit: "Editorial Design", tit_ruta: "The Flavor Route", cat_mosaic: "Digital Mosaic", tit_school: "Parochial School", tit_yumbo: "Yumbo Mayor's Office", cat_ad: "Advertising Design", tit_cali: "Cali Mayor's Office", cat_promo: "Promotional Design", tit_noches: "Noches D'Feria", cat_flyer: "Flyer Design", tit_vape: "Vape Expo 2020", aud_alone: "Acoustic / Cinematic Soul", aud_trapped: "Tension / Action Percussion", aud_rock: "Alternative Rock / High Energy", aud_rain: "Ambient / Uplifting Synthwave", aud_hades: "Darkwave / Industrial Synth", aud_sauvage: "Global Beat / Urban Fusion", ecosystem_title: "Creative Ecosystem", clients_title: "Companies & Partners", contact_title: "LET'S CONNECT", contact_desc: "Ready to elevate the digital narrative of your projects? Let's schedule a strategic session.", btn_wa: "Text me on WhatsApp", btn_mail: "Send me an email", btn_cv: "Download Resume (PDF)", link_yt: "YouTube Channel", vault_title: "Corporate Vault", vault_desc: "My E-learning designs for Unilever, Alquería, and Derco are subject to NDA.", vault_btn: "Request Secure Access", btn_close: "CLOSE [X]", modal_req_title: "NDA Signature", modal_req_desc: "Irrevocable Confidentiality Agreement", label_name: "Full Name:", label_id: "Gov ID / Tax ID:", label_company: "Company or Agency:", label_email: "Corporate Email:", btn_submit: "Sign and Request Access", btn_connect: "LET'S CONNECT",
+                    vid_cat_clara: "AI Generative Strategy", vid_tit_clara: "Clara Project", vid_cat_showreel: "Creative Direction", vid_tit_showreel: "Showreel", vid_cat_kapo: "Color Grading", vid_tit_kapo: "Color Test: KAPO", vid_cat_evento: "Event Coverage", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Online Culinary Show", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Dessert", vid_cat_lyric: "Typography & Motion Graphics", vid_tit_lyric: "Lyric Video", cat_post: "Post-production", vid_tit_mauna: "Mauna (Behind The Scenes)", cat_artdir: "Commercial Art Direction", tit_food: "Food Styling", cat_fashion: "Fashion Book & Beauty", tit_fashion: "Model Book", cat_product: "B2C Commercial Photography", title_product: "Product Photography", cat_lighting: "Lighting & Technique", title_portraits: "Studio Portraits", cat_editorial: "Editorial Photography", tit_sabrina: "Actress: Sabrina", cat_press: "Promotional Portrait (Press)", tit_kapo: "Artist: KAPO", cat_casting: "Visual Casting", title_emerging: "Emerging Artists", cat_exp: "Light Exploration", tit_exp: "Experimental", cat_land: "Landscape & Fine Art", title_nature: "Nature", cat_banner: "Web Banner", cat_cover: "Music Cover Design", mauna_title: "Cover for 'Suave' by Mauna", cat_vinyl: "Vinyl Wrap Design", cat_id: "Seasonal Identity", tit_navidad: "Christmas Logo", cat_vector: "Vector Illustration", tit_koala: "Koala", cat_corp: "Corporate Branding", cat_edit: "Editorial Design", tit_ruta: "The Flavor Route", cat_mosaic: "Digital Mosaic", tit_school: "Parochial School", tit_yumbo: "Yumbo Mayor's Office", cat_ad: "Advertising Design", tit_cali: "Cali Mayor's Office", cat_promo: "Promotional Design", tit_noches: "Noches D'Feria", cat_flyer: "Flyer Design", tit_vape: "Vape Expo 2020", aud_alone: "Acoustic / Cinematic Soul", aud_trapped: "Tension / Action Percussion", aud_rock: "Alternative Rock / High Energy", aud_rain: "Ambient / Uplifting Synthwave", aud_hades: "Darkwave / Industrial Synth", aud_sauvage: "Global Beat / Urban Fusion", ecosystem_title: "Creative Ecosystem", clients_title: "Companies & Partners", contact_title: "LET'S CONNECT", contact_desc: "Ready to elevate the digital narrative of your projects? Let's schedule a strategic session.", btn_wa: "Text me on WhatsApp", btn_mail: "Send me an email", btn_cv: "Download Resume (PDF)", link_yt: "YouTube Channel", vault_title: "Corporate Vault", vault_desc: "My E-learning designs for Unilever, Alquería, and Derco are subject to NDA.", vault_btn: "Request Secure Access", btn_close: "CLOSE [X]", modal_req_title: "NDA Signature", modal_req_desc: "Irrevocable Confidentiality Agreement", label_name: "Full Name:", label_id: "Gov ID / Tax ID:", label_company: "Company or Agency:", label_email: "Corporate Email:", btn_submit: "Sign and Request Access", btn_connect: "LET'S CONNECT",
                     nda_agree: "I declare that I act as a legal representative or authorized person and <span>IRREVOCABLY ACCEPT</span> the confidentiality clauses and economic penalties.",
                     nda_full_text: "<h4>1. Legal Framework and Object of Protection</h4><p>Based on <strong>Article 15 of the Colombian Political Constitution</strong>, <strong>Law 1581 of 2012</strong> (Data Protection), and <strong>Law 256 of 1996</strong> (Trade Secrets), this agreement protects the intellectual, commercial, technical, and design property hosted in this Corporate Vault. This material includes privileged information covered by previous non-disclosure agreements with brands such as Eficacia, Unilever, Alquería, and Derco, under the legal custody of Jhon Alejandro Vega Ramírez ('The Disclosing Party').</p><h4>2. Irrevocable Obligation of Confidentiality</h4><p>The natural or legal person accessing the vault ('The Receiving Party') commits to maintaining strict confidentiality. Total or partial reproduction, transmission, reverse engineering, screen capturing, or storage by any physical or digital means is strictly prohibited. Access is granted exclusively and limitedly for professional evaluation purposes.</p><h4>3. Penalty Clause and Damages</h4><p>Proven breach of the non-disclosure obligation will empower The Disclosing Party to immediately demand a penalty payment equivalent to <strong>fifty thousand US dollars (USD $50,000)</strong> or its equivalent in COP, enforceable through executive action without requiring prior notice of default, and independent of any claims for additional damages or relevant criminal actions.</p><h4>4. Jurisdiction and Dispute Resolution</h4><p>Any dispute arising from this access will be resolved in law through an Arbitration Tribunal attached to the Conciliation and Arbitration Center of the <strong>Cali Chamber of Commerce</strong>.</p>"
                 }
@@ -1162,7 +1197,6 @@
             });
 
             // ==================== BENTO GRID 3D TILT EFFECT ====================
-            // Lógica que inyecta variables CSS al mover el mouse dentro de una Bento Card
             const initBentoTilt = () => {
                 const bentoCards = document.querySelectorAll('.bento-card');
                 bentoCards.forEach(card => {
@@ -1189,6 +1223,8 @@
                 });
             };
 
+            // ==================== SISTEMA DE FILTRADO OPTIMIZADO (Sin lag) ====================
+            // Reemplaza View Transitions API para grandes swaps del DOM con animaciones de opacidad (GPU)
             const FilterManager = (() => {
                 const grid = document.getElementById('main-grid');
                 const profileSection = document.getElementById('profile-section');
@@ -1198,33 +1234,46 @@
                     btnTarget.classList.add('active');
                     AudioManager.pauseAll(); 
 
-                    if (category === 'perfil') {
-                        grid.style.display = 'none'; profileSection.style.display = 'block'; 
-                    } else {
-                        grid.style.display = 'grid'; profileSection.style.display = 'none'; 
-                        
-                        if (category === 'diseno') {
-                            grid.classList.add('masonry-mode');
-                        } else {
-                            grid.classList.remove('masonry-mode');
-                        }
+                    // 1. Oculta visualmente primero (Fast fade out)
+                    grid.style.opacity = '0';
+                    profileSection.style.opacity = '0';
 
-                        document.querySelectorAll('.media-item').forEach(item => {
-                            if (category === 'all' || item.classList.contains(category)) item.classList.remove('hide');
-                            else item.classList.add('hide');
+                    // 2. Ejecuta el swap del DOM (Display none/block) después de que la opacidad esté en 0
+                    setTimeout(() => {
+                        if (category === 'perfil') {
+                            grid.style.display = 'none'; 
+                            profileSection.style.display = 'block'; 
+                        } else {
+                            grid.style.display = 'grid'; 
+                            profileSection.style.display = 'none'; 
+                            
+                            if (category === 'diseno') {
+                                grid.classList.add('masonry-mode');
+                            } else {
+                                grid.classList.remove('masonry-mode');
+                            }
+
+                            document.querySelectorAll('.media-item').forEach(item => {
+                                if (category === 'all' || item.classList.contains(category)) item.classList.remove('hide');
+                                else item.classList.add('hide');
+                            });
+                        }
+                        
+                        // 3. Regresa la opacidad a 1 (Fast fade in) sincronizado con el monitor (requestAnimationFrame)
+                        requestAnimationFrame(() => {
+                            grid.style.opacity = '1';
+                            profileSection.style.opacity = '1';
+                            
+                            // Navega suavemente al inicio del contenedor
+                            const filterSection = document.querySelector('.filter-container');
+                            filterSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         });
-                    }
-                    
-                    const filterSection = document.querySelector('.filter-container');
-                    filterSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 300); // 300ms coincide exactamente con nuestra --transition-speed en CSS
                 };
 
+                // Punto de entrada del click del botón
                 const filter = (category, btnTarget) => {
-                    if (document.startViewTransition) {
-                        document.startViewTransition(() => { applyFilterDOM(category, btnTarget); });
-                    } else {
-                        applyFilterDOM(category, btnTarget);
-                    }
+                    applyFilterDOM(category, btnTarget);
                 };
 
                 document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -1262,7 +1311,6 @@
             })();
 
             const GalleryManager = (() => {
-                // Base de datos de imágenes recuperada e intacta
                 const galleryData = {
                     'food': ['https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png'],
                     'sabrina': ['https://static.wixstatic.com/media/14f4fb_cfb665c8cecc4a3f915d59ecc7372cdf~mv2.png', 'https://static.wixstatic.com/media/14f4fb_ccfb094089134b27a65b8008ab140548~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_8cd04cc0174b4bc2b5fdd33f7c95bcee~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_74ff5ed1e6a641ec8530ebb424a29590~mv2.jpg', 'https://static.wixstatic.com/media/14f4fb_f2b9a122bb454eb18d439cf4aa55f621~mv2.jpg'],
@@ -1366,23 +1414,69 @@
                 return { closeModal };
             })();
 
+            // ==================== AUDIO MANAGER OPTIMIZADO ====================
             const AudioManager = (() => {
                 let audioCtx = null; const activeAudios = new Set(); 
+                
+                // Formateador de tiempo puro (minutos:segundos)
+                const formatTime = (time) => {
+                    if (isNaN(time)) return "0:00";
+                    const mins = Math.floor(time / 60);
+                    const secs = Math.floor(time % 60);
+                    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+                };
+
                 const initContext = () => { if (!audioCtx) try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {} if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); };
-                const pauseAll = (exceptElement = null) => { activeAudios.forEach(item => { if (item.audio !== exceptElement) { item.audio.pause(); item.playBtn.innerHTML = '▶'; item.playerUi.classList.remove('playing'); item.isPlaying = false; }}); };
+                
+                const pauseAll = (exceptElement = null) => { 
+                    activeAudios.forEach(item => { 
+                        if (item.audio !== exceptElement) { 
+                            item.audio.pause(); 
+                            item.playBtn.innerHTML = '▶'; 
+                            item.playBtn.style.paddingLeft = '3px'; // Restablece offset para centrado visual del triángulo
+                            item.playerUi.classList.remove('playing'); 
+                            item.isPlaying = false;
+                            
+                            // Detiene pulsaciones visuales del disco
+                            const innerCard = item.playerUi.closest('.audio-inner-card');
+                            if(innerCard){
+                                innerCard.classList.remove('playing-lift');
+                                const ring = innerCard.previousElementSibling;
+                                if(ring && ring.classList.contains('audio-glow-ring')) ring.classList.remove('playing-pulse');
+                            }
+                            
+                            // Restablece el contador al tiempo total
+                            if (item.timeDisplay) item.timeDisplay.textContent = formatTime(item.audio.duration);
+                        }
+                    }); 
+                };
+
                 const setupAudios = () => {
                     document.querySelectorAll('.media-item.audio').forEach(item => {
                         const audio = new Audio(item.dataset.audioSrc); audio.crossOrigin = "anonymous";
-                        const playBtn = item.querySelector('.play-btn'); const playerUi = item.querySelector('.custom-player');
-                        const progressFill = item.querySelector('.progress-fill'); const progressWrapper = item.querySelector('.progress-wrapper');
+                        const playBtn = item.querySelector('.play-btn'); 
+                        const playerUi = item.querySelector('.custom-player');
+                        const progressFill = item.querySelector('.progress-fill'); 
+                        const progressWrapper = item.querySelector('.progress-wrapper');
+                        const timeDisplay = item.querySelector('.time-display');
+                        const volumeSlider = item.querySelector('.volume-slider');
+                        const innerCard = item.querySelector('.audio-inner-card');
+                        const ring = item.querySelector('.audio-glow-ring');
+                        
                         const canvas = item.querySelector('.audio-visualizer'); const ctx = canvas.getContext('2d');
                         let analyser = null; let dataArray = null; let isApiReady = false;
-                        const itemData = { audio, playBtn, playerUi, isPlaying: false }; activeAudios.add(itemData);
+                        const itemData = { audio, playBtn, playerUi, timeDisplay, isPlaying: false }; activeAudios.add(itemData);
+
+                        // Carga asíncrona de metadatos para inyectar la duración del track sin reproducirlo
+                        audio.addEventListener('loadedmetadata', () => {
+                            timeDisplay.textContent = formatTime(audio.duration);
+                        });
 
                         const buildVisualizer = () => {
                             if (isApiReady || !audioCtx) return; const source = audioCtx.createMediaElementSource(audio); analyser = audioCtx.createAnalyser(); analyser.fftSize = 128;
                             source.connect(analyser); analyser.connect(audioCtx.destination); dataArray = new Uint8Array(analyser.frequencyBinCount); isApiReady = true;
                         };
+
                         const draw = () => {
                             if (!itemData.isPlaying) return; requestAnimationFrame(draw); ctx.clearRect(0, 0, canvas.width, canvas.height);
                             if (isApiReady && analyser) {
@@ -1393,20 +1487,70 @@
                                 }
                             }
                         };
+
                         playBtn.addEventListener('click', (e) => {
                             e.stopPropagation(); initContext();
-                            if (audio.paused) { pauseAll(audio); buildVisualizer(); audio.play(); playBtn.innerHTML = '❚❚'; playerUi.classList.add('playing'); itemData.isPlaying = true; canvas.width = item.offsetWidth; canvas.height = item.offsetHeight; draw();
-                            } else { audio.pause(); playBtn.innerHTML = '▶'; playerUi.classList.remove('playing'); itemData.isPlaying = false; }
+                            if (audio.paused) { 
+                                pauseAll(audio); buildVisualizer(); audio.play(); 
+                                playBtn.innerHTML = '❚❚'; 
+                                playBtn.style.paddingLeft = '0'; // Centrado matemático para pausas rectas
+                                playerUi.classList.add('playing'); 
+                                innerCard.classList.add('playing-lift'); // Eleva la tarjeta visualmente
+                                ring.classList.add('playing-pulse'); // Latido del neón
+                                itemData.isPlaying = true; 
+                                canvas.width = item.offsetWidth; canvas.height = item.offsetHeight; draw();
+                            } else { 
+                                audio.pause(); 
+                                playBtn.innerHTML = '▶'; 
+                                playBtn.style.paddingLeft = '3px'; // Compensación visual para el triángulo (Play)
+                                playerUi.classList.remove('playing'); 
+                                innerCard.classList.remove('playing-lift');
+                                ring.classList.remove('playing-pulse');
+                                itemData.isPlaying = false; 
+                                timeDisplay.textContent = formatTime(audio.duration); // Vuelve a mostrar total
+                            }
                         });
-                        audio.addEventListener('timeupdate', () => { const percent = (audio.currentTime / audio.duration) * 100; if (progressFill) progressFill.style.width = `${percent || 0}%`; });
-                        progressWrapper.addEventListener('click', (e) => { e.stopPropagation(); const rect = progressWrapper.getBoundingClientRect(); audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration; });
-                        audio.addEventListener('ended', () => { playBtn.innerHTML = '▶'; playerUi.classList.remove('playing'); itemData.isPlaying = false; progressFill.style.width = '0%'; setTimeout(() => { if(![...activeAudios].some(a => a.isPlaying)) audioCtx.suspend(); }, 1000); });
+
+                        // Evento clave de actualización de tiempo fluido
+                        audio.addEventListener('timeupdate', () => { 
+                            const percent = (audio.currentTime / audio.duration) * 100; 
+                            if (progressFill) progressFill.style.width = `${percent || 0}%`; 
+                            
+                            // Lógica de contador restante
+                            if (itemData.isPlaying) {
+                                timeDisplay.textContent = "-" + formatTime(audio.duration - audio.currentTime);
+                            }
+                        });
+
+                        // Búsqueda en la barra de progreso
+                        progressWrapper.addEventListener('click', (e) => { 
+                            e.stopPropagation(); const rect = progressWrapper.getBoundingClientRect(); 
+                            audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration; 
+                        });
+
+                        // Controlador de Volumen nativo seguro
+                        if (volumeSlider) {
+                            // Previene que tocar el slider dispare otros clicks en la tarjeta
+                            volumeSlider.addEventListener('click', e => e.stopPropagation());
+                            volumeSlider.addEventListener('input', (e) => {
+                                e.stopPropagation();
+                                audio.volume = e.target.value;
+                            });
+                        }
+
+                        audio.addEventListener('ended', () => { 
+                            playBtn.innerHTML = '▶'; playBtn.style.paddingLeft = '3px';
+                            playerUi.classList.remove('playing'); 
+                            innerCard.classList.remove('playing-lift'); ring.classList.remove('playing-pulse');
+                            itemData.isPlaying = false; progressFill.style.width = '0%'; 
+                            timeDisplay.textContent = formatTime(audio.duration);
+                            setTimeout(() => { if(![...activeAudios].some(a => a.isPlaying)) audioCtx.suspend(); }, 1000); 
+                        });
                     });
                 };
                 return { setupAudios, pauseAll };
             })();
 
-            // ==================== FÍSICA Y ACELERACIÓN DEL MARQUEE ====================
             const MarqueePhysics = (() => {
                 const track = document.getElementById('marqueeTrack');
                 const container = document.getElementById('marqueeContainer');
@@ -1524,7 +1668,6 @@
                     btnSubmit.disabled = true;
                     btnSubmit.innerHTML = "Firmando digitalmente...";
 
-                    // Formateo del correo sin romper la sintaxis
                     const bodyText = `FIRMA DIGITAL DE COMPROMISO NDA\n\nYo, ${name}, identificado con el documento/NIT ${docId}, actuando en nombre propio o como representante de ${company} (Contacto corporativo: ${email}), DECLARO formalmente bajo la gravedad de juramento que HE LEÍDO Y ACEPTO IRREVOCABLEMENTE los términos de confidencialidad, la ley de secretos empresariales (Ley 256 de 1996) y la cláusula penal (USD $50.000) expuestos en la bóveda de Jhon Alejandro Vega Ramírez respecto al material protegido de terceros.\n\nSolicito formalmente la clave de acceso a la Bóveda Privada.`;
                     
                     window.location.href = `mailto:Alejandro.960822@gmail.com?subject=${encodeURIComponent(`Firma NDA y Acceso Bóveda - ${company}`)}&body=${encodeURIComponent(bodyText)}`;
@@ -1553,7 +1696,7 @@
             document.addEventListener('DOMContentLoaded', () => {
                 updateLanguage(currentLang); 
                 MarqueePhysics.init(); 
-                initBentoTilt(); // Inicia la perspectiva 3D en las tarjetas
+                initBentoTilt(); 
                 
                 document.querySelectorAll('.fallback-img').forEach(img => {
                     img.addEventListener('error', function() {

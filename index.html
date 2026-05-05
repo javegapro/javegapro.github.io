@@ -186,7 +186,7 @@
 
         .bento-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 1300px; margin: 0 auto; }
 
-        /* [ARQUITECTURA CORREGIDA] - `.bento-card` actúa únicamente como la superficie rotatoria padre */
+        /* `.bento-card` actúa únicamente como la superficie rotatoria padre */
         .bento-card { 
             background: rgba(2, 6, 23, 0.4); border: 1px solid rgba(45, 212, 191, 0.15); 
             border-radius: 24px; padding: clamp(25px, 4vw, 40px); 
@@ -210,10 +210,10 @@
         }
         .bento-card:hover .bento-glow { opacity: 1; }
         
-        /* [ARQUITECTURA CORREGIDA] - El contenedor interno se "levanta" 30px hacia la cámara */
+        /* El contenedor interno se "levanta" 30px hacia la cámara creando un parallax inmersivo */
         .bento-content { 
             position: relative; z-index: 2; 
-            transform: translateZ(30px); /* Esto crea el Parallax nativo sin JS extra */
+            transform: translateZ(30px); 
             display: flex; flex-direction: column; justify-content: flex-start; height: 100%;
         }
         
@@ -282,7 +282,6 @@
         /* ==========================================
            [MÓDULO 7] MOTOR DE GRILLA MULTIMEDIA
            ========================================== */
-        /* Transition vinculada al State Machine JS para transiciones veloces entre filtros */
         .portfolio-grid { display: grid; grid-template-columns: 1fr; gap: clamp(20px, 3vw, 40px); padding: 0 5% 100px; width: 100%; max-width: 2500px; margin: 0 auto; position: relative; z-index: 5; opacity: 1; transition: opacity 0.3s ease; }
         @media (min-width: 768px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
         
@@ -301,12 +300,11 @@
         .portfolio-grid.masonry-mode .media-item.diseno:not(.audio):hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 35px var(--electric-cyan-glow); z-index: 20; }
         .media-item.diseno:not(.audio):hover img.masonry-img { filter: grayscale(0%) brightness(1.05); }
 
-        /* Capa táctica simuladora de Grano Cinematográfico 35mm (Previene Banding digital) */
+        /* Capa táctica simuladora de Grano Cinematográfico 35mm */
         .media-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.15; pointer-events: none; z-index: 4; mix-blend-mode: overlay;}
         .protect-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 6; pointer-events: none; }
         .hover-carousel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         
-        /* Imágenes de thumbnail inician oscuras, se iluminan por Hardware Acceleration (transform) en hover */
         .hc-img, .yt-thumbnail { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: grayscale(40%) brightness(0.7); transition: opacity 0.3s ease, filter var(--transition-speed) ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
         .hc-img { opacity: 0; } .hc-img.active { opacity: 1; z-index: 2; } .focus-top { object-position: top center !important; }
         .media-iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; border: none; background-color: var(--card-bg); filter: grayscale(10%) brightness(0.9); opacity: 0; transition: opacity var(--transition-speed) ease; }
@@ -395,6 +393,7 @@
         .contact-section p { color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.1rem;}
         
         .contact-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 50px;}
+        /* Estilos limpios y estables para CTA's. Usan translateY sutil para retroalimentación táctil de desktop */
         .btn-primary, .btn-secondary, .btn-whatsapp { padding: 16px 35px; font-weight: 700; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1rem; text-decoration: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s, background 0.3s, border-color 0.3s; will-change: transform;}
         .btn-primary { background-color: var(--electric-cyan); color: var(--dark-bg); }
         .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px var(--electric-cyan-glow); }
@@ -441,7 +440,7 @@
         .gallery-dot { width: 10px; height: 10px; flex-shrink: 0; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: 0.3s; }
         .gallery-dot.active { background: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan); transform: scale(1.2);}
 
-        /* Formulario NDA Bóveda */
+        /* Formulario Seguro NDA Bóveda */
         .form-modal-box { background: rgba(2, 6, 23, 0.85); padding: clamp(25px, 4vw, 40px); border-radius: 16px; max-width: 800px; width: 95%; border: 1px solid rgba(45, 212, 191, 0.3); text-align: left; position: relative; max-height: 90dvh; display: flex; flex-direction: column; overflow: hidden; backdrop-filter: blur(24px) saturate(200%); -webkit-backdrop-filter: blur(24px) saturate(200%); box-shadow: 0 30px 60px rgba(0,0,0,0.9);}
         
         .nda-document-scroll { overflow-y: auto; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 20px; margin-bottom: 25px; flex-shrink: 1; max-height: 30dvh; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent;}
@@ -461,6 +460,7 @@
         .form-modal-box input[type="text"], .form-modal-box input[type="email"], .form-modal-box input[type="number"] { width: 100%; padding: 12px; background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.95rem; transition: border 0.3s; }
         .form-modal-box input:focus { outline: none; border-color: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan-glow);}
         
+        /* Checkbox Custom mediante Flexbox para geometría predecible e inquebrantable */
         .checkbox-container { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px; cursor: pointer; user-select: none; position: relative; }
         .checkbox-container input { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; z-index: -1; }
         .checkmark { position: relative; display: flex; justify-content: center; align-items: center; width: 24px; height: 24px; min-width: 24px; min-height: 24px; background-color: rgba(0, 0, 0, 0.4); border: 2px solid var(--text-muted); border-radius: 6px; transition: all 0.3s var(--ease-out-expo); flex-shrink: 0; margin-top: 2px; }
@@ -481,15 +481,15 @@
         .modal-logos-mini img { height: 18px; width: auto; object-fit: contain; filter: brightness(0) invert(1) opacity(0.5); }
     </style>
 </head>
-<!-- Estado preventivo de carga bloquea scroll e inyecta Shaders de UI -->
 <body class="is-loading">
 
+    <!-- Previene saltos bruscos nativos del historial al recargar la página -->
     <script>
-        // Mitigación de bug en navegadores Chromium que preservan scroll incorrecto tras refrescar
         if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
         window.scrollTo(0, 0);
     </script>
 
+    <!-- UI FLOTANTE GLOBAL -->
     <div class="lang-toggle" id="langToggleBtn" aria-label="Cambiar idioma">
         <span id="lang-es" class="lang-option active">🇪🇸</span>
         <span id="lang-en" class="lang-option">🇬🇧</span>
@@ -504,6 +504,7 @@
         <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
     </button>
 
+    <!-- DOM DEL PRELOADER FÍSICO -->
     <div class="splash-panel top"></div>
     <div class="splash-panel bottom"></div>
     <div class="splash-laser"></div>
@@ -515,6 +516,7 @@
         <p class="subtitle reveal-element" data-i18n="subtitle">Líder de Innovación Creativa | Identidad Visual & E-learning</p>
     </header>
 
+    <!-- NAVEGACIÓN Y FILTROS -->
     <div class="filter-container reveal-element">
         <button class="filter-btn" data-filter="perfil" data-i18n="btn_profile">Perfil Profesional</button>
         <button class="filter-btn active" data-filter="all" data-i18n="btn_all">Todo</button>
@@ -526,7 +528,7 @@
     </div>
 
     <!-- ========================================================= -->
-    <!-- PERFIL PROFESIONAL: BENTO GRID 3D PARALLAX (REPARADO Y AISLADO) -->
+    <!-- SECCIÓN PERFIL PROFESIONAL BENTO GRID (Con perspectiva 3D) -->
     <!-- ========================================================= -->
     <div id="profile-section">
         <div class="bento-grid">
@@ -726,10 +728,11 @@
             <div class="media-overlay"><p data-i18n="vid_cat_lyric">Tipografía & Motion Graphics</p><h2 data-i18n="vid_tit_lyric">Video Lyrical</h2></div>
         </div>
 
-        <!-- FOTOGRAFÍA (8 Galerías, delegación vía dataset gallery-id) -->
+        <!-- FOTOGRAFÍA (8 Galerías) -->
         <div class="media-item fotografia" data-gallery="food">
             <div class="media-texture"></div>
             <div class="hover-carousel">
+                <!-- Se inyectan loading lazy para evitar ahogar el LCP en imágenes posteriores -->
                 <img src="https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg" class="hc-img active" alt="Food 1" loading="lazy" decoding="async" draggable="false">
                 <img src="https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg" class="hc-img" loading="lazy" decoding="async" draggable="false" alt="Food 2">
                 <img src="https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png" class="hc-img" loading="lazy" decoding="async" draggable="false" alt="Food 3">
@@ -1135,6 +1138,9 @@
                 <img src="Logo_Alqueria.png" alt="Alquería" class="fallback-img" draggable="false">
                 <img src="Logo%20derco.png" alt="Derco" class="fallback-img" draggable="false">
                 <img src="Logo%20comfandi.png" alt="Comfandi" class="fallback-img" draggable="false">
+                <img src="Logo%20fanalca.png" alt="Fanalca" class="fallback-img" draggable="false">
+                <img src="Logo%20eficacia.png" alt="Eficacia" class="fallback-img" draggable="false">
+                <img src="Logo%20espy.png" alt="Espy" class="fallback-img" draggable="false">
             </div>
             
             <div id="vault-error" class="error-message"></div>

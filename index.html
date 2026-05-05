@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="es" id="html-root">
 <head>
-    <!-- [MÓDULO 1] Codificación, Viewport y Seguridad de Renderizado -->
+    <!-- ==========================================
+         [MÓDULO 1] META, VIEWPORT Y SEGURIDAD
+         ========================================== -->
     <!-- Define la codificación universal para soportar caracteres especiales sin fricción -->
     <meta charset="UTF-8">
     <!-- Viewport adaptativo: 'cover' permite usar áreas seguras (notch) en iOS/Android manteniendo un diseño edge-to-edge -->
@@ -72,13 +74,11 @@
     <link rel="preconnect" href="https://www.youtube.com">
     <link rel="preconnect" href="https://static.wixstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <!-- crossorigin es necesario para fuentes alojadas en dominios distintos por políticas CORS -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Carga de fuentes. 'display=swap' garantiza que el texto se muestre con fuente del sistema hasta que Google Fonts cargue -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* ==================== 1. VARIABLES GLOBALES Y RESETEO BASE ==================== */
+        /* ==================== 2. VARIABLES GLOBALES Y RESETEO BASE ==================== */
         :root {
             --dark-bg: #020617; 
             --electric-cyan: #2dd4bf; 
@@ -92,18 +92,16 @@
             --transition-speed: 0.4s;
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
             
-            /* Variables CSS adaptativas para entornos iOS/Android con bordes curvos */
             --safe-bottom: env(safe-area-inset-bottom, 20px);
             --safe-right: env(safe-area-inset-right, 20px);
             --safe-left: env(safe-area-inset-left, 20px);
         }
 
-        /* Reseteo agresivo. Bloquea el arrastre de elementos para una sensación de App nativa en móviles */
+        /* Reseteo estricto para apps modernas */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-user-drag: none; }
         button, a, .media-item, .gallery-nav, .client-logo { user-select: none; -webkit-tap-highlight-color: transparent; }
         html, body { max-width: 100vw; overflow-x: hidden; }
 
-        /* Fondo atmosférico corporativo: Gradientes radiales para inyectar profundidad */
         body { 
             background-color: var(--dark-bg); color: var(--text-main); font-family: 'Inter', sans-serif; scroll-behavior: smooth;
             background-image: radial-gradient(circle at top right, rgba(45, 212, 191, 0.05), transparent 40%),
@@ -112,7 +110,9 @@
         body.is-loading { overflow: hidden; height: 100dvh; }
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
-        /* ==================== 2. UI PRELOADER ==================== */
+        ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.6s; animation-timing-function: var(--ease-out-expo); }
+
+        /* ==================== 3. UI PRELOADER ==================== */
         .splash-panel { position: fixed; left: 0; width: 100%; height: 50dvh; background-color: var(--dark-bg); z-index: 9998; transition: transform 0.8s var(--ease-out-expo); will-change: transform; }
         .splash-panel.top { top: 0; transform-origin: top; border-bottom: 2px solid var(--electric-cyan); box-shadow: 0 5px 30px var(--electric-cyan-glow);}
         .splash-panel.bottom { bottom: 0; transform-origin: bottom; border-top: 2px solid var(--electric-cyan); box-shadow: 0 -5px 30px var(--electric-cyan-glow);}
@@ -126,7 +126,7 @@
         .reveal-element { opacity: 0; transition: opacity 0.8s ease; will-change: opacity; }
         body.is-loaded .reveal-element { opacity: 1; }
 
-        /* ==================== 3. CABECERA Y ANIMACIONES ==================== */
+        /* ==================== 4. CABECERA Y ANIMACIONES ==================== */
         header { padding: max(30px, 4dvh) 5% 10px; text-align: center; position: relative; z-index: 10000; pointer-events: none;}
         #title-wrapper { display: inline-block; transform: translate3d(0, 0, 0) scale(1); transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1); will-change: transform;}
         body.is-loading #title-wrapper { transform: translate3d(0, 35dvh, 0) scale(1.1); }
@@ -135,7 +135,6 @@
 
         @media (min-width: 768px) { body.is-loading #title-wrapper { transform: translate3d(0, 35dvh, 0) scale(1.5); } }
 
-        /* Efecto de ruido cromático (Glitch). Optimizamos al no transformar layouts, solo text-shadow. */
         @keyframes textGlitch {
             0% { text-shadow: 4px 0 0 var(--electric-cyan), -4px 0 0 var(--danger-red); opacity: 0; filter: blur(4px);}
             20% { text-shadow: -3px 0 0 var(--electric-cyan), 3px 0 0 var(--danger-red); opacity: 1; filter: blur(0);}
@@ -146,7 +145,7 @@
         }
         header p.subtitle { color: var(--electric-cyan); font-weight: 600; text-transform: uppercase; font-size: clamp(0.75rem, 1.8vw, 1.1rem); letter-spacing: 2px; margin-top: 10px; line-height: 1.5;}
 
-        /* ==================== 4. FLOTANTES UI ==================== */
+        /* ==================== 5. FLOTANTES UI ==================== */
         .lang-toggle { position: fixed; bottom: max(20px, var(--safe-bottom)); left: max(20px, var(--safe-left)); background: rgba(2, 6, 23, 0.4); border: 1px solid rgba(45, 212, 191, 0.15); padding: 8px 12px; border-radius: 30px; cursor: pointer; z-index: 900; display: flex; gap: 8px; align-items: center; backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); box-shadow: inset 0 0 10px rgba(255,255,255,0.02), 0 10px 30px rgba(0,0,0,0.5);}
         .lang-option { opacity: 0.4; font-size: 1.2rem; transition: 0.3s; filter: grayscale(100%); }
         .lang-option.active { opacity: 1; filter: grayscale(0%); transform: scale(1.1); }
@@ -161,10 +160,9 @@
         .back-to-top:hover svg { stroke: var(--dark-bg); transform: translateY(-3px); }
         .back-to-top svg { width: 20px; height: 20px; fill: none; stroke: var(--electric-cyan); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; transition: all 0.3s; }
 
-        /* ==================== 5. SISTEMA DE FILTRADO Y TRANSICIONES ==================== */
+        /* ==================== 6. SISTEMA DE FILTRADO ==================== */
         .filter-container { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; padding: 20px 5% 40px; position: relative; z-index: 10; }
         
-        /* Ajuste de scroll horizontal nativo sin barras en dispositivos móviles */
         @media (max-width: 767px) {
             .filter-container { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; scroll-snap-type: x mandatory; padding-bottom: 20px; padding-left: max(5%, var(--safe-left)); padding-right: max(5%, var(--safe-right)); }
             .filter-container::-webkit-scrollbar { display: none; }
@@ -180,21 +178,17 @@
 
         @media (max-width: 767px) { .filter-btn, .vault-filter-btn { flex: 0 0 auto; scroll-snap-align: start; white-space: nowrap; } }
 
-        /* ==================== 6. SECCIÓN DE PERFIL (BENTO GRID + 3D PARALLAX) ==================== */
-        /* La opacidad gestiona la transición de filtros para evitar el LAG de renderizado del DOM pesado */
+        /* ==================== 7. SECCIÓN DE PERFIL BENTO 3D ==================== */
         #profile-section { display: none; padding: 0 5% 100px; position: relative; z-index: 10; opacity: 1; transition: opacity 0.3s ease; }
 
         .bento-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 1300px; margin: 0 auto; }
 
-        /* `.bento-card` actúa únicamente como la superficie rotatoria padre */
         .bento-card { 
             background: rgba(2, 6, 23, 0.4); border: 1px solid rgba(45, 212, 191, 0.15); 
             border-radius: 24px; padding: clamp(25px, 4vw, 40px); 
             backdrop-filter: blur(24px) saturate(200%); -webkit-backdrop-filter: blur(24px) saturate(200%);
             position: relative; 
-            /* Se habilita el entorno de coordenadas Z para la magia 3D */
             transform-style: preserve-3d;
-            /* Las variables --rx y --ry son inyectadas en JS al mover el mouse */
             transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(1);
             transition: transform 0.15s linear, border-color 0.3s, box-shadow 0.3s;
             box-shadow: inset 0 0 20px rgba(255,255,255,0.02), 0 20px 50px rgba(0,0,0,0.5); 
@@ -202,7 +196,6 @@
         
         .bento-card:hover { border-color: var(--electric-cyan); box-shadow: 0 30px 60px rgba(13, 148, 136, 0.2), inset 0 0 0 1px rgba(13, 148, 136, 0.5); z-index: 10; }
 
-        /* Capa de iluminación interna que simula una fuente de luz rastreando el cursor */
         .bento-glow { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
             background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(45, 212, 191, 0.1) 0%, transparent 60%);
@@ -210,7 +203,6 @@
         }
         .bento-card:hover .bento-glow { opacity: 1; }
         
-        /* El contenedor interno se "levanta" 30px hacia la cámara creando un parallax inmersivo */
         .bento-content { 
             position: relative; z-index: 2; 
             transform: translateZ(30px); 
@@ -225,7 +217,6 @@
         .bento-metric .num { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 900; color: var(--electric-cyan); line-height: 1;}
         .bento-metric .label { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-top: 8px; font-weight: 700;}
 
-        /* Scroll Interno para el Historial de Experiencia (Evita un crecimiento vertical masivo) */
         .cv-timeline-wrapper { max-height: 400px; overflow-y: auto; padding-right: 10px; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent; }
         .cv-timeline-wrapper::-webkit-scrollbar { width: 4px; }
         .cv-timeline-wrapper::-webkit-scrollbar-thumb { background-color: var(--electric-cyan); border-radius: 10px; }
@@ -240,7 +231,6 @@
         .cv-item span.cv-role { color: var(--electric-cyan); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;}
         .cv-item h4 { color: var(--text-main); font-size: 1.15rem; margin-bottom: 0; font-weight: 700;}
 
-        /* Ecosistema de Skills Orgánico. Animación CSS pura en ejes Y alternados para sensación de gravedad viva */
         .skill-ecosystem { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: flex-start; }
         .tech-pill { 
             background: rgba(255,255,255,0.03); color: var(--text-main); padding: 10px 22px; 
@@ -268,7 +258,6 @@
         .cert-text strong { color: var(--text-main); font-size: 1rem; margin-bottom: 3px;}
         .cert-text span { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;}
 
-        /* Grid estructural adaptativo. A 900px, emula subgrid */
         @media (min-width: 900px) {
             .bento-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(200px, auto); }
             .bento-bio { grid-column: span 2; grid-row: span 2; justify-content: flex-start;}
@@ -279,16 +268,13 @@
             .bento-certs .cert-item { width: 32%; }
         }
 
-        /* ==========================================
-           [MÓDULO 7] MOTOR DE GRILLA MULTIMEDIA
-           ========================================== */
+        /* ==================== 8. MOTOR DE GRILLA MULTIMEDIA ==================== */
         .portfolio-grid { display: grid; grid-template-columns: 1fr; gap: clamp(20px, 3vw, 40px); padding: 0 5% 100px; width: 100%; max-width: 2500px; margin: 0 auto; position: relative; z-index: 5; opacity: 1; transition: opacity 0.3s ease; }
         @media (min-width: 768px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
         
         .media-item.hide { display: none !important; }
         .media-item { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.05); background-color: var(--card-bg); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transform: translateZ(0); }
 
-        /* Masonry Nativo (Alta densidad para imágenes/diseño estático) */
         .portfolio-grid.masonry-mode { display: block; column-count: 4; column-gap: 15px; padding: 0 2% 80px; max-width: 2200px; }
         @media (max-width: 1400px) { .portfolio-grid.masonry-mode { column-count: 3; column-gap: 15px; } }
         @media (max-width: 900px) { .portfolio-grid.masonry-mode { column-count: 2; column-gap: 12px; padding: 0 3% 60px; } }
@@ -300,7 +286,6 @@
         .portfolio-grid.masonry-mode .media-item.diseno:not(.audio):hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 35px var(--electric-cyan-glow); z-index: 20; }
         .media-item.diseno:not(.audio):hover img.masonry-img { filter: grayscale(0%) brightness(1.05); }
 
-        /* Capa táctica simuladora de Grano Cinematográfico 35mm */
         .media-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.15; pointer-events: none; z-index: 4; mix-blend-mode: overlay;}
         .protect-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 6; pointer-events: none; }
         .hover-carousel { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
@@ -321,17 +306,13 @@
         .portfolio-grid.masonry-mode .media-item h2 { font-size: clamp(0.9rem, 1.2vw, 1.3rem); margin-bottom: 2px;}
         .portfolio-grid.masonry-mode .media-item p { font-size: 0.65rem; letter-spacing: 1px;}
 
-        /* ==========================================
-           [MÓDULO 8] REPRODUCTORES DE AUDIO VISUALES
-           ========================================== */
+        /* ==================== 9. REPRODUCTORES AUDIO VISUALES ==================== */
         .media-item.audio { border: none; position: relative; display: flex; justify-content: center; align-items: center; overflow: hidden; cursor: default; transform: none !important; background-color: var(--dark-bg); }
         
-        /* Disco brillante (Vinyl Effect). Se acelera orgánicamente cuando JS dicta estado de Play */
         @keyframes rotateGlow { 0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); } 50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.05); } 100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); } }
         .audio-glow-ring { position: absolute; top: 50%; left: 50%; width: 200%; height: 200%; background: conic-gradient(transparent, transparent, rgba(45, 212, 191, 0.1), var(--electric-cyan)); animation: rotateGlow 6s linear infinite; z-index: 1; opacity: 0.3; transition: opacity 0.5s ease; }
         .audio-glow-ring.playing-pulse { opacity: 0.7; animation-duration: 3s; } 
         
-        /* Tarjeta interna (Glassmorphism). Modificada dinámicamente en reproducción */
         .audio-inner-card { position: absolute; inset: 2px; background-color: rgba(15, 23, 42, 0.9); border-radius: 14px; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; overflow: hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: background-color 0.4s;}
         .audio-inner-card.playing-lift { background-color: rgba(15, 23, 42, 0.7); } 
         
@@ -341,35 +322,28 @@
         .audio-text-content h2 { font-size: clamp(2rem, 3vw, 3rem); text-transform: uppercase; margin-bottom: 5px; text-shadow: 0 5px 15px rgba(0,0,0,0.8);}
         .audio-text-content p { color: var(--electric-cyan); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 4px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);}
         
-        /* Componente de control adaptativo Flexbox */
         .custom-player { position: relative; z-index: 10; display: flex; align-items: center; justify-content: space-between; width: 95%; max-width: 500px; padding: 10px 20px; gap: 12px; background: rgba(2, 6, 23, 0.6); border: 1px solid rgba(45, 212, 191, 0.3); border-radius: 50px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); transition: all 0.3s ease; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);}
         .custom-player.playing { box-shadow: 0 10px 30px var(--electric-cyan-glow); border-color: var(--electric-cyan); background: rgba(45, 212, 191, 0.08);}
         
-        /* Botón multifunción (El compensador geométrico es inyectado en inline CSS vía JS) */
         .play-btn { background: var(--electric-cyan); border: none; color: var(--dark-bg); font-family: 'Inter', sans-serif; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; transition: transform 0.2s; box-shadow: 0 5px 15px rgba(45, 212, 191, 0.3); flex-shrink: 0;}
         .play-btn:hover { transform: scale(1.1); }
         
         .progress-wrapper { flex-grow: 1; height: 6px; background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; cursor: pointer; position: relative; overflow: hidden; }
         .progress-fill { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background-color: var(--electric-cyan); border-radius: 10px; box-shadow: 0 0 10px var(--electric-cyan); pointer-events: none; transition: width 0.1s linear;}
         
-        /* Formato de número mono-espaciado (tabular-nums) vital para contadores que no "salten" al cambiar de dígito */
         .time-display { font-size: 0.75rem; color: var(--electric-cyan); font-weight: 700; min-width: 42px; text-align: right; font-variant-numeric: tabular-nums; flex-shrink: 0; letter-spacing: 0.5px;}
         .volume-container { display: flex; align-items: center; position: relative; cursor: pointer; }
         .volume-icon { fill: var(--text-muted); width: 20px; height: 20px; transition: fill 0.3s; flex-shrink: 0;}
         .volume-container:hover .volume-icon { fill: var(--electric-cyan); }
         
-        /* Expansión orgánica en Hover para desvelar el control de volumen sin ensuciar la UI base */
         .volume-slider-wrapper { width: 0; overflow: hidden; transition: width 0.4s var(--ease-out-expo), margin-left 0.4s; display: flex; align-items: center; margin-left: 0; }
         .volume-container:hover .volume-slider-wrapper { width: 60px; margin-left: 8px; }
         
-        /* Normalización cruzada del input de rango para Chromium/Gecko */
         .volume-slider { width: 100%; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px; outline: none; }
         .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: var(--electric-cyan); cursor: pointer; box-shadow: 0 0 5px var(--electric-cyan);}
         .volume-slider::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--electric-cyan); cursor: pointer; border: none; box-shadow: 0 0 5px var(--electric-cyan);}
 
-        /* ==========================================
-           [MÓDULO 9] SECCIONES INFERIORES / CONTACTO
-           ========================================== */
+        /* ==================== 10. SECCIONES FINALES Y CONTACTO ==================== */
         .ecosystem-section { padding: 80px 5%; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); background-color: var(--card-bg); position: relative;}
         .ecosystem-section h3 { font-size: 2rem; color: var(--text-main); margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;}
         .brand-btn-clean { display: inline-flex; align-items: center; justify-content: center; background: transparent; border: none; padding: 15px; transition: transform 0.3s ease; cursor: pointer; }
@@ -393,7 +367,6 @@
         .contact-section p { color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.1rem;}
         
         .contact-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 50px;}
-        /* Estilos limpios y estables para CTA's. Usan translateY sutil para retroalimentación táctil de desktop */
         .btn-primary, .btn-secondary, .btn-whatsapp { padding: 16px 35px; font-weight: 700; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1rem; text-decoration: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s, background 0.3s, border-color 0.3s; will-change: transform;}
         .btn-primary { background-color: var(--electric-cyan); color: var(--dark-bg); }
         .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px var(--electric-cyan-glow); }
@@ -418,9 +391,7 @@
         .vault-btn { background: var(--electric-cyan); color: var(--dark-bg); border: none; padding: 18px 40px; font-weight: 900; border-radius: 50px; cursor: pointer; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px var(--electric-cyan-glow); will-change: transform;}
         .vault-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(45, 212, 191, 0.6); }
 
-        /* ==========================================
-           [MÓDULO 10] CAPA DE MODALES GLOBALES
-           ========================================== */
+        /* ==================== 11. CAPA DE MODALES GLOBALES ==================== */
         .modal-fullscreen { position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh; background: rgba(2,6,23,0.98); z-index: 9999999; display: none; justify-content: center; align-items: center; padding: 2% 5%; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); opacity: 0; transition: opacity 0.2s ease;}
         .modal-fullscreen.active-modal { display: flex; opacity: 1; }
         .modal-content-wrapper { max-width: 100%; max-height: 90dvh; position: relative; width: 1600px; aspect-ratio: 16/9; display: flex; justify-content: center; align-items: center;}
@@ -460,7 +431,6 @@
         .form-modal-box input[type="text"], .form-modal-box input[type="email"], .form-modal-box input[type="number"] { width: 100%; padding: 12px; background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.95rem; transition: border 0.3s; }
         .form-modal-box input:focus { outline: none; border-color: var(--electric-cyan); box-shadow: 0 0 10px var(--electric-cyan-glow);}
         
-        /* Checkbox Custom mediante Flexbox para geometría predecible e inquebrantable */
         .checkbox-container { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px; cursor: pointer; user-select: none; position: relative; }
         .checkbox-container input { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; z-index: -1; }
         .checkmark { position: relative; display: flex; justify-content: center; align-items: center; width: 24px; height: 24px; min-width: 24px; min-height: 24px; background-color: rgba(0, 0, 0, 0.4); border: 2px solid var(--text-muted); border-radius: 6px; transition: all 0.3s var(--ease-out-expo); flex-shrink: 0; margin-top: 2px; }
@@ -528,15 +498,13 @@
     </div>
 
     <!-- ========================================================= -->
-    <!-- SECCIÓN PERFIL PROFESIONAL BENTO GRID (Con perspectiva 3D) -->
+    <!-- SECCIÓN PERFIL PROFESIONAL BENTO GRID -->
     <!-- ========================================================= -->
     <div id="profile-section">
         <div class="bento-grid">
             
-            <!-- TARJETA 1: BIO. .bento-card posee transform-style: preserve-3d -->
             <div class="bento-card bento-bio">
                 <div class="bento-glow"></div>
-                <!-- .bento-content proyecta el interior hacia la cámara mediante translateZ(30px) -->
                 <div class="bento-content">
                     <h3 data-i18n="prof_title">Impacto Estratégico</h3>
                     <p data-i18n="profile_text">Estratega multidisciplinario y Especialista Creativo Tecnológico. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente estratégico entre la visión de negocio, la estética visual de vanguardia y la adopción tecnológica (Product Owner) en empresas top.</p>
@@ -549,7 +517,6 @@
                 </div>
             </div>
 
-            <!-- TARJETA 2: EXPERIENCIA -->
             <div class="bento-card bento-exp">
                 <div class="bento-glow"></div>
                 <div class="bento-content">
@@ -593,7 +560,6 @@
                 </div>
             </div>
 
-            <!-- TARJETA 3: SKILLS ORGÁNICAS -->
             <div class="bento-card bento-skills">
                 <div class="bento-glow"></div>
                 <div class="bento-content">
@@ -610,7 +576,6 @@
                 </div>
             </div>
 
-            <!-- TARJETA 4: CERTIFICACIONES -->
             <div class="bento-card bento-certs">
                 <div class="bento-glow"></div>
                 <div class="bento-content">
@@ -654,10 +619,10 @@
     <!-- ========================================================= -->
     <main class="portfolio-grid reveal-element" id="main-grid">
         
-        <!-- AUDIOVISUAL (9 Elementos) -->
+        <!-- AUDIOVISUAL (9 Elementos: Reordenados y renombrados según spec) -->
         <div class="media-item audiovisual" data-yt-id="0ivRf3-IvGs">
             <div class="media-texture"></div>
-            <!-- Se elimina loading="lazy" de las primeras imágenes para garantizar un buen Largest Contentful Paint (LCP) -->
+            <!-- fetchpriority garantiza carga temprana (LCP) -->
             <img src="https://img.youtube.com/vi/0ivRf3-IvGs/maxresdefault.jpg" class="yt-thumbnail" alt="Clara" fetchpriority="high" decoding="async" draggable="false">
             <iframe class="media-iframe" data-src="https://www.youtube.com/embed/0ivRf3-IvGs?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=0ivRf3-IvGs" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
@@ -688,14 +653,26 @@
             <div class="media-overlay"><p data-i18n="vid_cat_evento">Cobertura de Evento</p><h2 data-i18n="vid_tit_evento">Vallecaucanos</h2></div>
         </div>
 
+        <!-- Se ordena: Detrás de cámaras primero, Video Lyric enseguida -->
         <div class="media-item audiovisual" data-yt-id="3GLjAoBXZV8">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/3GLjAoBXZV8/maxresdefault.jpg" class="yt-thumbnail" alt="BTS" loading="lazy" decoding="async" draggable="false">
             <iframe class="media-iframe" data-src="https://www.youtube.com/embed/3GLjAoBXZV8?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=3GLjAoBXZV8" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="cat_post">Postproducción</p><h2 data-i18n="vid_tit_mauna">Mauna (Detrás de Cámaras)</h2></div>
+            <!-- Nuevo título para BTS integrado semánticamente -->
+            <div class="media-overlay"><p data-i18n="cat_post">Postproducción</p><h2 data-i18n="vid_tit_mauna">Behind Scenes Desnúdame - Alejo Djoy</h2></div>
         </div>
 
+        <!-- Video Lyric movido junto al BTS -->
+        <div class="media-item audiovisual" data-yt-id="CGccljx4QxQ">
+            <div class="media-texture"></div>
+            <img src="https://img.youtube.com/vi/CGccljx4QxQ/maxresdefault.jpg" class="yt-thumbnail" alt="Lyric" loading="lazy" decoding="async" draggable="false">
+            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/CGccljx4QxQ?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=CGccljx4QxQ" allow="autoplay; encrypted-media"></iframe>
+            <div class="protect-layer"></div>
+            <div class="media-overlay"><p data-i18n="vid_cat_lyric">Tipografía & Motion Graphics</p><h2 data-i18n="vid_tit_lyric">Video Lyric - Suave (Mauna)</h2></div>
+        </div>
+
+        <!-- Finaliza bloque audiovisual con los UniChef -->
         <div class="media-item audiovisual" data-yt-id="TLjHcX4UPHg">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/TLjHcX4UPHg/maxresdefault.jpg" class="yt-thumbnail" alt="Unichef 1" loading="lazy" decoding="async" draggable="false">
@@ -718,14 +695,6 @@
             <iframe class="media-iframe" data-src="https://www.youtube.com/embed/rtvkiEu0xyo?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=rtvkiEu0xyo" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
             <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2 data-i18n="vid_tit_chef3">UniChef: Postre</h2></div>
-        </div>
-
-        <div class="media-item audiovisual" data-yt-id="CGccljx4QxQ">
-            <div class="media-texture"></div>
-            <img src="https://img.youtube.com/vi/CGccljx4QxQ/maxresdefault.jpg" class="yt-thumbnail" alt="Lyric" loading="lazy" decoding="async" draggable="false">
-            <iframe class="media-iframe" data-src="https://www.youtube.com/embed/CGccljx4QxQ?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=CGccljx4QxQ" allow="autoplay; encrypted-media"></iframe>
-            <div class="protect-layer"></div>
-            <div class="media-overlay"><p data-i18n="vid_cat_lyric">Tipografía & Motion Graphics</p><h2 data-i18n="vid_tit_lyric">Video Lyrical</h2></div>
         </div>
 
         <!-- FOTOGRAFÍA (8 Galerías) -->
@@ -839,7 +808,7 @@
             <div class="media-overlay"><p data-i18n="cat_land">Paisaje y Bellas Artes</p><h2 data-i18n="title_nature">Naturaleza</h2></div>
         </div>
 
-        <!-- DISEÑO VISUAL (11 Elementos estáticos renderizados nativamente por el navegador) -->
+        <!-- DISEÑO VISUAL (Estos 11 elementos serán aleatorizados dinámicamente al cargar por el módulo DesignRandomizer) -->
         <div class="media-item diseno" data-diseno-idx="0">
             <div class="media-texture"></div>
             <img src="Banner%20web%20Jdmaray%20Cali%20SPA.jpg?v=2" class="masonry-img fallback-img" alt="Banner web Jdmaray Cali SPA" loading="lazy" decoding="async" draggable="false">
@@ -1035,6 +1004,7 @@
         <h3 data-i18n="clients_title">Empresas y Aliados</h3>
         <div class="marquee-container" id="marqueeContainer">
             <div class="marquee-track" id="marqueeTrack">
+                <!-- Se retiró Autómatas del pool de clientes NDA -->
                 <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo%20derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
@@ -1042,9 +1012,8 @@
                 <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo%20espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 
-                <!-- Nodos duplicados en el HTML garantizan la ilusión óptica de un carrusel sin fin -->
+                <!-- Duplicados exactos para el loop infinito -->
                 <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo%20derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
@@ -1052,12 +1021,11 @@
                 <img src="Logo%20fanalca.png" alt="Fanalca" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo%20espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
-                <img src="Logo_automatas_blanco.png" alt="Autómatas" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
             </div>
         </div>
     </section>
 
-    <!-- Action Section (Botones no magnéticos, UI estándar fluida) -->
+    <!-- Action Section -->
     <section class="contact-section reveal-element" id="contacto">
         <h2 data-i18n="contact_title">Conectemos</h2>
         <p data-i18n="contact_desc">¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.</p>
@@ -1138,9 +1106,6 @@
                 <img src="Logo_Alqueria.png" alt="Alquería" class="fallback-img" draggable="false">
                 <img src="Logo%20derco.png" alt="Derco" class="fallback-img" draggable="false">
                 <img src="Logo%20comfandi.png" alt="Comfandi" class="fallback-img" draggable="false">
-                <img src="Logo%20fanalca.png" alt="Fanalca" class="fallback-img" draggable="false">
-                <img src="Logo%20eficacia.png" alt="Eficacia" class="fallback-img" draggable="false">
-                <img src="Logo%20espy.png" alt="Espy" class="fallback-img" draggable="false">
             </div>
             
             <div id="vault-error" class="error-message"></div>
@@ -1211,7 +1176,7 @@
                     profile_text: 'Estratega multidisciplinario y Especialista Creativo Tecnológico. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente estratégico entre la visión de negocio, la estética visual de vanguardia y la adopción tecnológica (Product Owner) en empresas top.',
                     stat_years: "Años de Exp.", stat_po: "Product Owner", stat_projects: "Proyectos B2B",
                     btn_all: "Todo", btn_video: "Producción Audiovisual", btn_photo: "Fotografía", btn_design: "Diseño Visual", btn_audio: "Diseño Sonoro",
-                    vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara", vid_cat_showreel: "Dirección Creativa", vid_tit_showreel: "Showreel", vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO", vid_cat_evento: "Cobertura de Evento", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Programa Gastronómico Online", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Postre", vid_cat_lyric: "Tipografía & Motion Graphics", vid_tit_lyric: "Video Lyrical", cat_post: "Postproducción", vid_tit_mauna: "Mauna (Detrás de Cámaras)", cat_artdir: "Dirección de Arte Comercial", tit_food: "Food Styling", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", cat_product: "Fotografía Comercial B2C", title_product: "Fotografía de Producto", cat_lighting: "Iluminación & Técnica", title_portraits: "Retratos de Estudio", cat_editorial: "Fotografía Editorial", tit_sabrina: "Actriz: Sabrina", cat_press: "Retrato Promocional (Prensa)", tit_kapo: "Artista: KAPO", cat_casting: "Casting Visual", title_emerging: "Artistas Emergentes", cat_exp: "Exploración de Luz", tit_exp: "Experimental", cat_land: "Paisaje y Bellas Artes", title_nature: "Naturaleza", cat_banner: "Banner Web", cat_cover: "Diseño de Portada Musical", mauna_title: "Portada Suave - Mauna", cat_vinyl: "Diseño de Vinilo", cat_id: "Identidad Estacional", tit_navidad: "Logo Navideño", cat_vector: "Ilustración Vectorial", tit_koala: "Koala", cat_corp: "Branding Corporativo", cat_edit: "Diseño Editorial", tit_ruta: "La Ruta del Sabor", cat_mosaic: "Mosaico Digital", tit_school: "Colegio Parroquial", tit_yumbo: "Alcaldía de Yumbo", cat_ad: "Diseño Publicitario", tit_cali: "Alcaldía de Cali", cat_promo: "Diseño Promocional", tit_noches: "Noches D'Feria", cat_flyer: "Diseño de Volante", tit_vape: "Vape Expo 2020", aud_alone: "Acústico / Soul Cinematográfico", aud_trapped: "Tensión / Percusión de Acción", aud_rock: "Rock Alternativo / Alta Energía", aud_rain: "Ambient / Synthwave Inspirador", aud_hades: "Darkwave / Synth Industrial", aud_sauvage: "Beat Global / Fusión Urbana", ecosystem_title: "Ecosistema Creativo", clients_title: "Empresas y Aliados", contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.", btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", btn_cv: "Descargar CV (PDF)", link_yt: "Canal de YouTube", vault_title: "Bóveda Corporativa", vault_desc: "Mis diseños de E-learning e infografías para Unilever, Alquería y Derco están sujetos a NDA.", vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]", modal_req_title: "Solicitud de Acceso", modal_req_desc: "Está a punto de solicitar acceso a la Bóveda de NDA. Clientes protegidos:", label_name: "Su Nombre Completo:", label_id: "Documento / NIT:", label_company: "Empresa o Agencia:", label_email: "Su Correo Corporativo:", btn_submit: "Enviar Solicitud y Aceptar", btn_connect: "CONECTEMOS",
+                    vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara", vid_cat_showreel: "Dirección Creativa", vid_tit_showreel: "Showreel", vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO", vid_cat_evento: "Cobertura de Evento", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Programa Gastronómico Online", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Postre", vid_cat_lyric: "Tipografía & Motion Graphics", vid_tit_lyric: "Video Lyric - Suave (Mauna)", cat_post: "Postproducción", vid_tit_mauna: "Behind Scenes Desnúdame - Alejo Djoy", cat_artdir: "Dirección de Arte Comercial", tit_food: "Food Styling", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", cat_product: "Fotografía Comercial B2C", title_product: "Fotografía de Producto", cat_lighting: "Iluminación & Técnica", title_portraits: "Retratos de Estudio", cat_editorial: "Fotografía Editorial", tit_sabrina: "Actriz: Sabrina", cat_press: "Retrato Promocional (Prensa)", tit_kapo: "Artista: KAPO", cat_casting: "Casting Visual", title_emerging: "Artistas Emergentes", cat_exp: "Exploración de Luz", tit_exp: "Experimental", cat_land: "Paisaje y Bellas Artes", title_nature: "Naturaleza", cat_banner: "Banner Web", cat_cover: "Diseño de Portada Musical", mauna_title: "Portada Suave - Mauna", cat_vinyl: "Diseño de Vinilo", cat_id: "Identidad Estacional", tit_navidad: "Logo Navideño", cat_vector: "Ilustración Vectorial", tit_koala: "Koala", cat_corp: "Branding Corporativo", cat_edit: "Diseño Editorial", tit_ruta: "La Ruta del Sabor", cat_mosaic: "Mosaico Digital", tit_school: "Colegio Parroquial", tit_yumbo: "Alcaldía de Yumbo", cat_ad: "Diseño Publicitario", tit_cali: "Alcaldía de Cali", cat_promo: "Diseño Promocional", tit_noches: "Noches D'Feria", cat_flyer: "Diseño de Volante", tit_vape: "Vape Expo 2020", aud_alone: "Acústico / Soul Cinematográfico", aud_trapped: "Tensión / Percusión de Acción", aud_rock: "Rock Alternativo / Alta Energía", aud_rain: "Ambient / Synthwave Inspirador", aud_hades: "Darkwave / Synth Industrial", aud_sauvage: "Beat Global / Fusión Urbana", ecosystem_title: "Ecosistema Creativo", clients_title: "Empresas y Aliados", contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.", btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", btn_cv: "Descargar CV (PDF)", link_yt: "Canal de YouTube", vault_title: "Bóveda Corporativa", vault_desc: "Mis diseños de E-learning e infografías para Unilever, Alquería y Derco están sujetos a NDA.", vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]", modal_req_title: "Solicitud de Acceso", modal_req_desc: "Está a punto de solicitar acceso a la Bóveda de NDA. Clientes protegidos:", label_name: "Su Nombre Completo:", label_id: "Documento / NIT:", label_company: "Empresa o Agencia:", label_email: "Su Correo Corporativo:", btn_submit: "Enviar Solicitud y Aceptar", btn_connect: "CONECTEMOS",
                     nda_agree: "Declaro que actúo como representante legal o persona autorizada y <span>ACEPTO IRREVOCABLEMENTE</span> las cláusulas de confidencialidad y penalidad económica.",
                     nda_full_text: "<h4>1. Marco Legal y Objeto de Protección</h4><p>Con fundamento en el <strong>Artículo 15 de la Constitución Política de Colombia</strong>, la <strong>Ley 1581 de 2012</strong> (Protección de Datos) y la <strong>Ley 256 de 1996</strong> (Secretos Empresariales), el presente acuerdo protege la propiedad intelectual, comercial, técnica y de diseño alojada en esta Bóveda Corporativa. Este material incluye información privilegiada amparada por acuerdos previos de confidencialidad con marcas como Eficacia, Unilever, Alquería y Derco, bajo la custodia legal de Jhon Alejandro Vega Ramírez ('La Parte Reveladora').</p><h4>2. Obligación Irrevocable de Reserva</h4><p>La persona natural o jurídica que accede ('La Parte Receptora') se compromete a mantener estricta reserva y confidencialidad. Queda terminantemente prohibida la reproducción total o parcial, transmisión, ingeniería inversa, captura de pantalla o almacenamiento por cualquier medio físico o digital. El acceso se otorga exclusiva y limitadamente para fines de evaluación profesional y comercial directa.</p><h4>3. Cláusula Penal y Perjuicios</h4><p>El incumplimiento comprobado de la obligación de reserva y no divulgación facultará a La Parte Reveladora para exigir inmediatamente, a título de pena, el pago de una suma equivalente a <strong>cincuenta mil dólares estadounidenses (USD $50.000)</strong> o su equivalente en Pesos Colombianos (COP), exigible por vía ejecutiva sin requerir constitución en mora, e independiente del cobro por indemnización de perjuicios adicionales o acciones penales pertinentes.</p><h4>4. Jurisdicción y Resolución de Controversias</h4><p>Cualquier disputa derivada de este acceso será resuelta en derecho mediante Tribunal de Arbitramento adscrito al Centro de Conciliación y Arbitraje de la <strong>Cámara de Comercio de Cali</strong>.</p>"
                 },
@@ -1229,7 +1194,7 @@
                     profile_text: 'Multidisciplinary Strategist and Creative Technology Specialist. I specialize in building solid brand identities and high-impact E-learning ecosystems. I act as the strategic bridge between business vision, cutting-edge aesthetics, and tech adoption (Product Owner) in top companies.',
                     stat_years: "Years Exp.", stat_po: "Product Owner", stat_projects: "B2B Projects",
                     btn_all: "All", btn_video: "Audiovisual Production", btn_photo: "Photography", btn_design: "Visual Design", btn_audio: "Sound Design",
-                    vid_cat_clara: "AI Generative Strategy", vid_tit_clara: "Clara Project", vid_cat_showreel: "Creative Direction", vid_tit_showreel: "Showreel", vid_cat_kapo: "Color Grading", vid_tit_kapo: "Color Test: KAPO", vid_cat_evento: "Event Coverage", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Online Culinary Show", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Dessert", vid_cat_lyric: "Typography & Motion Graphics", vid_tit_lyric: "Lyric Video", cat_post: "Post-production", vid_tit_mauna: "Mauna (Behind The Scenes)", cat_artdir: "Commercial Art Direction", tit_food: "Food Styling", cat_fashion: "Fashion Book & Beauty", tit_fashion: "Model Book", cat_product: "B2C Commercial Photography", title_product: "Product Photography", cat_lighting: "Lighting & Technique", title_portraits: "Studio Portraits", cat_editorial: "Editorial Photography", tit_sabrina: "Actress: Sabrina", cat_press: "Promotional Portrait (Press)", tit_kapo: "Artist: KAPO", cat_casting: "Visual Casting", title_emerging: "Emerging Artists", cat_exp: "Light Exploration", tit_exp: "Experimental", cat_land: "Landscape & Fine Art", title_nature: "Nature", cat_banner: "Web Banner", cat_cover: "Music Cover Design", mauna_title: "Cover for 'Suave' by Mauna", cat_vinyl: "Vinyl Wrap Design", cat_id: "Seasonal Identity", tit_navidad: "Christmas Logo", cat_vector: "Vector Illustration", tit_koala: "Koala", cat_corp: "Corporate Branding", cat_edit: "Editorial Design", tit_ruta: "The Flavor Route", cat_mosaic: "Digital Mosaic", tit_school: "Parochial School", tit_yumbo: "Yumbo Mayor's Office", cat_ad: "Advertising Design", tit_cali: "Cali Mayor's Office", cat_promo: "Promotional Design", tit_noches: "Noches D'Feria", cat_flyer: "Flyer Design", tit_vape: "Vape Expo 2020", aud_alone: "Acoustic / Cinematic Soul", aud_trapped: "Tension / Action Percussion", aud_rock: "Alternative Rock / High Energy", aud_rain: "Ambient / Uplifting Synthwave", aud_hades: "Darkwave / Industrial Synth", aud_sauvage: "Global Beat / Urban Fusion", ecosystem_title: "Creative Ecosystem", clients_title: "Companies & Partners", contact_title: "LET'S CONNECT", contact_desc: "Ready to elevate the digital narrative of your projects? Let's schedule a strategic session.", btn_wa: "Text me on WhatsApp", btn_mail: "Send me an email", btn_cv: "Download Resume (PDF)", link_yt: "YouTube Channel", vault_title: "Corporate Vault", vault_desc: "My E-learning designs for Unilever, Alquería, and Derco are subject to NDA.", vault_btn: "Request Secure Access", btn_close: "CLOSE [X]", modal_req_title: "NDA Signature", modal_req_desc: "Irrevocable Confidentiality Agreement", label_name: "Full Name:", label_id: "Gov ID / Tax ID:", label_company: "Company or Agency:", label_email: "Corporate Email:", btn_submit: "Sign and Request Access", btn_connect: "LET'S CONNECT",
+                    vid_cat_clara: "AI Generative Strategy", vid_tit_clara: "Clara Project", vid_cat_showreel: "Creative Direction", vid_tit_showreel: "Showreel", vid_cat_kapo: "Color Grading", vid_tit_kapo: "Color Test: KAPO", vid_cat_evento: "Event Coverage", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Online Culinary Show", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Dessert", vid_cat_lyric: "Typography & Motion Graphics", vid_tit_lyric: "Lyric Video - Suave (Mauna)", cat_post: "Post-production", vid_tit_mauna: "Behind Scenes Desnúdame - Alejo Djoy", cat_artdir: "Commercial Art Direction", tit_food: "Food Styling", cat_fashion: "Fashion Book & Beauty", tit_fashion: "Model Book", cat_product: "B2C Commercial Photography", title_product: "Product Photography", cat_lighting: "Lighting & Technique", title_portraits: "Studio Portraits", cat_editorial: "Editorial Photography", tit_sabrina: "Actress: Sabrina", cat_press: "Promotional Portrait (Press)", tit_kapo: "Artist: KAPO", cat_casting: "Visual Casting", title_emerging: "Emerging Artists", cat_exp: "Light Exploration", tit_exp: "Experimental", cat_land: "Landscape & Fine Art", title_nature: "Nature", cat_banner: "Web Banner", cat_cover: "Music Cover Design", mauna_title: "Cover for 'Suave' by Mauna", cat_vinyl: "Vinyl Wrap Design", cat_id: "Seasonal Identity", tit_navidad: "Christmas Logo", cat_vector: "Vector Illustration", tit_koala: "Koala", cat_corp: "Corporate Branding", cat_edit: "Editorial Design", tit_ruta: "The Flavor Route", cat_mosaic: "Digital Mosaic", tit_school: "Parochial School", tit_yumbo: "Yumbo Mayor's Office", cat_ad: "Advertising Design", tit_cali: "Cali Mayor's Office", cat_promo: "Promotional Design", tit_noches: "Noches D'Feria", cat_flyer: "Flyer Design", tit_vape: "Vape Expo 2020", aud_alone: "Acoustic / Cinematic Soul", aud_trapped: "Tension / Action Percussion", aud_rock: "Alternative Rock / High Energy", aud_rain: "Ambient / Uplifting Synthwave", aud_hades: "Darkwave / Industrial Synth", aud_sauvage: "Global Beat / Urban Fusion", ecosystem_title: "Creative Ecosystem", clients_title: "Companies & Partners", contact_title: "LET'S CONNECT", contact_desc: "Ready to elevate the digital narrative of your projects? Let's schedule a strategic session.", btn_wa: "Text me on WhatsApp", btn_mail: "Send me an email", btn_cv: "Download Resume (PDF)", link_yt: "YouTube Channel", vault_title: "Corporate Vault", vault_desc: "My E-learning designs for Unilever, Alquería, and Derco are subject to NDA.", vault_btn: "Request Secure Access", btn_close: "CLOSE [X]", modal_req_title: "NDA Signature", modal_req_desc: "Irrevocable Confidentiality Agreement", label_name: "Full Name:", label_id: "Gov ID / Tax ID:", label_company: "Company or Agency:", label_email: "Corporate Email:", btn_submit: "Sign and Request Access", btn_connect: "LET'S CONNECT",
                     nda_agree: "I declare that I act as a legal representative or authorized person and <span>IRREVOCABLY ACCEPT</span> the confidentiality clauses and economic penalties.",
                     nda_full_text: "<h4>1. Legal Framework and Object of Protection</h4><p>Based on <strong>Article 15 of the Colombian Political Constitution</strong>, <strong>Law 1581 of 2012</strong> (Data Protection), and <strong>Law 256 of 1996</strong> (Trade Secrets), this agreement protects the intellectual, commercial, technical, and design property hosted in this Corporate Vault. This material includes privileged information covered by previous non-disclosure agreements with brands such as Eficacia, Unilever, Alquería, and Derco, under the legal custody of Jhon Alejandro Vega Ramírez ('The Disclosing Party').</p><h4>2. Irrevocable Obligation of Confidentiality</h4><p>The natural or legal person accessing the vault ('The Receiving Party') commits to maintaining strict confidentiality. Total or partial reproduction, transmission, reverse engineering, screen capturing, or storage by any physical or digital means is strictly prohibited. Access is granted exclusively and limitedly for professional evaluation purposes.</p><h4>3. Penalty Clause and Damages</h4><p>Proven breach of the non-disclosure obligation will empower The Disclosing Party to immediately demand a penalty payment equivalent to <strong>fifty thousand US dollars (USD $50,000)</strong> or its equivalent in COP, enforceable through executive action without requiring prior notice of default, and independent of any claims for additional damages or relevant criminal actions.</p><h4>4. Jurisdiction and Dispute Resolution</h4><p>Any dispute arising from this access will be resolved in law through an Arbitration Tribunal attached to the Conciliation and Arbitration Center of the <strong>Cali Chamber of Commerce</strong>.</p>"
                 }
@@ -1811,11 +1776,38 @@
             // Prohibición táctica de menú contextual en imágenes
             document.addEventListener('contextmenu', e => { if(e.target.tagName === 'IMG') e.preventDefault(); });
 
-            // Inicialización de la Aplicación
+            // ==========================================
+            // INICIALIZACIÓN GLOBAL DE LA APLICACIÓN Y ALEATORIZACIÓN
+            // ==========================================
+            const DesignRandomizer = (() => {
+                const init = () => {
+                    // Extraemos únicamente las piezas de "Diseño Visual"
+                    const mainGrid = document.getElementById('main-grid');
+                    const disenoItems = Array.from(mainGrid.querySelectorAll('.media-item.diseno'));
+                    
+                    // Algoritmo Fisher-Yates: Mezcla de manera uniforme e imparcial el array
+                    for (let i = disenoItems.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [disenoItems[i], disenoItems[j]] = [disenoItems[j], disenoItems[i]];
+                    }
+                    
+                    // Identificamos la primera pista de Audio.
+                    // Al reinsertar los diseños JUSTO ANTES del audio, aseguramos que queden después de las fotos y antes del audio.
+                    const firstAudioItem = mainGrid.querySelector('.media-item.audio');
+                    disenoItems.forEach(item => {
+                        mainGrid.insertBefore(item, firstAudioItem);
+                    });
+                };
+                return { init };
+            })();
+
             document.addEventListener('DOMContentLoaded', () => {
                 updateLanguage(currentLang); 
                 MarqueePhysics.init(); 
                 initBentoTilt(); 
+                
+                // Ejecutamos la aleatorización antes del repintado del DOM (High Performance)
+                DesignRandomizer.init();
                 
                 // Purga de enlaces rotos silenciosa
                 document.querySelectorAll('.fallback-img').forEach(img => {

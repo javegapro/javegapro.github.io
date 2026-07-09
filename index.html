@@ -191,16 +191,21 @@
         .bento-metric .label { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-top: 8px; font-weight: 700;}
         .bento-metric .sub-label { font-size: 0.65rem; color: var(--electric-cyan); margin-top: 4px; font-weight: 600; opacity: 0.8; }
 
-        /* [MODIFICACIÓN] Corrección de espacio inferior: Flex-grow dinámico y min-height 0 */
-        .cv-timeline-container { flex-grow: 1; display: flex; flex-direction: column; min-height: 0; margin-top: 10px; }
-        .cv-timeline-wrapper { flex-grow: 1; max-height: 100%; overflow-y: auto; padding-right: 10px; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent; }
+        /* [MODIFICACIÓN QA] Ajuste para no estirar la grilla infinitamente y brindar mucho más área de scroll en móvil/escritorio */
+        .cv-timeline-wrapper { 
+            max-height: 500px; /* Tamaño límite para móviles y tablets */
+            overflow-y: auto; 
+            padding-right: 10px; 
+            scrollbar-width: thin; 
+            scrollbar-color: var(--electric-cyan) transparent; 
+        }
+        
         .cv-timeline-wrapper::-webkit-scrollbar { width: 4px; }
         .cv-timeline-wrapper::-webkit-scrollbar-thumb { background-color: var(--electric-cyan); border-radius: 10px; }
         
         .cv-timeline { position: relative; padding-left: 20px; display: flex; flex-direction: column; gap: 20px; margin-top: 5px; padding-bottom: 20px; }
         .cv-timeline::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 2px; background: rgba(45, 212, 191, 0.2); }
         
-        /* [MODIFICACIÓN] Regla especial para prevenir selección de texto durante eventos touch */
         .cv-item { position: relative; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.02); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, background 0.3s; cursor: pointer; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
         
         .cv-item:hover { transform: translateX(8px); border-color: rgba(45, 212, 191, 0.3); background: rgba(2, 6, 23, 0.6);}
@@ -237,7 +242,8 @@
             box-shadow: 0 8px 20px rgba(45,212,191,0.3), inset 0 0 15px rgba(45,212,191,0.2); z-index: 5;
         }
 
-        .cert-scroll-wrapper { max-height: 400px; overflow-y: auto; padding-right: 10px; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent; }
+        /* Contenedor de Certificaciones */
+        .cert-scroll-wrapper { max-height: 450px; overflow-y: auto; padding-right: 10px; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent; }
         .cert-scroll-wrapper::-webkit-scrollbar { width: 4px; }
         .cert-scroll-wrapper::-webkit-scrollbar-thumb { background-color: var(--electric-cyan); border-radius: 10px; }
 
@@ -247,20 +253,27 @@
         .cert-icon svg { width: 32px; height: 32px; fill: var(--electric-cyan); flex-shrink: 0; filter: drop-shadow(0 0 5px rgba(45, 212, 191, 0.4));}
         .cert-text { display: flex; flex-direction: column; width: 100%;}
         
-        .cert-text strong { color: var(--text-main); font-size: 0.95rem; margin-bottom: 3px; line-height: 1.3; display: block; }
+        .cert-text strong { color: var(--text-main); font-size: 0.95rem; margin-bottom: 3px; line-height: 1.3; display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
         .cert-text span { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;}
         
-        /* [MODIFICACIÓN] white-space: nowrap para evitar que se rompa el texto del tag EN CURSO */
-        .in-progress-tag { background: rgba(45, 212, 191, 0.1); color: var(--electric-cyan); font-size: 0.6rem !important; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(45, 212, 191, 0.3); margin-left: 6px; vertical-align: middle; display: inline-block; white-space: nowrap; font-weight: 700;}
+        /* [MODIFICACIÓN QA] nowrap para evitar que el texto EN CURSO se rompa y se mantenga estético */
+        .in-progress-tag { background: rgba(45, 212, 191, 0.1); color: var(--electric-cyan); font-size: 0.6rem !important; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(45, 212, 191, 0.3); margin-left: 0; vertical-align: middle; display: inline-block; white-space: nowrap; font-weight: 700; line-height: 1;}
 
         @media (min-width: 900px) {
             .bento-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(200px, auto); }
             .bento-bio { grid-column: span 2; grid-row: span 2; justify-content: flex-start;}
+            
             .bento-exp { grid-column: span 1; grid-row: span 3; } 
+            /* [MODIFICACIÓN QA] Altura amplia para la experiencia, pero bloqueada para no estirar infinitamente la caja principal hacia abajo */
+            .cv-timeline-wrapper { max-height: 650px; }
+            
             .bento-skills { grid-column: span 2; }
             .bento-certs { grid-column: span 3; }
+            
+            /* [MODIFICACIÓN QA] Desactivamos el scroll en escritorio para mostrar toda la grilla completa */
+            .cert-scroll-wrapper { max-height: none; overflow: visible; padding-right: 0; }
             .bento-certs .cert-list { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-content: flex-start;}
-            .bento-certs .cert-item { width: calc(33.333% - 10px); margin-right: 15px;}
+            .bento-certs .cert-item { width: calc(33.333% - 10px); margin-right: 15px; margin-bottom: 15px;}
             .bento-certs .cert-item:nth-child(3n) { margin-right: 0; }
         }
         @media (min-width: 600px) and (max-width: 899px) {
@@ -706,36 +719,35 @@
                             </div>
 
                             <div class="cert-item">
-                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.36 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg></div>
+                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M19.35 10.04a7.49 7.49 0 0 0-13.99-1.99A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zm-4.35 1.96l-3 3v-2H9v-2h3V9l3 3z"/></svg></div>
                                 <div class="cert-text">
                                     <strong><span data-i18n="cert_13">Generative AI Leader</span> <span class="in-progress-tag" data-i18n="tag_curso">EN CURSO</span></strong>
                                     <span data-i18n="cert_13_org">Google Cloud</span>
                                 </div>
                             </div>
-                            <!-- Implementación de Icono "Exclamación Circular" según especificación -->
                             <div class="cert-item">
-                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c1.96-1.66 3.49-2.93 5.33-3.56C9.81 5.55 9.35 6.75 9.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg></div>
                                 <div class="cert-text">
                                     <strong><span data-i18n="cert_14">English for IT (Ruta 4)</span> <span class="in-progress-tag" data-i18n="tag_curso">EN CURSO</span></strong>
                                     <span data-i18n="cert_14_org">Avanza TEC & Cisco</span>
                                 </div>
                             </div>
                             <div class="cert-item">
-                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 14H6v-2h6v2zm-2.5-3.4L4.9 10l4.6-4.6L11 6.9 7.8 10l3.2 3.1-1.5 1.5z"/></svg></div>
                                 <div class="cert-text">
                                     <strong><span data-i18n="cert_15">Prompting Responsable</span> <span class="in-progress-tag" data-i18n="tag_curso">EN CURSO</span></strong>
                                     <span data-i18n="cert_15_org">Santander Open Academy</span>
                                 </div>
                             </div>
                             <div class="cert-item">
-                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div>
                                 <div class="cert-text">
                                     <strong><span data-i18n="cert_16">IA Práctica para Marketing</span> <span class="in-progress-tag" data-i18n="tag_curso">EN CURSO</span></strong>
                                     <span data-i18n="cert_16_org">Santander Open Academy</span>
                                 </div>
                             </div>
                             <div class="cert-item">
-                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg></div>
                                 <div class="cert-text">
                                     <strong><span data-i18n="cert_17">IA y Ciencia de Datos</span> <span class="in-progress-tag" data-i18n="tag_curso">EN CURSO</span></strong>
                                     <span data-i18n="cert_17_org">Avanza TEC & Cisco</span>
@@ -910,7 +922,7 @@
             <div class="media-texture"></div>
             <div class="hover-carousel">
                 <img src="https://static.wixstatic.com/media/14f4fb_3c6ea1e81a93400bb35024d9af900c58~mv2.jpg" class="hc-img active focus-top" alt="Experimental 1" loading="lazy" decoding="async" draggable="false">
-                <img src="https://static.wixstatic.com/media/14f4fb_c7c328c79ef0435592619f0cc7ccbe8d~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy decoding="async" draggable="false" alt="Experimental 2">
+                <img src="https://static.wixstatic.com/media/14f4fb_c7c328c79ef0435592619f0cc7ccbe8d~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Experimental 2">
                 <img src="https://static.wixstatic.com/media/14f4fb_545f729dd5a845bcbdd114895dd988a4~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Experimental 3">
                 <img src="https://static.wixstatic.com/media/14f4fb_6663382b6a134ee6ae6cf16348bf9375~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Experimental 4">
                 <img src="https://static.wixstatic.com/media/14f4fb_5f6933f6ec6348999c18eb538412b6b8~mv2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Experimental 5">
@@ -1423,7 +1435,7 @@
                         btn_all: "All", btn_video: "Audiovisual Production", btn_photo: "Photography", btn_design: "Visual Design", btn_audio: "Sound Design",
                         vid_cat_clara: "AI Generative Strategy", vid_tit_clara: "Clara Project", vid_cat_showreel: "Creative Direction", vid_tit_showreel: "Showreel", vid_cat_kapo: "Color Grading", vid_tit_kapo: "Color Test: KAPO", vid_cat_evento: "Event Coverage", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Online Culinary Show", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Dessert", vid_cat_lyric: "Typography & Motion Graphics", vid_tit_lyric: "Lyric Video - Suave (Mauna)", cat_post: "Post-production", vid_tit_mauna: "Behind Scenes Desnúdame - Alejo Djoy", cat_artdir: "Commercial Art Direction", tit_food: "Food Styling", cat_fashion: "Fashion Book & Beauty", tit_fashion: "Model Book", cat_product: "B2C Commercial Photography", title_product: "Product Photography", cat_lighting: "Lighting & Technique", title_portraits: "Studio Portraits", cat_editorial: "Editorial Photography", tit_sabrina: "Actress: Sabrina", cat_press: "Promotional Portrait (Press)", tit_kapo: "Artist: KAPO", cat_casting: "Visual Casting", title_emerging: "Emerging Artists", cat_exp: "Light Exploration", tit_exp: "Experimental", cat_land: "Landscape & Fine Art", title_nature: "Nature", cat_banner: "Web Banner", cat_cover: "Music Cover Design", mauna_title: "Cover for 'Suave' by Mauna", cat_vinyl: "Vinyl Wrap Design", cat_id: "Seasonal Identity", tit_navidad: "Christmas Logo", cat_vector: "Vector Illustration", tit_koala: "Koala", cat_corp: "Corporate Branding", cat_edit: "Editorial Design", tit_ruta: "The Flavor Route", cat_mosaic: "Digital Mosaic", tit_school: "Parochial School", tit_yumbo: "Yumbo Mayor's Office", cat_ad: "Advertising Design", tit_cali: "Cali Mayor's Office", cat_promo: "Promotional Design", tit_noches: "Noches D'Feria", cat_flyer: "Flyer Design", tit_vape: "Vape Expo 2020", aud_alone: "Acoustic / Cinematic Soul", aud_trapped: "Tension / Action Percussion", aud_rock: "Alternative Rock / High Energy", aud_rain: "Ambient / Uplifting Synthwave", aud_hades: "Darkwave / Industrial Synth", aud_sauvage: "Global Beat / Urban Fusion", ecosystem_title: "Creative Ecosystem", clients_title: "Companies & Partners", contact_title: "LET'S CONNECT", contact_desc: "Ready to elevate the digital narrative of your projects? Let's schedule a strategic session.", btn_wa: "Text me on WhatsApp", btn_mail: "Send me an email", btn_cv: "Download Resume (PDF)", link_yt: "YouTube Channel", vault_title: "Corporate Vault", vault_desc: "My E-learning designs for Unilever, Alquería, and Derco are subject to NDA.", vault_btn: "Request Secure Access", btn_close: "CLOSE [X]", modal_req_title: "NDA Signature", modal_req_desc: "Irrevocable Confidentiality Agreement", label_name: "Full Name:", label_id: "Gov ID / Tax ID:", label_company: "Company or Agency:", label_email: "Corporate Email:", btn_submit: "Sign and Request Access", btn_connect: "LET'S CONNECT",
                         nda_agree: "I declare that I act as a legal representative or authorized person and <span>IRREVOCABLY ACCEPT</span> the confidentiality clauses and economic penalties.",
-                        nda_full_text: "<h4>1. Legal Framework and Object of Protection</h4><p>Based on <strong>Article 15 of the Colombian Political Constitution</strong>, <strong>Law 1581 of 2012</strong> (Data Protection), and <strong>Law 256 of 1996</strong> (Trade Secrets), this agreement protects the intellectual, commercial, technical, and design property hosted in this Corporate Vault. This material includes privileged information covered by previous non-disclosure agreements with brands such as Eficacia, Unilever, Alquería, and Derco, under the legal custody of Jhon Alejandro Vega Ramírez ('The Disclosing Party').</p><h4>2. Irrevocable Obligation of Confidentiality</h4><p>The natural or legal person accessing the vault ('The Receiving Party') commits to maintaining strict confidentiality. Total or partial reproduction, transmission, reverse engineering, screen capturing, or storage by any physical or digital means is strictly prohibited. Access is granted exclusively and limitedly for professional evaluation purposes.</p><h4>3. Penalty Clause and Damages</h4><p>Proven breach of the non-disclosure obligation will empower The Disclosing Party to immediately demand a penalty payment equivalent to <strong>fifty thousand US dollars (USD $50,000)</strong> or its equivalent in COP, enforceable through executive action without requiring prior notice of default, and independent of any claims for additional damages or relevant criminal actions.</p><h4>4. Jurisdiction and Dispute Resolution</h4><p>Cualquier dispute arising from this access will be resolved in law through an Arbitration Tribunal attached to the Conciliation and Arbitration Center of the <strong>Cali Chamber of Commerce</strong>.</p>"
+                        nda_full_text: "<h4>1. Legal Framework and Object of Protection</h4><p>Based on <strong>Article 15 of the Colombian Political Constitution</strong>, <strong>Law 1581 of 2012</strong> (Data Protection), and <strong>Law 256 of 1996</strong> (Trade Secrets), this agreement protects the intellectual, commercial, technical, and design property hosted in this Corporate Vault. This material includes privileged information covered by previous non-disclosure agreements with brands such as Eficacia, Unilever, Alquería, and Derco, under the legal custody of Jhon Alejandro Vega Ramírez ('The Disclosing Party').</p><h4>2. Irrevocable Obligation of Confidentiality</h4><p>The natural or legal person accessing the vault ('The Receiving Party') commits to maintaining strict confidentiality. Total or partial reproduction, transmission, reverse engineering, screen capturing, or storage by any physical or digital means is strictly prohibited. Access is granted exclusively and limitedly for professional evaluation purposes.</p><h4>3. Penalty Clause and Damages</h4><p>Proven breach of the non-disclosure obligation will empower The Disclosing Party to immediately demand a penalty payment equivalent to <strong>fifty thousand US dollars (USD $50,000)</strong> or its equivalent in COP, enforceable through executive action without requiring prior notice of default, and independent of any claims for additional damages or relevant criminal actions.</p><h4>4. Jurisdiction and Dispute Resolution</h4><p>Cualquier dispute arising from this access will be resolved in law through an Arbitration Tribunal attached to the Conciliation and Arbitration Center of the <strong>Cámara de Comercio de Cali</strong>.</p>"
                     }
                 };
                 

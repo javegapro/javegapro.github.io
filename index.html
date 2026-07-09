@@ -1,23 +1,15 @@
 <!DOCTYPE html>
 <html lang="es" id="html-root">
 <head>
-    <!-- ==========================================
-         [MÓDULO 1] META, VIEWPORT Y SEGURIDAD
-         ========================================== -->
-    <!-- Define la codificación universal para soportar caracteres especiales sin fricción -->
     <meta charset="UTF-8">
-    <!-- Viewport adaptativo: 'cover' permite usar áreas seguras (notch) en iOS/Android manteniendo un diseño edge-to-edge -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <!-- Tema de color que mimetiza la barra del navegador del dispositivo móvil con el fondo de la web -->
     <meta name="theme-color" content="#020617">
     
-    <!-- Meta-etiquetas SEO y Open Graph -->
     <title data-i18n="head_title">Jhon Alejandro Vega Ramírez | Especialista Tecnológico (JavegaPro)</title>
     <meta name="description" content="Portafolio oficial de Jhon Alejandro Vega Ramírez (Jhon Vega / JavegaPro). Estratega multidisciplinario, Especialista Creativo Tecnológico, Diseñador UI/UX y Producción Audiovisual.">
     <meta name="keywords" content="Jhon Alejandro Vega Ramírez, Jhon Vega, JHON ALEJANDRO VEGA RAMIREZ, jhon alejandro vega ramirez, john, alejandro vega, javega, javegapro, Desarrollo Web, Diseño UI/UX, Producción Audiovisual, Líder de Innovación Creativa, IA Generativa">
     <meta name="author" content="Jhon Alejandro Vega Ramírez">
     
-    <!-- Etiquetas para previsualización enriquecida en redes sociales (LinkedIn, WhatsApp) -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Jhon Alejandro Vega Ramírez | Portafolio Profesional">
     <meta property="og:description" content="Descubre el ecosistema creativo de Jhon Vega (JavegaPro): Diseño, Desarrollo Web y Producción Audiovisual.">
@@ -30,7 +22,6 @@
     <meta name="twitter:description" content="Estratega multidisciplinario y Especialista Creativo Tecnológico.">
     <meta name="twitter:image" content="https://static.wixstatic.com/media/14f4fb_62c1344e52a441daaa100e3400a6cc19~mv2_d_3176_4000_s_4_2.jpg">
 
-    <!-- JSON-LD: Entidad de Grafo de Conocimiento de Google -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -66,11 +57,9 @@
     }
     </script>
     
-    <!-- Favicon SVG dinámico inyectado en base64 para evitar peticiones HTTP adicionales al servidor -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text x='50' y='68' font-family='Arial, sans-serif' font-size='55' font-weight='bold' fill='%232dd4bf' text-anchor='middle'>AV</text></svg>" type="image/svg+xml">
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a'/><text x='50' y='68' font-family='Arial, sans-serif' font-size='55' font-weight='bold' fill='%232dd4bf' text-anchor='middle'>AV</text></svg>">
     
-    <!-- Resolución anticipada de DNS para dominios externos críticos (Rendimiento Core Web Vitals) -->
     <link rel="preconnect" href="https://www.youtube.com">
     <link rel="preconnect" href="https://static.wixstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -455,13 +444,11 @@
 </head>
 <body class="is-loading">
 
-    <!-- Previene saltos bruscos nativos del historial al recargar la página -->
     <script>
         if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
         window.scrollTo(0, 0);
     </script>
 
-    <!-- UI FLOTANTE GLOBAL -->
     <div class="lang-toggle" id="langToggleBtn" aria-label="Cambiar idioma">
         <span id="lang-es" class="lang-option active">🇪🇸</span>
         <span id="lang-en" class="lang-option">🇬🇧</span>
@@ -476,7 +463,6 @@
         <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
     </button>
 
-    <!-- DOM DEL PRELOADER FÍSICO -->
     <div class="splash-panel top"></div>
     <div class="splash-panel bottom"></div>
     <div class="splash-laser"></div>
@@ -488,7 +474,6 @@
         <p class="subtitle reveal-element" data-i18n="subtitle">Líder de Innovación Creativa | Identidad Visual & E-learning</p>
     </header>
 
-    <!-- NAVEGACIÓN Y FILTROS -->
     <div class="filter-container reveal-element">
         <button class="filter-btn" data-filter="perfil" data-i18n="btn_profile">Perfil Profesional</button>
         <button class="filter-btn active" data-filter="all" data-i18n="btn_all">Todo</button>
@@ -499,9 +484,6 @@
         <button class="vault-filter-btn" id="openVaultBtnHeader" aria-label="Abrir bóveda"><span class="icon">🔒</span> <span data-i18n="btn_vault_header">Acceso Bóveda</span></button>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- SECCIÓN PERFIL PROFESIONAL BENTO GRID -->
-    <!-- ========================================================= -->
     <div id="profile-section">
         <div class="bento-grid">
             
@@ -509,12 +491,12 @@
                 <div class="bento-glow"></div>
                 <div class="bento-content">
                     <h3 data-i18n="prof_title">Impacto Estratégico</h3>
-                    <p data-i18n="profile_text">Estratega multidisciplinario y Especialista Creativo Tecnológico. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente estratégico entre la visión de negocio, la estética visual de vanguardia y la adopción tecnológica (Product Owner) en empresas top.</p>
+                    <p data-i18n="profile_text">Ingeniero Multimedia (ABET) y Product Owner (PSPO I). Conecto la visión de negocio con la tecnología mediante dirección de arte, producción audiovisual B2B y estrategias digitales impulsadas por IA. Funciono como el puente ideal entre el mundo creativo y la arquitectura técnica para liderar transformaciones digitales con un enfoque profundamente humano.</p>
                     
                     <div class="bento-metrics">
                         <div class="bento-metric"><span class="num">8+</span><span class="label" data-i18n="stat_years">Años de Exp.</span></div>
                         <div class="bento-metric"><span class="num">PO</span><span class="label" data-i18n="stat_po">Product Owner</span></div>
-                        <div class="bento-metric"><span class="num">+30</span><span class="label" data-i18n="stat_projects">Proyectos B2B</span></div>
+                        <div class="bento-metric"><span class="num">IA</span><span class="label" data-i18n="stat_ai">IA Generativa</span></div>
                     </div>
                 </div>
             </div>
@@ -527,34 +509,29 @@
                         <div class="cv-timeline-wrapper">
                             <div class="cv-timeline">
                                 <div class="cv-item">
-                                    <span class="cv-year">2023 - PRESENTE</span>
-                                    <span class="cv-role" data-i18n="rol_1">Co-Fundador & Líder de Producto</span>
-                                    <h4 data-i18n="rol_1_co">AUTÓMATAS</h4>
+                                    <span class="cv-year">2026 - PRESENTE</span>
+                                    <span class="cv-role" data-i18n="rol_1">Productor Audiovisual B2B</span>
+                                    <h4 data-i18n="rol_1_co">EFICACIA S.A.</h4>
                                 </div>
                                 <div class="cv-item">
-                                    <span class="cv-year">2021 - PRESENTE</span>
-                                    <span class="cv-role" data-i18n="rol_2">Desarrollador Digital y Gestión del Cambio</span>
-                                    <h4 data-i18n="rol_2_co">ESPY S.A. E.S.P.</h4>
+                                    <span class="cv-year">2024 - PRESENTE</span>
+                                    <span class="cv-role" data-i18n="rol_2">Fundador & Gestor Proyectos IA</span>
+                                    <h4 data-i18n="rol_2_co">AUTÓMATAS</h4>
                                 </div>
                                 <div class="cv-item">
-                                    <span class="cv-year">2016 - PRESENTE</span>
-                                    <span class="cv-role" data-i18n="rol_3">Director General & Productor Ejecutivo</span>
-                                    <h4 data-i18n="rol_3_co">JAVEGA (Marca Personal)</h4>
+                                    <span class="cv-year">2022 - 2026</span>
+                                    <span class="cv-role" data-i18n="rol_3">Coord. Comunicaciones e Innovación</span>
+                                    <h4 data-i18n="rol_3_co">ESPY S.A. E.S.P.</h4>
                                 </div>
                                 <div class="cv-item">
-                                    <span class="cv-year">2022</span>
-                                    <span class="cv-role" data-i18n="rol_4">Líder de Prod. Multimedia y E-learning</span>
-                                    <h4 data-i18n="rol_4_co">EFICACIA S.A.</h4>
+                                    <span class="cv-year">2016 - 2024</span>
+                                    <span class="cv-role" data-i18n="rol_4">Director Creativo & Realizador</span>
+                                    <h4 data-i18n="rol_4_co">JAVEGA</h4>
                                 </div>
                                 <div class="cv-item">
-                                    <span class="cv-year">2020 - 2021</span>
-                                    <span class="cv-role" data-i18n="rol_5">Director de Arte & Productor Visual</span>
-                                    <h4 data-i18n="rol_5_co">CONCEPTO AGENCIA</h4>
-                                </div>
-                                <div class="cv-item">
-                                    <span class="cv-year">2017 - 2021</span>
-                                    <span class="cv-role" data-i18n="rol_6">Director de Arte & Producción</span>
-                                    <h4 data-i18n="rol_6_co">AGENCIAS Y EDUCACIÓN</h4>
+                                    <span class="cv-year">2021 - 2022</span>
+                                    <span class="cv-role" data-i18n="rol_5">Productor Multimedia & Diseño</span>
+                                    <h4 data-i18n="rol_5_co">ALCALDÍA DE YUMBO</h4>
                                 </div>
                             </div>
                         </div>
@@ -567,13 +544,14 @@
                 <div class="bento-content">
                     <h3 data-i18n="prof_skills">Ecosistema Tecnológico</h3>
                     <div class="skill-ecosystem">
-                        <span class="tech-pill">Product Ownership</span>
-                        <span class="tech-pill">Estrategia de Marca</span>
-                        <span class="tech-pill">Diseño Instruccional</span>
+                        <span class="tech-pill">Product Owner (PSPO I)</span>
                         <span class="tech-pill">IA Generativa (Flow)</span>
-                        <span class="tech-pill">Dirección Audiovisual</span>
-                        <span class="tech-pill">E-learning</span>
-                        <span class="tech-pill">Adobe CC / Final Cut</span>
+                        <span class="tech-pill">E-learning B2B</span>
+                        <span class="tech-pill">Producción Audiovisual</span>
+                        <span class="tech-pill">Dirección Creativa</span>
+                        <span class="tech-pill">Transformación Digital</span>
+                        <span class="tech-pill">Metodologías Ágiles</span>
+                        <span class="tech-pill">Adobe CC / DaVinci</span>
                     </div>
                 </div>
             </div>
@@ -603,11 +581,11 @@
                         </div>
                         <div class="cert-item">
                             <div class="cert-icon">
-                                <svg viewBox="0 0 24 24"><path d="M16,11.78L20.24,4.45L21.97,5.45L16.74,14.5L10.23,10.75L5.46,19H22V21H2V3H4V17.54L9.5,8L16,11.78Z"/></svg>
+                                <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.36 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
                             </div>
                             <div class="cert-text">
-                                <strong data-i18n="cert_3">Fundamentos Marketing</strong>
-                                <span data-i18n="cert_3_org">Google Actívate</span>
+                                <strong data-i18n="cert_3">Generative AI Leader</strong>
+                                <span data-i18n="cert_3_org">Google Cloud</span>
                             </div>
                         </div>
                     </div>
@@ -616,15 +594,10 @@
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- BASE DE DATOS MULTIMEDIA (Videos, Fotos, Diseño, Sonido) -->
-    <!-- ========================================================= -->
     <main class="portfolio-grid reveal-element" id="main-grid">
         
-        <!-- AUDIOVISUAL (9 Elementos: Reordenados y renombrados según spec) -->
         <div class="media-item audiovisual" data-yt-id="0ivRf3-IvGs">
             <div class="media-texture"></div>
-            <!-- fetchpriority garantiza carga temprana (LCP) -->
             <img src="https://img.youtube.com/vi/0ivRf3-IvGs/maxresdefault.jpg" class="yt-thumbnail" alt="Clara" fetchpriority="high" decoding="async" draggable="false">
             <iframe class="media-iframe" data-src="https://www.youtube.com/embed/0ivRf3-IvGs?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=0ivRf3-IvGs" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
@@ -655,17 +628,14 @@
             <div class="media-overlay"><p data-i18n="vid_cat_evento">Cobertura de Evento</p><h2 data-i18n="vid_tit_evento">Vallecaucanos</h2></div>
         </div>
 
-        <!-- Se ordena: Detrás de cámaras primero, Video Lyric enseguida -->
         <div class="media-item audiovisual" data-yt-id="3GLjAoBXZV8">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/3GLjAoBXZV8/maxresdefault.jpg" class="yt-thumbnail" alt="BTS" loading="lazy" decoding="async" draggable="false">
             <iframe class="media-iframe" data-src="https://www.youtube.com/embed/3GLjAoBXZV8?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=3GLjAoBXZV8" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
-            <!-- Nuevo título para BTS integrado semánticamente -->
             <div class="media-overlay"><p data-i18n="cat_post">Postproducción</p><h2 data-i18n="vid_tit_mauna">Behind Scenes Desnúdame - Alejo Djoy</h2></div>
         </div>
 
-        <!-- Video Lyric movido junto al BTS -->
         <div class="media-item audiovisual" data-yt-id="CGccljx4QxQ">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/CGccljx4QxQ/maxresdefault.jpg" class="yt-thumbnail" alt="Lyric" loading="lazy" decoding="async" draggable="false">
@@ -674,7 +644,6 @@
             <div class="media-overlay"><p data-i18n="vid_cat_lyric">Tipografía & Motion Graphics</p><h2 data-i18n="vid_tit_lyric">Video Lyric - Suave (Mauna)</h2></div>
         </div>
 
-        <!-- Finaliza bloque audiovisual con los UniChef -->
         <div class="media-item audiovisual" data-yt-id="TLjHcX4UPHg">
             <div class="media-texture"></div>
             <img src="https://img.youtube.com/vi/TLjHcX4UPHg/maxresdefault.jpg" class="yt-thumbnail" alt="Unichef 1" loading="lazy" decoding="async" draggable="false">
@@ -699,11 +668,9 @@
             <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2 data-i18n="vid_tit_chef3">UniChef: Postre</h2></div>
         </div>
 
-        <!-- FOTOGRAFÍA (8 Galerías) -->
         <div class="media-item fotografia" data-gallery="food">
             <div class="media-texture"></div>
             <div class="hover-carousel">
-                <!-- Se inyectan loading lazy para evitar ahogar el LCP en imágenes posteriores -->
                 <img src="https://static.wixstatic.com/media/14f4fb_43e7da2457144bdb97f9a6ac7f11142f~mv2.jpg" class="hc-img active" alt="Food 1" loading="lazy" decoding="async" draggable="false">
                 <img src="https://static.wixstatic.com/media/14f4fb_a30e8b1221fd4e09ad001b8b2c9f19b4~mv2.jpg" class="hc-img" loading="lazy" decoding="async" draggable="false" alt="Food 2">
                 <img src="https://static.wixstatic.com/media/14f4fb_b1f7b460c59040178ef0342379f16f26~mv2.png" class="hc-img" loading="lazy" decoding="async" draggable="false" alt="Food 3">
@@ -765,7 +732,7 @@
             <div class="media-texture"></div>
             <div class="hover-carousel">
                 <img src="https://static.wixstatic.com/media/14f4fb_b9505e5b99434479a64c516219d4ba31~mv2_d_5357_3912_s_4_2.jpg" class="hc-img active focus-top" alt="Kapo 1" loading="lazy" decoding="async" draggable="false">
-                <img src="https://static.wixstatic.com/media/14f4fb_df15ab106fbb4b519ddcc1f23d435086~mv2_d_4000_4144_s_4_2.jpg" class="hc-img focus-top" loading="lazy decoding="async" draggable="false" alt="Kapo 2">
+                <img src="https://static.wixstatic.com/media/14f4fb_df15ab106fbb4b519ddcc1f23d435086~mv2_d_4000_4144_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Kapo 2">
                 <img src="https://static.wixstatic.com/media/14f4fb_c3a9c9a9eeea40e5a1b147b81234a83a~mv2_d_3662_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Kapo 3">
             </div>
             <div class="protect-layer"></div>
@@ -810,7 +777,6 @@
             <div class="media-overlay"><p data-i18n="cat_land">Paisaje y Bellas Artes</p><h2 data-i18n="title_nature">Naturaleza</h2></div>
         </div>
 
-        <!-- DISEÑO VISUAL (Estos 11 elementos serán aleatorizados dinámicamente al cargar por el módulo DesignRandomizer) -->
         <div class="media-item diseno" data-diseno-idx="0">
             <div class="media-texture"></div>
             <img src="Banner%20web%20Jdmaray%20Cali%20SPA.jpg?v=2" class="masonry-img fallback-img" alt="Banner web Jdmaray Cali SPA" loading="lazy" decoding="async" draggable="false">
@@ -888,7 +854,6 @@
             <div class="media-overlay"><p data-i18n="cat_vinyl">Diseño de Vinilo</p><h2>Xbox: Gears of War</h2></div>
         </div>
 
-        <!-- AUDIO SONORO B2B (6 Pistas controladas por el AudioManager API optimizado) -->
         <div class="media-item audio" data-audio-src="https://static.wixstatic.com/mp3/14f4fb_cec3885e857446d5bb03641eed32c0d8.mp3">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
@@ -993,7 +958,6 @@
 
     </main>
 
-    <!-- FOOTER: REDES, CONTACTO Y BÓVEDA -->
     <section class="ecosystem-section reveal-element">
         <h3 data-i18n="ecosystem_title">Ecosistema Creativo</h3>
         <a href="https://automatas.co" target="_blank" rel="noopener noreferrer" class="brand-btn-clean">
@@ -1001,12 +965,10 @@
         </a>
     </section>
 
-    <!-- Carrusel Infinito de Marcas B2B impactadas -->
     <section class="clients-section reveal-element">
         <h3 data-i18n="clients_title">Empresas y Aliados</h3>
         <div class="marquee-container" id="marqueeContainer">
             <div class="marquee-track" id="marqueeTrack">
-                <!-- Se retiró Autómatas del pool de clientes NDA -->
                 <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo%20derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
@@ -1015,7 +977,6 @@
                 <img src="Logo%20eficacia.png" alt="Eficacia" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo%20espy.png" alt="Espy" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 
-                <!-- Duplicados exactos para el loop infinito -->
                 <img src="Logo%20Unilever.png" alt="Unilever" class="client-logo client-logo-unilever fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo_Alqueria.png" alt="Alquería" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
                 <img src="Logo%20derco.png" alt="Derco" class="client-logo fallback-img vault-trigger" loading="lazy" decoding="async" draggable="false">
@@ -1027,13 +988,11 @@
         </div>
     </section>
 
-    <!-- Action Section -->
     <section class="contact-section reveal-element" id="contacto">
         <h2 data-i18n="contact_title">Conectemos</h2>
         <p data-i18n="contact_desc">¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.</p>
         
         <div class="contact-actions">
-            <!-- Seguridad: target="_blank" siempre acompaña rel="noopener noreferrer" para prevenir tabnabbing -->
             <a href="https://wa.me/573001404327?text=Hola%20Alejandro,%20estoy%20viendo%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20escribirte." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
                 <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                 <span data-i18n="btn_wa">Escríbeme por WhatsApp</span>
@@ -1044,7 +1003,6 @@
                 <span data-i18n="btn_mail">Escríbeme un correo</span>
             </a>
             
-            <!-- Descarga segura: Se codifican los espacios usando %20 para evitar quiebres en servidores Linux HTTP -->
             <a href="ALEJANDRO%20VEGA%20HV%202026.pdf" download="ALEJANDRO VEGA HV 2026.pdf" class="btn-secondary">
                 <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                 <span data-i18n="btn_cv">Descargar CV (PDF)</span>
@@ -1064,7 +1022,6 @@
         </div>
     </section>
 
-    <!-- Bóveda NDA Estática de Fondo -->
     <section class="vault-section reveal-element">
         <div class="vault-container">
             <div class="vault-icon-glow">🔒</div>
@@ -1074,11 +1031,6 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- CAPA GLOBAL DE MODALES (Z-Index Extremo) -->
-    <!-- ========================================================= -->
-    
-    <!-- Youtube Modal Container -->
     <div class="modal-fullscreen" id="youtube-modal">
         <div class="modal-content-wrapper">
             <button class="close-btn" id="closeYtBtn" data-i18n="btn_close">CERRAR [X]</button>
@@ -1086,17 +1038,14 @@
         </div>
     </div>
 
-    <!-- Image Gallery Modal -->
     <div class="modal-fullscreen" id="gallery-modal">
         <button class="close-btn" id="closeGalleryBtn" data-i18n="btn_close">CERRAR [X]</button>
         <div class="gallery-nav gallery-prev" id="galleryPrevBtn" aria-label="Imagen anterior">&#10094;</div>
-        <!-- Desactivamos el menu contextual en la imagen para prevenir descargas casuales -->
         <img src="" id="gallery-image" alt="Galería Fotográfica" oncontextmenu="return false;" loading="lazy" decoding="async" draggable="false">
         <div class="gallery-nav gallery-next" id="galleryNextBtn" aria-label="Siguiente imagen">&#10095;</div>
         <div class="gallery-dots" id="gallery-dots"></div>
     </div>
 
-    <!-- FORMULARIO NDA BÓVEDA SEGURO -->
     <div class="modal-fullscreen" id="vault-modal">
         <div class="form-modal-box">
             <button class="close-btn" id="closeVaultBtn" style="position: absolute; top: 15px; right: 15px; border: none; background: transparent; box-shadow: none; color: var(--text-muted);" aria-label="Cerrar modal">[X]</button>
@@ -1114,11 +1063,9 @@
 
             <div class="nda-document-scroll">
                 <div id="nda-text-content">
-                    <!-- Textos legales dinámicos inyectados vía JS (i18n) -->
-                </div>
+                    </div>
             </div>
 
-            <!-- Formulario semántico validado (novalidate se usa para delegar las alertas nativas a JS de forma silenciosa) -->
             <div class="nda-form-wrapper">
                 <form id="vault-form" novalidate>
                     <div class="form-row">
@@ -1155,28 +1102,29 @@
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- MOTOR JAVASCRIPT VANILLA MULTIMODULAR -->
-    <!-- ========================================================= -->
     <script>
         (() => {
             // ==========================================
             // MÓDULO: DICCIONARIO DE TRADUCCIONES (i18n)
+            // Actualizado para reflejar la última hoja de vida de 2026
             // ==========================================
             const translations = {
                 es: {
                     head_title: "Jhon Alejandro Vega Ramírez | Especialista Tecnológico (JavegaPro)", btn_profile: "Perfil Profesional",
                     btn_vault_header: "Acceso Bóveda", subtitle: "Líder de Innovación Creativa | Identidad Visual & E-learning",
                     prof_title: "Impacto Estratégico", prof_rol: "Experiencia TOP", prof_skills: "Ecosistema Tecnológico",
-                    rol_1: "Co-Fundador & Líder de Producto", rol_1_co: "AUTÓMATAS",
-                    rol_2: "Desarrollador Digital y Gestión del Cambio", rol_2_co: "ESPY S.A. E.S.P.",
-                    rol_3: "Director General & Productor Ejecutivo", rol_3_co: "JAVEGA (Marca Personal)",
-                    rol_4: "Líder de Producción Multimedia y E-learning", rol_4_co: "EFICACIA S.A.", 
-                    rol_5: "Director de Arte & Productor Visual", rol_5_co: "CONCEPTO AGENCIA",
-                    rol_6: "Director de Arte & Producción", rol_6_co: "AGENCIAS Y EDUCACIÓN",
-                    cert_title: "Educación & Certificaciones", cert_1: "Ingeniería Multimedia", cert_1_org: "U. San Buenaventura (ABET)", cert_2: "PSPO I Product Owner", cert_2_org: "Scrum.org", cert_3: "Fundamentos Marketing", cert_3_org: "Google Actívate",
-                    profile_text: 'Estratega multidisciplinario y Especialista Creativo Tecnológico. Me especializo en la construcción de identidades de marca sólidas y ecosistemas de E-learning de alto impacto. Actúo como el puente estratégico entre la visión de negocio, la estética visual de vanguardia y la adopción tecnológica (Product Owner) en empresas top.',
-                    stat_years: "Años de Exp.", stat_po: "Product Owner", stat_projects: "Proyectos B2B",
+                    
+                    // Inyección de nueva data del CV (2026)
+                    rol_1: "Productor Audiovisual B2B", rol_1_co: "EFICACIA S.A.",
+                    rol_2: "Fundador & Gestor Proyectos IA", rol_2_co: "AUTÓMATAS",
+                    rol_3: "Coord. Comunicaciones e Innovación", rol_3_co: "ESPY S.A. E.S.P.",
+                    rol_4: "Director Creativo & Realizador", rol_4_co: "JAVEGA",
+                    rol_5: "Productor Multimedia & Diseño", rol_5_co: "ALCALDÍA DE YUMBO",
+                    
+                    cert_title: "Educación & Certificaciones", cert_1: "Ingeniería Multimedia", cert_1_org: "U. San Buenaventura (ABET)", cert_2: "PSPO I Product Owner", cert_2_org: "Scrum.org", cert_3: "Generative AI Leader", cert_3_org: "Google Cloud",
+                    profile_text: "Ingeniero Multimedia (ABET) y Product Owner (PSPO I). Conecto la visión de negocio con la tecnología mediante dirección de arte, producción audiovisual B2B y estrategias digitales impulsadas por IA. Funciono como el puente ideal entre el mundo creativo y la arquitectura técnica para liderar transformaciones digitales con un enfoque profundamente humano.",
+                    stat_years: "Años de Exp.", stat_po: "Product Owner", stat_ai: "IA Generativa",
+                    
                     btn_all: "Todo", btn_video: "Producción Audiovisual", btn_photo: "Fotografía", btn_design: "Diseño Visual", btn_audio: "Diseño Sonoro",
                     vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara", vid_cat_showreel: "Dirección Creativa", vid_tit_showreel: "Showreel", vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO", vid_cat_evento: "Cobertura de Evento", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Programa Gastronómico Online", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Postre", vid_cat_lyric: "Tipografía & Motion Graphics", vid_tit_lyric: "Video Lyric - Suave (Mauna)", cat_post: "Postproducción", vid_tit_mauna: "Behind Scenes Desnúdame - Alejo Djoy", cat_artdir: "Dirección de Arte Comercial", tit_food: "Food Styling", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", cat_product: "Fotografía Comercial B2C", title_product: "Fotografía de Producto", cat_lighting: "Iluminación & Técnica", title_portraits: "Retratos de Estudio", cat_editorial: "Fotografía Editorial", tit_sabrina: "Actriz: Sabrina", cat_press: "Retrato Promocional (Prensa)", tit_kapo: "Artista: KAPO", cat_casting: "Casting Visual", title_emerging: "Artistas Emergentes", cat_exp: "Exploración de Luz", tit_exp: "Experimental", cat_land: "Paisaje y Bellas Artes", title_nature: "Naturaleza", cat_banner: "Banner Web", cat_cover: "Diseño de Portada Musical", mauna_title: "Portada Suave - Mauna", cat_vinyl: "Diseño de Vinilo", cat_id: "Identidad Estacional", tit_navidad: "Logo Navideño", cat_vector: "Ilustración Vectorial", tit_koala: "Koala", cat_corp: "Branding Corporativo", cat_edit: "Diseño Editorial", tit_ruta: "La Ruta del Sabor", cat_mosaic: "Mosaico Digital", tit_school: "Colegio Parroquial", tit_yumbo: "Alcaldía de Yumbo", cat_ad: "Diseño Publicitario", tit_cali: "Alcaldía de Cali", cat_promo: "Diseño Promocional", tit_noches: "Noches D'Feria", cat_flyer: "Diseño de Volante", tit_vape: "Vape Expo 2020", aud_alone: "Acústico / Soul Cinematográfico", aud_trapped: "Tensión / Percusión de Acción", aud_rock: "Rock Alternativo / Alta Energía", aud_rain: "Ambient / Synthwave Inspirador", aud_hades: "Darkwave / Synth Industrial", aud_sauvage: "Beat Global / Fusión Urbana", ecosystem_title: "Ecosistema Creativo", clients_title: "Empresas y Aliados", contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.", btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", btn_cv: "Descargar CV (PDF)", link_yt: "Canal de YouTube", vault_title: "Bóveda Corporativa", vault_desc: "Mis diseños de E-learning e infografías para Unilever, Alquería y Derco están sujetos a NDA.", vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]", modal_req_title: "Solicitud de Acceso", modal_req_desc: "Está a punto de solicitar acceso a la Bóveda de NDA. Clientes protegidos:", label_name: "Su Nombre Completo:", label_id: "Documento / NIT:", label_company: "Empresa o Agencia:", label_email: "Su Correo Corporativo:", btn_submit: "Enviar Solicitud y Aceptar", btn_connect: "CONECTEMOS",
                     nda_agree: "Declaro que actúo como representante legal o persona autorizada y <span>ACEPTO IRREVOCABLEMENTE</span> las cláusulas de confidencialidad y penalidad económica.",
@@ -1186,15 +1134,18 @@
                     head_title: "Jhon Alejandro Vega Ramírez | Tech Specialist (JavegaPro)", btn_profile: "Professional Profile",
                     btn_vault_header: "Vault Access", subtitle: "Creative Innovation Leader | Visual Identity & E-learning",
                     prof_title: "Strategic Impact", prof_rol: "Top Experience", prof_skills: "Technology Ecosystem",
-                    rol_1: "Co-Founder & Product Lead", rol_1_co: "AUTÓMATAS",
-                    rol_2: "Digital Developer & Change Management", rol_2_co: "ESPY S.A. E.S.P.",
-                    rol_3: "General Director & Executive Producer", rol_3_co: "JAVEGA (Personal Brand)",
-                    rol_4: "Multimedia Production & E-learning Lead", rol_4_co: "EFICACIA S.A.", 
-                    rol_5: "Art Director & Visual Producer", rol_5_co: "CONCEPTO AGENCIA", 
-                    rol_6: "Art Director & Production", rol_6_co: "AGENCIES & EDUCATION",
-                    cert_title: "Education & Certifications", cert_1: "Multimedia Engineering", cert_1_org: "U. San Buenaventura (ABET)", cert_2: "PSPO I Product Owner", cert_2_org: "Scrum.org", cert_3: "Marketing Fundamentals", cert_3_org: "Google Actívate",
-                    profile_text: 'Multidisciplinary Strategist and Creative Technology Specialist. I specialize in building solid brand identities and high-impact E-learning ecosystems. I act as the strategic bridge between business vision, cutting-edge aesthetics, and tech adoption (Product Owner) in top companies.',
-                    stat_years: "Years Exp.", stat_po: "Product Owner", stat_projects: "B2B Projects",
+                    
+                    // Traducciones CV inyectadas 
+                    rol_1: "B2B Audiovisual Producer", rol_1_co: "EFICACIA S.A.",
+                    rol_2: "Founder & AI Project Manager", rol_2_co: "AUTÓMATAS",
+                    rol_3: "Communications & Innovation Coordinator", rol_3_co: "ESPY S.A. E.S.P.",
+                    rol_4: "Creative Director & Filmmaker", rol_4_co: "JAVEGA",
+                    rol_5: "Multimedia Producer & Designer", rol_5_co: "YUMBO MAYOR'S OFFICE",
+                    
+                    cert_title: "Education & Certifications", cert_1: "Multimedia Engineering", cert_1_org: "U. San Buenaventura (ABET)", cert_2: "PSPO I Product Owner", cert_2_org: "Scrum.org", cert_3: "Generative AI Leader", cert_3_org: "Google Cloud",
+                    profile_text: "Multimedia Engineer (ABET) and Product Owner (PSPO I). I connect business vision with technology through art direction, B2B audiovisual production, and AI-driven digital strategies. I act as the ideal bridge between the creative world and technical architecture to lead digital transformations with a deeply human focus.",
+                    stat_years: "Years Exp.", stat_po: "Product Owner", stat_ai: "Generative AI",
+                    
                     btn_all: "All", btn_video: "Audiovisual Production", btn_photo: "Photography", btn_design: "Visual Design", btn_audio: "Sound Design",
                     vid_cat_clara: "AI Generative Strategy", vid_tit_clara: "Clara Project", vid_cat_showreel: "Creative Direction", vid_tit_showreel: "Showreel", vid_cat_kapo: "Color Grading", vid_tit_kapo: "Color Test: KAPO", vid_cat_evento: "Event Coverage", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Online Culinary Show", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Dessert", vid_cat_lyric: "Typography & Motion Graphics", vid_tit_lyric: "Lyric Video - Suave (Mauna)", cat_post: "Post-production", vid_tit_mauna: "Behind Scenes Desnúdame - Alejo Djoy", cat_artdir: "Commercial Art Direction", tit_food: "Food Styling", cat_fashion: "Fashion Book & Beauty", tit_fashion: "Model Book", cat_product: "B2C Commercial Photography", title_product: "Product Photography", cat_lighting: "Lighting & Technique", title_portraits: "Studio Portraits", cat_editorial: "Editorial Photography", tit_sabrina: "Actress: Sabrina", cat_press: "Promotional Portrait (Press)", tit_kapo: "Artist: KAPO", cat_casting: "Visual Casting", title_emerging: "Emerging Artists", cat_exp: "Light Exploration", tit_exp: "Experimental", cat_land: "Landscape & Fine Art", title_nature: "Nature", cat_banner: "Web Banner", cat_cover: "Music Cover Design", mauna_title: "Cover for 'Suave' by Mauna", cat_vinyl: "Vinyl Wrap Design", cat_id: "Seasonal Identity", tit_navidad: "Christmas Logo", cat_vector: "Vector Illustration", tit_koala: "Koala", cat_corp: "Corporate Branding", cat_edit: "Editorial Design", tit_ruta: "The Flavor Route", cat_mosaic: "Digital Mosaic", tit_school: "Parochial School", tit_yumbo: "Yumbo Mayor's Office", cat_ad: "Advertising Design", tit_cali: "Cali Mayor's Office", cat_promo: "Promotional Design", tit_noches: "Noches D'Feria", cat_flyer: "Flyer Design", tit_vape: "Vape Expo 2020", aud_alone: "Acoustic / Cinematic Soul", aud_trapped: "Tension / Action Percussion", aud_rock: "Alternative Rock / High Energy", aud_rain: "Ambient / Uplifting Synthwave", aud_hades: "Darkwave / Industrial Synth", aud_sauvage: "Global Beat / Urban Fusion", ecosystem_title: "Creative Ecosystem", clients_title: "Companies & Partners", contact_title: "LET'S CONNECT", contact_desc: "Ready to elevate the digital narrative of your projects? Let's schedule a strategic session.", btn_wa: "Text me on WhatsApp", btn_mail: "Send me an email", btn_cv: "Download Resume (PDF)", link_yt: "YouTube Channel", vault_title: "Corporate Vault", vault_desc: "My E-learning designs for Unilever, Alquería, and Derco are subject to NDA.", vault_btn: "Request Secure Access", btn_close: "CLOSE [X]", modal_req_title: "NDA Signature", modal_req_desc: "Irrevocable Confidentiality Agreement", label_name: "Full Name:", label_id: "Gov ID / Tax ID:", label_company: "Company or Agency:", label_email: "Corporate Email:", btn_submit: "Sign and Request Access", btn_connect: "LET'S CONNECT",
                     nda_agree: "I declare that I act as a legal representative or authorized person and <span>IRREVOCABLY ACCEPT</span> the confidentiality clauses and economic penalties.",

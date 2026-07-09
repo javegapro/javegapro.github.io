@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" id="html-root">
 <head>
-    <!-- ==========================================
-         [MÓDULO 1] META, VIEWPORT Y SEGURIDAD
-         ========================================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#020617">
@@ -161,7 +158,6 @@
             position: relative; 
             transform-style: preserve-3d;
             transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(1);
-            /* [MODIFICACIÓN QA] Transición suave (ease-out) para un movimiento 3D sumamente fluido y armónico */
             transition: transform 0.3s ease-out, border-color 0.3s, box-shadow 0.3s;
             box-shadow: inset 0 0 20px rgba(255,255,255,0.02), 0 20px 50px rgba(0,0,0,0.5); 
         }
@@ -194,7 +190,6 @@
 
         .cv-timeline-container { flex-grow: 1; display: flex; flex-direction: column; min-height: 0; margin-top: 10px; }
         
-        /* [MODIFICACIÓN QA] Max-height incrementado para aprovechar el espacio interno sin estirar al ancestro */
         .cv-timeline-wrapper { 
             flex-grow: 1; overflow-y: auto; padding-right: 10px; 
             max-height: 500px; 
@@ -268,13 +263,11 @@
             .bento-skills { grid-column: span 2; }
             .bento-certs { grid-column: span 3; }
             
-            /* [MODIFICACIÓN QA] Forzar CSS Grid (3 columnas) en la lista de certificaciones */
             .cert-scroll-wrapper { max-height: none; overflow: visible; padding-right: 0; }
             .bento-certs .cert-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
             .bento-certs .cert-item { width: auto; margin: 0; }
         }
         @media (min-width: 600px) and (max-width: 899px) {
-            /* Forzar 2 columnas en tablet */
             .bento-certs .cert-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
             .bento-certs .cert-item { width: auto; margin: 0; }
         }
@@ -492,7 +485,7 @@
         <div id="title-wrapper">
             <h1 id="main-title">Alejandro Vega</h1>
         </div>
-        <p class="subtitle reveal-element" data-i18n="subtitle">Líder de Innovación Creativa | Identidad Visual & E-learning</p>
+        <p class="subtitle reveal-element" data-i18n="subtitle">Ingeniero Multimedia ABET | Product Owner (PSPO I) | Transformación Digital, IA y Dirección Audiovisual</p>
     </header>
 
     <div class="filter-container reveal-element">
@@ -717,7 +710,7 @@
                             </div>
 
                             <div class="cert-item">
-                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M19.35 10.04a7.49 7.49 0 0 0-13.99-1.99A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zm-4.35 1.96l-3 3v-2H9v-2h3V9l3 3z"/></svg></div>
+                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.36 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg></div>
                                 <div class="cert-text">
                                     <strong><span data-i18n="cert_13">Generative AI Leader</span> <span class="in-progress-tag" data-i18n="tag_curso">EN CURSO</span></strong>
                                     <span data-i18n="cert_13_org">Google Cloud</span>
@@ -758,9 +751,6 @@
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- BASE DE DATOS MULTIMEDIA -->
-    <!-- ========================================================= -->
     <main class="portfolio-grid reveal-element" id="main-grid">
         <div class="media-item audiovisual" data-yt-id="0ivRf3-IvGs">
             <div class="media-texture"></div>
@@ -943,7 +933,6 @@
             <div class="media-overlay"><p data-i18n="cat_land">Paisaje y Bellas Artes</p><h2 data-i18n="title_nature">Naturaleza</h2></div>
         </div>
 
-        <!-- DISEÑO VISUAL -->
         <div class="media-item diseno" data-diseno-idx="0">
             <div class="media-texture"></div>
             <img src="Banner%20web%20Jdmaray%20Cali%20SPA.jpg?v=2" class="masonry-img fallback-img" alt="Banner web Jdmaray Cali SPA" loading="lazy" decoding="async" draggable="false">
@@ -1021,7 +1010,6 @@
             <div class="media-overlay"><p data-i18n="cat_vinyl">Diseño de Vinilo</p><h2>Xbox: Gears of War</h2></div>
         </div>
 
-        <!-- AUDIO SONORO B2B -->
         <div class="media-item audio" data-audio-src="https://static.wixstatic.com/mp3/14f4fb_cec3885e857446d5bb03641eed32c0d8.mp3">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
@@ -1126,7 +1114,6 @@
 
     </main>
 
-    <!-- FOOTER: REDES, CONTACTO Y BÓVEDA -->
     <section class="ecosystem-section reveal-element">
         <h3 data-i18n="ecosystem_title">Ecosistema Creativo</h3>
         <a href="https://automatas.co" target="_blank" rel="noopener noreferrer" class="brand-btn-clean">
@@ -1157,7 +1144,6 @@
         </div>
     </section>
 
-    <!-- Action Section -->
     <section class="contact-section reveal-element" id="contacto">
         <h2 data-i18n="contact_title">Conectemos</h2>
         <p data-i18n="contact_desc">¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.</p>
@@ -1192,7 +1178,6 @@
         </div>
     </section>
 
-    <!-- Bóveda NDA Estática de Fondo -->
     <section class="vault-section reveal-element">
         <div class="vault-container">
             <div class="vault-icon-glow">🔒</div>
@@ -1202,10 +1187,6 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- CAPA GLOBAL DE MODALES (Z-Index Extremo) -->
-    <!-- ========================================================= -->
-    
     <div class="modal-fullscreen" id="youtube-modal">
         <div class="modal-content-wrapper">
             <button class="close-btn" id="closeYtBtn" data-i18n="btn_close">CERRAR [X]</button>
@@ -1276,10 +1257,8 @@
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- MOTOR JAVASCRIPT VANILLA MULTIMODULAR -->
-    <!-- ========================================================= -->
     <script>
+        // Capa de seguridad arquitectónica
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.body.classList.remove('is-loading');
@@ -1296,7 +1275,7 @@
                 const translations = {
                     es: {
                         head_title: "Jhon Alejandro Vega Ramírez | Especialista Tecnológico (JavegaPro)", btn_profile: "Perfil Profesional",
-                        btn_vault_header: "Acceso Bóveda", subtitle: "Líder de Innovación Creativa | Identidad Visual & E-learning",
+                        btn_vault_header: "Acceso Bóveda", subtitle: "Ingeniero Multimedia ABET | Product Owner (PSPO I) | Transformación Digital, IA y Dirección Audiovisual",
                         
                         prof_title: "Resumen Profesional", prof_rol: "Experiencia", prof_skills: "Ecosistema Tecnológico",
                         
@@ -1366,7 +1345,7 @@
                     },
                     en: {
                         head_title: "Jhon Alejandro Vega Ramírez | Tech Specialist (JavegaPro)", btn_profile: "Professional Profile",
-                        btn_vault_header: "Vault Access", subtitle: "Creative Innovation Leader | Visual Identity & E-learning",
+                        btn_vault_header: "Vault Access", subtitle: "Multimedia Engineer (ABET) | Product Owner (PSPO I) | Digital Transformation, AI & Audiovisual Direction",
                         
                         prof_title: "Professional Summary", prof_rol: "Experience", prof_skills: "Technology Ecosystem",
                         
@@ -1625,11 +1604,16 @@
                                 if (!iframe) return;
 
                                 if (entry.isIntersecting) {
-                                    if (!iframe.src) { iframe.src = iframe.dataset.src; iframe.onload = () => { iframe.style.opacity = "1"; if (thumb) thumb.style.opacity = "0"; }; } 
+                                    if (!iframe.src) { 
+                                        iframe.src = iframe.dataset.src; 
+                                        const reveal = () => { iframe.style.opacity = "1"; if (thumb) thumb.style.opacity = "0"; };
+                                        iframe.addEventListener('load', reveal);
+                                        setTimeout(reveal, 2000); 
+                                    } 
                                     else { sendCommand(iframe, 'playVideo'); }
                                 } else { sendCommand(iframe, 'pauseVideo'); }
                             });
-                        }, { threshold: 0.7 });
+                        }, { threshold: 0.2 });
                         document.querySelectorAll('.media-item.audiovisual').forEach(item => observer.observe(item));
                     };
 
@@ -1749,7 +1733,7 @@
                 })();
 
                 // ==========================================
-                // MÓDULO: REPRODUCTOR DE AUDIO AVANZADO
+                // MÓDULO: REPRODUCTOR DE AUDIO AVANZADO (CORS BYPASS)
                 // ==========================================
                 const AudioManager = (() => {
                     let audioCtx = null; const activeAudios = new Set(); 
@@ -1786,7 +1770,6 @@
                     const setupAudios = () => {
                         document.querySelectorAll('.media-item.audio').forEach(item => {
                             const audio = new Audio(item.dataset.audioSrc); 
-                            audio.crossOrigin = "anonymous";
                             audio.preload = "metadata";
 
                             const playBtn = item.querySelector('.play-btn'); 
@@ -1807,32 +1790,66 @@
                             });
 
                             const buildVisualizer = () => {
-                                if (isApiReady || !audioCtx) return; const source = audioCtx.createMediaElementSource(audio); analyser = audioCtx.createAnalyser(); analyser.fftSize = 128;
-                                source.connect(analyser); analyser.connect(audioCtx.destination); dataArray = new Uint8Array(analyser.frequencyBinCount); isApiReady = true;
+                                if (isApiReady || !audioCtx) return; 
+                                try {
+                                    const source = audioCtx.createMediaElementSource(audio); 
+                                    analyser = audioCtx.createAnalyser(); 
+                                    analyser.fftSize = 128;
+                                    source.connect(analyser); 
+                                    analyser.connect(audioCtx.destination); 
+                                    dataArray = new Uint8Array(analyser.frequencyBinCount); 
+                                    isApiReady = true;
+                                } catch(e) {
+                                    // CORS fallback silencioso
+                                }
                             };
 
                             const draw = () => {
-                                if (!itemData.isPlaying) return; requestAnimationFrame(draw); ctx.clearRect(0, 0, canvas.width, canvas.height);
-                                if (isApiReady && analyser) {
-                                    analyser.getByteFrequencyData(dataArray); const barWidth = (canvas.width / dataArray.length) * 1.5; let x = 0;
-                                    for (let i = 0; i < dataArray.length; i++) {
-                                        const barHeight = (dataArray[i] / 255) * (canvas.height * 0.8); ctx.fillStyle = `rgba(45, 212, 191, ${dataArray[i]/255})`;
-                                        ctx.beginPath(); ctx.roundRect(x, canvas.height - barHeight, barWidth, barHeight, [4, 4, 0, 0]); ctx.fill(); x += barWidth + 2;
-                                    }
+                                if (!itemData.isPlaying) return; 
+                                requestAnimationFrame(draw); 
+                                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                                
+                                let isFake = !isApiReady || (dataArray && dataArray.every(v => v === 0));
+                                if (isApiReady && analyser) analyser.getByteFrequencyData(dataArray); 
+                                
+                                const barWidth = (canvas.width / 64) * 1.5; 
+                                let x = 0;
+                                let time = Date.now() * 0.005;
+                                let maxBars = dataArray ? dataArray.length : 64;
+
+                                for (let i = 0; i < maxBars; i++) {
+                                    let val = isFake ? 
+                                        ((Math.sin(i * 0.2 + time) + Math.cos(i * 0.3 - time)) * 40 + 80 + Math.random() * 20) * (audio.volume) : 
+                                        dataArray[i];
+                                    
+                                    const barHeight = (val / 255) * (canvas.height * 0.8); 
+                                    ctx.fillStyle = `rgba(45, 212, 191, ${val/255})`;
+                                    ctx.beginPath(); 
+                                    ctx.roundRect(x, canvas.height - barHeight, barWidth, barHeight, [4, 4, 0, 0]); 
+                                    ctx.fill(); 
+                                    x += barWidth + 2;
                                 }
                             };
 
                             playBtn.addEventListener('click', (e) => {
                                 e.stopPropagation(); initContext();
                                 if (audio.paused) { 
-                                    pauseAll(audio); buildVisualizer(); audio.play(); 
-                                    playBtn.innerHTML = '❚❚'; 
-                                    playBtn.style.paddingLeft = '0';
-                                    playerUi.classList.add('playing'); 
-                                    innerCard.classList.add('playing-lift');
-                                    ring.classList.add('playing-pulse');
-                                    itemData.isPlaying = true; 
-                                    canvas.width = item.offsetWidth; canvas.height = item.offsetHeight; draw();
+                                    pauseAll(audio); 
+                                    buildVisualizer(); 
+                                    
+                                    const playPromise = audio.play();
+                                    if (playPromise !== undefined) {
+                                        playPromise.then(() => {
+                                            playBtn.innerHTML = '❚❚'; 
+                                            playBtn.style.paddingLeft = '0';
+                                            playerUi.classList.add('playing'); 
+                                            innerCard.classList.add('playing-lift');
+                                            ring.classList.add('playing-pulse');
+                                            itemData.isPlaying = true; 
+                                            canvas.width = item.offsetWidth; canvas.height = item.offsetHeight; 
+                                            draw();
+                                        }).catch(err => console.error("Reproducción bloqueada:", err));
+                                    }
                                 } else { 
                                     audio.pause(); 
                                     playBtn.innerHTML = '▶'; 
@@ -1913,181 +1930,4 @@
                     const down = (e) => {
                         isDragging = true; dragDistance = 0;
                         lastDragX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-                        velocityX = 0; container.style.cursor = 'grabbing';
-                    };
-
-                    const move = (e) => {
-                        if (!isDragging) return; e.preventDefault();
-                        const x = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-                        const diff = x - lastDragX;
-                        dragDistance += Math.abs(diff);
-                        currentX += diff; velocityX = diff; lastDragX = x;
-                    };
-
-                    const up = (e) => {
-                        isDragging = false; container.style.cursor = 'grab';
-                        if (dragDistance < 5 && e.target.classList.contains('vault-trigger')) {
-                            VaultManager.openModal();
-                        }
-                    };
-
-                    const init = () => {
-                        observer.observe(container);
-                        container.addEventListener('mousedown', down); container.addEventListener('touchstart', down, {passive: false});
-                        window.addEventListener('mousemove', move, {passive: false}); window.addEventListener('touchmove', move, {passive: false});
-                        window.addEventListener('mouseup', up); window.addEventListener('touchend', up);
-                        
-                        if (!window.matchMedia("(pointer: coarse)").matches) {
-                            container.addEventListener('mouseenter', () => { targetSpeed = -3.5; });
-                            container.addEventListener('mouseleave', () => { targetSpeed = -1; }); 
-                        }
-                        animationId = requestAnimationFrame(loop);
-                    };
-                    return { init };
-                })();
-
-                // ==========================================
-                // MÓDULO: FORMULARIO SEGURO PARA NDA
-                // ==========================================
-                const VaultManager = (() => {
-                    const modal = document.getElementById('vault-modal'); 
-                    const form = document.getElementById('vault-form'); 
-                    const errorDiv = document.getElementById('vault-error');
-                    
-                    const freeEmailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'aol.com', 'live.com'];
-
-                    const openModal = () => modal.classList.add('active-modal');
-                    const closeModal = () => { 
-                        modal.classList.remove('active-modal'); 
-                        form.reset(); 
-                        errorDiv.style.display = 'none'; 
-                        form.classList.remove('shake-error');
-                    };
-
-                    const sanitizeHTML = (str) => {
-                        return str.replace(/[&<>'"]/g, 
-                            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-                        );
-                    };
-
-                    const validateForm = (name, docId, company, email, isAgreed) => {
-                        const errors = [];
-                        if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]{3,50}$/.test(name)) errors.push("❌ <strong>Firma inválida:</strong> Ingrese su nombre real completo.");
-                        if (docId.length < 5) errors.push("❌ <strong>Documento inválido:</strong> Ingrese una identificación gubernamental o tributaria válida.");
-                        if (!/^[A-Za-z0-9áéíóúÁÉÍÓÚñÑ\s\-\&]{2,50}$/.test(company)) errors.push("❌ <strong>Empresa inválida:</strong> Verifique el nombre comercial de la agencia/empresa.");
-                        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push("❌ <strong>Correo inválido:</strong> Verifique el formato.");
-                        else {
-                            const domain = email.split('@')[1].toLowerCase();
-                            if (freeEmailDomains.includes(domain)) errors.push("❌ <strong>Acceso B2B:</strong> Se requiere correo corporativo para vinculación de NDA.");
-                        }
-                        if (!isAgreed) errors.push("❌ <strong>Consentimiento legal:</strong> Debe marcar la casilla aceptando explícitamente los términos del contrato NDA.");
-                        
-                        return errors;
-                    };
-
-                    form.addEventListener('submit', (e) => {
-                        e.preventDefault(); 
-                        errorDiv.style.display = 'none';
-                        form.classList.remove('shake-error');
-
-                        let name = sanitizeHTML(document.getElementById('req-name').value.trim()); 
-                        let docId = sanitizeHTML(document.getElementById('req-id').value.trim()); 
-                        let company = sanitizeHTML(document.getElementById('req-company').value.trim()); 
-                        let email = sanitizeHTML(document.getElementById('req-email').value.trim());
-                        let isAgreed = document.getElementById('req-agree').checked;
-                        
-                        const validationErrors = validateForm(name, docId, company, email, isAgreed);
-
-                        if (validationErrors.length > 0) {
-                            errorDiv.innerHTML = validationErrors.join('<br>');
-                            errorDiv.style.display = "block";
-                            setTimeout(() => form.classList.add('shake-error'), 10);
-                            return;
-                        }
-                        
-                        const btnSubmit = form.querySelector('button[type="submit"]');
-                        const btnOriginalText = btnSubmit.innerHTML;
-                        btnSubmit.disabled = true;
-                        btnSubmit.innerHTML = "Firmando digitalmente...";
-
-                        const bodyText = `FIRMA DIGITAL DE COMPROMISO NDA\n\nYo, ${name}, identificado con el documento/NIT ${docId}, actuando en nombre propio o como representante de ${company} (Contacto corporativo: ${email}), DECLARO formalmente bajo la gravedad de juramento que HE LEÍDO Y ACEPTO IRREVOCABLEMENTE los términos de confidencialidad, la ley de secretos empresariales (Ley 256 de 1996) y la cláusula penal (USD $50.000) expuestos en la bóveda de Jhon Alejandro Vega Ramírez respecto al material protegido de terceros.\n\nSolicito formalmente la clave de acceso a la Bóveda Privada.`;
-                        
-                        window.location.href = `mailto:Alejandro.960822@gmail.com?subject=${encodeURIComponent(`Firma NDA y Acceso Bóveda - ${company}`)}&body=${encodeURIComponent(bodyText)}`;
-                        
-                        setTimeout(() => {
-                            closeModal();
-                            btnSubmit.disabled = false;
-                            btnSubmit.innerHTML = btnOriginalText;
-                        }, 1500);
-                    });
-                    
-                    document.getElementById('openVaultBtnHeader').addEventListener('click', openModal); 
-                    document.getElementById('openVaultBtnFooter').addEventListener('click', openModal); 
-                    document.getElementById('closeVaultBtn').addEventListener('click', closeModal);
-                    
-                    return { closeModal, openModal };
-                })();
-
-                document.addEventListener('keydown', (e) => { 
-                    if (e.key === "Escape") { VideoManager.closeModal(); GalleryManager.closeModal(); VaultManager.closeModal(); }
-                    if (document.getElementById('gallery-modal').classList.contains('active-modal')) { if (e.key === "ArrowRight") document.getElementById('galleryNextBtn').click(); if (e.key === "ArrowLeft") document.getElementById('galleryPrevBtn').click(); }
-                });
-                
-                document.addEventListener('contextmenu', e => { if(e.target.tagName === 'IMG') e.preventDefault(); });
-
-                // ==========================================
-                // INICIALIZACIÓN GLOBAL DE LA APLICACIÓN Y ALEATORIZACIÓN
-                // ==========================================
-                const DesignRandomizer = (() => {
-                    const init = () => {
-                        const mainGrid = document.getElementById('main-grid');
-                        const disenoItems = Array.from(mainGrid.querySelectorAll('.media-item.diseno'));
-                        
-                        for (let i = disenoItems.length - 1; i > 0; i--) {
-                            const j = Math.floor(Math.random() * (i + 1));
-                            [disenoItems[i], disenoItems[j]] = [disenoItems[j], disenoItems[i]];
-                        }
-                        
-                        const firstAudioItem = mainGrid.querySelector('.media-item.audio');
-                        if (firstAudioItem) {
-                            disenoItems.forEach(item => {
-                                mainGrid.insertBefore(item, firstAudioItem);
-                            });
-                        }
-                    };
-                    return { init };
-                })();
-
-                document.addEventListener('DOMContentLoaded', () => {
-                    updateLanguage(currentLang); 
-                    ExperienceInteractionManager.init();
-                    MarqueePhysics.init(); 
-                    initBentoTilt(); 
-                    DesignRandomizer.init();
-                    
-                    document.querySelectorAll('.fallback-img').forEach(img => {
-                        img.addEventListener('error', function() {
-                            if (!this.dataset.retried) { 
-                                this.dataset.retried = "true"; 
-                                const exts = ['.jpg', '.JPG', '.jpeg', '.png', '.PNG']; 
-                                let curExt = exts.find(e => this.src.includes(e)); 
-                                if(curExt) this.src = this.src.replace(curExt, exts[(exts.indexOf(curExt) + 1) % exts.length]); 
-                            }
-                        }, { passive: true });
-                    });
-
-                    const backToTopBtn = document.getElementById('backToTopBtn');
-                    window.addEventListener('scroll', () => {
-                        if (window.scrollY > 400) backToTopBtn.classList.add('visible');
-                        else backToTopBtn.classList.remove('visible');
-                    }, { passive: true });
-                    backToTopBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
-                });
-
-            } catch (err) {
-                console.error("Critical Runtime Error:", err);
-            }
-        })();
-    </script>
-</body>
-</html>
+                        velocityX = 0

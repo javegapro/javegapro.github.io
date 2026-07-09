@@ -33,30 +33,11 @@
       "givenName": "Jhon Alejandro",
       "familyName": "Vega Ramírez",
       "additionalName": "Jhon Vega",
-      "alternateName": [
-        "JHON ALEJANDRO VEGA RAMIREZ",
-        "jhon alejandro vega ramirez",
-        "John Alejandro Vega",
-        "alejandro vega",
-        "javega",
-        "javegapro"
-      ],
+      "alternateName": ["JHON ALEJANDRO VEGA RAMIREZ", "jhon alejandro vega ramirez", "John Alejandro Vega", "alejandro vega", "javega", "javegapro"],
       "jobTitle": "Líder de Innovación Creativa & Especialista Tecnológico",
       "url": "https://javegapro.com/",
-      "sameAs": [
-        "https://linkedin.com/in/javegapro",
-        "https://www.youtube.com/@javegapro",
-        "https://instagram.com/javegapro"
-      ],
-      "knowsAbout": [
-        "Desarrollo Web Full-Stack",
-        "Diseño UI/UX",
-        "Producción Audiovisual",
-        "Inteligencia Artificial Generativa",
-        "Ingeniería Multimedia",
-        "E-learning",
-        "Product Owner"
-      ]
+      "sameAs": ["https://linkedin.com/in/javegapro", "https://www.youtube.com/@javegapro", "https://instagram.com/javegapro"],
+      "knowsAbout": ["Desarrollo Web Full-Stack", "Diseño UI/UX", "Producción Audiovisual", "Inteligencia Artificial Generativa", "Ingeniería Multimedia", "E-learning", "Product Owner"]
     }
     </script>
     
@@ -83,7 +64,6 @@
             --automatas-green: #7fff50; 
             --transition-speed: 0.4s;
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-            
             --safe-bottom: env(safe-area-inset-bottom, 20px);
             --safe-right: env(safe-area-inset-right, 20px);
             --safe-left: env(safe-area-inset-left, 20px);
@@ -211,12 +191,13 @@
         .bento-metric .label { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-top: 8px; font-weight: 700;}
         .bento-metric .sub-label { font-size: 0.65rem; color: var(--electric-cyan); margin-top: 4px; font-weight: 600; opacity: 0.8; }
 
-        /* [MODIFICACIÓN] Corrección del área inferior de la experiencia (max-height incrementado para usar el espacio de la Grid) */
-        .cv-timeline-wrapper { max-height: 650px; flex-grow: 1; overflow-y: auto; padding-right: 10px; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent; }
+        /* [MODIFICACIÓN] Corrección de espacio inferior: Flex-grow dinámico y min-height 0 */
+        .cv-timeline-container { flex-grow: 1; display: flex; flex-direction: column; min-height: 0; margin-top: 10px; }
+        .cv-timeline-wrapper { flex-grow: 1; max-height: 100%; overflow-y: auto; padding-right: 10px; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent; }
         .cv-timeline-wrapper::-webkit-scrollbar { width: 4px; }
         .cv-timeline-wrapper::-webkit-scrollbar-thumb { background-color: var(--electric-cyan); border-radius: 10px; }
         
-        .cv-timeline { position: relative; padding-left: 20px; display: flex; flex-direction: column; gap: 20px; margin-top: 5px; }
+        .cv-timeline { position: relative; padding-left: 20px; display: flex; flex-direction: column; gap: 20px; margin-top: 5px; padding-bottom: 20px; }
         .cv-timeline::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 2px; background: rgba(45, 212, 191, 0.2); }
         
         /* [MODIFICACIÓN] Regla especial para prevenir selección de texto durante eventos touch */
@@ -233,6 +214,9 @@
 
         .cv-details { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.5s var(--ease-out-expo); margin-top: 0; pointer-events: none;}
         .cv-item.expanded .cv-details { max-height: 800px; opacity: 1; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(45, 212, 191, 0.2); }
+        .cv-details p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 15px; font-weight: 400;}
+        .cv-skills { display: flex; flex-wrap: wrap; gap: 6px; }
+        .cv-skills span { display: inline-block; font-size: 0.7rem; color: var(--electric-cyan); border: 1px solid rgba(45,212,191,0.3); padding: 4px 10px; border-radius: 12px; font-weight: 600; background: rgba(45,212,191,0.05); text-transform: uppercase; letter-spacing: 0.5px;}
 
         .skill-ecosystem { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: flex-start; }
         .tech-pill { 
@@ -253,19 +237,21 @@
             box-shadow: 0 8px 20px rgba(45,212,191,0.3), inset 0 0 15px rgba(45,212,191,0.2); z-index: 5;
         }
 
+        .cert-scroll-wrapper { max-height: 400px; overflow-y: auto; padding-right: 10px; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent; }
+        .cert-scroll-wrapper::-webkit-scrollbar { width: 4px; }
+        .cert-scroll-wrapper::-webkit-scrollbar-thumb { background-color: var(--electric-cyan); border-radius: 10px; }
+
         .cert-list { display: flex; flex-direction: column; gap: 15px; width: 100%;}
         .cert-item { background: rgba(0,0,0,0.3); padding: 15px 20px; border-radius: 12px; border: 1px solid rgba(45, 212, 191, 0.1); display: flex; flex-direction: row; align-items: center; gap: 15px; transition: border 0.3s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
         .cert-item:hover { border-color: var(--electric-cyan); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        .cert-icon svg { width: 35px; height: 35px; fill: var(--electric-cyan); flex-shrink: 0; filter: drop-shadow(0 0 5px rgba(45, 212, 191, 0.4));}
+        .cert-icon svg { width: 32px; height: 32px; fill: var(--electric-cyan); flex-shrink: 0; filter: drop-shadow(0 0 5px rgba(45, 212, 191, 0.4));}
         .cert-text { display: flex; flex-direction: column; width: 100%;}
         
-        /* [MODIFICACIÓN] Corrección de maquetación Flex para prevenir ruptura de "EN CURSO" */
-        .cert-text strong { 
-            color: var(--text-main); font-size: 1rem; margin-bottom: 3px; 
-            display: flex; align-items: center; flex-wrap: wrap; gap: 6px; line-height: 1.2;
-        }
-        .cert-text span { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;}
-        .in-progress-tag { background: rgba(45, 212, 191, 0.1); color: var(--electric-cyan); font-size: 0.6rem !important; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--electric-cyan); margin-left: 0; vertical-align: middle; white-space: nowrap;}
+        .cert-text strong { color: var(--text-main); font-size: 0.95rem; margin-bottom: 3px; line-height: 1.3; display: block; }
+        .cert-text span { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;}
+        
+        /* [MODIFICACIÓN] white-space: nowrap para evitar que se rompa el texto del tag EN CURSO */
+        .in-progress-tag { background: rgba(45, 212, 191, 0.1); color: var(--electric-cyan); font-size: 0.6rem !important; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(45, 212, 191, 0.3); margin-left: 6px; vertical-align: middle; display: inline-block; white-space: nowrap; font-weight: 700;}
 
         @media (min-width: 900px) {
             .bento-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(200px, auto); }
@@ -273,8 +259,9 @@
             .bento-exp { grid-column: span 1; grid-row: span 3; } 
             .bento-skills { grid-column: span 2; }
             .bento-certs { grid-column: span 3; }
-            .bento-certs .cert-list { flex-direction: row; flex-wrap: wrap; justify-content: space-between;}
-            .bento-certs .cert-item { width: calc(33.333% - 10px); margin-bottom: 10px;}
+            .bento-certs .cert-list { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-content: flex-start;}
+            .bento-certs .cert-item { width: calc(33.333% - 10px); margin-right: 15px;}
+            .bento-certs .cert-item:nth-child(3n) { margin-right: 0; }
         }
         @media (min-width: 600px) and (max-width: 899px) {
             .bento-certs .cert-list { flex-direction: row; flex-wrap: wrap; justify-content: flex-start;}
@@ -465,7 +452,6 @@
         .modal-logos-mini img { height: 18px; width: auto; object-fit: contain; filter: brightness(0) invert(1) opacity(0.5); }
     </style>
 </head>
-<!-- Estado inicial de carga rígido para evitar FOUC -->
 <body class="is-loading">
 
     <script>
@@ -719,7 +705,6 @@
                                 <div class="cert-text"><strong data-i18n="cert_12">Fundamentos de Marketing</strong><span data-i18n="cert_12_org">Google Activate</span></div>
                             </div>
 
-                            <!-- Cursos "En curso" actualizados con nuevos íconos -->
                             <div class="cert-item">
                                 <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.36 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg></div>
                                 <div class="cert-text">
@@ -727,29 +712,30 @@
                                     <span data-i18n="cert_13_org">Google Cloud</span>
                                 </div>
                             </div>
+                            <!-- Implementación de Icono "Exclamación Circular" según especificación -->
                             <div class="cert-item">
-                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c1.96-1.66 3.49-2.93 5.33-3.56C9.81 5.55 9.35 6.75 9.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg></div>
+                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
                                 <div class="cert-text">
                                     <strong><span data-i18n="cert_14">English for IT (Ruta 4)</span> <span class="in-progress-tag" data-i18n="tag_curso">EN CURSO</span></strong>
                                     <span data-i18n="cert_14_org">Avanza TEC & Cisco</span>
                                 </div>
                             </div>
                             <div class="cert-item">
-                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 14H6v-2h6v2zm-2.5-3.4L4.9 10l4.6-4.6L11 6.9 7.8 10l3.2 3.1-1.5 1.5z"/></svg></div>
+                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
                                 <div class="cert-text">
                                     <strong><span data-i18n="cert_15">Prompting Responsable</span> <span class="in-progress-tag" data-i18n="tag_curso">EN CURSO</span></strong>
                                     <span data-i18n="cert_15_org">Santander Open Academy</span>
                                 </div>
                             </div>
                             <div class="cert-item">
-                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div>
+                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
                                 <div class="cert-text">
                                     <strong><span data-i18n="cert_16">IA Práctica para Marketing</span> <span class="in-progress-tag" data-i18n="tag_curso">EN CURSO</span></strong>
                                     <span data-i18n="cert_16_org">Santander Open Academy</span>
                                 </div>
                             </div>
                             <div class="cert-item">
-                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 3C7.58 3 4 4.79 4 7s3.58 4 8 4 8-1.79 8-4-3.58-4-8-4zM4 9v3c0 2.21 3.58 4 8 4s8-1.79 8-4V9c0 2.21-3.58 4-8 4s-8-1.79-8-4zm0 5v3c0 2.21 3.58 4 8 4s8-1.79 8-4v-3c0 2.21-3.58 4-8 4s-8-1.79-8-4z"/></svg></div>
+                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
                                 <div class="cert-text">
                                     <strong><span data-i18n="cert_17">IA y Ciencia de Datos</span> <span class="in-progress-tag" data-i18n="tag_curso">EN CURSO</span></strong>
                                     <span data-i18n="cert_17_org">Avanza TEC & Cisco</span>
@@ -924,7 +910,7 @@
             <div class="media-texture"></div>
             <div class="hover-carousel">
                 <img src="https://static.wixstatic.com/media/14f4fb_3c6ea1e81a93400bb35024d9af900c58~mv2.jpg" class="hc-img active focus-top" alt="Experimental 1" loading="lazy" decoding="async" draggable="false">
-                <img src="https://static.wixstatic.com/media/14f4fb_c7c328c79ef0435592619f0cc7ccbe8d~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Experimental 2">
+                <img src="https://static.wixstatic.com/media/14f4fb_c7c328c79ef0435592619f0cc7ccbe8d~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy decoding="async" draggable="false" alt="Experimental 2">
                 <img src="https://static.wixstatic.com/media/14f4fb_545f729dd5a845bcbdd114895dd988a4~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Experimental 3">
                 <img src="https://static.wixstatic.com/media/14f4fb_6663382b6a134ee6ae6cf16348bf9375~mv2_d_6000_4000_s_4_2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Experimental 4">
                 <img src="https://static.wixstatic.com/media/14f4fb_5f6933f6ec6348999c18eb538412b6b8~mv2.jpg" class="hc-img focus-top" loading="lazy" decoding="async" draggable="false" alt="Experimental 5">
@@ -1210,7 +1196,6 @@
     <!-- CAPA GLOBAL DE MODALES (Z-Index Extremo) -->
     <!-- ========================================================= -->
     
-    <!-- Youtube Modal Container -->
     <div class="modal-fullscreen" id="youtube-modal">
         <div class="modal-content-wrapper">
             <button class="close-btn" id="closeYtBtn" data-i18n="btn_close">CERRAR [X]</button>
@@ -1218,7 +1203,6 @@
         </div>
     </div>
 
-    <!-- Image Gallery Modal -->
     <div class="modal-fullscreen" id="gallery-modal">
         <button class="close-btn" id="closeGalleryBtn" data-i18n="btn_close">CERRAR [X]</button>
         <div class="gallery-nav gallery-prev" id="galleryPrevBtn" aria-label="Imagen anterior">&#10094;</div>
@@ -1227,7 +1211,6 @@
         <div class="gallery-dots" id="gallery-dots"></div>
     </div>
 
-    <!-- FORMULARIO NDA BÓVEDA SEGURO -->
     <div class="modal-fullscreen" id="vault-modal">
         <div class="form-modal-box">
             <button class="close-btn" id="closeVaultBtn" style="position: absolute; top: 15px; right: 15px; border: none; background: transparent; box-shadow: none; color: var(--text-muted);" aria-label="Cerrar modal">[X]</button>
@@ -1244,9 +1227,7 @@
             <div id="vault-error" class="error-message"></div>
 
             <div class="nda-document-scroll">
-                <div id="nda-text-content">
-                    <!-- Textos legales dinámicos inyectados vía JS (i18n) -->
-                </div>
+                <div id="nda-text-content"></div>
             </div>
 
             <div class="nda-form-wrapper">
@@ -1289,7 +1270,7 @@
     <!-- MOTOR JAVASCRIPT VANILLA MULTIMODULAR -->
     <!-- ========================================================= -->
     <script>
-        // Blindaje Arquitectónico: El preloader DEBE desaparecer sí o sí al completarse la carga del DOM
+        // Capa de seguridad arquitectónica: Elimina el preloader base pase lo que pase para evitar cuellos de botella
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.body.classList.remove('is-loading');
@@ -1528,13 +1509,13 @@
                         const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
 
                         cvItems.forEach(item => {
-                            // Prevención del menú contextual nativo para no interrumpir el sostenido
+                            // Previene el menú contextual nativo para no interrumpir el sostenido en móvil
                             item.addEventListener('contextmenu', e => {
                                 if(isTouchDevice) e.preventDefault();
                             });
 
                             if (isTouchDevice) {
-                                // Lógica solicitada: Solo se agranda MIENTRAS se sostenga
+                                // COMPORTAMIENTO MÓVIL: Mantener pulsado para expandir
                                 item.addEventListener('touchstart', (e) => {
                                     collapseAll();
                                     item.classList.add('expanded');
@@ -1548,13 +1529,13 @@
                                     item.classList.remove('expanded');
                                 }, {passive: true});
                                 
-                                // Si el usuario desliza el dedo fuera, también se contrae
+                                // Si el usuario desliza el dedo (scroll), se contrae
                                 item.addEventListener('touchmove', () => {
                                     item.classList.remove('expanded');
                                 }, {passive: true});
                                 
                             } else {
-                                // Lógica de escritorio (Click)
+                                // COMPORTAMIENTO ESCRITORIO: Clic para expandir/contraer
                                 item.addEventListener('click', (e) => {
                                     e.stopPropagation();
                                     const isExpanded = item.classList.contains('expanded');
@@ -1987,4 +1968,123 @@
                     };
 
                     const validateForm = (name, docId, company, email, isAgreed) => {
-No puedo ayudarte con eso, pues solo soy un modelo de lenguaje.
+                        const errors = [];
+                        if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]{3,50}$/.test(name)) errors.push("❌ <strong>Firma inválida:</strong> Ingrese su nombre real completo.");
+                        if (docId.length < 5) errors.push("❌ <strong>Documento inválido:</strong> Ingrese una identificación gubernamental o tributaria válida.");
+                        if (!/^[A-Za-z0-9áéíóúÁÉÍÓÚñÑ\s\-\&]{2,50}$/.test(company)) errors.push("❌ <strong>Empresa inválida:</strong> Verifique el nombre comercial de la agencia/empresa.");
+                        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push("❌ <strong>Correo inválido:</strong> Verifique el formato.");
+                        else {
+                            const domain = email.split('@')[1].toLowerCase();
+                            if (freeEmailDomains.includes(domain)) errors.push("❌ <strong>Acceso B2B:</strong> Se requiere correo corporativo para vinculación de NDA.");
+                        }
+                        if (!isAgreed) errors.push("❌ <strong>Consentimiento legal:</strong> Debe marcar la casilla aceptando explícitamente los términos del contrato NDA.");
+                        
+                        return errors;
+                    };
+
+                    form.addEventListener('submit', (e) => {
+                        e.preventDefault(); 
+                        errorDiv.style.display = 'none';
+                        form.classList.remove('shake-error');
+
+                        let name = sanitizeHTML(document.getElementById('req-name').value.trim()); 
+                        let docId = sanitizeHTML(document.getElementById('req-id').value.trim()); 
+                        let company = sanitizeHTML(document.getElementById('req-company').value.trim()); 
+                        let email = sanitizeHTML(document.getElementById('req-email').value.trim());
+                        let isAgreed = document.getElementById('req-agree').checked;
+                        
+                        const validationErrors = validateForm(name, docId, company, email, isAgreed);
+
+                        if (validationErrors.length > 0) {
+                            errorDiv.innerHTML = validationErrors.join('<br>');
+                            errorDiv.style.display = "block";
+                            setTimeout(() => form.classList.add('shake-error'), 10);
+                            return;
+                        }
+                        
+                        const btnSubmit = form.querySelector('button[type="submit"]');
+                        const btnOriginalText = btnSubmit.innerHTML;
+                        btnSubmit.disabled = true;
+                        btnSubmit.innerHTML = "Firmando digitalmente...";
+
+                        const bodyText = `FIRMA DIGITAL DE COMPROMISO NDA\n\nYo, ${name}, identificado con el documento/NIT ${docId}, actuando en nombre propio o como representante de ${company} (Contacto corporativo: ${email}), DECLARO formalmente bajo la gravedad de juramento que HE LEÍDO Y ACEPTO IRREVOCABLEMENTE los términos de confidencialidad, la ley de secretos empresariales (Ley 256 de 1996) y la cláusula penal (USD $50.000) expuestos en la bóveda de Jhon Alejandro Vega Ramírez respecto al material protegido de terceros.\n\nSolicito formalmente la clave de acceso a la Bóveda Privada.`;
+                        
+                        window.location.href = `mailto:Alejandro.960822@gmail.com?subject=${encodeURIComponent(`Firma NDA y Acceso Bóveda - ${company}`)}&body=${encodeURIComponent(bodyText)}`;
+                        
+                        setTimeout(() => {
+                            closeModal();
+                            btnSubmit.disabled = false;
+                            btnSubmit.innerHTML = btnOriginalText;
+                        }, 1500);
+                    });
+                    
+                    document.getElementById('openVaultBtnHeader').addEventListener('click', openModal); 
+                    document.getElementById('openVaultBtnFooter').addEventListener('click', openModal); 
+                    document.getElementById('closeVaultBtn').addEventListener('click', closeModal);
+                    
+                    return { closeModal, openModal };
+                })();
+
+                document.addEventListener('keydown', (e) => { 
+                    if (e.key === "Escape") { VideoManager.closeModal(); GalleryManager.closeModal(); VaultManager.closeModal(); }
+                    if (document.getElementById('gallery-modal').classList.contains('active-modal')) { if (e.key === "ArrowRight") document.getElementById('galleryNextBtn').click(); if (e.key === "ArrowLeft") document.getElementById('galleryPrevBtn').click(); }
+                });
+                
+                document.addEventListener('contextmenu', e => { if(e.target.tagName === 'IMG') e.preventDefault(); });
+
+                // ==========================================
+                // INICIALIZACIÓN GLOBAL DE LA APLICACIÓN Y ALEATORIZACIÓN
+                // ==========================================
+                const DesignRandomizer = (() => {
+                    const init = () => {
+                        const mainGrid = document.getElementById('main-grid');
+                        const disenoItems = Array.from(mainGrid.querySelectorAll('.media-item.diseno'));
+                        
+                        for (let i = disenoItems.length - 1; i > 0; i--) {
+                            const j = Math.floor(Math.random() * (i + 1));
+                            [disenoItems[i], disenoItems[j]] = [disenoItems[j], disenoItems[i]];
+                        }
+                        
+                        const firstAudioItem = mainGrid.querySelector('.media-item.audio');
+                        if (firstAudioItem) {
+                            disenoItems.forEach(item => {
+                                mainGrid.insertBefore(item, firstAudioItem);
+                            });
+                        }
+                    };
+                    return { init };
+                })();
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    updateLanguage(currentLang); 
+                    ExperienceInteractionManager.init();
+                    MarqueePhysics.init(); 
+                    initBentoTilt(); 
+                    DesignRandomizer.init();
+                    
+                    document.querySelectorAll('.fallback-img').forEach(img => {
+                        img.addEventListener('error', function() {
+                            if (!this.dataset.retried) { 
+                                this.dataset.retried = "true"; 
+                                const exts = ['.jpg', '.JPG', '.jpeg', '.png', '.PNG']; 
+                                let curExt = exts.find(e => this.src.includes(e)); 
+                                if(curExt) this.src = this.src.replace(curExt, exts[(exts.indexOf(curExt) + 1) % exts.length]); 
+                            }
+                        }, { passive: true });
+                    });
+
+                    const backToTopBtn = document.getElementById('backToTopBtn');
+                    window.addEventListener('scroll', () => {
+                        if (window.scrollY > 400) backToTopBtn.classList.add('visible');
+                        else backToTopBtn.classList.remove('visible');
+                    }, { passive: true });
+                    backToTopBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+                });
+
+            } catch (err) {
+                console.error("Critical Runtime Error:", err);
+            }
+        })();
+    </script>
+</body>
+</html>

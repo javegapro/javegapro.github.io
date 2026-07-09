@@ -1,23 +1,15 @@
 <!DOCTYPE html>
 <html lang="es" id="html-root">
 <head>
-    <!-- ==========================================
-         [MÓDULO 1] META, VIEWPORT Y SEGURIDAD
-         ========================================== -->
-    <!-- Define la codificación universal para soportar caracteres especiales sin fricción -->
     <meta charset="UTF-8">
-    <!-- Viewport adaptativo: 'cover' permite usar áreas seguras (notch) en iOS/Android manteniendo un diseño edge-to-edge -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <!-- Tema de color que mimetiza la barra del navegador del dispositivo móvil con el fondo de la web -->
     <meta name="theme-color" content="#020617">
     
-    <!-- Meta-etiquetas SEO y Open Graph -->
     <title data-i18n="head_title">Jhon Alejandro Vega Ramírez | Especialista Tecnológico (JavegaPro)</title>
     <meta name="description" content="Portafolio oficial de Jhon Alejandro Vega Ramírez (Jhon Vega / JavegaPro). Estratega multidisciplinario, Especialista Creativo Tecnológico, Diseñador UI/UX y Producción Audiovisual.">
     <meta name="keywords" content="Jhon Alejandro Vega Ramírez, Jhon Vega, JHON ALEJANDRO VEGA RAMIREZ, jhon alejandro vega ramirez, john, alejandro vega, javega, javegapro, Desarrollo Web, Diseño UI/UX, Producción Audiovisual, Líder de Innovación Creativa, IA Generativa">
     <meta name="author" content="Jhon Alejandro Vega Ramírez">
     
-    <!-- Etiquetas para previsualización enriquecida en redes sociales (LinkedIn, WhatsApp) -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Jhon Alejandro Vega Ramírez | Portafolio Profesional">
     <meta property="og:description" content="Descubre el ecosistema creativo de Jhon Vega (JavegaPro): Diseño, Desarrollo Web y Producción Audiovisual.">
@@ -30,7 +22,6 @@
     <meta name="twitter:description" content="Estratega multidisciplinario y Especialista Creativo Tecnológico.">
     <meta name="twitter:image" content="https://static.wixstatic.com/media/14f4fb_62c1344e52a441daaa100e3400a6cc19~mv2_d_3176_4000_s_4_2.jpg">
 
-    <!-- JSON-LD: Entidad de Grafo de Conocimiento de Google -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -66,11 +57,9 @@
     }
     </script>
     
-    <!-- Favicon SVG dinámico inyectado en base64 para evitar peticiones HTTP adicionales al servidor -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text x='50' y='68' font-family='Arial, sans-serif' font-size='55' font-weight='bold' fill='%232dd4bf' text-anchor='middle'>AV</text></svg>" type="image/svg+xml">
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f172a'/><text x='50' y='68' font-family='Arial, sans-serif' font-size='55' font-weight='bold' fill='%232dd4bf' text-anchor='middle'>AV</text></svg>">
     
-    <!-- Resolución anticipada de DNS para dominios externos críticos (Rendimiento Core Web Vitals) -->
     <link rel="preconnect" href="https://www.youtube.com">
     <link rel="preconnect" href="https://static.wixstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -214,14 +203,12 @@
         .bento-bio p strong { color: var(--electric-cyan); font-weight: 600; }
         .bento-metrics { display: flex; gap: 30px; flex-wrap: wrap; justify-content: flex-start; margin-top: auto;}
         
-        /* Modificación: Alineación específica del bloque de inglés a la derecha como métrica especial */
         .bento-metric { display: flex; flex-direction: column; }
         .bento-metric.eng-metric { margin-left: auto; align-items: flex-end; text-align: right; }
         .bento-metric .num { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 900; color: var(--electric-cyan); line-height: 1;}
         .bento-metric .label { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-top: 8px; font-weight: 700;}
         .bento-metric .sub-label { font-size: 0.65rem; color: var(--electric-cyan); margin-top: 4px; font-weight: 600; opacity: 0.8; }
 
-        /* Modificación: Timeline de Experiencia Expandible (Interacción CSS) */
         .cv-timeline-wrapper { max-height: 400px; overflow-y: auto; padding-right: 10px; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent; }
         .cv-timeline-wrapper::-webkit-scrollbar { width: 4px; }
         .cv-timeline-wrapper::-webkit-scrollbar-thumb { background-color: var(--electric-cyan); border-radius: 10px; }
@@ -230,7 +217,6 @@
         .cv-timeline::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 2px; background: rgba(45, 212, 191, 0.2); }
         .cv-item { position: relative; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.02); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, background 0.3s; cursor: pointer; }
         
-        /* Efectos Hover y Activo del Timeline */
         .cv-item:hover { transform: translateX(8px); border-color: rgba(45, 212, 191, 0.3); background: rgba(2, 6, 23, 0.6);}
         .cv-item.expanded { border-color: var(--electric-cyan); background: rgba(2, 6, 23, 0.8); transform: translateX(8px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 2;}
         .cv-item::after { content: ''; position: absolute; left: -26px; top: 22px; width: 12px; height: 12px; background: var(--dark-bg); border: 2px solid var(--electric-cyan); border-radius: 50%; transition: all 0.3s;}
@@ -240,14 +226,9 @@
         .cv-item span.cv-role { color: var(--electric-cyan); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;}
         .cv-item h4 { color: var(--text-main); font-size: 1.15rem; margin-bottom: 0; font-weight: 700;}
 
-        /* Lógica del Acordeón para Experiencia */
         .cv-details { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.5s var(--ease-out-expo); margin-top: 0; }
-        .cv-item.expanded .cv-details { max-height: 800px; opacity: 1; margin-top: 15px; padding-top: 15px; border-top: 1px dashed rgba(255,255,255,0.1); }
-        .cv-details p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 15px; font-weight: 400;}
-        .cv-skills { display: flex; flex-wrap: wrap; gap: 6px; }
-        .cv-skills span { display: inline-block; font-size: 0.7rem; color: var(--electric-cyan); border: 1px solid rgba(45,212,191,0.3); padding: 4px 10px; border-radius: 12px; font-weight: 600; background: rgba(45,212,191,0.05); text-transform: uppercase; letter-spacing: 0.5px;}
+        .cv-item.expanded .cv-details { max-height: 800px; opacity: 1; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(45, 212, 191, 0.2); }
 
-        /* Modificación: Habilidades y Certificaciones (Scroll container y Grilla adaptativa) */
         .skill-ecosystem { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: flex-start; }
         .tech-pill { 
             background: rgba(255,255,255,0.03); color: var(--text-main); padding: 10px 22px; 
@@ -267,36 +248,24 @@
             box-shadow: 0 8px 20px rgba(45,212,191,0.3), inset 0 0 15px rgba(45,212,191,0.2); z-index: 5;
         }
 
-        /* Estilos del Contenedor Scroll de Certificaciones */
-        .cert-scroll-wrapper { max-height: 400px; overflow-y: auto; padding-right: 10px; scrollbar-width: thin; scrollbar-color: var(--electric-cyan) transparent; }
-        .cert-scroll-wrapper::-webkit-scrollbar { width: 4px; }
-        .cert-scroll-wrapper::-webkit-scrollbar-thumb { background-color: var(--electric-cyan); border-radius: 10px; }
-
         .cert-list { display: flex; flex-direction: column; gap: 15px; width: 100%;}
         .cert-item { background: rgba(0,0,0,0.3); padding: 15px 20px; border-radius: 12px; border: 1px solid rgba(45, 212, 191, 0.1); display: flex; flex-direction: row; align-items: center; gap: 15px; transition: border 0.3s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
         .cert-item:hover { border-color: var(--electric-cyan); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        .cert-icon svg { width: 32px; height: 32px; fill: var(--electric-cyan); flex-shrink: 0; filter: drop-shadow(0 0 5px rgba(45, 212, 191, 0.4));}
+        .cert-icon svg { width: 35px; height: 35px; fill: var(--electric-cyan); flex-shrink: 0; filter: drop-shadow(0 0 5px rgba(45, 212, 191, 0.4));}
         .cert-text { display: flex; flex-direction: column; }
-        .cert-text strong { color: var(--text-main); font-size: 0.95rem; margin-bottom: 3px; line-height: 1.3;}
-        .cert-text span { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;}
+        .cert-text strong { color: var(--text-main); font-size: 1rem; margin-bottom: 3px;}
+        .cert-text span { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;}
         
-        /* Etiqueta de Curso Activo */
-        .in-progress-tag { background: rgba(45, 212, 191, 0.1); color: var(--electric-cyan); font-size: 0.6rem !important; padding: 2px 6px; border-radius: 4px; margin-left: 6px; border: 1px solid rgba(45,212,191,0.3); vertical-align: middle; display: inline-block; font-weight: 700;}
+        .in-progress-tag { background: rgba(45, 212, 191, 0.1); color: var(--electric-cyan); font-size: 0.6rem; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--electric-cyan); margin-left: 8px; vertical-align: middle; }
 
-        /* Reconfiguración de Grilla para Certificaciones Masivas */
         @media (min-width: 900px) {
             .bento-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(200px, auto); }
             .bento-bio { grid-column: span 2; grid-row: span 2; justify-content: flex-start;}
             .bento-exp { grid-column: span 1; grid-row: span 3; } 
             .bento-skills { grid-column: span 2; }
             .bento-certs { grid-column: span 3; }
-            /* Se convierte la lista en grilla flexible dentro del scroll */
-            .bento-certs .cert-list { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-content: flex-start;}
-            .bento-certs .cert-item { width: calc(33.333% - 10px); }
-        }
-        @media (min-width: 600px) and (max-width: 899px) {
-            .bento-certs .cert-list { flex-direction: row; flex-wrap: wrap; justify-content: flex-start;}
-            .bento-certs .cert-item { width: calc(50% - 7.5px); }
+            .bento-certs .cert-list { flex-direction: row; flex-wrap: wrap; justify-content: space-between;}
+            .bento-certs .cert-item { width: 32%; margin-bottom: 10px;}
         }
 
         /* ==================== 8. MOTOR DE GRILLA MULTIMEDIA ==================== */
@@ -490,7 +459,6 @@
         window.scrollTo(0, 0);
     </script>
 
-    <!-- UI FLOTANTE GLOBAL -->
     <div class="lang-toggle" id="langToggleBtn" aria-label="Cambiar idioma">
         <span id="lang-es" class="lang-option active">🇪🇸</span>
         <span id="lang-en" class="lang-option">🇬🇧</span>
@@ -505,7 +473,6 @@
         <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
     </button>
 
-    <!-- DOM DEL PRELOADER FÍSICO -->
     <div class="splash-panel top"></div>
     <div class="splash-panel bottom"></div>
     <div class="splash-laser"></div>
@@ -517,7 +484,6 @@
         <p class="subtitle reveal-element" data-i18n="subtitle">Líder de Innovación Creativa | Identidad Visual & E-learning</p>
     </header>
 
-    <!-- NAVEGACIÓN Y FILTROS -->
     <div class="filter-container reveal-element">
         <button class="filter-btn" data-filter="perfil" data-i18n="btn_profile">Perfil Profesional</button>
         <button class="filter-btn active" data-filter="all" data-i18n="btn_all">Todo</button>
@@ -528,35 +494,24 @@
         <button class="vault-filter-btn" id="openVaultBtnHeader" aria-label="Abrir bóveda"><span class="icon">🔒</span> <span data-i18n="btn_vault_header">Acceso Bóveda</span></button>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- SECCIÓN PERFIL PROFESIONAL BENTO GRID -->
-    <!-- ========================================================= -->
     <div id="profile-section">
         <div class="bento-grid">
             
-            <!-- TARJETA BIO Y MÉTRICAS ACTUALIZADAS (Con nuevo título y Nivel de Inglés) -->
             <div class="bento-card bento-bio">
                 <div class="bento-glow"></div>
                 <div class="bento-content">
                     <h3 data-i18n="prof_title">Resumen Profesional</h3>
-                    <p data-i18n="profile_text">Ingeniero Multimedia (Acreditación ABET) y Product Owner certificado (PSPO I). Me defino como un creador de narrativas con más de 8 años de experiencia. Me dedico a conectar la visión de negocio con la tecnología a través de la dirección de arte, la producción audiovisual corporativa y el diseño de estrategias digitales. Destaco por mi agilidad para dominar nuevas herramientas y mi vocación por la Inteligencia Artificial, integrándola activamente en flujos de trabajo para optimizar investigación, redacción, automatización y generación visual. Funciono como el puente ideal entre el mundo creativo y el técnico: comprendo la arquitectura lógica y las bases de datos para impulsar procesos de transformación digital y trabajar mano a mano con equipos de desarrollo, sin ejercer la programación pura. Me apasiona analizar negocios para identificar oportunidades de mejora, construir identidades de marca coherentes y estructurar proyectos que aporten valor real, de manera innovadora y profundamente humana.</p>
+                    <p data-i18n="profile_text">Ingeniero Multimedia (ABET) y Product Owner (PSPO I). Conecto la visión de negocio con la tecnología mediante dirección de arte, producción audiovisual B2B y estrategias digitales impulsadas por IA. Funciono como el puente ideal entre el mundo creativo y la arquitectura técnica para liderar transformaciones digitales con un enfoque profundamente humano.</p>
                     
                     <div class="bento-metrics">
                         <div class="bento-metric"><span class="num">8+</span><span class="label" data-i18n="stat_years">Años de Exp.</span></div>
                         <div class="bento-metric"><span class="num">PO</span><span class="label" data-i18n="stat_po">Product Owner</span></div>
                         <div class="bento-metric"><span class="num">IA</span><span class="label" data-i18n="stat_ai">IA Generativa</span></div>
-                        
-                        <!-- Métrica de Inglés posicionada al final y a la derecha -->
-                        <div class="bento-metric eng-metric">
-                            <span class="num">B1+</span>
-                            <span class="label" data-i18n="stat_eng">Inglés</span>
-                            <span class="sub-label" data-i18n="stat_eng_sub">(Nivelando a C1 IT - Cisco)</span>
-                        </div>
+                        <div class="bento-metric eng-metric"><span class="num">B2</span><span class="label" data-i18n="stat_eng">Inglés</span><span class="sub-label" data-i18n="stat_eng_sub">(Nivelando a C1 IT - Cisco)</span></div>
                     </div>
                 </div>
             </div>
 
-            <!-- TARJETA DE EXPERIENCIA (INTERACTIVA Y COMPLETA) -->
             <div class="bento-card bento-exp">
                 <div class="bento-glow"></div>
                 <div class="bento-content">
@@ -564,148 +519,112 @@
                     <div class="cv-timeline-container">
                         <div class="cv-timeline-wrapper">
                             <div class="cv-timeline" id="experience-timeline">
-                                <!-- Exp 1 -->
                                 <div class="cv-item" tabindex="0">
                                     <span class="cv-year">Julio 2026 - PRESENTE</span>
                                     <span class="cv-role" data-i18n="exp_1_rol">Productor Audiovisual (Proveedor Externo)</span>
                                     <h4 data-i18n="exp_1_co">Eficacia S.A.</h4>
                                     <div class="cv-details">
                                         <p data-i18n="exp_1_desc">Producción y postproducción exclusiva de contenidos de video corporativo y material visual para la cuenta Tachos Vitad.</p>
-                                        <div class="cv-skills">
-                                            <span data-i18n="sk_1">Creación de Contenido</span><span data-i18n="sk_2">Edición de video</span><span data-i18n="sk_3">Postproducción</span><span data-i18n="sk_4">Corrección de color</span>
-                                        </div>
+                                        <div class="cv-skills"><span data-i18n="sk_1">Creación de Contenido</span><span data-i18n="sk_2">Edición de video</span><span data-i18n="sk_3">Postproducción</span><span data-i18n="sk_4">Corrección de color</span></div>
                                     </div>
                                 </div>
-                                <!-- Exp 2 -->
                                 <div class="cv-item" tabindex="0">
                                     <span class="cv-year">Junio 2024 - PRESENTE</span>
                                     <span class="cv-role" data-i18n="exp_2_rol">Fundador y Gestor de Proyecto IA</span>
                                     <h4 data-i18n="exp_2_co">Autómatas</h4>
                                     <div class="cv-details">
                                         <p data-i18n="exp_2_desc">Liderazgo en el diseño funcional, historia y tono comunicacional de "Clara", agente conversacional IA. Estructuración de flujos lógicos en conjunto con ingeniería. Animación 2D integral (en Flow) y coordinación de campaña audiovisual.</p>
-                                        <div class="cv-skills">
-                                            <span data-i18n="sk_5">Gestión Ágil</span><span data-i18n="sk_6">Requerimientos</span><span data-i18n="sk_7">Dirección de Arte</span><span data-i18n="sk_8">Animación 2D (Flow)</span>
-                                        </div>
+                                        <div class="cv-skills"><span data-i18n="sk_5">Gestión Ágil</span><span data-i18n="sk_6">Requerimientos</span><span data-i18n="sk_7">Dirección de Arte</span><span data-i18n="sk_8">Animación 2D (Flow)</span></div>
                                     </div>
                                 </div>
-                                <!-- Exp 3 -->
                                 <div class="cv-item" tabindex="0">
                                     <span class="cv-year">Ago 2022 - Jun 2026</span>
                                     <span class="cv-role" data-i18n="exp_3_rol">Coord. de Comunicaciones e Innovación B2B</span>
                                     <h4 data-i18n="exp_3_co">ESPY S.A. E.S.P.</h4>
                                     <div class="cv-details">
                                         <p data-i18n="exp_3_desc">Traducción visual de informes institucionales a presentaciones e infografías. Renovación de identidad visual y soporte como webmaster para la intranet corporativa.</p>
-                                        <div class="cv-skills">
-                                            <span data-i18n="sk_9">Diseño de Información</span><span data-i18n="sk_10">Webmastering</span><span data-i18n="sk_11">Identidad Corporativa</span>
-                                        </div>
+                                        <div class="cv-skills"><span data-i18n="sk_9">Diseño de Información</span><span data-i18n="sk_10">Webmastering</span><span data-i18n="sk_11">Identidad Corporativa</span></div>
                                     </div>
                                 </div>
-                                <!-- Exp 4 -->
                                 <div class="cv-item" tabindex="0">
                                     <span class="cv-year">Abr 2022 - Jul 2022</span>
                                     <span class="cv-role" data-i18n="exp_4_rol">Diseñador de Contenidos de Formación</span>
                                     <h4 data-i18n="exp_4_co">Eficacia S.A.</h4>
                                     <div class="cv-details">
                                         <p data-i18n="exp_4_desc">Dirección de rodajes en chroma key, edición y animación gráfica para entrenamiento B2B (marcas como Fanalca, Unilever, Alquería, Derco, Comfandi).</p>
-                                        <div class="cv-skills">
-                                            <span data-i18n="sk_12">Producción E-learning</span><span data-i18n="sk_13">Cámara & Iluminación</span><span data-i18n="sk_14">Chroma Key</span>
-                                        </div>
+                                        <div class="cv-skills"><span data-i18n="sk_12">Producción E-learning</span><span data-i18n="sk_13">Cámara & Iluminación</span><span data-i18n="sk_14">Chroma Key</span></div>
                                     </div>
                                 </div>
-                                <!-- Exp 5 -->
                                 <div class="cv-item" tabindex="0">
                                     <span class="cv-year">2021 - 2022</span>
                                     <span class="cv-role" data-i18n="exp_5_rol">Productor Multimedia y Diseñador</span>
                                     <h4 data-i18n="exp_5_co">Alcaldía de Yumbo</h4>
                                     <div class="cv-details">
                                         <p data-i18n="exp_5_desc">Producción de piezas gráficas, infografías y operación técnica de transmisiones en vivo institucionales para la Oficina de Prensa.</p>
-                                        <div class="cv-skills">
-                                            <span data-i18n="sk_15">Streaming (OBS)</span><span data-i18n="sk_16">Comunicación Institucional</span>
-                                        </div>
+                                        <div class="cv-skills"><span data-i18n="sk_15">Streaming (OBS)</span><span data-i18n="sk_16">Comunicación Institucional</span></div>
                                     </div>
                                 </div>
-                                <!-- Exp 6 -->
                                 <div class="cv-item" tabindex="0">
                                     <span class="cv-year">Mar 2021 - May 2021</span>
                                     <span class="cv-role" data-i18n="exp_6_rol">Diseñador Gráfico</span>
                                     <h4 data-i18n="exp_6_co">Concepto Agencia</h4>
                                     <div class="cv-details">
                                         <p data-i18n="exp_6_desc">Propuesta de líneas gráficas y coordinación de diseño editorial y arte para el lanzamiento de la Revista D'Feria.</p>
-                                        <div class="cv-skills">
-                                            <span data-i18n="sk_17">Diseño Editorial</span><span data-i18n="sk_18">Vectorización</span>
-                                        </div>
+                                        <div class="cv-skills"><span data-i18n="sk_17">Diseño Editorial</span><span data-i18n="sk_18">Vectorización</span></div>
                                     </div>
                                 </div>
-                                <!-- Exp 7 -->
                                 <div class="cv-item" tabindex="0">
                                     <span class="cv-year">Oct 2020 - Dic 2020</span>
                                     <span class="cv-role" data-i18n="exp_7_rol">Productor Multimedia B2B</span>
                                     <h4 data-i18n="exp_7_co">Alcaldía de Cali</h4>
                                     <div class="cv-details">
                                         <p data-i18n="exp_7_desc">Transformación gráfica de datos, diagramación de libro institucional y piezas para redes sociales y transmisiones de la Secretaría de Paz.</p>
-                                        <div class="cv-skills">
-                                            <span data-i18n="sk_19">Infografías</span><span data-i18n="sk_20">Diagramación</span>
-                                        </div>
+                                        <div class="cv-skills"><span data-i18n="sk_19">Infografías</span><span data-i18n="sk_20">Diagramación</span></div>
                                     </div>
                                 </div>
-                                <!-- Exp 8 -->
                                 <div class="cv-item" tabindex="0">
                                     <span class="cv-year">Mar 2020 - Oct 2020</span>
                                     <span class="cv-role" data-i18n="exp_8_rol">Productor Audiovisual E-Learning</span>
                                     <h4 data-i18n="exp_8_co">Eficacia S.A.</h4>
                                     <div class="cv-details">
                                         <p data-i18n="exp_8_desc">Soporte externo en producción visual, animación y piezas gráficas para plataformas instruccionales durante la contingencia sanitaria.</p>
-                                        <div class="cv-skills">
-                                            <span data-i18n="sk_21">Animación</span><span data-i18n="sk_22">Diseño Instruccional</span>
-                                        </div>
+                                        <div class="cv-skills"><span data-i18n="sk_21">Animación</span><span data-i18n="sk_22">Diseño Instruccional</span></div>
                                     </div>
                                 </div>
-                                <!-- Exp 9 -->
                                 <div class="cv-item" tabindex="0">
                                     <span class="cv-year">Oct 2019 - Feb 2020</span>
                                     <span class="cv-role" data-i18n="exp_9_rol">Asistente de Dir. de Investigación</span>
                                     <h4 data-i18n="exp_9_co">Fundación Pro-Scientia</h4>
                                     <div class="cv-details">
                                         <p data-i18n="exp_9_desc">Producción de entrevistas en vivo/pregrabadas y coordinación operativa de producciones multimedia institucionales.</p>
-                                        <div class="cv-skills">
-                                            <span data-i18n="sk_23">Producción Ejecutiva</span><span data-i18n="sk_24">Operación Técnica</span>
-                                        </div>
+                                        <div class="cv-skills"><span data-i18n="sk_23">Producción Ejecutiva</span><span data-i18n="sk_24">Operación Técnica</span></div>
                                     </div>
                                 </div>
-                                <!-- Exp 10 -->
                                 <div class="cv-item" tabindex="0">
                                     <span class="cv-year">Jul 2018 - Dic 2018</span>
                                     <span class="cv-role" data-i18n="exp_10_rol">Asesor Pedagógico Multimedia</span>
                                     <h4 data-i18n="exp_10_co">Colegio Bautista de Yumbo</h4>
                                     <div class="cv-details">
                                         <p data-i18n="exp_10_desc">Dirección, asesoría y capacitación técnica a docentes en la realización de un video profesional (proyecto REMAKE) para bilingüismo.</p>
-                                        <div class="cv-skills">
-                                            <span data-i18n="sk_25">Pedagogía</span><span data-i18n="sk_26">Dirección Audiovisual</span>
-                                        </div>
+                                        <div class="cv-skills"><span data-i18n="sk_25">Pedagogía</span><span data-i18n="sk_26">Dirección Audiovisual</span></div>
                                     </div>
                                 </div>
-                                <!-- Exp 11 -->
                                 <div class="cv-item" tabindex="0">
                                     <span class="cv-year">Oct 2017 - Feb 2018</span>
                                     <span class="cv-role" data-i18n="exp_11_rol">Asistente de Marketing Experiencial</span>
                                     <h4 data-i18n="exp_11_co">U. San Buenaventura Cali</h4>
                                     <div class="cv-details">
                                         <p data-i18n="exp_11_desc">Diseño de una experiencia VR 360° interactiva con Leap Motion para el campus. Tesis de grado pionera a nivel departamental.</p>
-                                        <div class="cv-skills">
-                                            <span data-i18n="sk_27">Realidad Virtual (VR)</span><span data-i18n="sk_28">Leap Motion</span><span data-i18n="sk_29">Gestión de Leads</span>
-                                        </div>
+                                        <div class="cv-skills"><span data-i18n="sk_27">Realidad Virtual (VR)</span><span data-i18n="sk_28">Leap Motion</span><span data-i18n="sk_29">Gestión de Leads</span></div>
                                     </div>
                                 </div>
-                                <!-- Exp 12 -->
                                 <div class="cv-item" tabindex="0">
                                     <span class="cv-year">Ene 2016 - May 2024</span>
                                     <span class="cv-role" data-i18n="exp_12_rol">Director Creativo & Realizador</span>
                                     <h4 data-i18n="exp_12_co">JAVEGA (Independiente)</h4>
                                     <div class="cv-details">
                                         <p data-i18n="exp_12_desc">Ejecución integral de proyectos B2B/B2C abarcando producción de video, fotografía, diseño gráfico. Segmentos de TV ("Saludablemente" Telepacífico).</p>
-                                        <div class="cv-skills">
-                                            <span data-i18n="sk_30">Dirección Creativa</span><span data-i18n="sk_31">Guionización</span>
-                                        </div>
+                                        <div class="cv-skills"><span data-i18n="sk_30">Dirección Creativa</span><span data-i18n="sk_31">Guionización</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -714,7 +633,6 @@
                 </div>
             </div>
 
-            <!-- TARJETA SKILLS (INTACTA VISUALMENTE, MÁS SEMÁNTICA) -->
             <div class="bento-card bento-skills">
                 <div class="bento-glow"></div>
                 <div class="bento-content">
@@ -732,15 +650,12 @@
                 </div>
             </div>
 
-            <!-- TARJETA CERTIFICACIONES COMPLETAS (CON WRAPPER DE SCROLL) -->
             <div class="bento-card bento-certs">
                 <div class="bento-glow"></div>
                 <div class="bento-content">
                     <h3 data-i18n="cert_title" style="margin-bottom: 20px;">Educación & Certificaciones</h3>
-                    <!-- Scroll wrapper inyectado para contener múltiples elementos sin romper el Layout de Grid -->
                     <div class="cert-scroll-wrapper">
                         <div class="cert-list">
-                            <!-- Educación Formal -->
                             <div class="cert-item">
                                 <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 3L1 9L12 15L21 10.09V17H23V9M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z"/></svg></div>
                                 <div class="cert-text"><strong data-i18n="cert_1">Ingeniería Multimedia</strong><span data-i18n="cert_1_org">U. San Buenaventura (ABET)</span></div>
@@ -749,7 +664,6 @@
                                 <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 3L1 9L12 15L21 10.09V17H23V9M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z"/></svg></div>
                                 <div class="cert-text"><strong data-i18n="cert_2">Técnico en Diseño Gráfico</strong><span data-i18n="cert_2_org">Inst. Centro de Sistemas (2018)</span></div>
                             </div>
-                            <!-- Certificaciones Completadas -->
                             <div class="cert-item">
                                 <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.98C19.47,12.66 19.5,12.34 19.5,12C19.5,11.66 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.97 19.05,5.05L16.56,6.05C16.04,5.65 15.48,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.52,5.32 7.96,5.65 7.44,6.05L4.95,5.05C4.73,4.97 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.66 4.5,12C4.5,12.34 4.53,12.66 4.57,12.98L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.95C7.96,18.35 8.52,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.48,18.68 16.04,18.35 16.56,17.95L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.98Z"/></svg></div>
                                 <div class="cert-text"><strong data-i18n="cert_3">PSPO I Product Owner</strong><span data-i18n="cert_3_org">Scrum.org (2025)</span></div>
@@ -790,7 +704,6 @@
                                 <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
                                 <div class="cert-text"><strong data-i18n="cert_12">Fundamentos de Marketing</strong><span data-i18n="cert_12_org">Google Activate</span></div>
                             </div>
-                            <!-- Certificaciones En Curso (Marcadas visualmente) -->
                             <div class="cert-item">
                                 <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.36 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg></div>
                                 <div class="cert-text">
@@ -815,15 +728,8 @@
                             <div class="cert-item">
                                 <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
                                 <div class="cert-text">
-                                    <strong><span data-i18n="cert_16">IA Práctica para Marketing</span> <span class="in-progress-tag" data-i18n="tag_curso">EN CURSO</span></strong>
+                                    <strong><span data-i18n="cert_16">Flujo de Trabajo IA</span> <span class="in-progress-tag" data-i18n="tag_curso">EN CURSO</span></strong>
                                     <span data-i18n="cert_16_org">Santander Open Academy</span>
-                                </div>
-                            </div>
-                            <div class="cert-item">
-                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
-                                <div class="cert-text">
-                                    <strong><span data-i18n="cert_17">IA y Ciencia de Datos</span> <span class="in-progress-tag" data-i18n="tag_curso">EN CURSO</span></strong>
-                                    <span data-i18n="cert_17_org">Avanza TEC & Cisco</span>
                                 </div>
                             </div>
                         </div>
@@ -833,15 +739,9 @@
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- BASE DE DATOS MULTIMEDIA (Videos, Fotos, Diseño, Sonido) -->
-    <!-- ========================================================= -->
     <main class="portfolio-grid reveal-element" id="main-grid">
-        
-        <!-- AUDIOVISUAL (9 Elementos: Reordenados y renombrados según spec) -->
         <div class="media-item audiovisual" data-yt-id="0ivRf3-IvGs">
             <div class="media-texture"></div>
-            <!-- fetchpriority garantiza carga temprana (LCP) -->
             <img src="https://img.youtube.com/vi/0ivRf3-IvGs/maxresdefault.jpg" class="yt-thumbnail" alt="Clara" fetchpriority="high" decoding="async" draggable="false">
             <iframe class="media-iframe" data-src="https://www.youtube.com/embed/0ivRf3-IvGs?autoplay=1&mute=1&controls=0&disablekb=1&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1&loop=1&playlist=0ivRf3-IvGs" allow="autoplay; encrypted-media"></iframe>
             <div class="protect-layer"></div>
@@ -912,7 +812,6 @@
             <div class="media-overlay"><p data-i18n="vid_cat_chef">Programa Gastronómico Online</p><h2 data-i18n="vid_tit_chef3">UniChef: Postre</h2></div>
         </div>
 
-        <!-- FOTOGRAFÍA (8 Galerías) -->
         <div class="media-item fotografia" data-gallery="food">
             <div class="media-texture"></div>
             <div class="hover-carousel">
@@ -1022,7 +921,6 @@
             <div class="media-overlay"><p data-i18n="cat_land">Paisaje y Bellas Artes</p><h2 data-i18n="title_nature">Naturaleza</h2></div>
         </div>
 
-        <!-- DISEÑO VISUAL -->
         <div class="media-item diseno" data-diseno-idx="0">
             <div class="media-texture"></div>
             <img src="Banner%20web%20Jdmaray%20Cali%20SPA.jpg?v=2" class="masonry-img fallback-img" alt="Banner web Jdmaray Cali SPA" loading="lazy" decoding="async" draggable="false">
@@ -1100,7 +998,6 @@
             <div class="media-overlay"><p data-i18n="cat_vinyl">Diseño de Vinilo</p><h2>Xbox: Gears of War</h2></div>
         </div>
 
-        <!-- AUDIO SONORO B2B -->
         <div class="media-item audio" data-audio-src="https://static.wixstatic.com/mp3/14f4fb_cec3885e857446d5bb03641eed32c0d8.mp3">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
@@ -1205,7 +1102,6 @@
 
     </main>
 
-    <!-- FOOTER: REDES, CONTACTO Y BÓVEDA -->
     <section class="ecosystem-section reveal-element">
         <h3 data-i18n="ecosystem_title">Ecosistema Creativo</h3>
         <a href="https://automatas.co" target="_blank" rel="noopener noreferrer" class="brand-btn-clean">
@@ -1236,7 +1132,6 @@
         </div>
     </section>
 
-    <!-- Action Section -->
     <section class="contact-section reveal-element" id="contacto">
         <h2 data-i18n="contact_title">Conectemos</h2>
         <p data-i18n="contact_desc">¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.</p>
@@ -1271,7 +1166,6 @@
         </div>
     </section>
 
-    <!-- Bóveda NDA Estática de Fondo -->
     <section class="vault-section reveal-element">
         <div class="vault-container">
             <div class="vault-icon-glow">🔒</div>
@@ -1281,11 +1175,6 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- CAPA GLOBAL DE MODALES (Z-Index Extremo) -->
-    <!-- ========================================================= -->
-    
-    <!-- Youtube Modal Container -->
     <div class="modal-fullscreen" id="youtube-modal">
         <div class="modal-content-wrapper">
             <button class="close-btn" id="closeYtBtn" data-i18n="btn_close">CERRAR [X]</button>
@@ -1293,7 +1182,6 @@
         </div>
     </div>
 
-    <!-- Image Gallery Modal -->
     <div class="modal-fullscreen" id="gallery-modal">
         <button class="close-btn" id="closeGalleryBtn" data-i18n="btn_close">CERRAR [X]</button>
         <div class="gallery-nav gallery-prev" id="galleryPrevBtn" aria-label="Imagen anterior">&#10094;</div>
@@ -1302,7 +1190,6 @@
         <div class="gallery-dots" id="gallery-dots"></div>
     </div>
 
-    <!-- FORMULARIO NDA BÓVEDA SEGURO -->
     <div class="modal-fullscreen" id="vault-modal">
         <div class="form-modal-box">
             <button class="close-btn" id="closeVaultBtn" style="position: absolute; top: 15px; right: 15px; border: none; background: transparent; box-shadow: none; color: var(--text-muted);" aria-label="Cerrar modal">[X]</button>
@@ -1320,8 +1207,7 @@
 
             <div class="nda-document-scroll">
                 <div id="nda-text-content">
-                    <!-- Textos legales dinámicos inyectados vía JS (i18n) -->
-                </div>
+                    </div>
             </div>
 
             <div class="nda-form-wrapper">
@@ -1360,9 +1246,6 @@
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- MOTOR JAVASCRIPT VANILLA MULTIMODULAR -->
-    <!-- ========================================================= -->
     <script>
         (() => {
             // ==========================================
@@ -1373,10 +1256,8 @@
                     head_title: "Jhon Alejandro Vega Ramírez | Especialista Tecnológico (JavegaPro)", btn_profile: "Perfil Profesional",
                     btn_vault_header: "Acceso Bóveda", subtitle: "Líder de Innovación Creativa | Identidad Visual & E-learning",
                     
-                    // Modificación: Inyección de datos actualizados y estructurados 
                     prof_title: "Resumen Profesional", prof_rol: "Experiencia", prof_skills: "Ecosistema Tecnológico",
                     
-                    // Experiencia: Toda la metadata mapeada a nivel de diccionario
                     exp_1_rol: "Productor Audiovisual (Proveedor Externo)", exp_1_co: "Eficacia S.A.", exp_1_desc: "Producción y postproducción exclusiva de contenidos de video corporativo y material visual para la cuenta Tachos Vitad.", 
                     sk_1: "Creación de Contenido", sk_2: "Edición de video", sk_3: "Postproducción", sk_4: "Corrección de color",
                     
@@ -1413,7 +1294,6 @@
                     exp_12_rol: "Director Creativo & Realizador", exp_12_co: "JAVEGA (Independiente)", exp_12_desc: "Ejecución integral de proyectos B2B/B2C abarcando producción de video, fotografía, diseño gráfico. Segmentos de TV ('Saludablemente' Telepacífico).", 
                     sk_30: "Dirección Creativa", sk_31: "Guionización",
                     
-                    // Educación y Certificaciones completas
                     cert_title: "Educación & Certificaciones", 
                     cert_1: "Ingeniería Multimedia", cert_1_org: "U. San Buenaventura (ABET)", 
                     cert_2: "Técnico en Diseño Gráfico", cert_2_org: "Inst. Centro de Sistemas (2018)",
@@ -1514,14 +1394,12 @@
                 }
             };
             
-            // Selector inicial de idioma evaluando la preferencia de navegador
             let currentLang = navigator.language.startsWith('en') ? 'en' : 'es';
 
             const updateLanguage = (lang) => {
                 document.documentElement.lang = lang;
                 document.title = translations[lang]['head_title'];
                 
-                // Mapeo exhaustivo sobre el DOM para inyectar textos
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     const key = el.getAttribute('data-i18n');
                     if (translations[lang][key]) {
@@ -1585,7 +1463,6 @@
             // ==========================================
             // MÓDULO: INTERACCIÓN DE LÍNEA DE TIEMPO (NUEVO)
             // ==========================================
-            // Implementa el patrón Acordeón con eventos de colapso automático controlados.
             const ExperienceInteractionManager = (() => {
                 const init = () => {
                     const expSection = document.querySelector('.bento-exp');
@@ -1593,29 +1470,43 @@
                     
                     if(!expSection || !cvItems.length) return;
 
-                    // Función centralizadora para colapsar y resetear estados
                     const collapseAll = () => cvItems.forEach(i => i.classList.remove('expanded'));
 
-                    // Delegación al hacer clic sobre una tarjeta individual
+                    // Detecta si es un dispositivo táctil (móvil/tablet)
+                    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+
                     cvItems.forEach(item => {
-                        item.addEventListener('click', (e) => {
-                            e.stopPropagation(); // Previene que el document escuche este clic y lo colapse inmediatamente
-                            const isExpanded = item.classList.contains('expanded');
-                            collapseAll(); // Limpia los demás
-                            
-                            // Actúa como un toggle: Si estaba cerrado, lo abre. Si estaba abierto, lo deja cerrado (ya que se limpió arriba).
-                            if (!isExpanded) item.classList.add('expanded');
-                        });
+                        if (isTouchDevice) {
+                            // COMPORTAMIENTO MÓVIL: Mantener pulsado para expandir
+                            item.addEventListener('touchstart', (e) => {
+                                collapseAll();
+                                item.classList.add('expanded');
+                            }, {passive: true});
+
+                            item.addEventListener('touchend', () => {
+                                item.classList.remove('expanded');
+                            }, {passive: true});
+
+                            item.addEventListener('touchcancel', () => {
+                                item.classList.remove('expanded');
+                            }, {passive: true});
+                        } else {
+                            // COMPORTAMIENTO ESCRITORIO: Clic para expandir/contraer
+                            item.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                const isExpanded = item.classList.contains('expanded');
+                                collapseAll();
+                                if (!isExpanded) item.classList.add('expanded');
+                            });
+                        }
                     });
 
-                    // Si el usuario hace clic fuera de las tarjetas, se contrae
-                    document.addEventListener('click', collapseAll);
-                    
-                    // Si el cursor abandona por completo la sección de experiencia, se contrae (Lógica dictada por el usuario)
-                    expSection.addEventListener('mouseleave', collapseAll);
-                    
-                    // Si el usuario empieza a hacer scroll en la ventana general, se contraen para no tapar la lectura
-                    window.addEventListener('scroll', collapseAll, { passive: true });
+                    // Reglas de cierre automático solo para escritorio
+                    if (!isTouchDevice) {
+                        document.addEventListener('click', collapseAll);
+                        expSection.addEventListener('mouseleave', collapseAll);
+                        window.addEventListener('scroll', collapseAll, { passive: true });
+                    }
                 };
                 return { init };
             })();
@@ -2110,4 +2001,51 @@
                         [disenoItems[i], disenoItems[j]] = [disenoItems[j], disenoItems[i]];
                     }
                     
-                    const firstAudioItem = mainGrid.querySelector('.media-item.audioNo me han programado para poder ayudarte con eso.
+                    const firstAudioItem = mainGrid.querySelector('.media-item.audio');
+                    if (firstAudioItem) {
+                        disenoItems.forEach(item => {
+                            mainGrid.insertBefore(item, firstAudioItem);
+                        });
+                    }
+                };
+                return { init };
+            })();
+
+            document.addEventListener('DOMContentLoaded', () => {
+                updateLanguage(currentLang); 
+                ExperienceInteractionManager.init(); // [CRÍTICO] Llamada a inicialización del Acordeón interactivo reparada
+                MarqueePhysics.init(); 
+                initBentoTilt(); 
+                
+                DesignRandomizer.init();
+                
+                document.querySelectorAll('.fallback-img').forEach(img => {
+                    img.addEventListener('error', function() {
+                        if (!this.dataset.retried) { 
+                            this.dataset.retried = "true"; 
+                            const exts = ['.jpg', '.JPG', '.jpeg', '.png', '.PNG']; 
+                            let curExt = exts.find(e => this.src.includes(e)); 
+                            if(curExt) this.src = this.src.replace(curExt, exts[(exts.indexOf(curExt) + 1) % exts.length]); 
+                        }
+                    }, { passive: true });
+                });
+
+                const backToTopBtn = document.getElementById('backToTopBtn');
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 400) backToTopBtn.classList.add('visible');
+                    else backToTopBtn.classList.remove('visible');
+                }, { passive: true });
+                backToTopBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+                setTimeout(() => {
+                    document.body.classList.remove('is-loading'); document.body.classList.add('is-loaded'); document.body.style.overflow = ''; 
+                    const visualObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); }); }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+                    document.querySelectorAll('.reveal-element').forEach(el => visualObserver.observe(el));
+                    VideoManager.initObserver(); AudioManager.setupAudios();
+                }, 1000); 
+            });
+
+        })();
+    </script>
+</body>
+</html>

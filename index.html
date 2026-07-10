@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="es" id="html-root">
 <head>
+    <!-- ==========================================
+         [MÓDULO 1] META, VIEWPORT Y SEGURIDAD
+         ========================================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#020617">
@@ -710,7 +713,7 @@
                             </div>
 
                             <div class="cert-item">
-                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.36 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg></div>
+                                <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M19.35 10.04a7.49 7.49 0 0 0-13.99-1.99A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zm-4.35 1.96l-3 3v-2H9v-2h3V9l3 3z"/></svg></div>
                                 <div class="cert-text">
                                     <strong><span data-i18n="cert_13">Generative AI Leader</span> <span class="in-progress-tag" data-i18n="tag_curso">EN CURSO</span></strong>
                                     <span data-i18n="cert_13_org">Google Cloud</span>
@@ -751,6 +754,9 @@
         </div>
     </div>
 
+    <!-- ========================================================= -->
+    <!-- BASE DE DATOS MULTIMEDIA -->
+    <!-- ========================================================= -->
     <main class="portfolio-grid reveal-element" id="main-grid">
         <div class="media-item audiovisual" data-yt-id="0ivRf3-IvGs">
             <div class="media-texture"></div>
@@ -933,6 +939,7 @@
             <div class="media-overlay"><p data-i18n="cat_land">Paisaje y Bellas Artes</p><h2 data-i18n="title_nature">Naturaleza</h2></div>
         </div>
 
+        <!-- DISEÑO VISUAL -->
         <div class="media-item diseno" data-diseno-idx="0">
             <div class="media-texture"></div>
             <img src="Banner%20web%20Jdmaray%20Cali%20SPA.jpg?v=2" class="masonry-img fallback-img" alt="Banner web Jdmaray Cali SPA" loading="lazy" decoding="async" draggable="false">
@@ -1010,6 +1017,7 @@
             <div class="media-overlay"><p data-i18n="cat_vinyl">Diseño de Vinilo</p><h2>Xbox: Gears of War</h2></div>
         </div>
 
+        <!-- AUDIO SONORO B2B -->
         <div class="media-item audio" data-audio-src="https://static.wixstatic.com/mp3/14f4fb_cec3885e857446d5bb03641eed32c0d8.mp3">
             <div class="audio-glow-ring"></div>
             <div class="audio-inner-card">
@@ -1114,6 +1122,7 @@
 
     </main>
 
+    <!-- FOOTER: REDES, CONTACTO Y BÓVEDA -->
     <section class="ecosystem-section reveal-element">
         <h3 data-i18n="ecosystem_title">Ecosistema Creativo</h3>
         <a href="https://automatas.co" target="_blank" rel="noopener noreferrer" class="brand-btn-clean">
@@ -1144,6 +1153,7 @@
         </div>
     </section>
 
+    <!-- Action Section -->
     <section class="contact-section reveal-element" id="contacto">
         <h2 data-i18n="contact_title">Conectemos</h2>
         <p data-i18n="contact_desc">¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.</p>
@@ -1178,6 +1188,7 @@
         </div>
     </section>
 
+    <!-- Bóveda NDA Estática de Fondo -->
     <section class="vault-section reveal-element">
         <div class="vault-container">
             <div class="vault-icon-glow">🔒</div>
@@ -1187,6 +1198,10 @@
         </div>
     </section>
 
+    <!-- ========================================================= -->
+    <!-- CAPA GLOBAL DE MODALES (Z-Index Extremo) -->
+    <!-- ========================================================= -->
+    
     <div class="modal-fullscreen" id="youtube-modal">
         <div class="modal-content-wrapper">
             <button class="close-btn" id="closeYtBtn" data-i18n="btn_close">CERRAR [X]</button>
@@ -1257,6 +1272,9 @@
         </div>
     </div>
 
+    <!-- ========================================================= -->
+    <!-- MOTOR JAVASCRIPT VANILLA MULTIMODULAR -->
+    <!-- ========================================================= -->
     <script>
         // Capa de seguridad arquitectónica
         window.addEventListener('load', () => {
@@ -1339,7 +1357,7 @@
                         stat_years: "Años de Exp.", stat_po: "Product Owner", stat_ai: "IA Generativa", stat_eng: "Inglés", stat_eng_sub: "(Nivelando a C1 IT - Cisco)",
                         
                         btn_all: "Todo", btn_video: "Producción Audiovisual", btn_photo: "Fotografía", btn_design: "Diseño Visual", btn_audio: "Diseño Sonoro",
-                        vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara", vid_cat_showreel: "Dirección Creativa", vid_tit_showreel: "Showreel", vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO", vid_cat_evento: "Cobertura de Evento", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Programa Gastronómico Online", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Postre", vid_cat_lyric: "Tipografía & Motion Graphics", vid_tit_lyric: "Video Lyric - Suave (Mauna)", cat_post: "Postproducción", vid_tit_mauna: "Behind Scenes Desnúdame - Alejo Djoy", cat_artdir: "Dirección de Arte Comercial", tit_food: "Food Styling", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", cat_product: "Fotografía Comercial B2C", title_product: "Fotografía de Producto", cat_lighting: "Iluminación & Técnica", title_portraits: "Retratos de Estudio", cat_editorial: "Fotografía Editorial", tit_sabrina: "Actriz: Sabrina", cat_press: "Retrato Promocional (Prensa)", tit_kapo: "Artista: KAPO", cat_casting: "Casting Visual", title_emerging: "Artistas Emergentes", cat_exp: "Exploración de Luz", tit_exp: "Experimental", cat_land: "Paisaje y Bellas Artes", title_nature: "Naturaleza", cat_banner: "Banner Web", cat_cover: "Diseño de Portada Musical", mauna_title: "Portada Suave - Mauna", cat_vinyl: "Diseño de Vinilo", cat_id: "Identidad Estacional", tit_navidad: "Logo Navideño", cat_vector: "Ilustración Vectorial", tit_koala: "Koala", cat_corp: "Branding Corporativo", cat_edit: "Diseño Editorial", tit_ruta: "La Ruta del Sabor", cat_mosaic: "Mosaico Digital", tit_school: "Colegio Parroquial", tit_yumbo: "Alcaldía de Yumbo", cat_ad: "Diseño Publicitario", tit_cali: "Alcaldía de Cali", cat_promo: "Diseño Promocional", tit_noches: "Noches D'Feria", cat_flyer: "Diseño de Volante", tit_vape: "Vape Expo 2020", aud_alone: "Acústico / Soul Cinematográfico", aud_trapped: "Tensión / Percusión de Acción", aud_rock: "Rock Alternativo / Alta Energía", aud_rain: "Ambient / Synthwave Inspirador", aud_hades: "Darkwave / Synth Industrial", aud_sauvage: "Beat Global / Fusión Urbana", ecosystem_title: "Ecosistema Creativo", clients_title: "Empresas y Aliados", contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la narrativa digital y audiovisual de sus proyectos? Agendemos una sesión estratégica hoy mismo.", btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", btn_cv: "Descargar CV (PDF)", link_yt: "Canal de YouTube", vault_title: "Bóveda Corporativa", vault_desc: "Mis diseños de E-learning e infografías para Unilever, Alquería y Derco están sujetos a NDA.", vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]", modal_req_title: "Solicitud de Acceso", modal_req_desc: "Está a punto de solicitar acceso a la Bóveda de NDA. Clientes protegidos:", label_name: "Su Nombre Completo:", label_id: "Documento / NIT:", label_company: "Empresa o Agencia:", label_email: "Su Correo Corporativo:", btn_submit: "Enviar Solicitud y Aceptar", btn_connect: "CONECTEMOS",
+                        vid_cat_clara: "Estrategia Generativa IA", vid_tit_clara: "Proyecto Clara", vid_cat_showreel: "Dirección Creativa", vid_tit_showreel: "Showreel", vid_cat_kapo: "Etalonaje", vid_tit_kapo: "Prueba de Color: KAPO", vid_cat_evento: "Cobertura de Evento", vid_tit_evento: "Vallecaucanos", vid_cat_chef: "Programa Gastronómico Online", vid_tit_chef1: "UniChef: Cheesecake", vid_tit_chef2: "UniChef: Pamplona", vid_tit_chef3: "UniChef: Postre", vid_cat_lyric: "Tipografía & Motion Graphics", vid_tit_lyric: "Video Lyric - Suave (Mauna)", cat_post: "Postproducción", vid_tit_mauna: "Behind Scenes Desnúdame - Alejo Djoy", cat_artdir: "Dirección de Arte Comercial", tit_food: "Food Styling", cat_fashion: "Fashion Book & Belleza", tit_fashion: "Book Modelos", cat_product: "Fotografía Comercial B2C", title_product: "Fotografía de Producto", cat_lighting: "Iluminación & Técnica", title_portraits: "Retratos de Estudio", cat_editorial: "Fotografía Editorial", tit_sabrina: "Actriz: Sabrina", cat_press: "Retrato Promocional (Prensa)", tit_kapo: "Artista: KAPO", cat_casting: "Casting Visual", title_emerging: "Artistas Emergentes", cat_exp: "Exploración de Luz", tit_exp: "Experimental", cat_land: "Paisaje y Bellas Artes", title_nature: "Naturaleza", cat_banner: "Banner Web", cat_cover: "Diseño de Portada Musical", mauna_title: "Portada Suave - Mauna", cat_vinyl: "Diseño de Vinilo", cat_id: "Identidad Estacional", tit_navidad: "Logo Navideño", cat_vector: "Ilustración Vectorial", tit_koala: "Koala", cat_corp: "Branding Corporativo", cat_edit: "Diseño Editorial", tit_ruta: "La Ruta del Sabor", cat_mosaic: "Mosaico Digital", tit_school: "Colegio Parroquial", tit_yumbo: "Alcaldía de Yumbo", cat_ad: "Diseño Publicitario", tit_cali: "Alcaldía de Cali", cat_promo: "Diseño Promocional", tit_noches: "Noches D'Feria", cat_flyer: "Diseño de Volante", tit_vape: "Vape Expo 2020", aud_alone: "Acústico / Soul Cinematográfico", aud_trapped: "Tensión / Percusión de Acción", aud_rock: "Rock Alternativo / Alta Energía", aud_rain: "Ambient / Synthwave Inspirador", aud_hades: "Darkwave / Synth Industrial", aud_sauvage: "Beat Global / Fusión Urbana", ecosystem_title: "Ecosistema Creativo", clients_title: "Empresas y Aliados", contact_title: "CONECTEMOS", contact_desc: "¿Listo para elevar la narrativa digital y audiovisual de projects? Agendemos una sesión estratégica hoy mismo.", btn_wa: "Escríbeme por WhatsApp", btn_mail: "Escríbeme un correo", btn_cv: "Descargar CV (PDF)", link_yt: "Canal de YouTube", vault_title: "Bóveda Corporativa", vault_desc: "Mis diseños de E-learning e infografías para Unilever, Alquería y Derco están sujetos a NDA.", vault_btn: "Solicitar Acceso Seguro", btn_close: "CERRAR [X]", modal_req_title: "Solicitud de Acceso", modal_req_desc: "Está a punto de solicitar acceso a la Bóveda de NDA. Clientes protegidos:", label_name: "Su Nombre Completo:", label_id: "Documento / NIT:", label_company: "Empresa o Agencia:", label_email: "Su Correo Corporativo:", btn_submit: "Enviar Solicitud y Aceptar", btn_connect: "CONECTEMOS",
                         nda_agree: "Declaro que actúo como representante legal o persona autorizada y <span>ACEPTO IRREVOCABLEMENTE</span> las cláusulas de confidencialidad y penalidad económica.",
                         nda_full_text: "<h4>1. Marco Legal y Objeto de Protección</h4><p>Con fundamento en el <strong>Artículo 15 de la Constitución Política de Colombia</strong>, la <strong>Ley 1581 de 2012</strong> (Protección de Datos) y la <strong>Ley 256 de 1996</strong> (Secretos Empresariales), el presente acuerdo protege la propiedad intelectual, comercial, técnica y de diseño alojada en esta Bóveda Corporativa. Este material incluye información privilegiada amparada por acuerdos previos de confidencialidad con marcas como Eficacia, Unilever, Alquería y Derco, bajo la custodia legal de Jhon Alejandro Vega Ramírez ('La Parte Reveladora').</p><h4>2. Obligación Irrevocable de Reserva</h4><p>La persona natural o jurídica que accede ('La Parte Receptora') se compromete a mantener estricta reserva y confidencialidad. Queda terminantemente prohibida la reproducción total o parcial, transmisión, ingeniería inversa, captura de pantalla o almacenamiento por cualquier medio físico o digital. El acceso se otorga exclusiva y limitadamente para fines de evaluación profesional y comercial directa.</p><h4>3. Cláusula Penal y Perjuicios</h4><p>El incumplimiento comprobado de la obligación de reserva y no divulgación facultará a La Parte Reveladora para exigir inmediatamente, a título de pena, el pago de una suma equivalente a <strong>cincuenta mil dólares estadounidenses (USD $50.000)</strong> o su equivalente en Pesos Colombianos (COP), exigible por vía ejecutiva sin requerir constitución en mora, e independiente del cobro por indemnización de perjuicios adicionales o acciones penales pertinentes.</p><h4>4. Jurisdicción y Resolución de Controversias</h4><p>Cualquier disputa derivada de este acceso será resuelta en derecho mediante Tribunal de Arbitramento adscrito al Centro de Conciliación y Arbitraje de la <strong>Cámara de Comercio de Cali</strong>.</p>"
                     },
@@ -1800,7 +1818,6 @@
                                     dataArray = new Uint8Array(analyser.frequencyBinCount); 
                                     isApiReady = true;
                                 } catch(e) {
-                                    // CORS fallback silencioso
                                 }
                             };
 
@@ -1930,4 +1947,181 @@
                     const down = (e) => {
                         isDragging = true; dragDistance = 0;
                         lastDragX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-                        velocityX = 0
+                        velocityX = 0; container.style.cursor = 'grabbing';
+                    };
+
+                    const move = (e) => {
+                        if (!isDragging) return; e.preventDefault();
+                        const x = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+                        const diff = x - lastDragX;
+                        dragDistance += Math.abs(diff);
+                        currentX += diff; velocityX = diff; lastDragX = x;
+                    };
+
+                    const up = (e) => {
+                        isDragging = false; container.style.cursor = 'grab';
+                        if (dragDistance < 5 && e.target.classList.contains('vault-trigger')) {
+                            VaultManager.openModal();
+                        }
+                    };
+
+                    const init = () => {
+                        observer.observe(container);
+                        container.addEventListener('mousedown', down); container.addEventListener('touchstart', down, {passive: false});
+                        window.addEventListener('mousemove', move, {passive: false}); window.addEventListener('touchmove', move, {passive: false});
+                        window.addEventListener('mouseup', up); window.addEventListener('touchend', up);
+                        
+                        if (!window.matchMedia("(pointer: coarse)").matches) {
+                            container.addEventListener('mouseenter', () => { targetSpeed = -3.5; });
+                            container.addEventListener('mouseleave', () => { targetSpeed = -1; }); 
+                        }
+                        animationId = requestAnimationFrame(loop);
+                    };
+                    return { init };
+                })();
+
+                // ==========================================
+                // MÓDULO: FORMULARIO SEGURO PARA NDA
+                // ==========================================
+                const VaultManager = (() => {
+                    const modal = document.getElementById('vault-modal'); 
+                    const form = document.getElementById('vault-form'); 
+                    const errorDiv = document.getElementById('vault-error');
+                    
+                    const freeEmailDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'aol.com', 'live.com'];
+
+                    const openModal = () => modal.classList.add('active-modal');
+                    const closeModal = () => { 
+                        modal.classList.remove('active-modal'); 
+                        form.reset(); 
+                        errorDiv.style.display = 'none'; 
+                        form.classList.remove('shake-error');
+                    };
+
+                    const sanitizeHTML = (str) => {
+                        return str.replace(/[&<>'"]/g, 
+                            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+                        );
+                    };
+
+                    const validateForm = (name, docId, company, email, isAgreed) => {
+                        const errors = [];
+                        if (!/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]{3,50}$/.test(name)) errors.push("❌ <strong>Firma inválida:</strong> Ingrese su nombre real completo.");
+                        if (docId.length < 5) errors.push("❌ <strong>Documento inválido:</strong> Ingrese una identificación gubernamental o tributaria válida.");
+                        if (!/^[A-Za-z0-9áéíóúÁÉÍÓÚñÑ\s\-\&]{2,50}$/.test(company)) errors.push("❌ <strong>Empresa inválida:</strong> Verifique el nombre comercial de la agencia/empresa.");
+                        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push("❌ <strong>Correo inválido:</strong> Verifique el formato.");
+                        else {
+                            const domain = email.split('@')[1].toLowerCase();
+                            if (freeEmailDomains.includes(domain)) errors.push("❌ <strong>Acceso B2B:</strong> Se requiere correo corporativo para vinculación de NDA.");
+                        }
+                        if (!isAgreed) errors.push("❌ <strong>Consentimiento legal:</strong> Debe marcar la casilla aceptando explícitamente los términos del contrato NDA.");
+                        
+                        return errors;
+                    };
+
+                    form.addEventListener('submit', (e) => {
+                        e.preventDefault(); 
+                        errorDiv.style.display = 'none';
+                        form.classList.remove('shake-error');
+
+                        let name = sanitizeHTML(document.getElementById('req-name').value.trim()); 
+                        let docId = sanitizeHTML(document.getElementById('req-id').value.trim()); 
+                        let company = sanitizeHTML(document.getElementById('req-company').value.trim()); 
+                        let email = sanitizeHTML(document.getElementById('req-email').value.trim());
+                        let isAgreed = document.getElementById('req-agree').checked;
+                        
+                        const validationErrors = validateForm(name, docId, company, email, isAgreed);
+
+                        if (validationErrors.length > 0) {
+                            errorDiv.innerHTML = validationErrors.join('<br>');
+                            errorDiv.style.display = "block";
+                            setTimeout(() => form.classList.add('shake-error'), 10);
+                            return;
+                        }
+                        
+                        const btnSubmit = form.querySelector('button[type="submit"]');
+                        const btnOriginalText = btnSubmit.innerHTML;
+                        btnSubmit.disabled = true;
+                        btnSubmit.innerHTML = "Firmando digitalmente...";
+
+                        const bodyText = `FIRMA DIGITAL DE COMPROMISO NDA\n\nYo, ${name}, identificado con el documento/NIT ${docId}, actuando en nombre propio o como representante de ${company} (Contacto corporativo: ${email}), DECLARO formalmente bajo la gravedad de juramento que HE LEÍDO Y ACEPTO IRREVOCABLEMENTE los términos de confidencialidad, la ley de secretos empresariales (Ley 256 de 1996) y la cláusula penal (USD $50.000) expuestos en la bóveda de Jhon Alejandro Vega Ramírez respecto al material protegido de terceros.\n\nSolicito formalmente la clave de acceso a la Bóveda Privada.`;
+                        
+                        window.location.href = `mailto:Alejandro.960822@gmail.com?subject=${encodeURIComponent(`Firma NDA y Acceso Bóveda - ${company}`)}&body=${encodeURIComponent(bodyText)}`;
+                        
+                        setTimeout(() => {
+                            closeModal();
+                            btnSubmit.disabled = false;
+                            btnSubmit.innerHTML = btnOriginalText;
+                        }, 1500);
+                    });
+                    
+                    document.getElementById('openVaultBtnHeader').addEventListener('click', openModal); 
+                    document.getElementById('openVaultBtnFooter').addEventListener('click', openModal); 
+                    document.getElementById('closeVaultBtn').addEventListener('click', closeModal);
+                    
+                    return { closeModal, openModal };
+                })();
+
+                document.addEventListener('keydown', (e) => { 
+                    if (e.key === "Escape") { VideoManager.closeModal(); GalleryManager.closeModal(); VaultManager.closeModal(); }
+                    if (document.getElementById('gallery-modal').classList.contains('active-modal')) { if (e.key === "ArrowRight") document.getElementById('galleryNextBtn').click(); if (e.key === "ArrowLeft") document.getElementById('galleryPrevBtn').click(); }
+                });
+                
+                document.addEventListener('contextmenu', e => { if(e.target.tagName === 'IMG') e.preventDefault(); });
+
+                // ==========================================
+                // INICIALIZACIÓN GLOBAL DE LA APLICACIÓN Y ALEATORIZACIÓN
+                // ==========================================
+                const DesignRandomizer = (() => {
+                    const init = () => {
+                        const mainGrid = document.getElementById('main-grid');
+                        const disenoItems = Array.from(mainGrid.querySelectorAll('.media-item.diseno'));
+                        
+                        for (let i = disenoItems.length - 1; i > 0; i--) {
+                            const j = Math.floor(Math.random() * (i + 1));
+                            [disenoItems[i], disenoItems[j]] = [disenoItems[j], disenoItems[i]];
+                        }
+                        
+                        const firstAudioItem = mainGrid.querySelector('.media-item.audio');
+                        if (firstAudioItem) {
+                            disenoItems.forEach(item => {
+                                mainGrid.insertBefore(item, firstAudioItem);
+                            });
+                        }
+                    };
+                    return { init };
+                })();
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    updateLanguage(currentLang); 
+                    ExperienceInteractionManager.init();
+                    MarqueePhysics.init(); 
+                    initBentoTilt(); 
+                    DesignRandomizer.init();
+                    
+                    document.querySelectorAll('.fallback-img').forEach(img => {
+                        img.addEventListener('error', function() {
+                            if (!this.dataset.retried) { 
+                                this.dataset.retried = "true"; 
+                                const exts = ['.jpg', '.JPG', '.jpeg', '.png', '.PNG']; 
+                                let curExt = exts.find(e => this.src.includes(e)); 
+                                if(curExt) this.src = this.src.replace(curExt, exts[(exts.indexOf(curExt) + 1) % exts.length]); 
+                            }
+                        }, { passive: true });
+                    });
+
+                    const backToTopBtn = document.getElementById('backToTopBtn');
+                    window.addEventListener('scroll', () => {
+                        if (window.scrollY > 400) backToTopBtn.classList.add('visible');
+                        else backToTopBtn.classList.remove('visible');
+                    }, { passive: true });
+                    backToTopBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+                });
+
+            } catch (err) {
+                console.error("Critical Runtime Error:", err);
+            }
+        })();
+    </script>
+</body>
+</html>

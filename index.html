@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jhon Alejandro Vega Ramírez | Ingeniero multimedia</title>
-<meta name="description" content="Portafolio de Jhon Alejandro Vega Ramírez, ingeniero multimedia en Yumbo y Cali: identidad de marca, producción audiovisual y contenidos de formación. Descarga su hoja de vida.">
+<meta name="description" content="Portafolio de Jhon Alejandro Vega Ramírez, ingeniero multimedia en Cali y Yumbo: identidad de marca, producción audiovisual y contenidos de formación. Descarga su hoja de vida.">
 <meta name="author" content="Jhon Alejandro Vega Ramírez">
 <meta name="theme-color" content="#0F2340">
 <link rel="canonical" href="https://javegapro.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://javegapro.github.io/">
 <meta property="og:title" content="Jhon Alejandro Vega Ramírez | Ingeniero multimedia">
-<meta property="og:description" content="Identidad de marca, producción audiovisual y contenidos de formación. Cali, Yumbo o remoto.">
+<meta property="og:description" content="Marcas, video y formación que se entienden a la primera. Cali, Yumbo o remoto.">
 <meta property="og:image" content="https://javegapro.github.io/cv/img/javega.jpg">
 <link rel="preload" href="cv/fonts/InterDisplay-Bold.ttf" as="font" type="font/ttf" crossorigin>
 <style>
@@ -20,234 +20,322 @@
 @font-face{font-family:"Inter";src:url(cv/fonts/Inter-SemiBold.ttf) format("truetype");font-weight:600;font-display:swap}
 @font-face{font-family:"Inter Display";src:url(cv/fonts/InterDisplay-Bold.ttf) format("truetype");font-weight:700;font-display:swap}
 :root{
-  --ink:#0F2340; --text:#1E2836; --muted:#5A6676; --line:#DEE3EA; --panel:#F1F4F8; --paper:#FFFFFF;
-  --teal:#0F766E; --teal-soft:#E3F3F1; --playhead:#E5484D;
-  --wrap:1120px; --r:10px;
+  --ink:#0F2340; --ink-deep:#0A1830; --text:#1E2836; --muted:#5A6676; --line:#DEE3EA; --panel:#F1F4F8; --paper:#FFFFFF;
+  --teal:#0F766E; --teal-soft:#E3F3F1; --mint:#7DD3C8; --playhead:#E5484D;
+  --wrap:1180px; --r:12px; --head:64px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:84px}
-body{margin:0;background:var(--paper);color:var(--text);font:400 17px/1.6 "Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+html{scroll-padding-top:var(--head)}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--paper);color:var(--text);font:400 17px/1.6 "Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:var(--teal);text-underline-offset:3px}
-a:hover{color:var(--ink)}
-:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:4px}
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
-h1,h2,h3{font-family:"Inter Display","Inter",sans-serif;font-weight:700;color:var(--ink);line-height:1.12;margin:0}
-h1{font-size:clamp(2.3rem,5.6vw,4rem);letter-spacing:-0.02em}
-h2{font-size:clamp(1.7rem,3.4vw,2.4rem);letter-spacing:-0.01em}
-h3{font-size:1.3rem}
+:focus-visible{outline:3px solid var(--mint);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:"Inter Display","Inter",sans-serif;font-weight:700;color:var(--ink);line-height:1.04;margin:0;letter-spacing:-0.02em}
+h2{font-size:clamp(2rem,4.6vw,3.6rem)}
+h3{font-size:clamp(1.4rem,2.2vw,2rem)}
 p{margin:0 0 1em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip{position:absolute;left:-999px}
-.skip:focus{left:16px;top:12px;background:var(--ink);color:#fff;padding:8px 12px;z-index:50}
+.skip:focus{left:16px;top:12px;background:#fff;color:var(--ink);padding:8px 12px;z-index:60}
+.mask{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.06em;margin-bottom:-.06em}
+.w{display:inline-block;will-change:transform}
 
-/* Header */
-.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;align-items:center;gap:24px;height:64px}
-.brand{font:700 1.05rem/1 "Inter Display","Inter",sans-serif;color:var(--ink);text-decoration:none;white-space:nowrap}
-.top nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+/* Header with timeline */
+.top{position:fixed;inset:0 0 auto 0;z-index:40;background:rgba(10,24,48,.92);backdrop-filter:blur(10px);color:#fff}
+.top .wrap{display:flex;align-items:center;gap:20px;height:var(--head)}
+.brand{font:700 1.05rem/1 "Inter Display","Inter",sans-serif;color:#fff;text-decoration:none;white-space:nowrap}
+.top nav{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
 .top nav::-webkit-scrollbar{display:none}
-.top nav a{color:var(--text);text-decoration:none;font-weight:500;font-size:.95rem;padding:8px 10px;border-radius:6px;white-space:nowrap}
-.top nav a:hover{background:var(--panel);color:var(--ink)}
-.top nav a.cv{background:var(--ink);color:#fff}
-.top nav a.cv:hover{background:var(--teal)}
+.top nav a{color:#D7DEE8;text-decoration:none;font-weight:500;font-size:.95rem;padding:8px 10px;border-radius:6px;white-space:nowrap}
+.top nav a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.top nav a.cv{background:var(--mint);color:var(--ink);font-weight:600}
+.tc{font:600 .82rem/1 "Inter",sans-serif;font-variant-numeric:tabular-nums;color:#fff;display:flex;align-items:center;gap:8px;padding-left:16px;border-left:1px solid rgba(255,255,255,.18)}
+.tc i{width:8px;height:8px;border-radius:50%;background:var(--playhead);animation:blink 1.2s steps(2,start) infinite}
+@keyframes blink{to{visibility:hidden}}
+.timeline{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.12)}
+.timeline b{position:absolute;inset:0;background:var(--playhead);transform-origin:0 50%;transform:scaleX(0)}
 
 /* Buttons */
-.btn{display:inline-flex;align-items:center;gap:8px;font:600 1rem/1 "Inter",sans-serif;padding:14px 20px;border-radius:8px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);text-decoration:none;cursor:pointer}
-.btn:hover{background:var(--panel);color:var(--ink)}
-.btn.primary{background:var(--ink);color:#fff}
-.btn.primary:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 1rem/1 "Inter",sans-serif;padding:16px 22px;border-radius:10px;border:1.5px solid currentColor;background:transparent;color:inherit;text-decoration:none;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
 .btn svg{width:18px;height:18px}
+.btn.primary{background:var(--mint);border-color:var(--mint);color:var(--ink)}
+.btn.primary:hover{background:#fff;border-color:#fff}
+.btn.ghost:hover{background:rgba(255,255,255,.1)}
 
 /* Hero */
-.hero{padding:72px 0 40px}
-.hero-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:center}
-.lede{font-size:clamp(1.15rem,2vw,1.4rem);line-height:1.45;color:var(--text);max-width:34ch;margin:20px 0 12px}
-.where{color:var(--muted);margin-bottom:28px}
+.hero{background:radial-gradient(1200px 600px at 85% 20%,#173664 0%,transparent 60%),var(--ink-deep);color:#fff;padding:calc(var(--head) + 72px) 0 0;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:56px;align-items:center}
+.kicker{color:var(--mint);font-weight:600;margin-bottom:22px}
+.hero h1{color:#fff;font-size:clamp(2.6rem,6.2vw,5.4rem);line-height:1.02}
+.rot{display:inline-grid;vertical-align:bottom;overflow:hidden;color:var(--mint);padding-bottom:.06em;margin-bottom:-.06em}
+.rot .rw{grid-area:1/1;display:inline-block}
+.still .rot .rw:not(:first-child){visibility:hidden}
+.sub{font-size:clamp(1.05rem,1.6vw,1.25rem);color:#C9D3E0;max-width:40ch;margin:26px 0 30px}
 .actions{display:flex;flex-wrap:wrap;gap:12px}
-.portrait{margin:0;justify-self:end;width:min(100%,340px)}
-.portrait img{aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);background:var(--panel)}
+.cam{position:relative;justify-self:end;width:min(100%,400px);aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:#0d2140}
+.cam img{width:100%;height:118%;object-fit:cover;object-position:50% 20%;filter:saturate(1.05)}
+.corner{position:absolute;width:30px;height:30px;border:3px solid var(--mint)}
+.corner.a{top:14px;left:14px;border-right:0;border-bottom:0}
+.corner.b{top:14px;right:14px;border-left:0;border-bottom:0}
+.corner.c{bottom:14px;left:14px;border-right:0;border-top:0}
+.corner.d{bottom:14px;right:14px;border-left:0;border-top:0}
+.rec{position:absolute;top:22px;left:56px;font:600 .8rem/1 "Inter",sans-serif;color:#fff;display:flex;gap:6px;align-items:center;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.rec i{width:9px;height:9px;border-radius:50%;background:var(--playhead);animation:blink 1.2s steps(2,start) infinite}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:72px;border-top:1px solid rgba(255,255,255,.14)}
+.stat{padding:26px 22px 30px 0}
+.stat+.stat{padding-left:22px;border-left:1px solid rgba(255,255,255,.14)}
+.stat strong{display:block;font:700 clamp(1.9rem,3.6vw,3rem)/1 "Inter Display","Inter",sans-serif;color:#fff;font-variant-numeric:tabular-nums}
+.stat span{display:block;color:#AFC0D4;font-size:.95rem;margin-top:8px;line-height:1.4}
 
-/* Storyboard reel: the one memorable element */
-.reel-wrap{margin-top:64px}
-.reel-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:16px}
-.reel-head p{margin:0;color:var(--muted);font-size:.95rem}
-.reel{list-style:none;margin:0;padding:30px 0 4px;display:grid;grid-template-columns:repeat(5,minmax(180px,1fr));gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;position:relative}
-.reel li{scroll-snap-align:start;position:relative;padding-top:14px}
-.reel li::before{content:"";position:absolute;top:0;left:-16px;right:0;border-top:2px solid var(--line)}
-.reel li:first-child::before{left:0}
-.reel li::after{content:"";position:absolute;top:-5px;left:0;width:2px;height:12px;background:var(--muted)}
-.frame{aspect-ratio:16/10;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--panel);position:relative}
-.frame img{width:100%;height:100%;object-fit:cover}
+/* Marquee */
+.marquee{background:var(--teal);color:#fff;overflow:hidden;padding:18px 0;white-space:nowrap}
+.mq{display:inline-flex;gap:0;will-change:transform}
+.mq span{font:700 clamp(1.2rem,2.4vw,1.9rem)/1 "Inter Display","Inter",sans-serif;padding:0 28px;display:inline-flex;align-items:center;gap:28px}
+.mq span::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--mint)}
+.still .mq{animation:mq 40s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* Reel */
+.reel-sec{padding:96px 0 80px}
+.reel-head{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:40px}
+.reel-head p{color:var(--muted);margin:0;max-width:46ch}
+.reel{position:relative;list-style:none;margin:0;padding:34px 0 0;display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.reel::before{content:"";position:absolute;top:12px;left:0;right:0;height:2px;background:var(--line)}
+.reel-playhead{position:absolute;top:0;left:0;width:2px;height:calc(100% + 8px);background:var(--playhead);z-index:3}
+.reel-playhead::before{content:"";position:absolute;top:0;left:-7px;border-left:8px solid transparent;border-right:8px solid transparent;border-top:12px solid var(--playhead)}
+.reel li{transition:opacity .4s}
+.motion .reel li{opacity:.35}
+.motion .reel li.on{opacity:1}
+.frame{aspect-ratio:16/10;border:1.5px solid var(--ink);border-radius:8px;overflow:hidden;background:var(--panel);position:relative}
+.frame img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.reel li.on .frame img{transform:scale(1.05)}
 .frame.logo img{object-fit:contain;padding:14% 10%;background:#fff}
-.reel .yr{display:block;font:600 .85rem/1 "Inter",sans-serif;color:var(--muted);margin:12px 0 6px;font-variant-numeric:tabular-nums}
+.reel .yr{display:block;font:700 1.1rem/1 "Inter Display","Inter",sans-serif;color:var(--teal);margin:14px 0 6px;font-variant-numeric:tabular-nums}
 .reel strong{display:block;color:var(--ink);font-weight:600;line-height:1.3}
-.reel span.cap{display:block;color:var(--muted);font-size:.92rem;line-height:1.4;margin-top:2px}
-.reel li.now::after{left:auto;right:12px;top:-9px;width:2px;height:calc(100% - 4px);background:var(--playhead);z-index:2}
-.reel li.now .tag{position:absolute;top:-30px;right:0;background:var(--playhead);color:#fff;font:600 .75rem/1 "Inter",sans-serif;padding:5px 8px;border-radius:4px}
+.reel .cap{display:block;color:var(--muted);font-size:.92rem;line-height:1.4;margin-top:2px}
 .sketch{position:absolute;inset:0;display:grid;grid-template-columns:repeat(5,1fr);align-items:end;gap:8%;padding:16% 12% 14%;background:repeating-linear-gradient(0deg,transparent 0 23%,var(--line) 23% calc(23% + 1px)),#fff}
-.sketch i{display:block;background:var(--teal);border-radius:3px 3px 0 0}
+.sketch i{display:block;background:var(--teal);border-radius:3px 3px 0 0;transform-origin:bottom}
 
-/* Sections */
-section.block{padding:88px 0;border-top:1px solid var(--line)}
-section.block.tint{background:var(--panel)}
-.sec-head{display:grid;grid-template-columns:1fr 1.2fr;gap:32px;align-items:end;margin-bottom:40px}
-.sec-head p{margin:0;color:var(--muted);max-width:52ch}
-
-/* Case studies */
-.case{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:center;padding:40px 0;border-bottom:1px solid var(--line)}
-.case:last-child{border-bottom:0}
-.case:nth-child(even) .media{order:2}
-.case .media{border-radius:var(--r);overflow:hidden;background:var(--panel);position:relative}
-.case .media img{width:100%;height:100%;object-fit:cover}
-.case .media.logo{display:grid;place-items:center;aspect-ratio:16/10;background:#fff;border:1px solid var(--line)}
-.case .media.logo img{width:70%;height:auto;object-fit:contain}
-.case .media.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:transparent}
-.case .media.pair img{aspect-ratio:1;border-radius:var(--r)}
-.case .when{color:var(--muted);font-weight:500;margin:8px 0 14px}
-.case ul{margin:0 0 18px;padding-left:1.1em}
-.case li{margin-bottom:6px}
-.playbtn{position:relative;display:block;width:100%;padding:0;border:0;cursor:pointer;background:#000;aspect-ratio:16/9}
-.playbtn img{width:100%;height:100%;object-fit:cover;opacity:.92}
-.playbtn .pi{position:absolute;inset:0;margin:auto;width:72px;height:72px;border-radius:50%;background:rgba(15,35,64,.86);display:grid;place-items:center}
-.playbtn .pi::before{content:"";margin-left:6px;border-left:22px solid #fff;border-top:14px solid transparent;border-bottom:14px solid transparent}
-.playbtn:hover .pi{background:var(--playhead)}
-.dash{aspect-ratio:16/10;border:1px solid var(--line);background:#fff;padding:18px;display:grid;grid-template-rows:auto 1fr;gap:14px}
+/* Scenes */
+.scenes{background:var(--panel);overflow:hidden;position:relative}
+.scenes-intro{padding:96px 0 40px}
+.scenes-intro p{color:var(--muted);max-width:52ch;margin-top:16px}
+.scenes-track{display:flex;gap:48px;padding:0 28px 96px;width:max-content}
+.scene{width:min(1040px,82vw);min-height:min(620px,72vh);background:#fff;border-radius:18px;border:1px solid var(--line);display:grid;grid-template-columns:1.1fr 1fr;gap:44px;padding:44px;align-items:center;box-shadow:0 30px 60px -40px rgba(15,35,64,.35)}
+.scene .media{border-radius:12px;overflow:hidden;background:var(--panel);position:relative;align-self:stretch;min-height:320px}
+.scene .media img{width:100%;height:100%;object-fit:cover}
+.scene .media.logo{display:grid;place-items:center;background:#fff;border:1px solid var(--line)}
+.scene .media.logo img{width:72%;height:auto;object-fit:contain}
+.scene .media.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:transparent}
+.scene .media.pair button{all:unset;cursor:zoom-in;border-radius:12px;overflow:hidden}
+.scene .num{font:600 .9rem/1 "Inter",sans-serif;color:var(--playhead);display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.scene .num::before{content:"";width:28px;height:2px;background:var(--playhead)}
+.scene .when{color:var(--muted);font-weight:500;margin:10px 0 16px}
+.scene ul{margin:0 0 18px;padding-left:1.1em}
+.scene li{margin-bottom:6px}
+.playbtn{position:relative;display:block;width:100%;height:100%;min-height:320px;padding:0;border:0;cursor:pointer;background:#000}
+.playbtn img{width:100%;height:100%;object-fit:cover;opacity:.9;transition:transform .6s,opacity .3s}
+.playbtn:hover img{transform:scale(1.04);opacity:1}
+.pi{position:absolute;inset:0;margin:auto;width:84px;height:84px;border-radius:50%;background:rgba(229,72,77,.92);display:grid;place-items:center;box-shadow:0 0 0 0 rgba(229,72,77,.6);animation:pulse 2s infinite}
+.pi::before{content:"";margin-left:7px;border-left:26px solid #fff;border-top:16px solid transparent;border-bottom:16px solid transparent}
+@keyframes pulse{70%{box-shadow:0 0 0 22px rgba(229,72,77,0)}100%{box-shadow:0 0 0 0 rgba(229,72,77,0)}}
+.dash{position:absolute;inset:0;border:1px solid var(--line);background:#fff;padding:22px;display:grid;grid-template-rows:auto 1fr;gap:16px}
 .dash .row{display:flex;gap:10px}
-.dash .row b{flex:1;height:44px;border-radius:6px;background:var(--teal-soft);border:1px solid #cfe7e3}
+.dash .row b{flex:1;height:52px;border-radius:8px;background:var(--teal-soft);border:1px solid #cfe7e3}
 .dash .bars{position:relative}
-.dash .bars .sketch{position:absolute;inset:0;padding:6% 4% 0}
+.dash .bars .sketch{position:absolute;inset:0;padding:4% 4% 0}
+.scene-dots{position:absolute;left:50%;bottom:40px;transform:translateX(-50%);display:flex;gap:10px}
+.scene-dots i{width:34px;height:4px;border-radius:2px;background:var(--line);overflow:hidden;position:relative}
+.scene-dots i b{position:absolute;inset:0;background:var(--playhead);transform-origin:0 50%;transform:scaleX(0)}
 
-/* Grids */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
-.card button{all:unset;cursor:pointer;display:block}
-.card button:focus-visible{outline:3px solid var(--teal);outline-offset:-3px}
-.card .thumb{aspect-ratio:16/9;background:#000;position:relative;overflow:hidden}
-.card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
-.card button:hover .thumb img{transform:scale(1.03)}
-.card .thumb.sq{aspect-ratio:1;background:var(--panel)}
-.card .txt{padding:14px 16px 16px}
-.card .txt strong{display:block;color:var(--ink);font-weight:600;line-height:1.35}
-.card .txt span{display:block;color:var(--muted);font-size:.9rem;margin-top:2px}
-.card .count{position:absolute;right:10px;bottom:10px;background:rgba(15,35,64,.86);color:#fff;font:600 .8rem/1 "Inter",sans-serif;padding:6px 8px;border-radius:4px}
-.card .thumb .pi{position:absolute;left:12px;bottom:12px;width:40px;height:40px;border-radius:50%;background:rgba(15,35,64,.86);display:grid;place-items:center}
-.card .thumb .pi::before{content:"";margin-left:3px;border-left:13px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent}
-#design-grid{grid-template-columns:repeat(auto-fill,minmax(196px,1fr))}
+/* Galleries */
+section.block{padding:110px 0}
+section.dark{background:var(--ink-deep);color:#fff}
+section.dark h2{color:#fff}
+section.tint{background:var(--panel)}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:44px}
+.sec-head p{margin:0;color:var(--muted);max-width:50ch}
+section.dark .sec-head p{color:#AFC0D4}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px}
+#design-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
 #photo-grid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
-.tracks{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px 24px}
-.track{display:grid;grid-template-columns:1fr;gap:6px;padding:14px 0;border-bottom:1px solid var(--line)}
+.card{border-radius:var(--r);overflow:hidden;background:#fff;border:1px solid var(--line);transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+section.dark .card{background:#11264A;border-color:#1D3A66}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 40px -24px rgba(15,35,64,.45)}
+.card button{all:unset;cursor:pointer;display:block;width:100%}
+.card button:focus-visible{outline:3px solid var(--mint);outline-offset:-3px}
+.thumb{aspect-ratio:16/9;background:#000;position:relative;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.card:hover .thumb img{transform:scale(1.07)}
+.thumb.sq{aspect-ratio:1;background:var(--panel)}
+.thumb .pi{width:52px;height:52px;margin:auto;animation:none}
+.thumb .pi::before{margin-left:4px;border-left-width:16px;border-top-width:10px;border-bottom-width:10px}
+.card:hover .thumb .pi{animation:pulse 1.6s infinite}
+.txt{padding:14px 16px 16px}
+.txt strong{display:block;color:var(--ink);font-weight:600;line-height:1.35}
+section.dark .txt strong{color:#fff}
+.txt span{display:block;color:var(--muted);font-size:.9rem;margin-top:2px}
+section.dark .txt span{color:#AFC0D4}
+.count{position:absolute;right:10px;bottom:10px;background:rgba(15,35,64,.86);color:#fff;font:600 .8rem/1 "Inter",sans-serif;padding:6px 8px;border-radius:4px}
+.tracks{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px 26px}
+.track{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.track .eq{grid-row:1/3;display:flex;gap:3px;align-items:end;height:30px;width:30px}
+.track .eq i{flex:1;background:var(--teal);height:30%;border-radius:2px}
+.track.playing .eq i{animation:eq .9s ease-in-out infinite alternate}
+.track.playing .eq i:nth-child(2){animation-delay:.2s}
+.track.playing .eq i:nth-child(3){animation-delay:.4s}
+.track.playing .eq i:nth-child(4){animation-delay:.1s}
+@keyframes eq{from{height:20%}to{height:100%}}
 .track strong{color:var(--ink)}
 .track span{color:var(--muted);font-size:.9rem}
-.track audio{width:100%;height:36px}
+.track audio{grid-column:1/-1;width:100%;height:36px;margin-top:6px}
 
-/* CV downloads */
+/* Final scene */
+.final{background:var(--ink-deep);color:#fff;padding:120px 0 90px;position:relative;overflow:hidden}
+.final h2{color:#fff;font-size:clamp(2.4rem,6vw,5rem);max-width:16ch}
+.final .lead{color:#C9D3E0;font-size:1.2rem;max-width:46ch;margin:22px 0 46px}
 .cvs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.cvcard{border:1.5px solid var(--ink);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:8px;background:#fff;text-decoration:none;color:var(--text)}
-.cvcard:hover{background:var(--teal-soft);color:var(--text)}
-.cvcard strong{color:var(--ink);font:700 1.1rem/1.25 "Inter Display","Inter",sans-serif}
-.cvcard span{color:var(--muted);font-size:.93rem;line-height:1.45;flex:1}
-.cvcard em{font-style:normal;font-weight:600;color:var(--teal);font-size:.92rem}
-.cv-more{margin-top:20px;color:var(--muted)}
-
-/* Contact */
-.contact{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
-.links{display:grid;gap:10px}
-.links a{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--ink);font-weight:600;background:#fff}
-.links a span{color:var(--muted);font-weight:400;font-size:.92rem}
-.links a:hover{border-color:var(--teal)}
-footer{padding:28px 0;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+.cvcard{border:1.5px solid #2A4775;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px;background:#11264A;text-decoration:none;color:#fff;transition:transform .3s,background .3s,border-color .3s}
+.cvcard:hover{transform:translateY(-6px);background:#173664;border-color:var(--mint);color:#fff}
+.cvcard strong{font:700 1.15rem/1.25 "Inter Display","Inter",sans-serif}
+.cvcard span{color:#AFC0D4;font-size:.93rem;line-height:1.45;flex:1}
+.cvcard em{font-style:normal;font-weight:600;color:var(--mint);font-size:.92rem}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px}
+.links a{display:inline-flex;gap:10px;align-items:center;padding:14px 18px;border:1px solid #2A4775;border-radius:10px;text-decoration:none;color:#fff;font-weight:600;background:transparent;transition:border-color .25s,background .25s}
+.links a span{color:#AFC0D4;font-weight:400}
+.links a:hover{border-color:var(--mint);background:rgba(125,211,200,.08)}
+.more{margin-top:26px;color:#AFC0D4}
+.more a{color:var(--mint)}
+footer{background:var(--ink-deep);color:#7F93AD;font-size:.9rem;padding:0 0 36px}
+footer .wrap{border-top:1px solid #1D3A66;padding-top:24px}
 
 /* Dialogs */
 dialog{border:0;padding:0;background:transparent;max-width:min(1100px,94vw);width:100%}
-dialog::backdrop{background:rgba(9,18,33,.88)}
+dialog::backdrop{background:rgba(6,14,28,.9)}
 .dlg{position:relative}
-.dlg .close{position:absolute;top:-46px;right:0;background:#fff;color:var(--ink);border:0;border-radius:6px;padding:8px 12px;font:600 .95rem/1 "Inter",sans-serif;cursor:pointer}
-.player{aspect-ratio:16/9;background:#000;border-radius:8px;overflow:hidden}
+.dlg .close{position:absolute;top:-48px;right:0;background:#fff;color:var(--ink);border:0;border-radius:8px;padding:9px 14px;font:600 .95rem/1 "Inter",sans-serif;cursor:pointer}
+.player{aspect-ratio:16/9;background:#000;border-radius:10px;overflow:hidden}
 .player iframe{width:100%;height:100%;border:0}
-.viewer img{max-height:78vh;width:auto;margin:0 auto;border-radius:6px;background:#fff}
+.viewer img{max-height:78vh;width:auto;margin:0 auto;border-radius:8px;background:#fff}
 .viewer .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#fff;margin-top:12px}
-.viewer .bar button{background:#fff;color:var(--ink);border:0;border-radius:6px;padding:8px 14px;font:600 .95rem/1 "Inter",sans-serif;cursor:pointer}
+.viewer .bar button{background:#fff;color:var(--ink);border:0;border-radius:8px;padding:9px 16px;font:600 .95rem/1 "Inter",sans-serif;cursor:pointer}
 
+@media (max-width:1023px){
+  .scenes-track{flex-direction:column;width:auto;padding:0 20px 80px;gap:24px}
+  .scene{width:auto;grid-template-columns:1fr;padding:24px;gap:22px;min-height:0}
+  .scene .media{min-height:220px;aspect-ratio:16/10}
+  .playbtn{min-height:220px}
+  .scene-dots{display:none}
+}
 @media (max-width:900px){
-  .hero{padding-top:40px}
-  .hero-grid,.sec-head,.case,.contact{grid-template-columns:1fr;gap:24px}
-  .portrait{justify-self:start;width:120px;order:-1}
-  .top nav a.cv{order:-1}
-  .case:nth-child(even) .media{order:0}
+  .hero{padding-top:calc(var(--head) + 36px)}
+  .hero-grid,.reel-head,.sec-head{grid-template-columns:1fr;gap:28px}
+  .cam{justify-self:start;width:min(100%,300px)}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(3){padding-left:0;border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid rgba(255,255,255,.14)}
+  .reel{grid-template-columns:repeat(5,70%);overflow-x:auto;scroll-snap-type:x mandatory}
+  .reel li{scroll-snap-align:start}
+  .reel-playhead{display:none}
+  .motion .reel li{opacity:1}
   .cvs{grid-template-columns:1fr 1fr}
-  section.block{padding:64px 0}
+  .tc{display:none}
 }
 @media (max-width:560px){
-  .wrap{padding:0 16px}
-  .top .wrap{gap:12px}
+  .wrap{padding:0 18px}
   .brand span{display:none}
+  .top nav a.cv{order:-1}
   .cvs{grid-template-columns:1fr}
-  .reel{grid-template-columns:repeat(5,72%)}
+  .cam{width:200px}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<a class="skip" href="#trabajo">Saltar al contenido</a>
+<a class="skip" href="#escenas">Saltar al contenido</a>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#">Alejandro Vega<span>, ingeniero multimedia</span></a>
     <nav aria-label="Secciones">
-      <a href="#trabajo">Trabajo</a>
+      <a href="#escenas">Escenas</a>
       <a href="#video">Video</a>
       <a href="#diseno">Diseño</a>
       <a href="#fotografia">Fotografía</a>
-      <a href="#contacto">Contacto</a>
       <a class="cv" href="#hoja-de-vida">Hoja de vida</a>
     </nav>
+    <div class="tc" aria-hidden="true"><i></i><span id="timecode">00:00:00:00</span></div>
   </div>
+  <div class="timeline" aria-hidden="true"><b id="timebar"></b></div>
 </header>
 
 <main>
-<section class="hero">
+<section class="hero" aria-labelledby="hero-title">
   <div class="wrap hero-grid">
     <div>
-      <h1>Jhon Alejandro Vega Ramírez</h1>
-      <p class="lede">Ingeniero multimedia. Diseño marcas, produzco video y hago contenidos de formación que se entienden.</p>
-      <p class="where">Vivo en Yumbo. Trabajo en Cali, Yumbo o en remoto.</p>
+      <p class="kicker">Jhon Alejandro Vega Ramírez, ingeniero multimedia</p>
+      <h1 id="hero-title" aria-label="Hago que tu marca, tu video o tu curso se entienda a la primera.">
+        <span aria-hidden="true"><span class="mask"><span class="w">Hago</span></span> <span class="mask"><span class="w">que</span></span> <span class="mask"><span class="w">tu</span></span> <span class="rot"><span class="rw">marca</span><span class="rw">video</span><span class="rw">curso</span></span><br><span class="mask"><span class="w">se</span></span> <span class="mask"><span class="w">entienda</span></span> <span class="mask"><span class="w">a</span></span> <span class="mask"><span class="w">la</span></span> <span class="mask"><span class="w">primera.</span></span></span>
+      </h1>
+      <p class="sub">Creé la identidad de ESPY, produje formación para Eficacia y videos que emitió Telepacífico. Trabajo en Cali, Yumbo o en remoto.</p>
       <div class="actions">
-        <a class="btn primary" href="#hoja-de-vida">Descargar hoja de vida</a>
-        <button class="btn" type="button" data-yt="ntMooW2DwVw" data-title="Showreel">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>Ver showreel
-        </button>
+        <a class="btn primary magnet" href="#hoja-de-vida">Descargar hoja de vida</a>
+        <button class="btn ghost magnet" type="button" data-yt="ntMooW2DwVw" data-title="Showreel"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>Ver showreel</button>
       </div>
     </div>
-    <figure class="portrait"><img src="cv/foto.jpg" alt="Retrato de Jhon Alejandro Vega Ramírez" width="340" height="425"></figure>
+    <figure class="cam" style="margin:0">
+      <img src="cv/foto.jpg" alt="Retrato de Jhon Alejandro Vega Ramírez" width="400" height="500">
+      <span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span>
+      <span class="rec" aria-hidden="true"><i></i>REC</span>
+    </figure>
   </div>
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><strong data-count="10" data-prefix="+">+10</strong><span>proyectos pagos de video, fotografía y diseño</span></div>
+      <div class="stat"><strong data-count="5" data-prefix="+" data-suffix=" años">+5 años</strong><span>de experiencia certificada en diseño, video y formación</span></div>
+      <div class="stat"><strong>2023</strong><span>año desde el que ESPY usa la marca que diseñé</span></div>
+      <div class="stat"><strong>TV</strong><span>videos míos emitidos en Telepacífico</span></div>
+    </div>
+  </div>
+</section>
 
-  <div class="wrap reel-wrap">
+<div class="marquee" aria-hidden="true"><div class="mq">
+  <span>Identidad de marca</span><span>Edición de video</span><span>Motion graphics</span><span>E-learning</span><span>Fotografía</span><span>Personajes y agentes de IA</span>
+  <span>Identidad de marca</span><span>Edición de video</span><span>Motion graphics</span><span>E-learning</span><span>Fotografía</span><span>Personajes y agentes de IA</span>
+</div></div>
+
+<section class="reel-sec" aria-labelledby="reel-title">
+  <div class="wrap">
     <div class="reel-head">
-      <h2 class="h3" style="font-size:1.25rem">Mi recorrido</h2>
-      <p>De la producción independiente a la marca de una empresa pública.</p>
+      <h2 id="reel-title" data-split>Mi recorrido, cuadro por cuadro</h2>
+      <p>De la producción independiente a la marca de una empresa pública y a los agentes de IA. Diez años sin pausa.</p>
     </div>
     <ol class="reel">
+      <span class="reel-playhead" aria-hidden="true"></span>
       <li><div class="frame"><img src="cv/img/javega.jpg" alt="Banner diseñado para Jdmaray Cali SPA" loading="lazy"></div><span class="yr">2016</span><strong>Primeros proyectos</strong><span class="cap">Video, fotografía y diseño como independiente.</span></li>
-      <li><div class="frame"><img src="cv/img/cali.jpg" alt="Invitación al Encuentro Intercultural de la Alcaldía de Cali" loading="lazy"></div><span class="yr">2020</span><strong>Comunicación pública</strong><span class="cap">Piezas y presentaciones para Cali y Yumbo.</span></li>
+      <li><div class="frame"><img src="cv/img/cali.jpg" alt="Invitación al Encuentro Intercultural de la Alcaldía de Cali" loading="lazy"></div><span class="yr">2020</span><strong>Comunicación pública</strong><span class="cap">Piezas, presentaciones y video para Cali y Yumbo.</span></li>
       <li><div class="frame"><img src="https://i.ytimg.com/vi/NsDssGC4P4o/hqdefault.jpg" alt="Clase en video Photoshop desde cero" loading="lazy"></div><span class="yr">2022</span><strong>Enseñar con video</strong><span class="cap">Formación corporativa en Eficacia.</span></li>
       <li><div class="frame logo"><img src="img/espy-logo.png" alt="Logo de ESPY" loading="lazy"></div><span class="yr">2023</span><strong>La marca de ESPY</strong><span class="cap">Su identidad, en uso desde 2023.</span></li>
-      <li class="now"><span class="tag">hoy</span><div class="frame"><div class="sketch" aria-hidden="true"><i style="height:40%"></i><i style="height:65%"></i><i style="height:50%"></i><i style="height:85%"></i><i style="height:70%"></i></div></div><span class="yr">2026</span><strong>Herramientas con IA</strong><span class="cap">Clara, un tablero presupuestal y un directorio.</span></li>
+      <li><div class="frame"><div class="sketch" aria-hidden="true"><i style="height:40%"></i><i style="height:65%"></i><i style="height:50%"></i><i style="height:85%"></i><i style="height:70%"></i></div></div><span class="yr">2026</span><strong>Clara y herramientas con IA</strong><span class="cap">Un personaje, un tablero y un directorio.</span></li>
     </ol>
   </div>
 </section>
 
-<section class="block tint" id="trabajo">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>Trabajo destacado</h2>
-      <p>Cinco proyectos que muestran cómo trabajo: entender a quién le hablo, ordenar la información y entregar piezas claras.</p>
-    </div>
-
-    <article class="case">
+<section class="scenes" id="escenas" aria-labelledby="scenes-title">
+  <div class="wrap scenes-intro">
+    <h2 id="scenes-title" data-split>Cinco escenas de mi trabajo</h2>
+    <p>Cada una resuelve el mismo problema: que una idea complicada llegue clara a quien la necesita.</p>
+  </div>
+  <div class="scenes-track">
+    <article class="scene">
       <div class="media logo"><img src="img/espy-logo.png" alt="Logo de ESPY, la identidad corporativa que diseñé" loading="lazy"></div>
-      <div>
-        <h3>La identidad de ESPY</h3>
+      <div class="txt-col">
+        <p class="num">Escena 1 de 5</p>
+        <h3>La marca de ESPY</h3>
         <p class="when">Empresa Oficial de Servicios Públicos de Yumbo, 2023</p>
-        <p>Diseñé la identidad corporativa completa: logo, paleta, patrón gráfico, eslogan y aplicaciones. Está en uso desde 2023 en la web, los uniformes, los documentos y la señalética.</p>
+        <p>Diseñé la identidad corporativa completa: logo, paleta, patrón gráfico, eslogan y aplicaciones. Hoy está en la web, los uniformes, los documentos y la señalética.</p>
         <ul>
           <li>Supervisé el diseño de la nueva web y administro el portal en WordPress y Elementor Pro.</li>
           <li>Produzco videos animados, infografías y presentaciones con lenguaje claro para los usuarios.</li>
@@ -255,10 +343,10 @@ dialog::backdrop{background:rgba(9,18,33,.88)}
         <a href="https://espyumbo.com" target="_blank" rel="noopener">Ver la marca en espyumbo.com</a>
       </div>
     </article>
-
-    <article class="case">
-      <div class="media"><button class="playbtn" type="button" data-yt="NsDssGC4P4o" data-title="Photoshop desde cero"><img src="https://i.ytimg.com/vi/NsDssGC4P4o/hqdefault.jpg" alt="" loading="lazy"><span class="pi" aria-hidden="true"></span><span class="skip">Reproducir la clase Photoshop desde cero</span></button></div>
-      <div>
+    <article class="scene">
+      <div class="media"><button class="playbtn" type="button" data-yt="NsDssGC4P4o" data-title="Photoshop desde cero"><img src="https://i.ytimg.com/vi/NsDssGC4P4o/hqdefault.jpg" alt="" loading="lazy"><span class="pi" aria-hidden="true"></span><span class="sr">Reproducir la clase Photoshop desde cero</span></button></div>
+      <div class="txt-col">
+        <p class="num">Escena 2 de 5</p>
         <h3>Formación que se entiende</h3>
         <p class="when">Eficacia y Ezenza, 2020 a 2022</p>
         <p>Produje videos y animaciones para programas de formación corporativa: guion, rodaje en chroma key, edición, animación y entrega.</p>
@@ -268,13 +356,13 @@ dialog::backdrop{background:rgba(9,18,33,.88)}
         </ul>
       </div>
     </article>
-
-    <article class="case">
+    <article class="scene">
       <div class="media pair">
-        <button class="zoom" type="button" data-img="img/diseno/cali-encuentro.jpg" data-cap="Invitación al Encuentro Intercultural, Alcaldía de Cali" style="all:unset;cursor:zoom-in"><img src="cv/img/cali.jpg" alt="Invitación al Encuentro Intercultural de la Alcaldía de Cali" loading="lazy"></button>
-        <button class="zoom" type="button" data-img="img/diseno/yumbo-tuberculosis.jpg" data-cap="Conversatorio sobre tuberculosis, Alcaldía de Yumbo" style="all:unset;cursor:zoom-in"><img src="cv/img/yumbo.jpg" alt="Pieza del conversatorio sobre tuberculosis de la Alcaldía de Yumbo" loading="lazy"></button>
+        <button type="button" data-img="img/diseno/cali-encuentro.jpg" data-cap="Invitación al Encuentro Intercultural, Alcaldía de Cali"><img src="cv/img/cali.jpg" alt="Invitación al Encuentro Intercultural de la Alcaldía de Cali" loading="lazy"></button>
+        <button type="button" data-img="img/diseno/yumbo-tuberculosis.jpg" data-cap="Conversatorio sobre tuberculosis, Alcaldía de Yumbo"><img src="cv/img/yumbo.jpg" alt="Pieza del conversatorio sobre tuberculosis de la Alcaldía de Yumbo" loading="lazy"></button>
       </div>
-      <div>
+      <div class="txt-col">
+        <p class="num">Escena 3 de 5</p>
         <h3>Comunicación pública</h3>
         <p class="when">Alcaldías de Cali y Yumbo, 2020 a 2022</p>
         <p>Para la Secretaría de Paz y Cultura Ciudadana de Cali diseñé las presentaciones de rendición de cuentas de la Secretaría y de la Alcaldía y un libro con ilustraciones de niños, y produje videos que emitió Telepacífico.</p>
@@ -283,97 +371,88 @@ dialog::backdrop{background:rgba(9,18,33,.88)}
         </ul>
       </div>
     </article>
-
-    <article class="case">
-      <div class="media"><button class="playbtn" type="button" data-yt="CGccljx4QxQ" data-title="Video lyric: Suave (Mauna)"><img src="https://i.ytimg.com/vi/CGccljx4QxQ/hqdefault.jpg" alt="" loading="lazy"><span class="pi" aria-hidden="true"></span><span class="skip">Reproducir el video lyric de Suave</span></button></div>
-      <div>
-        <h3>Producción audiovisual</h3>
-        <p class="when">JAVEGA (2016 a 2024) y Autómatas, desde 2016</p>
+    <article class="scene">
+      <div class="media"><button class="playbtn" type="button" data-yt="CGccljx4QxQ" data-title="Video lyric: Suave (Mauna)"><img src="https://i.ytimg.com/vi/CGccljx4QxQ/hqdefault.jpg" alt="" loading="lazy"><span class="pi" aria-hidden="true"></span><span class="sr">Reproducir el video lyric de Suave</span></button></div>
+      <div class="txt-col">
+        <p class="num">Escena 4 de 5</p>
+        <h3>Cámara, edición y color</h3>
+        <p class="when">JAVEGA (2016 a 2024) y Autómatas</p>
         <p>Más de 10 proyectos pagos de video, fotografía y diseño para marcas y entidades.</p>
         <ul>
           <li>Realicé el video lyric de Suave (Mauna), con tipografía animada.</li>
           <li>Hice de principio a fin el programa de cocina UniChef en YouTube.</li>
           <li>Fui camarógrafo en los segmentos Saludablemente de Tardes del Sol, en Telepacífico.</li>
-          <li>Diseñé la marca y el menú de Pizzaza, y realicé fotografía de producto y retrato.</li>
         </ul>
-        <a href="#video">Ver más videos</a>
+        <a href="#video">Ver los videos</a>
       </div>
     </article>
-
-    <article class="case">
+    <article class="scene">
       <div class="media"><div class="dash" aria-hidden="true"><div class="row"><b></b><b></b><b></b></div><div class="bars"><div class="sketch"><i style="height:45%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:90%"></i><i style="height:62%"></i></div></div></div></div>
-      <div>
+      <div class="txt-col">
+        <p class="num">Escena 5 de 5</p>
         <h3>Clara y herramientas con IA</h3>
         <p class="when">Autómatas y ESPY, 2026</p>
-        <p>En Autómatas, empresa de la que soy socio fundador, creé a Clara, la agente virtual de ESPY: propuse su nombre, los juegos de palabras y el eslogan, el estilo y tono de comunicación, su historia y el diseño del personaje.</p>
+        <p>En Autómatas, empresa de la que soy socio fundador, creé a Clara, la agente virtual de ESPY: su nombre, los juegos de palabras y el eslogan, el tono, su historia y el diseño del personaje.</p>
         <ul>
-          <li>En Autómatas me reúno con los clientes, entiendo sus necesidades y levanto los requerimientos; con eso el equipo técnico cotiza y construye la solución.</li>
-          <li>Hice el video animado en 2D de su nacimiento con Flow: el ciclo del agua a través de ESPY, dos plantas reales y personal real de la empresa ilustrados, y lugares icónicos de Yumbo.</li>
-          <li>En ESPY construí con Claude y Gemini un tablero presupuestal y un directorio para la intranet. Por ser información interna, aquí no muestro pantallas.</li>
+          <li>Me reúno con los clientes, entiendo sus necesidades y levanto los requerimientos; con eso el equipo técnico cotiza y construye la solución.</li>
+          <li>Hice el video animado en 2D del nacimiento de Clara con Flow, con el ciclo del agua, personal real de la empresa y lugares de Yumbo.</li>
+          <li>En ESPY construí con Claude y Gemini un tablero presupuestal y un directorio para la intranet.</li>
         </ul>
         <a href="https://www.automatas.co" target="_blank" rel="noopener">Conocer a Clara en automatas.co</a>
       </div>
     </article>
   </div>
+  <div class="scene-dots" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
 </section>
 
-<section class="block" id="video">
+<section class="block dark" id="video" aria-labelledby="video-title">
   <div class="wrap">
-    <div class="sec-head"><h2>Video</h2><p>Dirección, edición, color y animación. Haz clic para verlos aquí mismo.</p></div>
+    <div class="sec-head"><h2 id="video-title" data-split>La sala de edición</h2><p>Dirección, edición, color y animación. Dale play y se abre aquí mismo.</p></div>
     <div class="grid" id="video-grid"></div>
   </div>
 </section>
 
-<section class="block tint" id="diseno">
+<section class="block tint" id="diseno" aria-labelledby="design-title">
   <div class="wrap">
-    <div class="sec-head"><h2>Diseño gráfico</h2><p>Marcas, piezas para redes, banners e ilustración para negocios y entidades.</p></div>
+    <div class="sec-head"><h2 id="design-title" data-split>Diseño gráfico</h2><p>Marcas, piezas para redes, banners e ilustración para negocios y entidades.</p></div>
     <div class="grid" id="design-grid"></div>
   </div>
 </section>
 
-<section class="block" id="fotografia">
+<section class="block" id="fotografia" aria-labelledby="photo-title">
   <div class="wrap">
-    <div class="sec-head"><h2>Fotografía</h2><p>Producto, retrato y food styling. Cada serie se abre en grande.</p></div>
+    <div class="sec-head"><h2 id="photo-title" data-split>Fotografía</h2><p>Producto, retrato y food styling. Cada serie se abre en grande.</p></div>
     <div class="grid" id="photo-grid"></div>
   </div>
 </section>
 
-<section class="block tint" id="sonido">
+<section class="block tint" id="sonido" aria-labelledby="sound-title">
   <div class="wrap">
-    <div class="sec-head"><h2>Diseño sonoro</h2><p>Pistas para acompañar video, de lo acústico a lo electrónico.</p></div>
+    <div class="sec-head"><h2 id="sound-title" data-split>Diseño sonoro</h2><p>Pistas para acompañar video, de lo acústico a lo electrónico.</p></div>
     <div class="tracks" id="tracks"></div>
   </div>
 </section>
 
-<section class="block" id="hoja-de-vida">
+<section class="final" id="hoja-de-vida" aria-labelledby="final-title">
   <div class="wrap">
-    <div class="sec-head"><h2>Hoja de vida</h2><p>Los mismos datos con el énfasis de cada tipo de cargo. Descarga la que corresponda a la vacante.</p></div>
+    <h2 id="final-title" data-split>¿Tu equipo necesita a alguien que diseñe, grabe y explique?</h2>
+    <p class="lead">Descarga la hoja de vida que corresponde a tu vacante o escríbeme por WhatsApp. Te respondo el mismo día.</p>
     <div class="cvs">
       <a class="cvcard" href="cv/HV_Jhon_Alejandro_Vega_Ramirez_Diseno_Grafico.pdf" download><strong>Diseño y marca</strong><span>Para cargos de diseño gráfico, identidad de marca y mercadeo creativo.</span><em>Descargar PDF</em></a>
       <a class="cvcard" href="cv/HV_Jhon_Alejandro_Vega_Ramirez_Video.pdf" download><strong>Video y audiovisual</strong><span>Para edición, producción y comunicación audiovisual.</span><em>Descargar PDF</em></a>
       <a class="cvcard" href="cv/HV_Jhon_Alejandro_Vega_Ramirez_Formacion.pdf" download><strong>Formación y e-learning</strong><span>Para diseño instruccional, contenidos de formación y docencia.</span><em>Descargar PDF</em></a>
       <a class="cvcard" href="cv/CV_Jhon_Alejandro_Vega_Ramirez_Video_Editor_EN.pdf" download lang="en"><strong>Video editor, in English</strong><span>For English-speaking video roles.</span><em>Download PDF</em></a>
     </div>
-    <p class="cv-more">También puedes ver la <a href="cv/">hoja de vida interactiva</a>.</p>
-  </div>
-</section>
-
-<section class="block tint" id="contacto">
-  <div class="wrap contact">
-    <div>
-      <h2>¿Hablamos?</h2>
-      <p class="lede" style="margin-top:16px">Si tienes una vacante o un proyecto de marca, video o formación, escríbeme por WhatsApp y te respondo el mismo día.</p>
-    </div>
-    <div class="links">
+    <div class="links" id="contacto">
       <a href="https://wa.me/573001404327?text=Hola%20Alejandro,%20estoy%20viendo%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20escribirte." target="_blank" rel="noopener">WhatsApp <span>300 140 4327</span></a>
       <a href="https://linkedin.com/in/javegapro" target="_blank" rel="noopener">LinkedIn <span>/in/javegapro</span></a>
       <a href="https://www.youtube.com/@javegapro" target="_blank" rel="noopener">YouTube <span>@javegapro</span></a>
       <a href="https://instagram.com/javegapro" target="_blank" rel="noopener">Instagram <span>@javegapro</span></a>
     </div>
+    <p class="more">También puedes ver la <a href="cv/">hoja de vida interactiva</a>.</p>
   </div>
 </section>
 </main>
-
 <footer><div class="wrap">© 2026 Jhon Alejandro Vega Ramírez. Yumbo, Valle del Cauca.</div></footer>
 
 <dialog id="player" aria-label="Reproductor de video">
@@ -383,6 +462,9 @@ dialog::backdrop{background:rgba(9,18,33,.88)}
   <div class="dlg viewer"><button class="close" type="button" data-close>Cerrar</button><img alt=""><div class="bar"><button type="button" data-step="-1">Anterior</button><span id="viewer-cap"></span><button type="button" data-step="1">Siguiente</button></div></div>
 </dialog>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 const VIDEOS = [
   ["ntMooW2DwVw", "Showreel", "Dirección creativa"],
@@ -391,7 +473,8 @@ const VIDEOS = [
   ["SRH1ImvnXFI", "UniChef: Pamplona", "Programa de cocina"],
   ["rtvkiEu0xyo", "UniChef: Postre", "Programa de cocina"],
   ["kZLIan0Hr-E", "Prueba de color: KAPO", "Etalonaje"],
-  ["3GLjAoBXZV8", "Detrás de cámaras: Desnúdame, de Alejo Djoy", "Postproducción"]
+  ["3GLjAoBXZV8", "Detrás de cámaras: Desnúdame, de Alejo Djoy", "Postproducción"],
+  ["NsDssGC4P4o", "Photoshop desde cero", "Clase en video"]
 ];
 const DESIGN = [
   ["cali-encuentro", "Alcaldía de Cali", "Invitación a un encuentro cultural"],
@@ -431,29 +514,25 @@ const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">"
 
 const vg = document.getElementById("video-grid");
 VIDEOS.forEach(([id, title, tag]) => vg.append(el(`<div class="card"><button type="button" data-yt="${id}" data-title="${esc(title)}"><div class="thumb"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy"><span class="pi" aria-hidden="true"></span></div><div class="txt"><strong>${esc(title)}</strong><span>${esc(tag)}</span></div></button></div>`)));
-
 const dg = document.getElementById("design-grid");
 DESIGN.forEach(([slug, title, tag], i) => dg.append(el(`<div class="card"><button type="button" data-set="design" data-i="${i}"><div class="thumb sq"><img src="img/diseno/${slug}-sm.jpg" alt="${esc(tag)} para ${esc(title)}" loading="lazy"></div><div class="txt"><strong>${esc(title)}</strong><span>${esc(tag)}</span></div></button></div>`)));
-
 const pg = document.getElementById("photo-grid");
 PHOTOS.forEach(([title, ids], i) => pg.append(el(`<div class="card"><button type="button" data-set="photo" data-g="${i}"><div class="thumb sq"><img src="${wix(ids[0], 640, 640, "fill")}" alt="Serie ${esc(title)}" loading="lazy" onerror="this.onerror=null;this.src='${W}${ids[0]}'"><span class="count">${ids.length} fotos</span></div><div class="txt"><strong>${esc(title)}</strong></div></button></div>`)));
-
 const tr = document.getElementById("tracks");
-TRACKS.forEach(([t, g, f]) => tr.append(el(`<div class="track"><strong>${esc(t)}</strong><span>${esc(g)}</span><audio controls preload="none" src="https://static.wixstatic.com/mp3/${f}"></audio></div>`)));
+TRACKS.forEach(([t, g, f]) => tr.append(el(`<div class="track"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><strong>${esc(t)}</strong><span>${esc(g)}</span><audio controls preload="none" src="https://static.wixstatic.com/mp3/${f}"></audio></div>`)));
+tr.addEventListener("play", (e) => { document.querySelectorAll(".track audio").forEach((a) => { if (a !== e.target) a.pause(); }); e.target.closest(".track").classList.add("playing"); }, true);
+["pause", "ended"].forEach((ev) => tr.addEventListener(ev, (e) => e.target.closest(".track").classList.remove("playing"), true));
 
-// Video player
+// Video player and image viewer
 const player = document.getElementById("player"), frame = player.querySelector("iframe");
 const openVideo = (id, title) => { frame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`; frame.title = title || "Video"; player.showModal(); };
 player.addEventListener("close", () => { frame.src = ""; });
-
-// Image viewer
 const viewer = document.getElementById("viewer"), vimg = viewer.querySelector("img"), vcap = document.getElementById("viewer-cap");
 let items = [], idx = 0;
-const show = () => { const it = items[idx]; vimg.src = it.src; vimg.alt = it.cap; vcap.textContent = items.length > 1 ? `${it.cap} (${idx + 1} de ${items.length})` : it.cap; viewer.querySelectorAll("[data-step]").forEach((b) => b.hidden = items.length < 2); };
+const show = () => { const it = items[idx]; vimg.src = it.src; vimg.alt = it.cap; vcap.textContent = items.length > 1 ? `${it.cap} (${idx + 1} de ${items.length})` : it.cap; viewer.querySelectorAll("[data-step]").forEach((b) => (b.hidden = items.length < 2)); };
 const openSet = (list, i) => { items = list; idx = i; show(); viewer.showModal(); };
-viewer.addEventListener("keydown", (e) => { if (e.key === "ArrowRight") step(1); if (e.key === "ArrowLeft") step(-1); });
 const step = (d) => { idx = (idx + d + items.length) % items.length; show(); };
-
+viewer.addEventListener("keydown", (e) => { if (e.key === "ArrowRight") step(1); if (e.key === "ArrowLeft") step(-1); });
 document.addEventListener("click", (e) => {
   const b = e.target.closest("button, dialog");
   if (!b) return;
@@ -465,6 +544,105 @@ document.addEventListener("click", (e) => {
   if (b.dataset.set === "design") return openSet(DESIGN.map(([s, t, g]) => ({ src: `img/diseno/${s}.jpg`, cap: `${t}: ${g.toLowerCase()}` })), +b.dataset.i);
   if (b.dataset.set === "photo") { const [t, ids] = PHOTOS[+b.dataset.g]; return openSet(ids.map((id) => ({ src: wix(id, 1600, 1600, "fit"), cap: t })), 0); }
 });
+
+// Timecode in the header: the page plays like a 2:30 reel
+const timebar = document.getElementById("timebar"), timecode = document.getElementById("timecode");
+const pad = (n) => String(n).padStart(2, "0");
+const tcAt = (p) => { const f = Math.round(p * 150 * 25); return `00:${pad(Math.floor(f / 1500))}:${pad(Math.floor(f / 25) % 60)}:${pad(f % 25)}`; };
+const onScroll = () => { const max = document.documentElement.scrollHeight - innerHeight; const p = max > 0 ? Math.min(1, scrollY / max) : 0; timebar.style.transform = `scaleX(${p})`; timecode.textContent = tcAt(p); };
+addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+// Motion layer
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const motion = !reduce && window.gsap && window.ScrollTrigger;
+document.documentElement.classList.add(motion ? "motion" : "still");
+if (motion) {
+  gsap.registerPlugin(ScrollTrigger);
+  if (window.Lenis) {
+    const lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 1 });
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add((t) => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener("click", (e) => { const id = a.getAttribute("href"); if (id.length > 1 && document.querySelector(id)) { e.preventDefault(); lenis.scrollTo(id, { offset: -64 }); } }));
+  }
+
+  // Split headings into words that rise from a mask
+  document.querySelectorAll("[data-split]").forEach((h) => {
+    const words = h.textContent.trim().split(/\s+/);
+    h.setAttribute("aria-label", h.textContent.trim());
+    h.innerHTML = words.map((w) => `<span class="mask" aria-hidden="true"><span class="w">${esc(w)}</span></span>`).join(" ");
+    gsap.from(h.querySelectorAll(".w"), { yPercent: 115, duration: .9, ease: "power4.out", stagger: .05, scrollTrigger: { trigger: h, start: "top 86%" } });
+  });
+
+  // Opening shot
+  const intro = gsap.timeline({ defaults: { ease: "power4.out" } });
+  intro.from(".kicker", { y: 18, opacity: 0, duration: .6 })
+    .from(".hero h1 .w", { yPercent: 115, duration: 1, stagger: .06 }, "-=.3")
+    .from(".rot", { yPercent: 115, opacity: 0, duration: .8 }, "<.2")
+    .from(".sub, .actions", { y: 26, opacity: 0, duration: .8, stagger: .12 }, "-=.6")
+    .from(".cam", { clipPath: "inset(50% 50% 50% 50% round 14px)", duration: 1.2, ease: "expo.inOut" }, .2)
+    .from(".cam .corner", { scale: 1.8, opacity: 0, duration: .5, stagger: .07 }, "-=.3")
+    .from(".stat", { y: 30, opacity: 0, duration: .7, stagger: .08 }, "-=.6");
+  document.querySelectorAll("[data-count]").forEach((n) => {
+    const o = { v: 0 }, pre = n.dataset.prefix || "", suf = n.dataset.suffix || "";
+    gsap.to(o, { v: +n.dataset.count, duration: 1.8, ease: "power2.out", delay: 1.1, onUpdate: () => (n.textContent = pre + Math.round(o.v) + suf) });
+  });
+
+  // Rotating word: marca, video, curso
+  const rw = gsap.utils.toArray(".rot .rw");
+  gsap.set(rw.slice(1), { yPercent: 110 });
+  const rot = gsap.timeline({ repeat: -1, delay: 2.4 });
+  rw.forEach((w, i) => { const next = rw[(i + 1) % rw.length]; rot.to(w, { yPercent: -110, duration: .6, ease: "power3.inOut" }, "+=1.6").fromTo(next, { yPercent: 110 }, { yPercent: 0, duration: .6, ease: "power3.inOut" }, "<"); });
+
+  // Portrait drifts slower than the page
+  gsap.to(".cam img", { yPercent: -12, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+
+  // Marquee speeds up with scroll velocity
+  const mq = gsap.to(".mq", { xPercent: -50, duration: 32, ease: "none", repeat: -1 });
+  ScrollTrigger.create({ onUpdate: (s) => { const v = Math.min(5, 1 + Math.abs(s.getVelocity()) / 350); gsap.to(mq, { timeScale: s.direction < 0 ? -v : v, duration: .3, overwrite: true }); gsap.to(mq, { timeScale: s.direction < 0 ? -1 : 1, duration: 1.2, delay: .3 }); } });
+
+  // Storyboard: the playhead scrubs through the years
+  const frames = gsap.utils.toArray(".reel li");
+  const mmReel = gsap.matchMedia();
+  mmReel.add("(min-width: 901px)", () => {
+    gsap.fromTo(".reel-playhead", { left: "0%" }, { left: "100%", ease: "none", scrollTrigger: { trigger: ".reel", start: "top 75%", end: "bottom 35%", scrub: .6, onUpdate: (s) => { const k = Math.min(frames.length - 1, Math.floor(s.progress * frames.length)); frames.forEach((f, j) => f.classList.toggle("on", j <= k)); } } });
+    gsap.from(".reel .sketch i", { scaleY: 0, stagger: .08, duration: .8, ease: "back.out(1.6)", scrollTrigger: { trigger: ".reel", start: "top 60%" } });
+  });
+
+  // Scenes: horizontal on desktop, stacked on small screens
+  const mm = gsap.matchMedia();
+  mm.add("(min-width: 1024px)", () => {
+    const sec = document.querySelector(".scenes"), track = document.querySelector(".scenes-track");
+    const dist = () => track.scrollWidth - innerWidth;
+    const dots = gsap.utils.toArray(".scene-dots b");
+    const scenes = gsap.utils.toArray(".scene");
+    const tween = gsap.to(track, { x: () => -dist(), ease: "none", scrollTrigger: { trigger: sec, start: "top top", end: () => "+=" + dist(), pin: true, scrub: .8, invalidateOnRefresh: true, anticipatePin: 1,
+      onUpdate: (s) => dots.forEach((d, i) => gsap.set(d, { scaleX: Math.max(0, Math.min(1, s.progress * scenes.length - i)) })) } });
+    scenes.forEach((s) => {
+      gsap.from(s.querySelector(".media"), { clipPath: "inset(0 100% 0 0 round 12px)", ease: "none", scrollTrigger: { trigger: s, containerAnimation: tween, start: "left 90%", end: "left 40%", scrub: true } });
+      gsap.from(s.querySelectorAll(".txt-col > *"), { x: 60, opacity: 0, stagger: .06, duration: .7, ease: "power3.out", scrollTrigger: { trigger: s, containerAnimation: tween, start: "left 70%", toggleActions: "play none none reverse" } });
+    });
+  });
+  mm.add("(max-width: 1023px)", () => {
+    gsap.utils.toArray(".scene").forEach((s) => gsap.from(s, { y: 70, opacity: 0, duration: .9, ease: "power3.out", scrollTrigger: { trigger: s, start: "top 88%" } }));
+  });
+
+  // Galleries: cards cut in like edits
+  gsap.set(".card", { opacity: 0, y: 50 });
+  ScrollTrigger.batch(".card", { start: "top 92%", once: true, onEnter: (b) => gsap.to(b, { opacity: 1, y: 0, duration: .8, ease: "power3.out", stagger: .07 }) });
+  gsap.from(".track", { x: -30, opacity: 0, stagger: .08, duration: .6, scrollTrigger: { trigger: "#tracks", start: "top 85%" } });
+  gsap.from(".cvcard", { y: 50, opacity: 0, stagger: .1, duration: .8, ease: "power3.out", scrollTrigger: { trigger: ".cvs", start: "top 88%" } });
+  gsap.from(".links a", { y: 20, opacity: 0, stagger: .06, duration: .6, scrollTrigger: { trigger: ".links", start: "top 92%" } });
+
+  // Magnetic buttons
+  if (matchMedia("(pointer: fine)").matches) {
+    document.querySelectorAll(".magnet").forEach((b) => {
+      b.addEventListener("mousemove", (e) => { const r = b.getBoundingClientRect(); gsap.to(b, { x: (e.clientX - r.left - r.width / 2) * .25, y: (e.clientY - r.top - r.height / 2) * .35, duration: .3 }); });
+      b.addEventListener("mouseleave", () => gsap.to(b, { x: 0, y: 0, duration: .6, ease: "elastic.out(1,.4)" }));
+    });
+  }
+  addEventListener("load", () => ScrollTrigger.refresh());
+}
 </script>
 </body>
 </html>
